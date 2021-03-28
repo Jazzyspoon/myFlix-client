@@ -19,7 +19,6 @@
     "url": "https://github.com/Jazzyspoon/myFlix-client/issues"
   },
   "homepage": "https://github.com/Jazzyspoon/myFlix-client#readme",
-  "description": "",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -30,5 +29,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "sass": "^1.32.8"
-  }
+  },
+  "description": ""
 }
