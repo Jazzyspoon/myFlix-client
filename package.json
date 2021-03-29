@@ -16,14 +16,15 @@
   },
   "homepage": "https://github.com/Jazzyspoon/myFlix-client#readme",
   "dependencies": {
+    "@babel/core": "^7.13.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "parcel": "^2.0.0-beta.2",
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.8"
