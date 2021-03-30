@@ -29758,23 +29758,23 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         _id: {
           $oid: "604f9e2305951614efe12f39"
         },
-        Title: "Bladerunner",
+        Title: "Blade Runner",
         Description: "A Bladerunner must track down and terminate four replicants who stole a ship in space, and have returned to Earth to find their creator.",
-        ImagePath: "/img/bladerunner.jpg"
+        ImagePath: "./img/bladerunner.jpg"
       }, {
         _id: {
           $oid: "604f9e3505951614efe12f3a"
         },
         Title: "Alien",
         Description: "After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form and they soon realize that its life cycle has merely begun.",
-        ImagePath: "/img/alien.jpg"
+        ImagePath: "./img/alien.jpg"
       }, {
         _id: {
           $oid: "604f9e5805951614efe12f3b"
         },
         Title: "The Chronicles Of Riddick",
         Description: "The wanted criminal Richard Bruno Riddick (Vin Diesel) arrives on a planet called Helion Prime and finds himself up against an invading empire called the Necromongers, an army that plans to convert or kill all humans in the universe.",
-        ImagePath: "/img/riddick.jpg"
+        ImagePath: "./img/riddick.jpg"
       }]
     };
     return _this;
