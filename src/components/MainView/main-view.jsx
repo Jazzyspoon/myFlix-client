@@ -8,22 +8,29 @@ export default class MainView extends React.Component {
     this.state = {
       movies: [
         {
-          _id: 1,
-          Title: "Inception",
-          Description: "desc1...",
-          ImagePath: "...",
+          _id: { $oid: "604f9e2305951614efe12f39" },
+          Title: "Bladerunner",
+          Description:
+            "A Bladerunner must track down and terminate four replicants who stole a ship in space, and have returned to Earth to find their creator.",
+          ImagePath: "/img/bladerunner.jpg",
         },
         {
-          _id: 2,
-          Title: "The Shawshank Redemption",
-          Description: "desc2...",
-          ImagePath: "...",
+          _id: {
+            $oid: "604f9e3505951614efe12f3a",
+          },
+          Title: "Alien",
+          Description:
+            "After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form and they soon realize that its life cycle has merely begun.",
+          ImagePath: "/img/alien.jpg",
         },
         {
-          _id: 3,
-          Title: "Gladiator",
-          Description: "desc3...",
-          ImagePath: "...",
+          _id: {
+            $oid: "604f9e5805951614efe12f3b",
+          },
+          Title: "The Chronicles Of Riddick",
+          Description:
+            "The wanted criminal Richard Bruno Riddick (Vin Diesel) arrives on a planet called Helion Prime and finds himself up against an invading empire called the Necromongers, an army that plans to convert or kill all humans in the universe.",
+          ImagePath: "/img/riddick.jpg",
         },
       ],
     };
@@ -50,7 +57,7 @@ export default class MainView extends React.Component {
     }
 
     if (movies.length === 0) {
-      return <div className="main-view">The list is empty!</div>;
+      return <div className="main-view">The list is empty</div>;
     }
 
     return (
