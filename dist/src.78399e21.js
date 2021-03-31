@@ -29692,7 +29692,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "movie-title"
       }, movieData.Title), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-description"
-      }, movieData.Description), /*#__PURE__*/_react.default.createElement("button", {
+      }, movieData.Description), /*#__PURE__*/_react.default.createElement("div", {
+        className: "movie-genre"
+      }, movieData.Genre), /*#__PURE__*/_react.default.createElement("div", {
+        className: "movie-director"
+      }, movieData.Director), /*#__PURE__*/_react.default.createElement("button", {
         onClick: function onClick() {
           onBackClick(null);
         }
@@ -29755,27 +29759,35 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {
       movies: [{
-        _id: {
-          $oid: "604f9e2305951614efe12f39"
-        },
-        Title: "Blade Runner",
+        _id: "604f9e2305951614efe12f39",
+        Title: "Bladerunner",
         Description: "A Bladerunner must track down and terminate four replicants who stole a ship in space, and have returned to Earth to find their creator.",
-        ImagePath: "./img/bladerunner.jpg"
+        Genre: "sci-fi",
+        Director: "Ridley Scott",
+        ImagePath: "/src/img/bladerunner.jpg"
       }, {
-        _id: {
-          $oid: "604f9e3505951614efe12f3a"
-        },
+        _id: "604f9e3505951614efe12f3a",
         Title: "Alien",
         Description: "After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form and they soon realize that its life cycle has merely begun.",
-        ImagePath: "./img/alien.jpg"
+        Genre: "sci-fi",
+        Director: "Ridley Scott",
+        ImagePath: "/src/img/alien.jpg"
       }, {
-        _id: {
-          $oid: "604f9e5805951614efe12f3b"
-        },
+        _id: "604f9e5805951614efe12f3b",
         Title: "The Chronicles Of Riddick",
         Description: "The wanted criminal Richard Bruno Riddick (Vin Diesel) arrives on a planet called Helion Prime and finds himself up against an invading empire called the Necromongers, an army that plans to convert or kill all humans in the universe.",
-        ImagePath: "./img/riddick.jpg"
-      }]
+        Genre: "sci-fi",
+        Director: "David Twohy",
+        ImagePath: "/src/img/riddick.jpg"
+      }, {
+        _id: "604f9e6505951614efe12f3c",
+        Title: "The Avengers",
+        Description: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+        Genre: "action",
+        Director: "Joss Whedon",
+        ImagePath: "/src/img/avengers.jpg"
+      }],
+      selectedMovie: null
     };
     return _this;
   }
@@ -29990,7 +30002,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53841" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58017" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
