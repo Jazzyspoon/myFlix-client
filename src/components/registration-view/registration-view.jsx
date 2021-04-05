@@ -17,7 +17,7 @@ export function RegisterView(props) {
   return (
     <form>
       <h1>Welcome to movieFlix!</h1>
-      <p>Please register to continue.</p>
+      <p>Please create an account to continue.</p>
       <label>
         Enter Username:
         <input

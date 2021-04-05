@@ -32552,7 +32552,7 @@ function RegisterView(props) {
     props.onRegister("test");
   };
 
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please register to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: username,
     onChange: function onChange(e) {
@@ -33061,7 +33061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62935" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64486" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
