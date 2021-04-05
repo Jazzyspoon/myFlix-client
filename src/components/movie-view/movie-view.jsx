@@ -5,13 +5,11 @@ import "./movie-view.scss";
 export class MovieView extends React.Component {
   constructor() {
     super();
-
     this.state = {};
   }
 
   render() {
     const { movie, onClick } = this.props;
-
     if (!movie) return null;
 
     // if (this.state.initialState === '') return ;
@@ -56,8 +54,6 @@ MovieView.propTypes = {
     ImagePath: PropTypes.string.isRequired,
     Director: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
     Genre: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
-    Actors: PropTypes.string.isRequired,
   }).isRequired,
-
   onClick: PropTypes.func.isRequired,
 };
