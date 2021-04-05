@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { LoginView } from "../login-view/login-view";
+import { RegisterView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import "./main-view.scss";
@@ -10,9 +11,10 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movies: null,
+      movie: null,
       selectedMovie: null,
       user: null,
+      register: null,
     };
   }
   componentDidMount() {
@@ -43,15 +45,33 @@ export class MainView extends React.Component {
       user,
     });
   }
+
+  /* */
+  onRegister(register) {
+    this.setState({
+      register,
+    });
+  }
+
+  /* When back button click selectedMovie will set on it's initial state*/
+  setInititalState() {
+    this.setState({
+      selectedMovie: null,
+    });
+  }
   render() {
-    const { movies, selectedMovie, user } = this.state;
+    const { movies, selectedMovie, user, register } = this.state;
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
 
     if (!user)
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-    // Before the movies have been loaded
-    if (!movies) return <div className="main-view" />;
+
+    /* Register */
+    if (!register)
+      return (
+        <RegisterView onRegister={(register) => this.onRegister(register)} />
+      );
 
     return (
       <div className="main-view">
