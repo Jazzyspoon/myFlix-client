@@ -11,7 +11,7 @@ export function LoginView(props) {
     console.log(Username, Password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    props.onLoggedIn(Username);
   };
 
   return (
@@ -20,7 +20,7 @@ export function LoginView(props) {
         Username:
         <input
           type="text"
-          value={username}
+          value={Username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
@@ -28,7 +28,7 @@ export function LoginView(props) {
         Password:
         <input
           type="password"
-          value={password}
+          value={Password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>

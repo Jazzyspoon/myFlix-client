@@ -32459,18 +32459,18 @@ function LoginView(props) {
 
     /* then call props.onLoggedIn(username) */
 
-    props.onLoggedIn(username);
+    props.onLoggedIn(Username);
   };
 
   return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: username,
+    value: Username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: password,
+    value: Password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
