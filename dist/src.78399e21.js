@@ -31476,6 +31476,13 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.addEventListener("keypress", function (event) {
+        console.log(event.key);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -31610,22 +31617,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie;
-
-      if (selectedMovie) {
-        return /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
-          movieData: selectedMovie,
-          onBackClick: function onBackClick(newSelectedMovie) {
-            _this3.setSelectedMovie(newSelectedMovie);
-          }
-        });
-      }
-
-      if (movies.length === 0) {
-        return /*#__PURE__*/_react.default.createElement("div", {
-          className: "main-view"
-        }, "The list is empty");
-      }
-
+      if (selectedMovie) return /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
+        movie: selectedMovie,
+        onBackClick: function onBackClick(newSelectedMovie) {
+          _this3.setSelectedMovie(newSelectedMovie);
+        }
+      });
+      if (movies.length === 0) return /*#__PURE__*/_react.default.createElement("div", {
+        className: "main-view"
+      });
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
       }, movies.map(function (movie) {
@@ -31807,7 +31807,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54755" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55061" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
