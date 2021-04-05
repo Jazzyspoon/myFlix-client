@@ -31618,7 +31618,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie;
       if (selectedMovie) return /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
+        movieData: selectedMovie,
         onBackClick: function onBackClick(newSelectedMovie) {
           _this3.setSelectedMovie(newSelectedMovie);
         }
@@ -31631,7 +31631,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, movies.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
-          movie: movie,
+          movieData: movie,
           onMovieClick: function onMovieClick(newSelectedMovie) {
             _this3.setState({
               selectedMovie: newSelectedMovie
@@ -31807,7 +31807,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55396" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
