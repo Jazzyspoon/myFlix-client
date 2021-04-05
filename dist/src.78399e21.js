@@ -31476,6 +31476,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "keypressCallback",
+    value: function keypressCallback(event) {
+      console.log(event.key);
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       document.addEventListener("keypress", function (event) {

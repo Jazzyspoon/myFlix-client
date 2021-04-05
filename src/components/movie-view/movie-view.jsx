@@ -1,6 +1,9 @@
 import React from "react";
 
 export class MovieView extends React.Component {
+  keypressCallback(event) {
+    console.log(event.key);
+  }
   componentDidMount() {
     document.addEventListener("keypress", (event) => {
       console.log(event.key);
