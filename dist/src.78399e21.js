@@ -32444,12 +32444,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function LoginView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
+      Username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
+      Password = _useState4[0],
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit() {
@@ -32528,22 +32528,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisterView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
+      Username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
+      Email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      password = _useState6[0],
+      Password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
+      Birthday = _useState8[0],
       setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
@@ -32554,25 +32554,25 @@ function RegisterView(props) {
 
   return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: username,
+    value: Username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Create Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: password,
+    value: Password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "email",
-    value: email,
+    value: Email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "birthday",
-    value: birthday,
+    value: Birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -33060,7 +33060,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49292" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

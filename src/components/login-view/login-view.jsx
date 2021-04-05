@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import "./login-view.scss";
 
 export function LoginView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
 
   const handleSubmit = () => {
     e.preventDefault();
