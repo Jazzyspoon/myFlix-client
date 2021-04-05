@@ -31476,11 +31476,6 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
-    key: "keypressCallback",
-    value: function keypressCallback(event) {
-      console.log(event.key);
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       document.addEventListener("keypress", function (event) {
@@ -31812,7 +31807,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55396" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55470" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
