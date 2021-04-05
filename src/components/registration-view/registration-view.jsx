@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import "./registration-view.scss";
 
 export function RegisterView(props) {
-  const [Username, setUsername] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -32454,7 +32454,7 @@ function LoginView(props) {
 
   var handleSubmit = function handleSubmit() {
     e.preventDefault();
-    console.log(username, password);
+    console.log(Username, Password);
     /* Send a request to the server for authentication */
 
     /* then call props.onLoggedIn(username) */
@@ -32528,22 +32528,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisterView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      Username = _useState2[0],
+      username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      Email = _useState4[0],
+      email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      Password = _useState6[0],
+      password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      Birthday = _useState8[0],
+      birthday = _useState8[0],
       setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
@@ -33060,7 +33060,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64857" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64985" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
