@@ -32675,8 +32675,7 @@ MovieCard.propTypes = {
     }).isRequired,
     Genre: _propTypes.default.shape({
       Name: _propTypes.default.string.isRequired
-    }).isRequired,
-    Actors: _propTypes.default.string.isRequired
+    }).isRequired
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
@@ -33061,7 +33060,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64857" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
