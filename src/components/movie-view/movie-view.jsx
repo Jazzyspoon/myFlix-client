@@ -7,7 +7,6 @@ export class MovieView extends React.Component {
     super();
     this.state = {};
   }
-
   render() {
     const { movie, onClick } = this.props;
     if (!movie) return null;

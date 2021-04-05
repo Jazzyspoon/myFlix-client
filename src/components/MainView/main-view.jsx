@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+
 import "./main-view.scss";
 
 export class MainView extends React.Component {
@@ -11,10 +13,9 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movie: null,
+      movies: null,
       selectedMovie: null,
       user: null,
-      register: null,
     };
   }
   componentDidMount() {
@@ -76,15 +77,17 @@ export class MainView extends React.Component {
     return (
       <div className="main-view">
         {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            movieData={movie}
-            onMovieClick={(newSelectedMovie) => {
-              this.setState({ selectedMovie: newSelectedMovie });
-            }}
-          />
-        ))}
+        {selectedMovie ? (
+          <MovieView movie={selectedMovie} />
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movieData={movie}
+              onClick={(movie) => this.onMovieClick(movie)}
+            />
+          ))
+        )}
       </div>
     );
   }

@@ -32528,31 +32528,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisterView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
+      Username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
+      Email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      password = _useState6[0],
+      Password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
+      Birthday = _useState8[0],
       setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(Username, Password, Email, Birthday);
     props.onRegister("test");
   };
 
-  return /*#__PURE__*/_react.default.createElement(Form, null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please register to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please register to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: username,
     onChange: function onChange(e) {
@@ -32576,7 +32576,7 @@ function RegisterView(props) {
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(Button, {
+  })), /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleSubmit,
     variant: "primary",
     type: "submit"
@@ -32867,10 +32867,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this); // Initial state is set to null
 
     _this.state = {
-      movie: null,
+      movies: null,
       selectedMovie: null,
-      user: null,
-      register: null
+      user: null
     };
     return _this;
   }
@@ -32950,14 +32949,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
-      }, movies.map(function (movie) {
+      }, selectedMovie ? /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
+        movie: selectedMovie
+      }) : movies.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movieData: movie,
-          onMovieClick: function onMovieClick(newSelectedMovie) {
-            _this3.setState({
-              selectedMovie: newSelectedMovie
-            });
+          onClick: function onClick(movie) {
+            return _this3.onMovieClick(movie);
           }
         });
       }));

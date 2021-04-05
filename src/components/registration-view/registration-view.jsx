@@ -3,19 +3,19 @@ import PropTypes from "prop-types";
 import "./registration-view.scss";
 
 export function RegisterView(props) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(Username, Password, Email, Birthday);
     props.onRegister("test");
   };
 
   return (
-    <Form>
+    <form>
       <h1>Welcome to movieFlix!</h1>
       <p>Please register to continue.</p>
       <label>
@@ -51,10 +51,10 @@ export function RegisterView(props) {
         />
       </label>
 
-      <Button onClick={handleSubmit} variant="primary" type="submit">
+      <button onClick={handleSubmit} variant="primary" type="submit">
         Submit
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 }
 
