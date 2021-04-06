@@ -28125,25 +28125,25 @@ try {
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
-    const [username, setUsername] = _react.useState("");
-    const [password, setPassword] = _react.useState("");
+    const [Username, setUsername] = _react.useState("");
+    const [Password, setPassword] = _react.useState("");
     const handleSubmit = () => {
       e.preventDefault();
-      console.log(username, password);
+      console.log(Username, Password);
       /*Send a request to the server for authentication*/
       /*then call props.onLoggedIn(username)*/
-      props.onLoggedIn(username);
+      props.onLoggedIn(Username);
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("form", {
         className: "login"
       }, /*#__PURE__*/_reactDefault.default.createElement("label", null, "Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "text",
-        value: username,
+        value: Username,
         onChange: e => setUsername(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "password",
-        value: password,
+        value: Password,
         onChange: e => setPassword(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("button", {
         type: "submit",
@@ -28151,12 +28151,12 @@ try {
       }, "Submit")))
     );
   }
-  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+  _s(LoginView, "zwhuZmCCK0HUnKqyyFT720C/Kmw=");
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      username: _propTypesDefault.default.string.isRequired,
-      password: _propTypesDefault.default.string.isRequired
+      Username: _propTypesDefault.default.string.isRequired,
+      Password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired,
     onRegister: _propTypesDefault.default.func
