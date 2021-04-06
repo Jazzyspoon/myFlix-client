@@ -28136,49 +28136,42 @@ try {
   var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
   var _reactBootstrapButton = require("react-bootstrap/Button");
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _registrationViewRegistrationView = require("../registration-view/registration-view");
   require("./login-view.scss");
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
-    const [Username, setUsername] = _react.useState("");
-    const [Password, setPassword] = _react.useState("");
+    const [username, setUsername] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
     const handleSubmit = () => {
       e.preventDefault();
-      console.log(Username, Password);
-      /*Send a request to the server for authentication*/
-      /*then call props.onLoggedIn(username)*/
-      props.onLoggedIn(Username);
-    };
-    const handleRegister = () => {
-      e.preventDefault();
-      EventTarget({
-        RegisterView: _registrationViewRegistrationView.RegisterView
-      });
+      console.log(username, password);
+      props.onLoggedIn(username);
     };
     return (
-      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+        value: username,
         type: "text",
-        onChange: e => setUsername(e.target.value)
+        onChange: e => setUsername(e.target.value),
+        placeholder: "username"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+        value: password,
         type: "password",
-        onChange: e => setPassword(e.target.value)
+        onChange: e => setPassword(e.target.value),
+        placeholder: "password"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?", " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-        onClick: handleRegister,
-        variant: "success",
-        type: "submit"
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "success"
       }, "Create an account")))
     );
   }
-  _s(LoginView, "zwhuZmCCK0HUnKqyyFT720C/Kmw=");
+  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
@@ -28196,7 +28189,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","../registration-view/registration-view":"7gvH2"}],"4dfy5":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l"}],"4dfy5":[function(require,module,exports) {
 /**
 * Copyright (c) 2013-present, Facebook, Inc.
 *

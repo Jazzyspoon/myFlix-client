@@ -2,45 +2,40 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { RegisterView } from "../registration-view/registration-view";
+
 import "./login-view.scss";
 
 export function LoginView(props) {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
     e.preventDefault();
-    console.log(Username, Password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(Username);
-  };
-
-  const handleRegister = () => {
-    e.preventDefault();
-    EventTarget({ RegisterView });
+    console.log(username, password);
+    props.onLoggedIn(username);
   };
 
   return (
     <div>
-      <h1>Welcome to movieFlix!</h1>
+      <h1>Welcome to MovieFlix!</h1>
       <p>Please login to continue.</p>
-
       <Form>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
+            value={username}
             type="text"
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="username"
           />
         </Form.Group>
-
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
+            value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="password"
           />
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
@@ -49,10 +44,7 @@ export function LoginView(props) {
       </Form>
       <br></br>
       <p>
-        Not a member?{" "}
-        <Button onClick={handleRegister} variant="success" type="submit">
-          Create an account
-        </Button>
+        Not a member? <Button variant="success">Create an account</Button>
       </p>
     </div>
   );
