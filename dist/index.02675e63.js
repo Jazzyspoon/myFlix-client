@@ -28114,6 +28114,9 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "LoginView", function () {
+    return LoginView;
+  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
@@ -28122,25 +28125,25 @@ try {
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
-    const [Username, setUsername] = _react.useState("");
-    const [Password, setPassword] = _react.useState("");
+    const [username, setUsername] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
     const handleSubmit = () => {
       e.preventDefault();
-      console.log(Username, Password);
+      console.log(username, password);
       /*Send a request to the server for authentication*/
       /*then call props.onLoggedIn(username)*/
-      props.onLoggedIn(Username);
+      props.onLoggedIn(username);
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("form", {
         className: "login"
       }, /*#__PURE__*/_reactDefault.default.createElement("label", null, "Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "text",
-        value: Username,
+        value: username,
         onChange: e => setUsername(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "password",
-        value: Password,
+        value: password,
         onChange: e => setPassword(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("button", {
         type: "submit",
@@ -28148,13 +28151,12 @@ try {
       }, "Submit")))
     );
   }
-  exports.default = LoginView;
-  _s(LoginView, "zwhuZmCCK0HUnKqyyFT720C/Kmw=");
+  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired,
     onRegister: _propTypesDefault.default.func
@@ -29184,6 +29186,9 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "RegisterView", function () {
+    return RegisterView;
+  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
@@ -29192,31 +29197,31 @@ try {
   var _s = $RefreshSig$();
   function RegisterView(props) {
     _s();
-    const [Username, setUsername] = _react.useState("");
-    const [Email, setEmail] = _react.useState("");
-    const [Password, setPassword] = _react.useState("");
-    const [Birthday, setBirthday] = _react.useState("");
+    const [username, setUsername] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [birthday, setBirthday] = _react.useState("");
     const handleSubmit = e => {
       e.preventDefault();
-      console.log(Username, Password, Email, Birthday);
+      console.log(username, password, email, birthday);
       props.onRegister("test");
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("form", null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "text",
-        value: Username,
+        value: username,
         onChange: e => setUsername(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "password",
-        value: Password,
+        value: password,
         onChange: e => setPassword(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "email",
-        value: Email,
+        value: email,
         onChange: e => setEmail(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement("input", {
         type: "birthday",
-        value: Birthday,
+        value: birthday,
         onChange: e => setBirthday(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement("button", {
         onClick: handleSubmit,
@@ -29225,15 +29230,14 @@ try {
       }, "Submit"))
     );
   }
-  exports.default = RegisterView;
-  _s(RegisterView, "ieyvH64s52hBivEzdYj3LdglvZA=");
+  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
   _c = RegisterView;
   RegisterView.propTypes = {
     register: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired,
-      Email: _propTypesDefault.default.string.isRequired,
-      Birthday: _propTypesDefault.default.string.isRequired
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired,
+      email: _propTypesDefault.default.string.isRequired,
+      birthday: _propTypesDefault.default.string.isRequired
     }),
     onRegister: _propTypesDefault.default.func.isRequired
   };
@@ -29300,6 +29304,9 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "MovieView", function () {
+    return MovieView;
+  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
@@ -29354,7 +29361,6 @@ try {
       );
     }
   }
-  exports.default = MovieView;
   MovieView.propTypes = {
     movie: _propTypesDefault.default.shape({
       Title: _propTypesDefault.default.string.isRequired,

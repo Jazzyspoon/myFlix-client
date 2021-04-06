@@ -1,0 +1,69 @@
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "RegisterView", function () {
+    return RegisterView;
+  });
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require("prop-types");
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  require("./registration-view.scss");
+  var _s = $RefreshSig$();
+  function RegisterView(props) {
+    _s();
+    const [username, setUsername] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [birthday, setBirthday] = _react.useState("");
+    const handleSubmit = e => {
+      e.preventDefault();
+      console.log(username, password, email, birthday);
+      props.onRegister("test");
+    };
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("form", null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "text",
+        value: username,
+        onChange: e => setUsername(e.target.value)
+      })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "password",
+        value: password,
+        onChange: e => setPassword(e.target.value)
+      })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "email",
+        value: email,
+        onChange: e => setEmail(e.target.value)
+      })), /*#__PURE__*/_reactDefault.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "birthday",
+        value: birthday,
+        onChange: e => setBirthday(e.target.value)
+      })), /*#__PURE__*/_reactDefault.default.createElement("button", {
+        onClick: handleSubmit,
+        variant: "primary",
+        type: "submit"
+      }, "Submit"))
+    );
+  }
+  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
+  _c = RegisterView;
+  RegisterView.propTypes = {
+    register: _propTypesDefault.default.shape({
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired,
+      email: _propTypesDefault.default.string.isRequired,
+      birthday: _propTypesDefault.default.string.isRequired
+    }),
+    onRegister: _propTypesDefault.default.func.isRequired
+  };
+  var _c;
+  $RefreshReg$(_c, "RegisterView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 
-export default class MovieView extends React.Component {
+export class MovieView extends React.Component {
   constructor() {
     super();
     this.state = {};

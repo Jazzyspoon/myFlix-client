@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./registration-view.scss";
 
-<<<<<<< HEAD
-export default function RegisterView(props) {
-=======
 export function RegisterView(props) {
->>>>>>> parent of 9e18104 (changing capitalization to check for errors - no success)
-  const [Username, setUsername] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Username, Password, Email, Birthday);
+    console.log(username, password, email, birthday);
     props.onRegister("test");
   };
 
@@ -26,7 +22,7 @@ export function RegisterView(props) {
         Enter Username:
         <input
           type="text"
-          value={Username}
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
@@ -34,7 +30,7 @@ export function RegisterView(props) {
         Create Password:
         <input
           type="password"
-          value={Password}
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
@@ -42,7 +38,7 @@ export function RegisterView(props) {
         Birthdate:
         <input
           type="email"
-          value={Email}
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
@@ -50,7 +46,7 @@ export function RegisterView(props) {
         Birthdate:
         <input
           type="birthday"
-          value={Birthday}
+          value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         />
       </label>
@@ -64,10 +60,10 @@ export function RegisterView(props) {
 
 RegisterView.propTypes = {
   register: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-    Birthday: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthday: PropTypes.string.isRequired,
   }),
   onRegister: PropTypes.func.isRequired,
 };

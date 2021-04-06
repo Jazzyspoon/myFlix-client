@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./login-view.scss";
 
-export default function LoginView(props) {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+export function LoginView(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
     e.preventDefault();
-    console.log(Username, Password);
+    console.log(username, password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(Username);
+    props.onLoggedIn(username);
   };
 
   return (
     <div>
-      <form>
+      <form className="login">
         <label>
           Username:
           <input
             type="text"
-            value={Username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
@@ -29,7 +29,7 @@ export default function LoginView(props) {
           Password:
           <input
             type="password"
-            value={Password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
@@ -43,8 +43,8 @@ export default function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
   onRegister: PropTypes.func,
