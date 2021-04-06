@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./registration-view.scss";
 
-export function RegisterView(props) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
+export default function RegisterView(props) {
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(Username, Password, Email, Birthday);
     props.onRegister("test");
   };
 
@@ -22,7 +22,7 @@ export function RegisterView(props) {
         Enter Username:
         <input
           type="text"
-          value={username}
+          value={Username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
@@ -30,7 +30,7 @@ export function RegisterView(props) {
         Create Password:
         <input
           type="password"
-          value={password}
+          value={Password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
@@ -38,7 +38,7 @@ export function RegisterView(props) {
         Birthdate:
         <input
           type="email"
-          value={email}
+          value={Email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
@@ -46,7 +46,7 @@ export function RegisterView(props) {
         Birthdate:
         <input
           type="birthday"
-          value={birthday}
+          value={Birthday}
           onChange={(e) => setBirthday(e.target.value)}
         />
       </label>
@@ -60,10 +60,10 @@ export function RegisterView(props) {
 
 RegisterView.propTypes = {
   register: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    birthday: PropTypes.string.isRequired,
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string.isRequired,
   }),
   onRegister: PropTypes.func.isRequired,
 };

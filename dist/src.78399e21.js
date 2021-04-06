@@ -32415,7 +32415,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LoginView = LoginView;
+exports.default = LoginView;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -32444,35 +32444,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function LoginView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
+      Username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
+      Password = _useState4[0],
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit() {
     e.preventDefault();
-    console.log(username, password);
+    console.log(Username, Password);
     /* Send a request to the server for authentication */
 
     /* then call props.onLoggedIn(username) */
 
-    props.onLoggedIn(username);
+    props.onLoggedIn(Username);
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
     className: "login"
   }, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: username,
+    value: Username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: password,
+    value: Password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
@@ -32484,8 +32484,8 @@ function LoginView(props) {
 
 LoginView.propTypes = {
   user: _propTypes.default.shape({
-    username: _propTypes.default.string.isRequired,
-    password: _propTypes.default.string.isRequired
+    Username: _propTypes.default.string.isRequired,
+    Password: _propTypes.default.string.isRequired
   }),
   onLoggedIn: _propTypes.default.func.isRequired,
   onRegister: _propTypes.default.func
@@ -32501,7 +32501,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RegisterView = RegisterView;
+exports.default = RegisterView;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -32530,51 +32530,51 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisterView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
+      Username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
+      Email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      password = _useState6[0],
+      Password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
+      Birthday = _useState8[0],
       setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(Username, Password, Email, Birthday);
     props.onRegister("test");
   };
 
   return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: username,
+    value: Username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Create Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: password,
+    value: Password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "email",
-    value: email,
+    value: Email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "birthday",
-    value: birthday,
+    value: Birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -32587,10 +32587,10 @@ function RegisterView(props) {
 
 RegisterView.propTypes = {
   register: _propTypes.default.shape({
-    username: _propTypes.default.string.isRequired,
-    password: _propTypes.default.string.isRequired,
-    email: _propTypes.default.string.isRequired,
-    birthday: _propTypes.default.string.isRequired
+    Username: _propTypes.default.string.isRequired,
+    Password: _propTypes.default.string.isRequired,
+    Email: _propTypes.default.string.isRequired,
+    Birthday: _propTypes.default.string.isRequired
   }),
   onRegister: _propTypes.default.func.isRequired
 };
@@ -32692,7 +32692,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MovieView = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -32789,7 +32789,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   return MovieView;
 }(_react.default.Component);
 
-exports.MovieView = MovieView;
+exports.default = MovieView;
 MovieView.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string.isRequired,
@@ -33062,7 +33062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51364" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55572" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
