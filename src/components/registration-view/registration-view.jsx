@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./registration-view.scss";
 
+<<<<<<< HEAD
 export default function RegisterView(props) {
+=======
+export function RegisterView(props) {
+>>>>>>> parent of 9e18104 (changing capitalization to check for errors - no success)
   const [Username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");

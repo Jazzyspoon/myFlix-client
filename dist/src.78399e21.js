@@ -32462,9 +32462,7 @@ function LoginView(props) {
     props.onLoggedIn(Username);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
-    className: "login"
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: Username,
     onChange: function onChange(e) {
@@ -32868,7 +32866,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this); // Initial state is set to null
 
     _this.state = {
-      movies: [],
+      movies: null,
       selectedMovie: null,
       user: null
     };
@@ -33062,7 +33060,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "58770" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50674" + '/');
+>>>>>>> parent of 9e18104 (changing capitalization to check for errors - no success)
 
   ws.onmessage = function (event) {
     checkedAssets = {};

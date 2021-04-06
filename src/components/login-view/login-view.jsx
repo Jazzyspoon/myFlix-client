@@ -16,7 +16,7 @@ export default function LoginView(props) {
 
   return (
     <div>
-      <form className="login">
+      <form>
         <label>
           Username:
           <input

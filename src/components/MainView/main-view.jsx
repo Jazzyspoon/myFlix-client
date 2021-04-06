@@ -13,7 +13,7 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movies: [],
+      movies: null,
       selectedMovie: null,
       user: null,
     };
@@ -76,6 +76,7 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
+        {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
         {selectedMovie ? (
           <MovieView movie={selectedMovie} />
         ) : (
