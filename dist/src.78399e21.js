@@ -32980,7 +32980,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _mainView = _interopRequireDefault(require("./components/MainView/main-view"));
+var _mainView = require("./components/MainView/main-view");
 
 require("./index.scss");
 
@@ -33023,7 +33023,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _createClass(MyFlixApplication, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement(_mainView.default, null);
+      return /*#__PURE__*/_react.default.createElement(_mainView.MainView, null);
     }
   }]);
 
@@ -33062,7 +33062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55572" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57748" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
