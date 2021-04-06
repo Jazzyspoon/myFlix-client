@@ -16,7 +16,7 @@ export function LoginView(props) {
 
   return (
     <div>
-      <form>
+      <form className="login">
         <label>
           Username:
           <input
@@ -43,8 +43,8 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
   onRegister: PropTypes.func,

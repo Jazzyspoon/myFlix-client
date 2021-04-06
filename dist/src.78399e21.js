@@ -32462,7 +32462,9 @@ function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
+    className: "login"
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: username,
     onChange: function onChange(e) {
@@ -32482,8 +32484,8 @@ function LoginView(props) {
 
 LoginView.propTypes = {
   user: _propTypes.default.shape({
-    Username: _propTypes.default.string.isRequired,
-    Password: _propTypes.default.string.isRequired
+    username: _propTypes.default.string.isRequired,
+    password: _propTypes.default.string.isRequired
   }),
   onLoggedIn: _propTypes.default.func.isRequired,
   onRegister: _propTypes.default.func
@@ -32528,51 +32530,51 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisterView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      Username = _useState2[0],
+      username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      Email = _useState4[0],
+      email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      Password = _useState6[0],
+      password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      Birthday = _useState8[0],
+      birthday = _useState8[0],
       setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(Username, Password, Email, Birthday);
+    console.log(username, password, email, birthday);
     props.onRegister("test");
   };
 
   return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_react.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_react.default.createElement("label", null, "Enter Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: Username,
+    value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Create Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: Password,
+    value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "email",
-    value: Email,
+    value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
     type: "birthday",
-    value: Birthday,
+    value: birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -32585,10 +32587,10 @@ function RegisterView(props) {
 
 RegisterView.propTypes = {
   register: _propTypes.default.shape({
-    Username: _propTypes.default.string.isRequired,
-    Password: _propTypes.default.string.isRequired,
-    Email: _propTypes.default.string.isRequired,
-    Birthday: _propTypes.default.string.isRequired
+    username: _propTypes.default.string.isRequired,
+    password: _propTypes.default.string.isRequired,
+    email: _propTypes.default.string.isRequired,
+    birthday: _propTypes.default.string.isRequired
   }),
   onRegister: _propTypes.default.func.isRequired
 };
@@ -32866,7 +32868,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this); // Initial state is set to null
 
     _this.state = {
-      movies: null,
+      movies: [],
       selectedMovie: null,
       user: null
     };
@@ -33060,7 +33062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50674" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51364" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
