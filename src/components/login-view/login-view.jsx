@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import "./login-view.scss";
 
 export function LoginView(props) {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
     e.preventDefault();
-    console.log(Username, Password);
+    console.log(username, password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(Username);
+    props.onLoggedIn(username);
   };
 
   return (
@@ -21,7 +21,7 @@ export function LoginView(props) {
           Username:
           <input
             type="text"
-            value={Username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
@@ -29,7 +29,7 @@ export function LoginView(props) {
           Password:
           <input
             type="password"
-            value={Password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>

@@ -32444,33 +32444,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function LoginView(props) {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      Username = _useState2[0],
+      username = _useState2[0],
       setUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      Password = _useState4[0],
+      password = _useState4[0],
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit() {
     e.preventDefault();
-    console.log(Username, Password);
+    console.log(username, password);
     /* Send a request to the server for authentication */
 
     /* then call props.onLoggedIn(username) */
 
-    props.onLoggedIn(Username);
+    props.onLoggedIn(username);
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: Username,
+    value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Password:", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
-    value: Password,
+    value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
@@ -33060,7 +33060,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49833" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50674" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
