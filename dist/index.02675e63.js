@@ -26296,9 +26296,10 @@ try {
       super();
       // Initial state is set to null
       this.state = {
-        movies: [],
+        movies: null,
         selectedMovie: null,
-        user: null
+        user: null,
+        register: null
       };
     }
     componentDidMount() {
@@ -26346,6 +26347,12 @@ try {
       if (!register) return (
         /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, {
           onRegister: register => this.onRegister(register)
+        })
+      );
+      // Before the movies have been loaded
+      if (!movies) return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "main-view"
         })
       );
       return (
@@ -28166,7 +28173,7 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "success"
       }, "Create an account")))
     );

@@ -15,9 +15,10 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movies: [],
+      movies: null,
       selectedMovie: null,
       user: null,
+      register: null,
     };
   }
   componentDidMount() {
@@ -75,6 +76,9 @@ export class MainView extends React.Component {
       return (
         <RegisterView onRegister={(register) => this.onRegister(register)} />
       );
+
+    // Before the movies have been loaded
+    if (!movies) return <div className="main-view" />;
 
     return (
       <Row className="main-view justify-content-md-center">
