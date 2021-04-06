@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { RegisterView } from "../registration-view/registration-view";
 import "./login-view.scss";
 
 export function LoginView(props) {
@@ -14,29 +17,43 @@ export function LoginView(props) {
     props.onLoggedIn(Username);
   };
 
+  const handleRegister = () => {
+    e.preventDefault();
+    EventTarget({ RegisterView });
+  };
+
   return (
     <div>
-      <form className="login">
-        <label>
-          Username:
-          <input
+      <h1>Welcome to movieFlix!</h1>
+      <p>Please login to continue.</p>
+
+      <Form>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
             type="text"
-            value={Username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </label>
-        <label>
-          Password:
-          <input
+        </Form.Group>
+
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
             type="password"
-            value={Password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <button type="submit" onClick={handleSubmit}>
+        </Form.Group>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
-        </button>
-      </form>
+        </Button>
+      </Form>
+      <br></br>
+      <p>
+        Not a member?{" "}
+        <Button onClick={handleRegister} variant="success" type="submit">
+          Create an account
+        </Button>
+      </p>
     </div>
   );
 }
