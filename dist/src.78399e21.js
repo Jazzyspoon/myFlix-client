@@ -32462,7 +32462,7 @@ function LoginView(props) {
     props.onLoggedIn(Username);
   };
 
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: Username,
     onChange: function onChange(e) {
@@ -32477,7 +32477,7 @@ function LoginView(props) {
   })), /*#__PURE__*/_react.default.createElement("button", {
     type: "submit",
     onClick: handleSubmit
-  }, "Submit"));
+  }, "Submit")));
 }
 
 LoginView.propTypes = {
