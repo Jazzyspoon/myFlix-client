@@ -2,9 +2,21 @@
   background-color: black;
   color: white;
 }
-* {
-  background-color: black;
+
+.title-top {
+  margin-top: 80px;
+}
+
+.MFLX {
+  color: red;
+  padding: 3px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.MFLXsm {
   color: white;
+  border-radius: 4px;
 }
 * {
   background-color: black;
@@ -14,9 +26,38 @@
   background-color: black;
   color: white;
 }
+
+.movie-card {
+  padding: 10px;
+  margin-top: 50px;
+  text-align: center;
+  max-width: 100%;
+}
+
+.card-rows {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 40px;
+}
 * {
   background-color: black;
   color: white;
+}
+* {
+  background-color: black;
+  color: white;
+}
+
+.MFLX {
+  color: red;
+  padding: 3px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
 }
 .my-flix {
   background-color: #282c34;

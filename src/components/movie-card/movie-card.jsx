@@ -1,24 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onClick } = this.props;
+    const { movieData: movie, onClick } = this.props;
 
     return (
-      <Card>
-        <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description}</Card.Text>
-          <Button onClick={() => onClick(movie)} variant="link">
-            Open
-          </Button>
-        </Card.Body>
-      </Card>
+      <div className="card-rows">
+        <Row>
+          <Card className="movie-card" style={{ width: "20rem" }}>
+            <Card.Img variant="top" src={movie.ImagePath} />
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
+
+              <Button onClick={() => onClick(movie)} variant="danger">
+                View Details
+              </Button>
+            </Card.Body>
+          </Card>
+        </Row>
+      </div>
     );
   }
 }

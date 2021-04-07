@@ -1,23 +1,44 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import "./login-view.scss";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
+    console.log("s");
     props.onLoggedIn(username);
   };
 
   return (
     <div>
-      <h1>Welcome to MovieFlix!</h1>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+        <Navbar.Brand href="#home">
+          <h2 className="MFLX">MovieFlix</h2>
+        </Navbar.Brand>
+        <Nav className="mr-auto MFLXsm">
+          <Nav.Link href="#home">
+            <h6>Home</h6>
+          </Nav.Link>
+          <Nav.Link href="#movies">
+            <h6>Movies</h6>
+          </Nav.Link>
+          <Nav.Link href="#Featured">
+            <h6>Featured</h6>
+          </Nav.Link>
+        </Nav>
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-info">
+            <h6>Search</h6>
+          </Button>
+        </Form>
+      </Navbar>
+      <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please login to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">

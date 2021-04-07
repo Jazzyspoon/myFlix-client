@@ -1,30 +1,30 @@
 import React from "react";
 import axios from "axios";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 import "./main-view.scss";
+import { Row } from "react-bootstrap";
 
 export class MainView extends React.Component {
   constructor() {
     super();
     // Initial state is set to null
     this.state = {
-      movies: null,
+      movies: [],
       selectedMovie: null,
       user: null,
-      register: null,
     };
   }
   componentDidMount() {
     axios
       .get("https://movieflixappjp.herokuapp.com/movies")
       .then((response) => {
+        console.log(response.data);
         this.setState({
           movies: response.data,
         });
@@ -46,7 +46,7 @@ export class MainView extends React.Component {
 
   onLoggedIn(user) {
     this.setState({
-      user,
+      user: user,
     });
   }
 
@@ -72,35 +72,57 @@ export class MainView extends React.Component {
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
     /* Register */
-    if (!register)
-      return (
-        <RegisterView onRegister={(register) => this.onRegister(register)} />
-      );
+    // if (!register)
+    //   return (
+    //     <RegisterView onRegister={(register) => this.onRegister(register)} />
+    //   );
 
     // Before the movies have been loaded
-    if (!movies) return <div className="main-view" />;
+    // if (!movies) return <div className="main-view" />;
 
     return (
-      <Row className="main-view justify-content-md-center">
+      <div className="main-view">
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          bg="dark"
+          variant="dark"
+          fixed="top"
+        >
+          <Navbar.Brand href="#home">
+            <h2 className="MFLX">MovieFlix</h2>
+          </Navbar.Brand>
+          <Nav className="mr-auto MFLXsm">
+            <Nav.Link href="#home">
+              <h6>Home</h6>
+            </Nav.Link>
+            <Nav.Link href="#movies">
+              <h6>Movies</h6>
+            </Nav.Link>
+            <Nav.Link href="#Featured">
+              <h6>Featured</h6>
+            </Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-info">
+              <h6>Search</h6>
+            </Button>
+          </Form>
+        </Navbar>
+
         {selectedMovie ? (
-          <Col md={8}>
-            <MovieView
-              movie={selectedMovie}
-              onBackClick={(movie) => this.onMovieClick(null)}
-            />
-          </Col>
+          <MovieView movie={selectedMovie} />
         ) : (
           movies.map((movie) => (
-            <Col md={3}>
-              <MovieCard
-                key={movie._id}
-                movieData={movie}
-                onClick={(movie) => this.onMovieClick(movie)}
-              />
-            </Col>
+            <MovieCard
+              key={movie._id}
+              movieData={movie}
+              onClick={(movie) => this.onMovieClick(movie)}
+            />
           ))
         )}
-      </Row>
+      </div>
     );
   }
 }
