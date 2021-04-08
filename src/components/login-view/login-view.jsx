@@ -17,11 +17,11 @@ export function LoginView(props) {
   return (
     <div>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="#">
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm">
-          <Nav.Link href="#home">
+          <Nav.Link href="#">
             <h6>Home</h6>
           </Nav.Link>
           <Nav.Link href="#movies">
