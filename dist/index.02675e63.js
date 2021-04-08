@@ -42561,8 +42561,7 @@ try {
   var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
-  var _reactBootstrapButton = require("react-bootstrap/Button");
-  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrap = require("react-bootstrap");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
@@ -42614,7 +42613,7 @@ try {
           className: "label"
         }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success",
           onClick: () => {
             onClick();
@@ -42643,6 +42642,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Card":"1CZWQ","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD","react-bootstrap":"4n7hB"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map
