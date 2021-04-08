@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import Button from "react-bootstrap";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -64,5 +64,5 @@ MovieView.propTypes = {
     Director: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
     Genre: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
