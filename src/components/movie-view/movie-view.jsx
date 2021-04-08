@@ -37,14 +37,14 @@ export class MovieView extends React.Component {
                 <span className="label">Description: </span>
                 <span className="value">{movie.Description}</span>
               </Card.Text>
-              <Card.Text className="movie-genre">
+              {/* <Card.Text className="movie-genre">
                 <span className="label">Genre: </span>
                 <span className="value">{movie.Genre.Name}</span>
               </Card.Text>
               <Card.Text className="movie-director">
                 <span className="label">Director: </span>
                 <span className="value">{movie.Director.Name}</span>
-              </Card.Text>
+              </Card.Text> */}
               <Button variant="success" onClick={() => this.goBack()}>
                 Back to Movie List
               </Button>

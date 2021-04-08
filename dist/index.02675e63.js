@@ -26357,13 +26357,13 @@ try {
           variant: "dark",
           fixed: "top"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-          href: "#home"
+          href: "#"
         }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "#home"
+          href: "#"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
           href: "#movies"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
@@ -28172,13 +28172,13 @@ try {
         variant: "dark",
         fixed: "top"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#home"
+        href: "#"
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#home"
+        href: "#"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#movies"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
@@ -42602,19 +42602,7 @@ try {
           className: "label"
         }, "Description: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
-          className: "movie-genre"
-        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label"
-        }, "Genre: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value"
-        }, movie.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
-          className: "movie-director"
-        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label"
-        }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value"
-        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapDefault.default, {
+        }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapDefault.default, {
           variant: "success",
           onClick: () => this.goBack()
         }, "Back to Movie List")))))
