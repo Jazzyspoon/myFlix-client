@@ -26284,8 +26284,8 @@ try {
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _loginViewLoginView = require("../login-view/login-view");
   require("../registration-view/registration-view");
-  var _movieCardMovieCard = require("../movie-card/movie-card");
   var _movieViewMovieView = require("../movie-view/movie-view");
+  var _movieCardMovieCard = require("../movie-card/movie-card");
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
   class MainView extends _reactDefault.default.Component {
@@ -42510,14 +42510,7 @@ try {
   MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
       Title: _propTypesDefault.default.string.isRequired,
-      Description: _propTypesDefault.default.string.isRequired,
-      ImagePath: _propTypesDefault.default.string.isRequired,
-      Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
-      }).isRequired,
-      Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
-      }).isRequired
+      ImagePath: _propTypesDefault.default.string.isRequired
     }).isRequired,
     onClick: _propTypesDefault.default.func.isRequired
   };
@@ -42557,9 +42550,9 @@ try {
       window.open("/", "_self");
     }
     render() {
-      const {movie, onClick} = this.props;
+      const {movieData: movie, onClick} = this.props;
       if (!movie) return null;
-      // if (this.state.initialState === '') return ;
+      // if (this.state.initialState === "") return;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
@@ -42626,6 +42619,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","react-bootstrap/Button":"1ru0l"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map
