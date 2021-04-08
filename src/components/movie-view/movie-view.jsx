@@ -13,7 +13,7 @@ export class MovieView extends React.Component {
   }
 
   goBack() {
-    window.open("/", "_self");
+    window.open({ MovieCard });
   }
   render() {
     const { movieData: movie, onClick } = this.props;
@@ -22,35 +22,33 @@ export class MovieView extends React.Component {
     // if (this.state.initialState === "") return;
 
     return (
-      <div className="movie-view">
-        <Row>
-          <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" className="movie-poster">
-              <img src={movie.ImagePath} alt={movie.Title} />
-            </Card.Img>
-            <Card.Body>
-              <Card.Title className="movie-title">
-                <span className="label">Title: </span>
-                <span className="value">{movie.Title}</span>
-              </Card.Title>
-              <Card.Text className="movie-description">
-                <span className="label">Description: </span>
-                <span className="value">{movie.Description}</span>
-              </Card.Text>
-              {/* <Card.Text className="movie-genre">
-                <span className="label">Genre: </span>
-                <span className="value">{movie.Genre.Name}</span>
-              </Card.Text>
-              <Card.Text className="movie-director">
-                <span className="label">Director: </span>
-                <span className="value">{movie.Director.Name}</span>
-              </Card.Text> */}
-              <Button variant="success" onClick={() => this.goBack()}>
-                Back to Movie List
-              </Button>
-            </Card.Body>
-          </Card>
-        </Row>
+      <div>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" className="movie-poster">
+            <img src={movie.ImagePath} alt={movie.Title} />
+          </Card.Img>
+          <Card.Body>
+            <Card.Title className="movie-title">
+              <span className="label">Title: </span>
+              <span className="value">{movie.Title}</span>
+            </Card.Title>
+            <Card.Text className="movie-description">
+              <span className="label">Description: </span>
+              <span className="value">{movie.Description}</span>
+            </Card.Text>
+            <Card.Text className="movie-genre">
+              <span className="label">Genre: </span>
+              <span className="value">{movie.Genre.Name}</span>
+            </Card.Text>
+            <Card.Text className="movie-director">
+              <span className="label">Director: </span>
+              <span className="value">{movie.Director.Name}</span>
+            </Card.Text>
+            <Button variant="success" onClick={() => this.goBack()}>
+              Back to Movie List
+            </Button>
+          </Card.Body>
+        </Card>
       </div>
     );
   }

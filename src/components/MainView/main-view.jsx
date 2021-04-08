@@ -7,7 +7,15 @@ import { RegisterView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 import "./main-view.scss";
 
@@ -40,6 +48,7 @@ export class MainView extends React.Component {
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie,
+      movieData: movie,
     });
   }
 
@@ -107,7 +116,14 @@ export class MainView extends React.Component {
         </Navbar>
 
         {selectedMovie ? (
-          <MovieView movie={selectedMovie} />
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <MovieView
+                movie={selectedMovie}
+                onBackClick={(movie) => this.onMovieClick(null)}
+              />
+            </Col>
+          </Row>
         ) : (
           movies.map((movie) => (
             <MovieCard
