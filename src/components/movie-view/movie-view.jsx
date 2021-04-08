@@ -15,10 +15,6 @@ export class MovieView extends React.Component {
   goBack() {
     window.open("/", "_self");
   }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   render() {
     const { movieData: movie, onClick } = this.props;
     if (!movie) return null;
