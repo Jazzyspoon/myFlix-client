@@ -42545,9 +42545,9 @@ try {
       this.state = {};
       console.log("f");
     }
-    goBack() {
-      window.open("/", "_self");
-    }
+    /*goBack() {*/
+    /*window.open("/", "_self");*/
+    /*}*/
     render() {
       const {movieData: movie, onClick} = this.props;
       if (!movie) return null;
