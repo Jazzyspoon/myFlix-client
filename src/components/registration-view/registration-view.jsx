@@ -18,7 +18,29 @@ export function RegisterView(props) {
 
   return (
     <div>
-      <h1>Welcome to movieFlix!</h1>
+      <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+        <Navbar.Brand href="#home">
+          <h1 className="MFLX">MovieFlix</h1>
+        </Navbar.Brand>
+        <Nav className="mr-auto MFLXsm">
+          <Nav.Link href="#home">
+            <h6>Home</h6>
+          </Nav.Link>
+          <Nav.Link href="#movies">
+            <h6>Movies</h6>
+          </Nav.Link>
+          <Nav.Link href="#Featured">
+            <h6>Featured</h6>
+          </Nav.Link>
+        </Nav>
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-info">
+            <h6>Search</h6>
+          </Button>
+        </Form>
+      </Navbar>
+      <h1 className="title-top">Welcome to movieFlix!</h1>
       <p>Please create an account to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">

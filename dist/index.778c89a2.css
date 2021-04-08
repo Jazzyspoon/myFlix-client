@@ -26,6 +26,26 @@ h6 {
   background-color: black;
   color: white;
 }
+
+.title-top {
+  margin-top: 90px;
+}
+
+.MFLX {
+  color: red;
+  padding: 1px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
+}
+
+h6 {
+  color: white;
+}
 * {
   background-color: black;
   color: white;

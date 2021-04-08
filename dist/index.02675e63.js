@@ -42411,7 +42411,34 @@ try {
       props.onRegister("test");
     };
     return (
-      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(Navbar, {
+        expand: "sm",
+        bg: "black",
+        variant: "dark",
+        fixed: "top"
+      }, /*#__PURE__*/_reactDefault.default.createElement(Navbar.Brand, {
+        href: "#home"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        className: "MFLX"
+      }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(Nav, {
+        className: "mr-auto MFLXsm"
+      }, /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+        href: "#home"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+        href: "#movies"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+        href: "#Featured"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+        inline: true
+      }, /*#__PURE__*/_reactDefault.default.createElement(FormControl, {
+        type: "text",
+        placeholder: "Search",
+        className: "mr-sm-2"
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "outline-info"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        className: "title-top"
+      }, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formUsername"
       }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "text",
@@ -42532,12 +42559,12 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrapRow = require("react-bootstrap/Row");
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
   var _reactBootstrapButton = require("react-bootstrap/Button");
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrapRow = require("react-bootstrap/Row");
-  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
@@ -42545,9 +42572,9 @@ try {
       this.state = {};
       console.log("f");
     }
-    /*goBack() {*/
-    /*window.open("/", "_self");*/
-    /*}*/
+    goBack() {
+      window.open("/", "_self");
+    }
     render() {
       const {movieData: movie, onClick} = this.props;
       if (!movie) return null;
@@ -42555,11 +42582,9 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
-          fluid: true
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
           style: {
-            width: "30rem"
+            width: "18rem"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
           variant: "top",
@@ -42606,14 +42631,10 @@ try {
       Description: _propTypesDefault.default.string.isRequired,
       ImagePath: _propTypesDefault.default.string.isRequired,
       Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Bio: _propTypesDefault.default.string,
-        Birth: _propTypesDefault.default.string,
-        Death: _propTypesDefault.default.string
+        Name: _propTypesDefault.default.string.isRequired
       }).isRequired,
       Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string
+        Name: _propTypesDefault.default.string.isRequired
       }).isRequired
     }).isRequired,
     onClick: _propTypesDefault.default.func

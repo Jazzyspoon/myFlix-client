@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -12,20 +12,19 @@ export class MovieView extends React.Component {
     console.log("f");
   }
 
-  // goBack() {
-  //   window.open("/", "_self");
-  // }
-
+  goBack() {
+    window.open("/", "_self");
+  }
   render() {
     const { movieData: movie, onClick } = this.props;
     if (!movie) return null;
 
-    //if (this.state.initialState === "") return;
+    // if (this.state.initialState === "") return;
 
     return (
       <div className="movie-view">
-        <Row fluid>
-          <Card style={{ width: "30rem" }}>
+        <Row>
+          <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" className="movie-poster">
               <img src={movie.ImagePath} alt={movie.Title} />
             </Card.Img>
@@ -67,16 +66,8 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string,
-      Birth: PropTypes.string,
-      Death: PropTypes.string,
-    }).isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string,
-    }).isRequired,
+    Director: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
+    Genre: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
   }).isRequired,
   onClick: PropTypes.func,
 };
