@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import Button from "react-bootstrap";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -45,12 +45,7 @@ export class MovieView extends React.Component {
                 <span className="label">Director: </span>
                 <span className="value">{movie.Director.Name}</span>
               </Card.Text>
-              <Button
-                variant="success"
-                onClick={() => {
-                  onClick();
-                }}
-              >
+              <Button variant="success" onClick={() => this.goBack()}>
                 Back to Movie List
               </Button>
             </Card.Body>

@@ -42562,6 +42562,7 @@ try {
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
   var _reactBootstrap = require("react-bootstrap");
+  var _reactBootstrapDefault = _parcelHelpers.interopDefault(_reactBootstrap);
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
@@ -42613,11 +42614,9 @@ try {
           className: "label"
         }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapDefault.default, {
           variant: "success",
-          onClick: () => {
-            onClick();
-          }
+          onClick: () => this.goBack()
         }, "Back to Movie List")))))
       );
     }
