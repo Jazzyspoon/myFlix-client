@@ -3,8 +3,9 @@ import axios from "axios";
 
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
-import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { MovieCard } from "../movie-card/movie-card";
+
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 import "./main-view.scss";

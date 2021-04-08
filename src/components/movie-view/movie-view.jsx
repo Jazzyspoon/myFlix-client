@@ -15,10 +15,10 @@ export class MovieView extends React.Component {
     window.open("/", "_self");
   }
   render() {
-    const { movie, onClick } = this.props;
+    const { movieData: movie, onClick } = this.props;
     if (!movie) return null;
 
-    // if (this.state.initialState === '') return ;
+    // if (this.state.initialState === "") return;
 
     return (
       <div className="movie-view">
