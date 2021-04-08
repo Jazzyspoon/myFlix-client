@@ -16,9 +16,9 @@ export function LoginView(props) {
 
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+      <Navbar expand="sm" bg="black" variant="dark" fixed="top">
         <Navbar.Brand href="#home">
-          <h2 className="MFLX">MovieFlix</h2>
+          <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm">
           <Nav.Link href="#home">
@@ -32,7 +32,7 @@ export function LoginView(props) {
           </Nav.Link>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <FormControl type="text" placeholder="Search" className="mr-sm-1" />
           <Button variant="outline-info">
             <h6>Search</h6>
           </Button>

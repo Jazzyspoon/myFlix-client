@@ -26284,8 +26284,8 @@ try {
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _loginViewLoginView = require("../login-view/login-view");
   require("../registration-view/registration-view");
-  var _movieViewMovieView = require("../movie-view/movie-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
+  var _movieViewMovieView = require("../movie-view/movie-view");
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
   class MainView extends _reactDefault.default.Component {
@@ -26351,14 +26351,13 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
-          collapseOnSelect: true,
-          expand: "lg",
-          bg: "dark",
+          expand: "sm",
+          bg: "black",
           variant: "dark",
           fixed: "top"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
           href: "#home"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
@@ -28167,14 +28166,13 @@ try {
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
-        collapseOnSelect: true,
-        expand: "lg",
-        bg: "dark",
+        expand: "sm",
+        bg: "black",
         variant: "dark",
         fixed: "top"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
         href: "#home"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
@@ -28189,7 +28187,7 @@ try {
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
         type: "text",
         placeholder: "Search",
-        className: "mr-sm-2"
+        className: "mr-sm-1"
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "outline-info"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement("h1", {
@@ -42448,10 +42446,10 @@ try {
   _c = RegisterView;
   RegisterView.propTypes = {
     register: _propTypesDefault.default.shape({
-      username: _propTypesDefault.default.string.isRequired,
-      password: _propTypesDefault.default.string.isRequired,
-      email: _propTypesDefault.default.string.isRequired,
-      birthday: _propTypesDefault.default.string.isRequired
+      Username: _propTypesDefault.default.string.isRequired,
+      Password: _propTypesDefault.default.string.isRequired,
+      Email: _propTypesDefault.default.string.isRequired,
+      Birthday: _propTypesDefault.default.string.isRequired
     }),
     onRegister: _propTypesDefault.default.func.isRequired
   };
@@ -42482,7 +42480,6 @@ try {
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
   var _reactBootstrapRow = require("react-bootstrap/Row");
   var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
-  require("react-bootstrap/Col");
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
   require("./movie-card.scss");
@@ -42508,7 +42505,7 @@ try {
     }
   }
   MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
+    movieData: _propTypesDefault.default.shape({
       Title: _propTypesDefault.default.string.isRequired,
       ImagePath: _propTypesDefault.default.string.isRequired
     }).isRequired,
@@ -42520,7 +42517,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42535,16 +42532,18 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  require("react-bootstrap/Row");
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
   var _reactBootstrapButton = require("react-bootstrap/Button");
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrapRow = require("react-bootstrap/Row");
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
       super();
       this.state = {};
+      console.log("f");
     }
     goBack() {
       window.open("/", "_self");
@@ -42556,46 +42555,48 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+          fluid: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
           style: {
-            width: "18rem"
+            width: "30rem"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
           variant: "top",
           className: "movie-poster"
         }, /*#__PURE__*/_reactDefault.default.createElement("img", {
-          src: movieData.ImagePath,
-          alt: movieData.Title
+          src: movie.ImagePath,
+          alt: movie.Title
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
           className: "movie-title"
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "label"
         }, "Title: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movieData.Title)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+        }, movie.Title)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
           className: "movie-description"
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "label"
         }, "Description: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movieData.Description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+        }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
           className: "movie-genre"
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "label"
         }, "Genre: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movieData.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+        }, movie.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
           className: "movie-director"
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "label"
         }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
           className: "value"
-        }, movieData.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
           variant: "success",
           onClick: () => {
-            onBackClick();
+            onClick();
           }
-        }, "Back to Movie List"))))
+        }, "Back to Movie List")))))
       );
     }
   }
@@ -42605,13 +42606,17 @@ try {
       Description: _propTypesDefault.default.string.isRequired,
       ImagePath: _propTypesDefault.default.string.isRequired,
       Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string,
+        Birth: _propTypesDefault.default.string,
+        Death: _propTypesDefault.default.string
       }).isRequired,
       Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string
       }).isRequired
     }).isRequired,
-    onClick: _propTypesDefault.default.func.isRequired
+    onClick: _propTypesDefault.default.func
   };
   helpers.postlude(module);
 } finally {
@@ -42619,6 +42624,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","react-bootstrap/Button":"1ru0l"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Card":"1CZWQ","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map

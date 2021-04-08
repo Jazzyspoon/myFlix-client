@@ -3,13 +3,13 @@ import axios from "axios";
 
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
-import { MovieView } from "../movie-view/movie-view";
+
 import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
 
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 import "./main-view.scss";
-import { Row } from "react-bootstrap";
 
 export class MainView extends React.Component {
   constructor() {
@@ -83,15 +83,9 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
-        <Navbar
-          collapseOnSelect
-          expand="lg"
-          bg="dark"
-          variant="dark"
-          fixed="top"
-        >
+        <Navbar expand="sm" bg="black" variant="dark" fixed="top">
           <Navbar.Brand href="#home">
-            <h2 className="MFLX">MovieFlix</h2>
+            <h1 className="MFLX">MovieFlix</h1>
           </Navbar.Brand>
           <Nav className="mr-auto MFLXsm">
             <Nav.Link href="#home">
