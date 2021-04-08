@@ -42615,9 +42615,7 @@ try {
           className: "value"
         }, movie.Director.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success",
-          onClick: () => {
-            onClick();
-          }
+          onClick: () => this.goBack()
         }, "Back to Movie List")))))
       );
     }
@@ -42634,7 +42632,7 @@ try {
         Name: _propTypesDefault.default.string.isRequired
       }).isRequired
     }).isRequired,
-    onClick: _propTypesDefault.default.func
+    onClick: _propTypesDefault.default.func.isRequired
   };
   helpers.postlude(module);
 } finally {

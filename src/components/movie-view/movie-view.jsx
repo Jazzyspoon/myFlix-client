@@ -45,12 +45,7 @@ export class MovieView extends React.Component {
                 <span className="label">Director: </span>
                 <span className="value">{movie.Director.Name}</span>
               </Card.Text>
-              <Button
-                variant="success"
-                onClick={() => {
-                  onClick();
-                }}
-              >
+              <Button variant="success" onClick={() => this.goBack()}>
                 Back to Movie List
               </Button>
             </Card.Body>
@@ -69,5 +64,5 @@ MovieView.propTypes = {
     Director: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
     Genre: PropTypes.shape({ Name: PropTypes.string.isRequired }).isRequired,
   }).isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
