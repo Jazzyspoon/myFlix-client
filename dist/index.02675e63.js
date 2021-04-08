@@ -26283,7 +26283,7 @@ try {
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _loginViewLoginView = require("../login-view/login-view");
-  require("../registration-view/registration-view");
+  var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
   var _movieViewMovieView = require("../movie-view/movie-view");
   var _reactBootstrap = require("react-bootstrap");
@@ -26341,10 +26341,11 @@ try {
         })
       );
       /*Register*/
-      // if (!register)
-      // return (
-      // <RegisterView onRegister={(register) => this.onRegister(register)} />
-      // );
+      if (!register) return (
+        /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, {
+          onRegister: register => this.onRegister(register)
+        })
+      );
       // Before the movies have been loaded
       // if (!movies) return <div className="main-view" />;
       return (
@@ -42393,83 +42394,80 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrapForm = require("react-bootstrap/Form");
-  var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
-  var _reactBootstrapButton = require("react-bootstrap/Button");
-  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrap = require("react-bootstrap");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
   function RegisterView(props) {
     _s();
-    const [username, setUsername] = _react.useState("");
-    const [email, setEmail] = _react.useState("");
-    const [password, setPassword] = _react.useState("");
-    const [birthday, setBirthday] = _react.useState("");
+    const [Username, setUsername] = _react.useState("");
+    const [Email, setEmail] = _react.useState("");
+    const [Password, setPassword] = _react.useState("");
+    const [Birthday, setBirthday] = _react.useState("");
     const handleSubmit = e => {
       e.preventDefault();
-      console.log(username, password, email, birthday);
+      console.log(Username, Password, Email, Birthday);
       props.onRegister("test");
     };
     return (
-      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(Navbar, {
+      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
         expand: "sm",
         bg: "black",
         variant: "dark",
         fixed: "top"
-      }, /*#__PURE__*/_reactDefault.default.createElement(Navbar.Brand, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
         href: "#home"
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
-      }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(Nav, {
+      }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
-      }, /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#home"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#movies"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(Nav.Link, {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#Featured"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
         inline: true
-      }, /*#__PURE__*/_reactDefault.default.createElement(FormControl, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
         type: "text",
         placeholder: "Search",
         className: "mr-sm-2"
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "outline-info"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
-      }, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      }, "Welcome to movieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+      }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         value: Username,
         onChange: e => setUsername(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+      }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         value: Password,
         onChange: e => setPassword(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
-      }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+      }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         value: Email,
         onChange: e => setEmail(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
-      }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+      }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "birthday",
         value: Birthday,
         onChange: e => setBirthday(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         onClick: handleSubmit,
         variant: "primary",
         type: "submit"
       }, "Submit")))
     );
   }
-  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
+  _s(RegisterView, "ieyvH64s52hBivEzdYj3LdglvZA=");
   _c = RegisterView;
   RegisterView.propTypes = {
     register: _propTypesDefault.default.shape({
@@ -42488,7 +42486,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l"}],"22HWg":[function() {},{}],"7v6h3":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB"}],"22HWg":[function() {},{}],"7v6h3":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

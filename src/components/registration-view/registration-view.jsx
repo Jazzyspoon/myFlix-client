@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+
 import "./registration-view.scss";
 
 export function RegisterView(props) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(Username, Password, Email, Birthday);
     props.onRegister("test");
   };
 
