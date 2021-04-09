@@ -26357,15 +26357,15 @@ try {
           variant: "dark",
           fixed: "top"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-          href: "#"
+          href: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "#"
+          href: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "#movies"
+          href: "/movies"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
           href: "#Featured"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
@@ -26376,9 +26376,14 @@ try {
           className: "mr-sm-2"
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "outline-info"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), selectedMovie ? /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
-          movie: selectedMovie
-        }) : movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCard.MovieCard, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), selectedMovie ? /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+          className: "justify-content-md-center"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+          md: 8
+        }, /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
+          movie: selectedMovie,
+          onBackClick: movie => this.onMovieClick(null)
+        }))) : movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCard.MovieCard, {
           key: movie._id,
           movieData: movie,
           onClick: movie => this.onMovieClick(movie)
@@ -28172,15 +28177,15 @@ try {
         variant: "dark",
         fixed: "top"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#"
+        href: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#"
+        href: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#movies"
+        href: "/movies"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#Featured"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
@@ -42415,15 +42420,15 @@ try {
         variant: "dark",
         fixed: "top"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#home"
+        href: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#home"
+        href: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#movies"
+        href: "/movies"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#Featured"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
@@ -42503,10 +42508,11 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrapButton = require("react-bootstrap/Button");
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrapRow = require("react-bootstrap/Row");
-  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   var _reactBootstrapCard = require("react-bootstrap/Card");
   var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  require("react-bootstrap/Col");
+  var _reactBootstrapRow = require("react-bootstrap/Row");
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
   require("./movie-card.scss");
   class MovieCard extends _reactDefault.default.Component {
     render() {
@@ -42514,12 +42520,15 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card-rows"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+          xl: true
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
           className: "movie-card",
           style: {
             width: "20rem"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
+          className: "image",
           variant: "top",
           src: movie.ImagePath
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
@@ -42542,7 +42551,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/Col":"2D0r8","react-bootstrap/Row":"3fzwD"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42557,55 +42566,33 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrapRow = require("react-bootstrap/Row");
-  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
-  var _reactBootstrapCard = require("react-bootstrap/Card");
-  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
   var _reactBootstrap = require("react-bootstrap");
-  var _reactBootstrapDefault = _parcelHelpers.interopDefault(_reactBootstrap);
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
-    constructor() {
-      super();
-      this.state = {};
-      console.log("f");
-    }
-    goBack() {
-      window.open("/", "_self");
+    onbackClick() {
+      window.open("/movies", "_self");
     }
     render() {
-      const {movieData: movie, onClick} = this.props;
-      if (!movie) return null;
+      const {movie: movieData} = this.props;
+      if (!movieData) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
-          style: {
-            width: "18rem"
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
-          variant: "top",
-          className: "movie-poster"
-        }, /*#__PURE__*/_reactDefault.default.createElement("img", {
-          src: movie.ImagePath,
-          alt: movie.Title
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
-          className: "movie-title"
-        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label"
-        }, "Title: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value"
-        }, movie.Title)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
-          className: "movie-description"
-        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label"
-        }, "Description: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value"
-        }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapDefault.default, {
-          variant: "success",
-          onClick: () => this.goBack()
-        }, "Back to Movie List")))))
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+          src: movieData.ImagePath,
+          className: "image",
+          fluid: true
+        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+          className: "cardbody"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\"")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement("a", {
+          href: "#"
+        }, "(Bio)")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement("a", {
+          href: "#"
+        }, " What is ", movieData.Genre.Name, "? ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          onClick: () => this.onbackClick(null),
+          variant: "danger"
+        }, "Back to Movies List"))))
       );
     }
   }
@@ -42615,11 +42602,15 @@ try {
       Description: _propTypesDefault.default.string.isRequired,
       ImagePath: _propTypesDefault.default.string.isRequired,
       Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string.isRequired
       }).isRequired,
       Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired
-      }).isRequired
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+      }).isRequired,
+      Actors: _propTypesDefault.default.string.isRequired,
+      Imdb: _propTypesDefault.default.string.isRequired
     }).isRequired,
     onClick: _propTypesDefault.default.func
   };
@@ -42629,6 +42620,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD","react-bootstrap":"4n7hB"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map

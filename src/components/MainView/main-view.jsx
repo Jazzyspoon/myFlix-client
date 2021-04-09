@@ -92,14 +92,14 @@ export class MainView extends React.Component {
     return (
       <div className="main-view">
         <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <h1 className="MFLX">MovieFlix</h1>
           </Navbar.Brand>
           <Nav className="mr-auto MFLXsm">
-            <Nav.Link href="#">
+            <Nav.Link href="/">
               <h6>Home</h6>
             </Nav.Link>
-            <Nav.Link href="#movies">
+            <Nav.Link href="/movies">
               <h6>Movies</h6>
             </Nav.Link>
             <Nav.Link href="#Featured">
