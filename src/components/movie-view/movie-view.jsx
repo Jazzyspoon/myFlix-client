@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap";
 import "./movie-view.scss";
@@ -18,18 +18,20 @@ export class MovieView extends React.Component {
 
     return (
       <div className="movie-view">
-        <Row>
+        <Col>
           <Card>
             <Card.Img variant="top" src={movie.ImagePath} />
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>{movie.Description}</Card.Text>
+              <Card.Text>{movie.Director.Name}</Card.Text>
+              <Card.Text>{movie.Genre.Name}</Card.Text>
               <Button onClick={() => this.onbackClick(null)} variant="link">
                 Back
               </Button>
             </Card.Body>
           </Card>
-        </Row>
+        </Col>
       </div>
     );
   }
