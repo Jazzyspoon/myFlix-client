@@ -48030,6 +48030,11 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+<<<<<<< Updated upstream
+=======
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+>>>>>>> Stashed changes
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 require("./movie-card.scss");
@@ -48077,7 +48082,11 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           _onClick = _this$props.onClick;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "card-rows"
+<<<<<<< Updated upstream
       }, /*#__PURE__*/_react.default.createElement(_Card.default, {
+=======
+      }, /*#__PURE__*/_react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_Card.default, {
+>>>>>>> Stashed changes
         className: "movie-card",
         style: {
           width: "20rem"
@@ -48090,7 +48099,11 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           return _onClick(movie);
         },
         variant: "danger"
+<<<<<<< Updated upstream
       }, "View Details"))));
+=======
+      }, "View Details")))));
+>>>>>>> Stashed changes
     }
   }]);
 
@@ -48105,7 +48118,11 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
+<<<<<<< Updated upstream
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+=======
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+>>>>>>> Stashed changes
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -48122,7 +48139,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+<<<<<<< Updated upstream
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+=======
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+>>>>>>> Stashed changes
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
@@ -48162,26 +48183,47 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   function MovieView() {
     _classCallCheck(this, MovieView);
 
+<<<<<<< Updated upstream
     return _super.apply(this, arguments);
   }
 
   _createClass(MovieView, [{
     key: "onbackClick",
     value: function onbackClick() {
+=======
+    _this = _super.call(this);
+    _this.state = {};
+    console.log("f");
+    return _this;
+  }
+
+  _createClass(MovieView, [{
+    key: "goBack",
+    value: function goBack() {
+>>>>>>> Stashed changes
       window.open("/", "_self");
     }
   }, {
     key: "render",
     value: function render() {
+<<<<<<< Updated upstream
       var _this = this;
 
       var _this$props = this.props,
           movie = _this$props.movieData,
           onbackClick = _this$props.onbackClick;
+=======
+      var _this2 = this;
+
+      var _this$props = this.props,
+          movie = _this$props.movieData,
+          onClick = _this$props.onClick;
+>>>>>>> Stashed changes
       if (!movie) return null; // if (this.state.initialState === "") return;
 
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-view"
+<<<<<<< Updated upstream
       }, /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.ImagePath
@@ -48191,6 +48233,36 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         },
         variant: "link"
       }, "Back")))));
+=======
+      }, /*#__PURE__*/_react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_Card.default, {
+        style: {
+          width: "18rem"
+        }
+      }, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
+        variant: "top",
+        className: "movie-poster"
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: movie.ImagePath,
+        alt: movie.Title
+      })), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, {
+        className: "movie-title"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "label"
+      }, "Title: "), /*#__PURE__*/_react.default.createElement("span", {
+        className: "value"
+      }, movie.Title)), /*#__PURE__*/_react.default.createElement(_Card.default.Text, {
+        className: "movie-description"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "label"
+      }, "Description: "), /*#__PURE__*/_react.default.createElement("span", {
+        className: "value"
+      }, movie.Description)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.default, {
+        variant: "success",
+        onClick: function onClick() {
+          return _this2.goBack();
+        }
+      }, "Back to Movie List")))));
+>>>>>>> Stashed changes
     }
   }]);
 
@@ -48212,7 +48284,11 @@ MovieView.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func
 };
+<<<<<<< Updated upstream
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/MainView/main-view.scss":[function(require,module,exports) {
+=======
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/MainView/main-view.scss":[function(require,module,exports) {
+>>>>>>> Stashed changes
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -48389,6 +48465,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "mr-sm-2"
       }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
         variant: "outline-info"
+<<<<<<< Updated upstream
       }, /*#__PURE__*/_react.default.createElement("h6", null, "Search")))), selectedMovie ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
         className: "justify-content-md-center"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
@@ -48399,6 +48476,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _this3.onMovieClick(null);
         }
       }))) : movies.map(function (movie) {
+=======
+      }, /*#__PURE__*/_react.default.createElement("h6", null, "Search")))), selectedMovie ? /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
+        movie: selectedMovie
+      }) : movies.map(function (movie) {
+>>>>>>> Stashed changes
         return /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movieData: movie,
