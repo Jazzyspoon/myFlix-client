@@ -66,7 +66,33 @@ h6 {
 }
 
 .image {
-  height: auto;
+  height: 400px;
+}
+* {
+  background-color: black;
+  color: white;
+}
+
+.movie-view {
+  margin-top: 100px;
+}
+
+.cardbody {
+  padding: 8px;
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+.favbutton {
+  margin-top: 10px;
 }
 * {
   background-color: black;

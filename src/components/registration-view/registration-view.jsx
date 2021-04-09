@@ -40,7 +40,7 @@ export function RegisterView(props) {
           </Button>
         </Form>
       </Navbar>
-      <h1 className="title-top">Welcome to movieFlix!</h1>
+      <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please create an account to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">
