@@ -48,7 +48,6 @@ export class MainView extends React.Component {
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie,
-      movieData: movie,
     });
   }
 

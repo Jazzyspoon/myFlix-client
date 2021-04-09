@@ -48162,73 +48162,37 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(MovieView);
 
   function MovieView() {
-    var _this;
-
     _classCallCheck(this, MovieView);
 
-    _this = _super.call(this);
-    _this.state = {};
-    console.log("f");
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(MovieView, [{
-    key: "goBack",
-    value: function goBack() {
-      window.open({
-        MovieCard: MovieCard
-      });
+    key: "onbackClick",
+    value: function onbackClick() {
+      window.open("/", "_self");
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       var _this$props = this.props,
           movie = _this$props.movieData,
-          onClick = _this$props.onClick;
+          onbackClick = _this$props.onbackClick;
       if (!movie) return null; // if (this.state.initialState === "") return;
 
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Card.default, {
-        style: {
-          width: "18rem"
-        }
-      }, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "movie-view"
+      }, /*#__PURE__*/_react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
-        className: "movie-poster"
-      }, /*#__PURE__*/_react.default.createElement("img", {
-        src: movie.ImagePath,
-        alt: movie.Title
-      })), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, {
-        className: "movie-title"
-      }, /*#__PURE__*/_react.default.createElement("span", {
-        className: "label"
-      }, "Title: "), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
-      }, movie.Title)), /*#__PURE__*/_react.default.createElement(_Card.default.Text, {
-        className: "movie-description"
-      }, /*#__PURE__*/_react.default.createElement("span", {
-        className: "label"
-      }, "Description: "), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
-      }, movie.Description)), /*#__PURE__*/_react.default.createElement(_Card.default.Text, {
-        className: "movie-genre"
-      }, /*#__PURE__*/_react.default.createElement("span", {
-        className: "label"
-      }, "Genre: "), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
-      }, movie.Genre.Name)), /*#__PURE__*/_react.default.createElement(_Card.default.Text, {
-        className: "movie-director"
-      }, /*#__PURE__*/_react.default.createElement("span", {
-        className: "label"
-      }, "Director: "), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
-      }, movie.Director.Name)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.default, {
-        variant: "success",
+        src: movie.ImagePath
+      }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_reactBootstrap.default, {
         onClick: function onClick() {
-          return _this2.goBack();
-        }
-      }, "Back to Movie List"))));
+          return _this.onbackClick(null);
+        },
+        variant: "link"
+      }, "Back")))));
     }
   }]);
 
@@ -48344,8 +48308,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
       this.setState({
-        selectedMovie: movie,
-        movieData: movie
+        selectedMovie: movie
       });
     }
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/

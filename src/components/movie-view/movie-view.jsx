@@ -6,49 +6,30 @@ import Button from "react-bootstrap";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-    console.log("f");
+  onbackClick() {
+    window.open("/", "_self");
   }
 
-  goBack() {
-    window.open({ MovieCard });
-  }
   render() {
-    const { movieData: movie, onClick } = this.props;
+    const { movieData: movie, onbackClick } = this.props;
     if (!movie) return null;
 
     // if (this.state.initialState === "") return;
 
     return (
-      <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" className="movie-poster">
-            <img src={movie.ImagePath} alt={movie.Title} />
-          </Card.Img>
-          <Card.Body>
-            <Card.Title className="movie-title">
-              <span className="label">Title: </span>
-              <span className="value">{movie.Title}</span>
-            </Card.Title>
-            <Card.Text className="movie-description">
-              <span className="label">Description: </span>
-              <span className="value">{movie.Description}</span>
-            </Card.Text>
-            <Card.Text className="movie-genre">
-              <span className="label">Genre: </span>
-              <span className="value">{movie.Genre.Name}</span>
-            </Card.Text>
-            <Card.Text className="movie-director">
-              <span className="label">Director: </span>
-              <span className="value">{movie.Director.Name}</span>
-            </Card.Text>
-            <Button variant="success" onClick={() => this.goBack()}>
-              Back to Movie List
-            </Button>
-          </Card.Body>
-        </Card>
+      <div className="movie-view">
+        <Row>
+          <Card>
+            <Card.Img variant="top" src={movie.ImagePath} />
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
+              <Card.Text>{movie.Description}</Card.Text>
+              <Button onClick={() => this.onbackClick(null)} variant="link">
+                Back
+              </Button>
+            </Card.Body>
+          </Card>
+        </Row>
       </div>
     );
   }
