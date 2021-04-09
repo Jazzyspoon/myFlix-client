@@ -1,24 +1,92 @@
-.my-flix {
-  color: steelblue;
+* {
+  background-color: black;
+  color: white;
 }
-.my-flix {
-  color: steelblue;
+
+.title-top {
+  margin-top: 90px;
 }
-.my-flix {
-  color: steelblue;
+
+.MFLX {
+  color: red;
+  padding: 1px;
+  border-radius: 4px;
+  margin-right: 20px;
 }
-.my-flix {
-  color: steelblue;
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
 }
-.my-flix {
-  color: steelblue;
+
+h6 {
+  color: white;
 }
-.my-flix {
-  background-color: #282c34;
-  color: steelblue;
-  padding: 40px;
-  font-family: Arial;
+* {
+  background-color: black;
+  color: white;
+}
+
+.title-top {
+  margin-top: 90px;
+}
+
+.MFLX {
+  color: red;
+  padding: 1px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
+}
+
+h6 {
+  color: white;
+}
+* {
+  background-color: black;
+  color: white;
+}
+
+.movie-card {
+  padding: 10px;
+  margin-top: 60px;
   text-align: center;
+  max-width: 100%;
+}
+
+.card-rows {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 40px;
+  justify-content: center;
+}
+* {
+  background-color: black;
+  color: white;
+}
+* {
+  background-color: black;
+  color: white;
+}
+
+.MFLX {
+  color: red;
+  padding: 3px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
+}
+* {
+  background-color: black;
+  color: white;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
