@@ -42595,7 +42595,11 @@ try {
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
           className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "link"
+        }, " Bio")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "link"
+        }, "What is ", movieData.Genre.Name, "? ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           onClick: () => this.onbackClick(null),
           variant: "success"
         }, "Add to Favorites"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
