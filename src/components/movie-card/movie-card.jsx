@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Button, Card, Row } from "react-bootstrap";
+
 import "./movie-card.scss";
 
 export class MovieCard extends React.Component {

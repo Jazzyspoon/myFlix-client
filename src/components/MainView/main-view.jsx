@@ -7,6 +7,9 @@ import { RegisterView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
+import { DirectorView } from "../director-view/director-view";
+// import { Genreview } from "../genre-view/genre-view";
+
 import {
   Navbar,
   Nav,
@@ -27,6 +30,7 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
+      selectedDirector: null,
     };
   }
   componentDidMount() {
@@ -51,6 +55,12 @@ export class MainView extends React.Component {
     });
   }
 
+  /* When director 'bio' button is clicked, the function is invoked*/
+  onDirectorClick(director) {
+    this.setState({
+      selectedDirector: director,
+    });
+  }
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
 
   onLoggedIn(user) {
@@ -72,8 +82,15 @@ export class MainView extends React.Component {
       selectedMovie: null,
     });
   }
+
   render() {
-    const { movies, selectedMovie, user, register } = this.state;
+    const {
+      movies,
+      selectedMovie,
+      user,
+      register,
+      selectedDirector,
+    } = this.state;
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
 
@@ -119,6 +136,16 @@ export class MainView extends React.Component {
             <Col md={8}>
               <MovieView
                 movie={selectedMovie}
+                onBackClick={(movie) => this.onMovieClick(null)}
+                onClick={(director) => this.onDirectorClick(null)}
+              />
+            </Col>
+          </Row>
+        ) : selectedDirector ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <DirectorView
+                director={selectedDirector}
                 onBackClick={(movie) => this.onMovieClick(null)}
               />
             </Col>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Jumbotron, Image, Card } from "react-bootstrap";
+import { Col, Row, Button, Image, Card } from "react-bootstrap";
+
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -8,7 +9,7 @@ export class MovieView extends React.Component {
     window.open("/movies", "_self");
   }
   render() {
-    const { movie: movieData } = this.props;
+    const { movie: movieData, director } = this.props;
     if (!movieData) return null;
     // if (this.state.initialState === "") return;
     return (
@@ -22,30 +23,33 @@ export class MovieView extends React.Component {
             <h6>(Rating: {movieData.Imdb})</h6>
           </Card.Header>
           <Card.Body>
-            <Card.Text>
-              <h4>"{movieData.Description}"</h4>
-            </Card.Text>
+            <h4>"{movieData.Description}"</h4>
+
+            <h5>Starring: {movieData.Actors}</h5>
 
             <Card.Text>
-              <h5>Starring: {movieData.Actors}</h5>
+              Director: {movieData.Director.Name}{" "}
+              {/* <Button onClick={() => this.onClick(director)} variant="link">
+                Bio
+              </Button> */}
             </Card.Text>
-
-            <Card.Text>
-              Director: {movieData.Director.Name} <a href="#">(Bio)</a>
-            </Card.Text>
-
-            {/* <Card.Text>Director Bio: {movieData.Director.Bio}</Card.Text> */}
 
             <Card.Text>
               Genre: {movieData.Genre.Name}{" "}
-              <a href="#"> What is {movieData.Genre.Name}? </a>
+              {/* <Button onClick={() => this.onClick(genre)} variant="link">
+                What is {movieData.Genre.Name}?{" "}
+              </Button> */}
             </Card.Text>
 
-            {/* <Card.Text>
-                What is '{movieData.Genre.Name}'?: {movieData.Genre.Description}
-              </Card.Text> */}
-
-            <Button onClick={() => this.onbackClick(null)} variant="danger">
+            <Button onClick={() => this.onbackClick(null)} variant="success">
+              Add to Favorites
+            </Button>
+            <br></br>
+            <Button
+              onClick={() => this.onbackClick(null)}
+              variant="danger"
+              className="favbutton"
+            >
               Back to Movies List
             </Button>
           </Card.Body>
