@@ -10,7 +10,7 @@ export class DirectorView extends React.Component {
   render() {
     const { movie: movieData } = this.props;
     if (!movieData) return null;
-    // if (this.state.initialState === "") return;
+
     return (
       <Row className="movie-view">
         <Col>

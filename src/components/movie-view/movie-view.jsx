@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import { Col, Row, Button, Image, Card } from "react-bootstrap";
 
 import "./movie-view.scss";
-import { DirectorView } from "../director-view/director-view";
 
 export class MovieView extends React.Component {
   onbackClick() {
     window.open("/movies", "_self");
   }
-
   render() {
-    const { movie: movieData } = this.props;
+    const { movie: movieData, director } = this.props;
     if (!movieData) return null;
     // if (this.state.initialState === "") return;
     return (
@@ -31,14 +29,16 @@ export class MovieView extends React.Component {
 
             <Card.Text>
               Director: {movieData.Director.Name}{" "}
-              <Button onClick={() => this.onClick(director)} variant="link">
+              {/* <Button onClick={() => this.onClick(director)} variant="link">
                 Bio
-              </Button>
+              </Button> */}
             </Card.Text>
 
             <Card.Text>
               Genre: {movieData.Genre.Name}{" "}
-              <a href="#"> What is {movieData.Genre.Name}? </a>
+              {/* <Button onClick={() => this.onClick(genre)} variant="link">
+                What is {movieData.Genre.Name}?{" "}
+              </Button> */}
             </Card.Text>
 
             <Button onClick={() => this.onbackClick(null)} variant="success">

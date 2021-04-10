@@ -55,7 +55,7 @@ export class MainView extends React.Component {
     });
   }
 
-  /* When director 'bio' button is clicked, selectedDirector will set on it's initial state*/
+  /* When director 'bio' button is clicked, the function is invoked*/
   onDirectorClick(director) {
     this.setState({
       selectedDirector: director,
@@ -137,6 +137,7 @@ export class MainView extends React.Component {
               <MovieView
                 movie={selectedMovie}
                 onBackClick={(movie) => this.onMovieClick(null)}
+                onClick={(director) => this.onDirectorClick(null)}
               />
             </Col>
           </Row>

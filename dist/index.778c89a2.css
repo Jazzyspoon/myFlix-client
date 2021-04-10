@@ -99,6 +99,22 @@ h1 {
   color: white;
 }
 
+.MFLX {
+  color: red;
+  padding: 3px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.MFLXsm {
+  color: white;
+  border-radius: 4px;
+}
+* {
+  background-color: black;
+  color: white;
+}
+
 .movie-view {
   margin-top: 100px;
 }
@@ -115,22 +131,6 @@ h1 {
 
 h1 {
   text-decoration: underline;
-}
-* {
-  background-color: black;
-  color: white;
-}
-
-.MFLX {
-  color: red;
-  padding: 3px;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.MFLXsm {
-  color: white;
-  border-radius: 4px;
 }
 * {
   background-color: black;

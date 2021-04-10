@@ -46,7 +46,7 @@
 83C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\string-hash\package.json131313264140000000 0
 85C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\@parcel\watcher\src\shared132622036751030355 1
 123C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\postcss-ordered-values\node_modules\postcss-value-parser\LICENSE121436361000000000 0
-50C:\Users\Jason\Documents\GitHub\myFlix-client\dist132624741914229695 1
+50C:\Users\Jason\Documents\GitHub\myFlix-client\dist132624794057999748 1
 82C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\terser\bin\package.json121436361000000000 0
 108C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\htmlnano\lib\modules\minifyConditionalComments.js121436361000000000 0
 125C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\postcss-normalize-repeat-style\node_modules\postcss\lib\warning.js121436361000000000 0
@@ -264,7 +264,7 @@
 102C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\react-overlays\mergeOptionsWithPopperConfig132622121173518656 1
 113C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\jsdom\lib\jsdom\living\generated\HTMLPictureElement.js121436361000000000 0
 87C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\core-js\es\symbol\key-for.js121436361000000000 0
-92C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\director-view\director-view.jsx132624695804839073 0
+92C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\director-view\director-view.jsx132624774678589686 0
 82C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\brfs\test\files\tr.html121436361000000000 0
 107C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\regenerate-unicode-properties\Script\Gujarati.js121436361000000000 0
 106C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\assert\build\internal\assert\assertion_error.js121436361000000000 0
@@ -375,7 +375,7 @@
 81C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\uncontrollable\lib\cjs132622120961228665 1
 93C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\parcel-bundler\lib\utils\is-url.js121436361000000000 0
 100C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\core-js\stable\string\virtual\trim-end.js121436361000000000 0
-86C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\movie-view\movie-view.jsx132624738237019702 0
+86C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\movie-view\movie-view.jsx132624794049059695 0
 84C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\caniuse-api\dist\index.js121436361000000000 0
 101C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\deasync\bin\darwin-x64-node-5\deasync.node121436361000000000 0
 63C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\glob132622036223710383 1
@@ -384,7 +384,7 @@
 87C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\movie-view\movie-view.scss132624737673499691 0
 108C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\parcel-bundler\node_modules\posthtml\lib\index.js121436361000000000 0
 102C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\uncss\node_modules\postcss\lib\warn-once.js121436361000000000 0
-86C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\movie-card\movie-card.jsx132624681085249433 0
+86C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\movie-card\movie-card.jsx132624772937529732 0
 105C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\is-negative-zero\.github\workflows\node-4+.yml121436361000000000 0
 91C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\resolve\test\resolver\cup.coffee121436361000000000 0
 109C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\postcss-minify-gradients\node_modules\postcss\docs132622121169708646 1
@@ -415,7 +415,7 @@
 93C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\core-js\internals\native-symbol.js121436361000000000 0
 70C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\ansi-styles132622035898420375 1
 87C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\es-abstract\2019\ToUint32.js121436361000000000 0
-83C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\MainView\main-view.jsx132624743213349746 0
+83C:\Users\Jason\Documents\GitHub\myFlix-client\src\components\MainView\main-view.jsx132624790939159797 0
 101C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\@parcel\core\node_modules\semver\range.bnf121436361000000000 0
 65C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\is-wsl132622120520448659 1
 81C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\log-symbols\index.d.ts121436361000000000 0
@@ -2135,7 +2135,7 @@
 118C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\postcss-calc\node_modules\postcss\docs\guidelines\runner.md121436361000000000 0
 72C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\os-browserify132622036063060370 1
 113C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\jsdom\lib\jsdom\living\generated\HTMLDetailsElement.js121436361000000000 0
-61C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.html132624741913909753 0
+61C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.html132624794057429711 0
 116C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\@parcel\workers\test\integration\workerfarm\master-sum.js121436361000000000 0
 104C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\regenerate-unicode-properties\Script\Batak.js121436361000000000 0
 69C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\fill-range132622035897840372 1
@@ -16749,7 +16749,7 @@
 119C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\parcel-bundler\node_modules\core-js\library\fn\math\clz32.js121436361000000000 0
 87C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\core-js\es\instance\flags.js121436361000000000 0
 119C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\parcel-bundler\node_modules\core-js\library\fn\math\expm1.js121436361000000000 0
-72C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.02675e63.js.map132624741914219747 0
+72C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.02675e63.js.map132624794057979773 0
 108C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\babel-runtime\helpers\_interop-require-default.js131473721030000000 0
 97C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\bootstrap\scss\mixins\_list-group.scss121436361000000000 0
 120C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\parcel-bundler\node_modules\core-js\library\fn\math\fscale.js121436361000000000 0
@@ -23608,7 +23608,7 @@
 117C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\csso\node_modules\css-tree\lib\syntax\pseudo\common\nth.js121436361000000000 0
 112C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\csso\node_modules\css-tree\lib\syntax\node\AnPlusB.js121436361000000000 0
 118C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\csso\node_modules\css-tree\lib\syntax\node\AtrulePrelude.js121436361000000000 0
-73C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.778c89a2.css.map132624741913999755 0
+73C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.778c89a2.css.map132624794057509724 0
 110C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\csso\node_modules\css-tree\lib\syntax\node\Block.js121436361000000000 0
 117C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\babel-runtime\node_modules\core-js\library\es6\function.js121436361000000000 0
 113C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\csso\node_modules\css-tree\lib\syntax\node\Brackets.js121436361000000000 0
@@ -29778,8 +29778,8 @@
 73C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\.bin\which.cmd132622037530940364 0
 73C:\Users\Jason\Documents\GitHub\myFlix-client\node_modules\.bin\which.ps1132622037530940364 0
 75C:\Users\Jason\Documents\GitHub\myFlix-client\dist\Bladerunner.12acf421.jpg132622058430960424 0
-68C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.02675e63.js132624741914129694 0
-69C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.778c89a2.css132624741913929703 0
+68C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.02675e63.js132624794057919777 0
+69C:\Users\Jason\Documents\GitHub\myFlix-client\dist\index.778c89a2.css132624794057439717 0
 66C:\Users\Jason\Documents\GitHub\myFlix-client\dist\src.78399e21.js132624682198499601 0
 55C:\Users\Jason\Documents\GitHub\myFlix-client\.cache\04132615033444795861 1
 55C:\Users\Jason\Documents\GitHub\myFlix-client\.cache\05132615033444835827 1
