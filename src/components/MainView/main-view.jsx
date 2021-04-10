@@ -6,7 +6,7 @@ import { RegisterView } from "../registration-view/registration-view";
 
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-
+import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 // import { Genreview } from "../genre-view/genre-view";
 
