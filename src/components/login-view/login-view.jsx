@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-import axios from "axios";
+
 import "./login-view.scss";
 
 export function LoginView(props) {
@@ -76,10 +77,7 @@ export function LoginView(props) {
       </Form>
       <br></br>
       <p>
-        Not a member?{" "}
-        <Button variant="success" onClick={handleSubmit}>
-          Create an account
-        </Button>
+        Not a member? <Button variant="success">Create an account</Button>
       </p>
     </div>
   );
@@ -91,5 +89,4 @@ LoginView.propTypes = {
     password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
-  onRegister: PropTypes.func,
 };

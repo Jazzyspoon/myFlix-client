@@ -28188,13 +28188,13 @@ try {
   _parcelHelpers.export(exports, "LoginView", function () {
     return LoginView;
   });
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
-  var _axios = require("axios");
-  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   require("./login-view.scss");
   var _s = $RefreshSig$();
   function LoginView(props) {
@@ -28260,9 +28260,8 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?", " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
-        onClick: handleSubmit
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "success"
       }, "Create an account")))
     );
   }
@@ -28273,8 +28272,7 @@ try {
       username: _propTypesDefault.default.string.isRequired,
       password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired,
-    onRegister: _propTypesDefault.default.func
+    onLoggedIn: _propTypesDefault.default.func.isRequired
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
