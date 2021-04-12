@@ -4,19 +4,24 @@ import { Col, Row, Button, Image, Card } from "react-bootstrap";
 import "./genre-view.scss";
 
 export class GenreView extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {};
+  }
+
   onbackClick() {
     window.open("/movies");
   }
   render() {
-    const { movie: movieData } = this.props;
-    if (!movieData) return null;
+    const { genre, movie: movieData } = this.props;
+    if (!genre) return null;
     // if (this.state.initialState === "") return;
     return (
       <Row className="movie-view">
         <Col>
           <Image src={movieData.Genre.ImagePath} className="image" fluid />
         </Col>
-        <Col className="cardbody">
+        <Card style={{ width: "25rem" }} className="cardbody">
           <Card.Header>
             <h1>Genre: {movieData.Genre.Name}</h1>
           </Card.Header>
@@ -29,7 +34,7 @@ export class GenreView extends React.Component {
               Back to Movies List
             </Button>
           </Card.Body>
-        </Col>
+        </Card>
       </Row>
     );
   }

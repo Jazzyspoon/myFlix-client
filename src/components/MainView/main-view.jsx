@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 
@@ -8,7 +8,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 import { DirectorView } from "../director-view/director-view";
-// import { Genreview } from "../genre-view/genre-view";
+import { GenreView } from "../genre-view/genre-view";
 
 import {
   Navbar,
@@ -30,7 +30,6 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
-      selectedDirector: null,
     };
   }
   componentDidMount() {
@@ -61,6 +60,14 @@ export class MainView extends React.Component {
       selectedDirector: director,
     });
   }
+
+  /* When genre 'what is' button is clicked, the function is invoked*/
+  onGenreClick(genre) {
+    this.setState({
+      selectedGenre: genre,
+    });
+  }
+
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
 
   onLoggedIn(user) {
@@ -90,6 +97,7 @@ export class MainView extends React.Component {
       user,
       register,
       selectedDirector,
+      selectedGenre,
     } = this.state;
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
@@ -107,7 +115,7 @@ export class MainView extends React.Component {
     // if (!movies) return <div className="main-view" />;
 
     return (
-      <div className="main-view">
+      <div>
         <Navbar expand="sm" bg="black" variant="dark" fixed="top">
           <Navbar.Brand href="/">
             <h1 className="MFLX">MovieFlix</h1>
@@ -124,7 +132,7 @@ export class MainView extends React.Component {
             </Nav.Link>
           </Nav>
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <FormControl type="text" placeholder="Search" className="mr-sm-1" />
             <Button variant="outline-info">
               <h6>Search</h6>
             </Button>
@@ -138,6 +146,7 @@ export class MainView extends React.Component {
                 movie={selectedMovie}
                 onBackClick={(movie) => this.onMovieClick(null)}
                 onClick={(director) => this.onDirectorClick(null)}
+                onClick={(genre) => this.onGenreClick(null)}
               />
             </Col>
           </Row>
@@ -147,6 +156,15 @@ export class MainView extends React.Component {
               <DirectorView
                 director={selectedDirector}
                 onBackClick={(movie) => this.onMovieClick(null)}
+              />
+            </Col>
+          </Row>
+        ) : selectedGenre ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <GenreView
+                genre={selectedGenre}
+                onBackClick={(movie) => this.onGenreClick(null)}
               />
             </Col>
           </Row>

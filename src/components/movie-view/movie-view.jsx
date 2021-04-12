@@ -1,15 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Image, Card } from "react-bootstrap";
-
+import { Col, Row, Button, Image, Card, Modal } from "react-bootstrap";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
   onbackClick() {
     window.open("/movies", "_self");
   }
+
+  /* When director 'bio' button is clicked, the function is invoked*/
+  onDirectorClick(director) {
+    this.setState({
+      selectedDirector: director,
+    });
+  }
+
+  /* When genre 'what is' button is clicked, the function is invoked*/
+  onGenreClick(genre) {
+    this.setState({
+      selectedGenre: genre,
+    });
+  }
   render() {
-    const { movie: movieData, director } = this.props;
+    const { movie: movieData } = this.props;
     if (!movieData) return null;
     // if (this.state.initialState === "") return;
     return (
@@ -29,15 +43,30 @@ export class MovieView extends React.Component {
 
             <Card.Text>
               Director: {movieData.Director.Name}{" "}
-              <Button variant="link"> Bio</Button>
+              <Button
+                size="sm"
+                variant="dark"
+                onClick={(director) => this.onDirectorClick(director)}
+              >
+                (Bio)
+              </Button>
             </Card.Text>
 
             <Card.Text>
               Genre: {movieData.Genre.Name}{" "}
-              <Button variant="link">What is {movieData.Genre.Name}? </Button>
+              <Button
+                size="sm"
+                variant="dark"
+                onClick={(genre) => this.onGenreClick(genre)}
+              >
+                (What is {movieData.Genre.Name}?){" "}
+              </Button>
             </Card.Text>
 
-            <Button onClick={() => this.onbackClick(null)} variant="success">
+            <Button
+              // onClick={() => this.addToFavoriteMovies(movie._id)}
+              variant="success"
+            >
               Add to Favorites
             </Button>
             <br></br>

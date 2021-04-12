@@ -4,19 +4,25 @@ import { Col, Row, Button, Image, Card } from "react-bootstrap";
 import "./director-view.scss";
 
 export class DirectorView extends React.Component {
+  constructor(props) {
+    super();
+
+    this.state = {};
+  }
+
   onbackClick() {
     window.open("/movies");
   }
   render() {
-    const { movie: movieData } = this.props;
-    if (!movieData) return null;
+    const { director, movie: movieData } = this.props;
+    if (!director) return null;
 
     return (
       <Row className="movie-view">
         <Col>
           <Image src={movieData.Director.Image} className="image" fluid />
         </Col>
-        <Col className="cardbody">
+        <Card style={{ width: "25rem" }} className="cardbody">
           <Card.Header>
             <h1>{movieData.Director} (Director)</h1>
           </Card.Header>
@@ -34,7 +40,7 @@ export class DirectorView extends React.Component {
               Back to Movies List
             </Button>
           </Card.Body>
-        </Col>
+        </Card>
       </Row>
     );
   }
