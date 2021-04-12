@@ -136,26 +136,4 @@ h1 {
   background-color: black;
   color: white;
 }
-
-.movie-view {
-  margin-top: 100px;
-}
-
-.cardbody {
-  padding: 8px;
-}
-
-.image {
-  display: flex;
-  width: 100%;
-  padding: 8px;
-}
-
-h1 {
-  text-decoration: underline;
-}
-* {
-  background-color: black;
-  color: white;
-}
 /*# sourceMappingURL=index.778c89a2.css.map */

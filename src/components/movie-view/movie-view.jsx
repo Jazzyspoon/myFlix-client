@@ -29,12 +29,12 @@ export class MovieView extends React.Component {
 
             <Card.Text>
               Director: {movieData.Director.Name}{" "}
-              <Button variant="link">(Bio)</Button>
+              <Button variant="link"> Bio</Button>
             </Card.Text>
 
             <Card.Text>
               Genre: {movieData.Genre.Name}{" "}
-              <Button variant="link">(What is {movieData.Genre.Name}?) </Button>
+              <Button variant="link">What is {movieData.Genre.Name}? </Button>
             </Card.Text>
 
             <Button onClick={() => this.onbackClick(null)} variant="success">

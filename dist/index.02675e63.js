@@ -26286,7 +26286,6 @@ try {
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
   var _movieViewMovieView = require("../movie-view/movie-view");
-  require("../genre-view/genre-view");
   var _directorViewDirectorView = require("../director-view/director-view");
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
@@ -26414,7 +26413,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -42598,9 +42597,9 @@ try {
           className: "cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link"
-        }, "(Bio)")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, " Bio")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link"
-        }, "(What is ", movieData.Genre.Name, "?) ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, "What is ", movieData.Genre.Name, "? ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           onClick: () => this.onbackClick(null),
           variant: "success"
         }, "Add to Favorites"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -42693,64 +42692,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./director-view.scss":"4ddkX","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "GenreView", function () {
-    return GenreView;
-  });
-  var _react = require("react");
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require("prop-types");
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrap = require("react-bootstrap");
-  require("./genre-view.scss");
-  class GenreView extends _reactDefault.default.Component {
-    onbackClick() {
-      window.open("/movies");
-    }
-    render() {
-      const {movie: movieData} = this.props;
-      if (!movieData) return null;
-      // if (this.state.initialState === "") return;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
-          className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
-          src: movieData.Genre.ImagePath,
-          className: "image",
-          fluid: true
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Genre: ", movieData.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movieData.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", movieData.Genre.Name, " Movies: ", movieData.Director.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          onClick: () => this.onbackClick(null),
-          variant: "danger"
-        }, "Back to Movies List"))))
-      );
-    }
-  }
-  GenreView.propTypes = {
-    movie: _propTypesDefault.default.shape({
-      Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        ImagePath: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired,
-        Ex: _propTypesDefault.default.string.isRequired
-      }).isRequired
-    }).isRequired,
-    onClick: _propTypesDefault.default.func
-  };
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4iHPp":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./director-view.scss":"4ddkX","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4ddkX":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map
