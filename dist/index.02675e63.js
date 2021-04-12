@@ -26292,7 +26292,6 @@ try {
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
-  var _reactRouterBootstrap = require("react-router-bootstrap");
   class MainView extends _reactDefault.default.Component {
     constructor() {
       super();
@@ -26304,12 +26303,25 @@ try {
       };
     }
     componentDidMount() {
-      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies").then(response => {
-        console.log(response.data);
+      let accessToken = localStorage.getItem("token");
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem("user")
+        });
+        this.getMovies(accessToken);
+      }
+    }
+    getMovies(token) {
+      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // Assign the result to the state
         this.setState({
           movies: response.data
         });
-      }).catch(error => {
+      }).catch(function (error) {
         console.log(error);
       });
     }
@@ -26332,10 +26344,23 @@ try {
       });
     }
     /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    onLoggedIn(user) {
+    onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user
+        user: authData.user.Username
       });
+      localStorage.setItem("token", authData.token);
+      localStorage.setItem("user", authData.user.Username);
+      this.getMovies(authData.token);
+    }
+    /*log out*/
+    onLoggedOut() {
+      console.log("logged out");
+      this.setState({
+        user: null
+      });
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
     /**/
     onRegister(register) {
@@ -26364,24 +26389,31 @@ try {
         })
       );
       // Before the movies have been loaded
-      // if (!movies) return <div className="main-view" />;
+      if (!movies) return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "main-view"
+        })
+      );
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           expand: "sm",
           bg: "black",
           variant: "dark",
           fixed: "top"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+          href: "#"
+        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
-          to: "/"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home"))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
-          to: "/genre-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies"))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
-          to: "/login-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Log Out")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+          href: "/"
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+          href: "/movies"
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+          href: "/",
+          onClick: () => this.onLoggedOut(null)
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Log Out"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
           inline: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
           type: "text",
@@ -26416,12 +26448,6 @@ try {
           key: movie._id,
           movieData: movie,
           onClick: movie => this.onMovieClick(movie)
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-          path: "/director",
-          component: _directorViewDirectorView.DirectorView
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-          path: "/genre",
-          component: _genreViewGenreView.GenreView
         }))))
       );
     }
@@ -26432,7 +26458,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj","react-router-bootstrap":"LSFfJ"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -28221,26 +28247,12 @@ try {
         variant: "dark",
         fixed: "top"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#"
+        href: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#movies"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#Featured"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Log Out"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
-        inline: true
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
-        type: "text",
-        placeholder: "Search",
-        className: "mr-sm-1"
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "outline-info"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      })), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
@@ -28260,8 +28272,9 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "success"
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?", " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "success",
+        onClick: handleSubmit
       }, "Create an account")))
     );
   }
@@ -28269,8 +28282,8 @@ try {
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      username: _propTypesDefault.default.string.isRequired,
-      password: _propTypesDefault.default.string.isRequired
+      Username: _propTypesDefault.default.string.isRequired,
+      Password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired
   };

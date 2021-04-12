@@ -29,26 +29,10 @@ export function LoginView(props) {
   return (
     <div>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="/">
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
-        <Nav className="mr-auto MFLXsm">
-          <Nav.Link href="#">
-            <h6>Home</h6>
-          </Nav.Link>
-          <Nav.Link href="#movies">
-            <h6>Movies</h6>
-          </Nav.Link>
-          <Nav.Link href="#Featured">
-            <h6>Log Out</h6>
-          </Nav.Link>
-        </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-1" />
-          <Button variant="outline-info">
-            <h6>Search</h6>
-          </Button>
-        </Form>
+        <Nav className="mr-auto MFLXsm"></Nav>
       </Navbar>
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please login to continue.</p>
@@ -77,7 +61,10 @@ export function LoginView(props) {
       </Form>
       <br></br>
       <p>
-        Not a member? <Button variant="success">Create an account</Button>
+        Not a member?{" "}
+        <Button variant="success" onClick={handleSubmit}>
+          Create an account
+        </Button>
       </p>
     </div>
   );
@@ -85,8 +72,8 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
 };

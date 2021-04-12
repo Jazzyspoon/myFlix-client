@@ -4,10 +4,8 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
-
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 
@@ -22,7 +20,6 @@ import {
 } from "react-bootstrap";
 
 import "./main-view.scss";
-import { LinkContainer } from "react-router-bootstrap";
 
 export class MainView extends React.Component {
   constructor() {
@@ -35,19 +32,29 @@ export class MainView extends React.Component {
     };
   }
   componentDidMount() {
+    let accessToken = localStorage.getItem("token");
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem("user"),
+      });
+      this.getMovies(accessToken);
+    }
+  }
+  getMovies(token) {
     axios
-      .get("https://movieflixappjp.herokuapp.com/movies")
+      .get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
-        console.log(response.data);
+        // Assign the result to the state
         this.setState({
           movies: response.data,
         });
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
       });
   }
-
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
 
   onMovieClick(movie) {
@@ -72,10 +79,24 @@ export class MainView extends React.Component {
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
 
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user,
+      user: authData.user.Username,
     });
+
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", authData.user.Username);
+    this.getMovies(authData.token);
+  }
+  //log out
+  onLoggedOut() {
+    console.log("logged out");
+    this.setState({
+      user: null,
+    });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   }
 
   /* */
@@ -114,33 +135,26 @@ export class MainView extends React.Component {
       );
 
     // Before the movies have been loaded
-    // if (!movies) return <div className="main-view" />;
+    if (!movies) return <div className="main-view" />;
 
     return (
       <div>
         <Router>
           <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-            <Navbar.Brand>
+            <Navbar.Brand href="#">
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
-              <LinkContainer to="/">
-                <Nav.Link>
-                  <h6>Home</h6>
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/genre-view">
-                <Nav.Link>
-                  <h6>Movies</h6>
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/login-view">
-                <Nav.Link>
-                  <h6>Log Out</h6>
-                </Nav.Link>
-              </LinkContainer>
+              <Nav.Link href="/">
+                <h6>Home</h6>
+              </Nav.Link>
+              <Nav.Link href="/movies">
+                <h6>Movies</h6>
+              </Nav.Link>
+              <Nav.Link href="/" onClick={() => this.onLoggedOut(null)}>
+                <h6>Log Out</h6>
+              </Nav.Link>
             </Nav>
-
             <Form inline>
               <FormControl
                 type="text"
@@ -191,10 +205,6 @@ export class MainView extends React.Component {
               />
             ))
           )}
-          <Switch>
-            <Route path="/director" component={DirectorView} />
-            <Route path="/genre" component={GenreView} />
-          </Switch>
         </Router>
       </div>
     );
