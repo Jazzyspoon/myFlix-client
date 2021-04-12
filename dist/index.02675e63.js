@@ -28270,8 +28270,8 @@ try {
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired,
     onRegister: _propTypesDefault.default.func
