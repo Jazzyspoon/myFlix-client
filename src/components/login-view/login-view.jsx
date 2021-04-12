@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, Button } from "react-bootstrap";
 
 import "./login-view.scss";
 
@@ -72,8 +72,8 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
 };
