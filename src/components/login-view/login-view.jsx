@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import axios from "axios";
 import "./login-view.scss";
 
 export function LoginView(props) {
@@ -9,9 +10,19 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    console.log("s");
-    props.onLoggedIn(username);
+    /* Send a request to the server for authentication */
+    axios
+      .post("https://movieflixappjp.herokuapp.com/login", {
+        Username: username,
+        Password: password,
+      })
+      .then((response) => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch((e) => {
+        console.log("no such user");
+      });
   };
 
   return (
@@ -28,7 +39,7 @@ export function LoginView(props) {
             <h6>Movies</h6>
           </Nav.Link>
           <Nav.Link href="#Featured">
-            <h6>Featured</h6>
+            <h6>Log Out</h6>
           </Nav.Link>
         </Nav>
         <Form inline>
@@ -65,7 +76,10 @@ export function LoginView(props) {
       </Form>
       <br></br>
       <p>
-        Not a member? <Button variant="success">Create an account</Button>
+        Not a member?{" "}
+        <Button variant="success" onClick={handleSubmit}>
+          Create an account
+        </Button>
       </p>
     </div>
   );
@@ -73,8 +87,8 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
   onRegister: PropTypes.func,

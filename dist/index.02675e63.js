@@ -1056,6 +1056,7 @@ try {
   var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
   var _componentsMainViewMainView = require("./components/MainView/main-view");
   require("./index.scss");
+  require("react-router");
   // Main component (will eventually use all the others)
   class MyFlixApplication extends _reactDefault.default.Component {
     render() {
@@ -1074,7 +1075,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-dom":"2sg1U","./components/MainView/main-view":"NsRrN","./index.scss":"5iJih","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Container":"3Mt3t"}],"3b2NM":[function(require,module,exports) {
+},{"react":"3b2NM","react-dom":"2sg1U","./components/MainView/main-view":"NsRrN","./index.scss":"5iJih","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Container":"3Mt3t","react-router":"3v97x"}],"3b2NM":[function(require,module,exports) {
 "use strict";
 if ("development" === 'production') {
   module.exports = require('./cjs/react.production.min.js');
@@ -26282,7 +26283,7 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  require("react-router-dom");
+  var _reactRouterDom = require("react-router-dom");
   var _loginViewLoginView = require("../login-view/login-view");
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
@@ -26291,6 +26292,7 @@ try {
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
+  var _reactRouterBootstrap = require("react-router-bootstrap");
   class MainView extends _reactDefault.default.Component {
     constructor() {
       super();
@@ -26332,7 +26334,7 @@ try {
     /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
     onLoggedIn(user) {
       this.setState({
-        user: user
+        user
       });
     }
     /**/
@@ -26364,24 +26366,22 @@ try {
       // Before the movies have been loaded
       // if (!movies) return <div className="main-view" />;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           expand: "sm",
           bg: "black",
           variant: "dark",
           fixed: "top"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-          href: "/"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/movies"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "#Featured"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
+          to: "/"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home"))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
+          to: "/genre-view"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies"))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
+          to: "/login-view"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Log Out")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
           inline: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
           type: "text",
@@ -26416,7 +26416,13 @@ try {
           key: movie._id,
           movieData: movie,
           onClick: movie => this.onMovieClick(movie)
-        })))
+        })), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/director",
+          component: _directorViewDirectorView.DirectorView
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/genre",
+          component: _genreViewGenreView.GenreView
+        }))))
       );
     }
   }
@@ -26426,7 +26432,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj","react-router-bootstrap":"LSFfJ"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -28187,6 +28193,8 @@ try {
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   require("./login-view.scss");
   var _s = $RefreshSig$();
   function LoginView(props) {
@@ -28195,9 +28203,16 @@ try {
     const [password, setPassword] = _react.useState("");
     const handleSubmit = e => {
       e.preventDefault();
-      console.log(username, password);
-      console.log("s");
-      props.onLoggedIn(username);
+      /*Send a request to the server for authentication*/
+      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", {
+        Username: username,
+        Password: password
+      }).then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      }).catch(e => {
+        console.log("no such user");
+      });
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
@@ -28217,7 +28232,7 @@ try {
         href: "#movies"
       }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#Featured"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Log Out"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
         inline: true
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
         type: "text",
@@ -28245,8 +28260,9 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member? ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "success"
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?", " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "success",
+        onClick: handleSubmit
       }, "Create an account")))
     );
   }
@@ -28254,8 +28270,8 @@ try {
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      username: _propTypesDefault.default.string.isRequired,
-      password: _propTypesDefault.default.string.isRequired
+      Username: _propTypesDefault.default.string.isRequired,
+      Password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired,
     onRegister: _propTypesDefault.default.func
@@ -28268,7 +28284,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB"}],"4dfy5":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","axios":"7rA65"}],"4dfy5":[function(require,module,exports) {
 /**
 * Copyright (c) 2013-present, Facebook, Inc.
 *
@@ -42590,11 +42606,12 @@ try {
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
-  require("react-router-dom");
+  var _reactRouterDom = require("react-router-dom");
+  var _reactRouterBootstrap = require("react-router-bootstrap");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     onbackClick() {
-      window.open("/movies", "_self");
+      window.open("/movies");
     }
     /*When director 'bio' button is clicked, the function is invoked*/
     onDirectorClick(director) {
@@ -42609,11 +42626,11 @@ try {
       });
     }
     render() {
-      const {movie: movieData} = this.props;
+      const {movie: movieData, onClick} = this.props;
       if (!movieData) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: movieData.ImagePath,
@@ -42621,22 +42638,24 @@ try {
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
           className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movieData.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movieData.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movieData.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movieData.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
+          to: "{movieData.Director}"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
-          variant: "dark",
-          onClick: director => this.onDirectorClick(director)
-        }, "(Bio)")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "dark"
+        }, "(Bio)"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movieData.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterBootstrap.LinkContainer, {
+          to: "/movies/genre"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
-          variant: "dark",
-          onClick: genre => this.onGenreClick(genre)
-        }, "(What is ", movieData.Genre.Name, "?)", " ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "dark"
+        }, "(What is ", movieData.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           // onClick={() => this.addToFavoriteMovies(movie._id)}
           variant: "success"
         }, "Add to Favorites"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          onClick: () => this.onbackClick(null),
+          onClick: movie => this.onbackClick(movie),
           variant: "danger",
           className: "favbutton"
-        }, "Back to Movies List"))))
+        }, "Back to Movies List")))))
       );
     }
   }
@@ -42664,7 +42683,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"4iZ2Z":[function() {},{}],"1PMSK":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-router-bootstrap":"LSFfJ"}],"4iZ2Z":[function() {},{}],"1PMSK":[function(require,module,exports) {
 "use strict";
 if ("development" === "production") {
   module.exports = require("./cjs/react-router-dom.min.js");
@@ -45766,7 +45785,227 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"LSFfJ":[function(require,module,exports) {
+'use strict';
+
+exports.__esModule = true;
+exports.LinkContainer = exports.IndexLinkContainer = undefined;
+
+var _IndexLinkContainer2 = require('./IndexLinkContainer');
+
+var _IndexLinkContainer3 = _interopRequireDefault(_IndexLinkContainer2);
+
+var _LinkContainer2 = require('./LinkContainer');
+
+var _LinkContainer3 = _interopRequireDefault(_LinkContainer2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.IndexLinkContainer = _IndexLinkContainer3.default;
+exports.LinkContainer = _LinkContainer3.default;
+},{"./IndexLinkContainer":"kn0CY","./LinkContainer":"3sUrx"}],"kn0CY":[function(require,module,exports) {
+'use strict';
+
+exports.__esModule = true;
+exports.IndexLinkContainer = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
+
+var _LinkContainer = require('./LinkContainer');
+
+var _LinkContainer2 = _interopRequireDefault(_LinkContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// Don't use a stateless function, to allow users to set a ref.
+/* eslint-disable react/prefer-stateless-function */
+var IndexLinkContainer = exports.IndexLinkContainer = function (_React$Component) {
+  _inherits(IndexLinkContainer, _React$Component);
+
+  function IndexLinkContainer() {
+    _classCallCheck(this, IndexLinkContainer);
+
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  IndexLinkContainer.prototype.render = function render() {
+    return _react2.default.createElement(_LinkContainer2.default, _extends({}, this.props, { exact: true }));
+  };
+
+  return IndexLinkContainer;
+}(_react2.default.Component);
+/* eslint-enable react/prefer-stateless-function */
+
+exports.default = (0, _reactRouterDom.withRouter)(IndexLinkContainer);
+},{"react":"3b2NM","react-router-dom":"1PMSK","./LinkContainer":"3sUrx"}],"3sUrx":[function(require,module,exports) {
+'use strict';
+
+exports.__esModule = true;
+exports.LinkContainer = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRouterDom = require('react-router-dom');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var isModifiedEvent = function isModifiedEvent(event) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+};
+
+var LinkContainer = exports.LinkContainer = function (_Component) {
+  _inherits(LinkContainer, _Component);
+
+  function LinkContainer() {
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, LinkContainer);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleClick = function (event) {
+      var _this$props = _this.props,
+          children = _this$props.children,
+          onClick = _this$props.onClick;
+
+
+      if (children.props.onClick) {
+        children.props.onClick(event);
+      }
+
+      if (onClick) {
+        onClick(event);
+      }
+
+      if (!event.defaultPrevented && // onClick prevented default
+      event.button === 0 && // ignore right clicks
+      !isModifiedEvent(event) // ignore clicks with modifier keys
+      ) {
+          event.preventDefault();
+
+          var _this$props2 = _this.props,
+              replace = _this$props2.replace,
+              to = _this$props2.to,
+              history = _this$props2.history;
+
+
+          if (replace) {
+            history.replace(to);
+          } else {
+            history.push(to);
+          }
+        }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  LinkContainer.prototype.render = function render() {
+    var _this2 = this;
+
+    var _props = this.props,
+        history = _props.history,
+        _location = _props.location,
+        _match = _props.match,
+        _staticContext = _props.staticContext,
+        children = _props.children,
+        replace = _props.replace,
+        to = _props.to,
+        exact = _props.exact,
+        strict = _props.strict,
+        activeClassName = _props.activeClassName,
+        className = _props.className,
+        activeStyle = _props.activeStyle,
+        style = _props.style,
+        getIsActive = _props.isActive,
+        props = _objectWithoutProperties(_props, ['history', 'location', 'match', 'staticContext', 'children', 'replace', 'to', 'exact', 'strict', 'activeClassName', 'className', 'activeStyle', 'style', 'isActive']);
+
+    var href = history.createHref(typeof to === 'string' ? { pathname: to } : to);
+
+    var child = _react2.default.Children.only(children);
+
+    return _react2.default.createElement(_reactRouterDom.Route, {
+      path: (typeof to === 'undefined' ? 'undefined' : _typeof(to)) === 'object' ? to.pathname : to,
+      exact: exact,
+      strict: strict,
+      children: function children(_ref) {
+        var location = _ref.location,
+            match = _ref.match;
+
+        var isActive = !!(getIsActive ? getIsActive(match, location) : match);
+
+        return _react2.default.cloneElement(child, _extends({}, props, {
+          className: [className, child.props.className, isActive ? activeClassName : null].join(' ').trim(),
+          style: isActive ? _extends({}, style, activeStyle) : style,
+          href: href,
+          onClick: _this2.handleClick
+        }));
+      }
+    });
+  };
+
+  return LinkContainer;
+}(_react.Component);
+
+LinkContainer.propTypes = {
+  history: _propTypes2.default.shape({
+    push: _propTypes2.default.func.isRequired,
+    replace: _propTypes2.default.func.isRequired,
+    createHref: _propTypes2.default.func.isRequired
+  }).isRequired,
+  location: _propTypes2.default.object,
+  match: _propTypes2.default.object,
+  staticContext: _propTypes2.default.object,
+  children: _propTypes2.default.element.isRequired,
+  onClick: _propTypes2.default.func,
+  replace: _propTypes2.default.bool,
+  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]).isRequired,
+  exact: _propTypes2.default.bool,
+  strict: _propTypes2.default.bool,
+  className: _propTypes2.default.string,
+  activeClassName: _propTypes2.default.string,
+  style: _propTypes2.default.object,
+  activeStyle: _propTypes2.default.object,
+  isActive: _propTypes2.default.func
+};
+LinkContainer.defaultProps = {
+  replace: false,
+  exact: false,
+  strict: false,
+  activeClassName: 'active'
+};
+exports.default = (0, _reactRouterDom.withRouter)(LinkContainer);
+},{"react":"3b2NM","prop-types":"4dfy5","react-router-dom":"1PMSK"}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

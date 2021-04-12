@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Image, Card, Modal } from "react-bootstrap";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { Col, Row, Button, Image, Card } from "react-bootstrap";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
   onbackClick() {
-    window.open("/movies", "_self");
+    window.open("/movies");
   }
 
   /* When director 'bio' button is clicked, the function is invoked*/
@@ -23,63 +24,69 @@ export class MovieView extends React.Component {
     });
   }
   render() {
-    const { movie: movieData } = this.props;
+    const { movie: movieData, onClick } = this.props;
     if (!movieData) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Row className="movie-view">
-        <Col>
-          <Image src={movieData.ImagePath} className="image" fluid />
-        </Col>
-        <Col className="cardbody">
-          <Card.Header>
-            <h1>{movieData.Title}</h1>
-            <h6>(Rating: {movieData.Imdb})</h6>
-          </Card.Header>
-          <Card.Body>
-            <h4>"{movieData.Description}"</h4>
+      <Router>
+        <Row className="movie-view">
+          <Col>
+            <Image src={movieData.ImagePath} className="image" fluid />
+          </Col>
+          <Col className="cardbody">
+            <Card.Header>
+              <h1>{movieData.Title}</h1>
+              <h6>(Rating: {movieData.Imdb})</h6>
+            </Card.Header>
+            <Card.Body>
+              <h4>"{movieData.Description}"</h4>
 
-            <h5>Starring: {movieData.Actors}</h5>
+              <h5>Starring: {movieData.Actors}</h5>
 
-            <Card.Text>
-              Director: {movieData.Director.Name}{" "}
+              <Card.Text>
+                Director: {movieData.Director.Name}{" "}
+                <LinkContainer to="{movieData.Director}">
+                  <Button
+                    size="sm"
+                    variant="dark"
+                    // onClick={(director) => this.onDirectorClick(director)}
+                  >
+                    (Bio)
+                  </Button>
+                </LinkContainer>
+              </Card.Text>
+
+              <Card.Text>
+                Genre: {movieData.Genre.Name}{" "}
+                <LinkContainer to="/movies/genre">
+                  <Button
+                    size="sm"
+                    variant="dark"
+                    // onClick={(genre) => this.onGenreClick(genre)}
+                  >
+                    (What is {movieData.Genre.Name}?){" "}
+                  </Button>
+                </LinkContainer>
+              </Card.Text>
+
               <Button
-                size="sm"
-                variant="dark"
-                onClick={(director) => this.onDirectorClick(director)}
+                // onClick={() => this.addToFavoriteMovies(movie._id)}
+                variant="success"
               >
-                (Bio)
+                Add to Favorites
               </Button>
-            </Card.Text>
-
-            <Card.Text>
-              Genre: {movieData.Genre.Name}{" "}
+              <br></br>
               <Button
-                size="sm"
-                variant="dark"
-                onClick={(genre) => this.onGenreClick(genre)}
+                onClick={(movie) => this.onbackClick(movie)}
+                variant="danger"
+                className="favbutton"
               >
-                (What is {movieData.Genre.Name}?){" "}
+                Back to Movies List
               </Button>
-            </Card.Text>
-
-            <Button
-              // onClick={() => this.addToFavoriteMovies(movie._id)}
-              variant="success"
-            >
-              Add to Favorites
-            </Button>
-            <br></br>
-            <Button
-              onClick={() => this.onbackClick(null)}
-              variant="danger"
-              className="favbutton"
-            >
-              Back to Movies List
-            </Button>
-          </Card.Body>
-        </Col>
-      </Row>
+            </Card.Body>
+          </Col>
+        </Row>
+      </Router>
     );
   }
 }

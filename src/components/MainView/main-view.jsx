@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 
@@ -21,6 +22,7 @@ import {
 } from "react-bootstrap";
 
 import "./main-view.scss";
+import { LinkContainer } from "react-router-bootstrap";
 
 export class MainView extends React.Component {
   constructor() {
@@ -72,7 +74,7 @@ export class MainView extends React.Component {
 
   onLoggedIn(user) {
     this.setState({
-      user: user,
+      user,
     });
   }
 
@@ -116,67 +118,84 @@ export class MainView extends React.Component {
 
     return (
       <div>
-        <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-          <Navbar.Brand href="/">
-            <h1 className="MFLX">MovieFlix</h1>
-          </Navbar.Brand>
-          <Nav className="mr-auto MFLXsm">
-            <Nav.Link href="/">
-              <h6>Home</h6>
-            </Nav.Link>
-            <Nav.Link href="/movies">
-              <h6>Movies</h6>
-            </Nav.Link>
-            <Nav.Link href="#Featured">
-              <h6>Featured</h6>
-            </Nav.Link>
-          </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-1" />
-            <Button variant="outline-info">
-              <h6>Search</h6>
-            </Button>
-          </Form>
-        </Navbar>
+        <Router>
+          <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+            <Navbar.Brand>
+              <h1 className="MFLX">MovieFlix</h1>
+            </Navbar.Brand>
+            <Nav className="mr-auto MFLXsm">
+              <LinkContainer to="/">
+                <Nav.Link>
+                  <h6>Home</h6>
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/genre-view">
+                <Nav.Link>
+                  <h6>Movies</h6>
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/login-view">
+                <Nav.Link>
+                  <h6>Log Out</h6>
+                </Nav.Link>
+              </LinkContainer>
+            </Nav>
 
-        {selectedMovie ? (
-          <Row className="justify-content-md-center">
-            <Col md={8}>
-              <MovieView
-                movie={selectedMovie}
-                onBackClick={(movie) => this.onMovieClick(null)}
-                onClick={(director) => this.onDirectorClick(null)}
-                onClick={(genre) => this.onGenreClick(null)}
+            <Form inline>
+              <FormControl
+                type="text"
+                placeholder="Search"
+                className="mr-sm-1"
               />
-            </Col>
-          </Row>
-        ) : selectedDirector ? (
-          <Row className="justify-content-md-center">
-            <Col md={8}>
-              <DirectorView
-                director={selectedDirector}
-                onBackClick={(movie) => this.onMovieClick(null)}
+              <Button variant="outline-info">
+                <h6>Search</h6>
+              </Button>
+            </Form>
+          </Navbar>
+
+          {selectedMovie ? (
+            <Row className="justify-content-md-center">
+              <Col md={8}>
+                <MovieView
+                  movie={selectedMovie}
+                  onBackClick={(movie) => this.onMovieClick(null)}
+                  onClick={(director) => this.onDirectorClick(null)}
+                  onClick={(genre) => this.onGenreClick(null)}
+                />
+              </Col>
+            </Row>
+          ) : selectedDirector ? (
+            <Row className="justify-content-md-center">
+              <Col md={8}>
+                <DirectorView
+                  director={selectedDirector}
+                  onBackClick={(movie) => this.onMovieClick(null)}
+                />
+              </Col>
+            </Row>
+          ) : selectedGenre ? (
+            <Row className="justify-content-md-center">
+              <Col md={8}>
+                <GenreView
+                  genre={selectedGenre}
+                  onBackClick={(movie) => this.onGenreClick(null)}
+                />
+              </Col>
+            </Row>
+          ) : (
+            movies.map((movie) => (
+              <MovieCard
+                key={movie._id}
+                movieData={movie}
+                onClick={(movie) => this.onMovieClick(movie)}
               />
-            </Col>
-          </Row>
-        ) : selectedGenre ? (
-          <Row className="justify-content-md-center">
-            <Col md={8}>
-              <GenreView
-                genre={selectedGenre}
-                onBackClick={(movie) => this.onGenreClick(null)}
-              />
-            </Col>
-          </Row>
-        ) : (
-          movies.map((movie) => (
-            <MovieCard
-              key={movie._id}
-              movieData={movie}
-              onClick={(movie) => this.onMovieClick(movie)}
-            />
-          ))
-        )}
+            ))
+          )}
+          <Switch>
+            <Route path="/director" component={DirectorView} />
+            <Route path="/genre" component={GenreView} />
+          </Switch>
+        </Router>
       </div>
     );
   }
