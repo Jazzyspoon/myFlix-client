@@ -26283,7 +26283,6 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactRouterDom = require("react-router-dom");
   var _loginViewLoginView = require("../login-view/login-view");
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
@@ -26395,7 +26394,7 @@ try {
         })
       );
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           expand: "sm",
           bg: "black",
           variant: "dark",
@@ -26448,7 +26447,7 @@ try {
           key: movie._id,
           movieData: movie,
           onClick: movie => this.onMovieClick(movie)
-        }))))
+        })))
       );
     }
   }
@@ -26458,7 +26457,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -28282,8 +28281,8 @@ try {
   _c = LoginView;
   LoginView.propTypes = {
     user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired
     }),
     onLoggedIn: _propTypesDefault.default.func.isRequired
   };

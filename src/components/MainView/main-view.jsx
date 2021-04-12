@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
@@ -139,73 +138,67 @@ export class MainView extends React.Component {
 
     return (
       <div>
-        <Router>
-          <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-            <Navbar.Brand href="#">
-              <h1 className="MFLX">MovieFlix</h1>
-            </Navbar.Brand>
-            <Nav className="mr-auto MFLXsm">
-              <Nav.Link href="/">
-                <h6>Home</h6>
-              </Nav.Link>
-              <Nav.Link href="/movies">
-                <h6>Movies</h6>
-              </Nav.Link>
-              <Nav.Link href="/" onClick={() => this.onLoggedOut(null)}>
-                <h6>Log Out</h6>
-              </Nav.Link>
-            </Nav>
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-1"
-              />
-              <Button variant="outline-info">
-                <h6>Search</h6>
-              </Button>
-            </Form>
-          </Navbar>
+        <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+          <Navbar.Brand href="#">
+            <h1 className="MFLX">MovieFlix</h1>
+          </Navbar.Brand>
+          <Nav className="mr-auto MFLXsm">
+            <Nav.Link href="/">
+              <h6>Home</h6>
+            </Nav.Link>
+            <Nav.Link href="/movies">
+              <h6>Movies</h6>
+            </Nav.Link>
+            <Nav.Link href="/" onClick={() => this.onLoggedOut(null)}>
+              <h6>Log Out</h6>
+            </Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-1" />
+            <Button variant="outline-info">
+              <h6>Search</h6>
+            </Button>
+          </Form>
+        </Navbar>
 
-          {selectedMovie ? (
-            <Row className="justify-content-md-center">
-              <Col md={8}>
-                <MovieView
-                  movie={selectedMovie}
-                  onBackClick={(movie) => this.onMovieClick(null)}
-                  onClick={(director) => this.onDirectorClick(null)}
-                  onClick={(genre) => this.onGenreClick(null)}
-                />
-              </Col>
-            </Row>
-          ) : selectedDirector ? (
-            <Row className="justify-content-md-center">
-              <Col md={8}>
-                <DirectorView
-                  director={selectedDirector}
-                  onBackClick={(movie) => this.onMovieClick(null)}
-                />
-              </Col>
-            </Row>
-          ) : selectedGenre ? (
-            <Row className="justify-content-md-center">
-              <Col md={8}>
-                <GenreView
-                  genre={selectedGenre}
-                  onBackClick={(movie) => this.onGenreClick(null)}
-                />
-              </Col>
-            </Row>
-          ) : (
-            movies.map((movie) => (
-              <MovieCard
-                key={movie._id}
-                movieData={movie}
-                onClick={(movie) => this.onMovieClick(movie)}
+        {selectedMovie ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <MovieView
+                movie={selectedMovie}
+                onBackClick={(movie) => this.onMovieClick(null)}
+                onClick={(director) => this.onDirectorClick(null)}
+                onClick={(genre) => this.onGenreClick(null)}
               />
-            ))
-          )}
-        </Router>
+            </Col>
+          </Row>
+        ) : selectedDirector ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <DirectorView
+                director={selectedDirector}
+                onBackClick={(movie) => this.onMovieClick(null)}
+              />
+            </Col>
+          </Row>
+        ) : selectedGenre ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <GenreView
+                genre={selectedGenre}
+                onBackClick={(movie) => this.onGenreClick(null)}
+              />
+            </Col>
+          </Row>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movieData={movie}
+              onClick={(movie) => this.onMovieClick(movie)}
+            />
+          ))
+        )}
       </div>
     );
   }
