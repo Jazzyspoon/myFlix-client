@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
+import { BrowserRouter as Link } from "react-router-dom";
 
 import "./login-view.scss";
 
@@ -55,16 +56,19 @@ export function LoginView(props) {
             placeholder="password"
           />
         </Form.Group>
+
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Log In
         </Button>
       </Form>
       <br></br>
       <p>
-        Not a member?{" "}
-        <Button variant="success" onClick={handleSubmit}>
-          Create an account
-        </Button>
+        Not a member?<br></br>
+        <Link to={`/register`}>
+          <Button size="md" variant="success">
+            Create an account
+          </Button>
+        </Link>
       </p>
     </div>
   );
@@ -72,8 +76,8 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
 };

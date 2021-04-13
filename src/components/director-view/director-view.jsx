@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Button, Image, Card } from "react-bootstrap";
+import { BrowserRouter as Link } from "react-router-dom";
 import "./director-view.scss";
 
 export class DirectorView extends React.Component {
@@ -35,10 +36,11 @@ export class DirectorView extends React.Component {
             <Card.Text>
               Director Birthdate: {movieData.Director.Death}
             </Card.Text>
-
-            <Button onClick={() => this.onbackClick(null)} variant="danger">
-              Back to Movies List
-            </Button>
+            <Link to={`/movies/${movie._id}`}>
+              <Button onClick={() => this.onbackClick(null)} variant="danger">
+                Back
+              </Button>
+            </Link>
           </Card.Body>
         </Card>
       </Row>

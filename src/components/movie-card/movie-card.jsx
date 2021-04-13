@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card, Row } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movieData: movie, onClick } = this.props;
+    const { movieData: movie } = this.props;
 
     return (
       <div className="card-rows">
@@ -16,9 +16,9 @@ export class MovieCard extends React.Component {
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
 
-              <Button onClick={() => onClick(movie)} variant="danger">
-                View Details
-              </Button>
+              <Link to={`/movies/${movie._id}`}>
+                <Button variant="danger">View Details</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Row>

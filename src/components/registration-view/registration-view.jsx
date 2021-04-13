@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-
+import axios from "axios";
 import "./registration-view.scss";
 
 export function RegisterView(props) {
@@ -10,11 +10,27 @@ export function RegisterView(props) {
   const [Password, setPassword] = useState("");
   const [Birthday, setBirthday] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(Username, Password, Email, Birthday);
-    props.onRegister("test");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(Username, Password, Email, Birthday);
+  //   props.onRegister("test");
+  // };
+
+  axios
+    .post("YOUR_API_URL/users", {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday,
+    })
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+    })
+    .catch((e) => {
+      console.log("error registering the user");
+    });
 
   return (
     <div>

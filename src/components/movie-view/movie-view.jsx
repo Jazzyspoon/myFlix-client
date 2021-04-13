@@ -1,30 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Button, Image, Card } from "react-bootstrap";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
-  onbackClick() {
-    window.open("/movies");
-  }
-
-  /* When director 'bio' button is clicked, the function is invoked*/
-  onDirectorClick(director) {
-    this.setState({
-      selectedDirector: director,
-    });
-  }
-
-  /* When genre 'what is' button is clicked, the function is invoked*/
-  onGenreClick(genre) {
-    this.setState({
-      selectedGenre: genre,
-    });
-  }
   render() {
-    const { movie: movieData, onClick } = this.props;
+    const { movie: movieData } = this.props;
     if (!movieData) return null;
     // if (this.state.initialState === "") return;
     return (
@@ -45,44 +28,30 @@ export class MovieView extends React.Component {
 
               <Card.Text>
                 Director: {movieData.Director.Name}{" "}
-                <LinkContainer to="{movieData.Director}">
-                  <Button
-                    size="sm"
-                    variant="dark"
-                    // onClick={(director) => this.onDirectorClick(director)}
-                  >
+                <Link to={`/directors/${movieData.Director.Name}`}>
+                  <Button size="sm" variant="dark">
                     (Bio)
                   </Button>
-                </LinkContainer>
+                </Link>
               </Card.Text>
 
               <Card.Text>
                 Genre: {movieData.Genre.Name}{" "}
-                <LinkContainer to="/movies/genre">
-                  <Button
-                    size="sm"
-                    variant="dark"
-                    // onClick={(genre) => this.onGenreClick(genre)}
-                  >
+                <Link to={`/genres/${movieData.Genre.Name}`}>
+                  <Button size="sm" variant="dark">
                     (What is {movieData.Genre.Name}?){" "}
                   </Button>
-                </LinkContainer>
+                </Link>
               </Card.Text>
-
-              <Button
-                // onClick={() => this.addToFavoriteMovies(movie._id)}
-                variant="success"
-              >
-                Add to Favorites
-              </Button>
+              <Link to={`/users/${users.Favorites}`}>
+                <Button variant="success">Add to Favorites</Button>
+              </Link>
               <br></br>
-              <Button
-                onClick={(movie) => this.onbackClick(movie)}
-                variant="danger"
-                className="favbutton"
-              >
-                Back to Movies List
-              </Button>
+              <Link to={`/`}>
+                <Button variant="danger" className="favbutton">
+                  Back to Movies List
+                </Button>
+              </Link>
             </Card.Body>
           </Col>
         </Row>

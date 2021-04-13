@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Button, Image, Card } from "react-bootstrap";
+import { BrowserRouter as Link } from "react-router-dom";
 import "./genre-view.scss";
 
 export class GenreView extends React.Component {
@@ -30,9 +31,11 @@ export class GenreView extends React.Component {
             <Card.Text>
               Examples of {movieData.Genre.Name} Movies: {movieData.Director.Ex}
             </Card.Text>
-            <Button onClick={() => this.onbackClick(null)} variant="danger">
-              Back to Movies List
-            </Button>
+            <Link to={`/movies/${movie._id}`}>
+              <Button onClick={() => this.onbackClick(null)} variant="danger">
+                Back
+              </Button>
+            </Link>
           </Card.Body>
         </Card>
       </Row>
