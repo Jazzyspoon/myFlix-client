@@ -45970,10 +45970,66 @@ try {
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _reactBootstrap = require("react-bootstrap");
+  require("react-router-dom");
   require("./profile-view.scss");
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
   class ProfileView extends _reactDefault.default.Component {
     constructor(props) {
       super();
+      _defineProperty(this, "handleUpdate", e => {
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${username}`, {
+          Username: this.username,
+          Password: this.password,
+          Email: this.email,
+          Birthday: this.birthday
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }).then(response => {
+          const data = response.data;
+          localStorage.setItem("user", data.Username);
+          window.open("/users", "_self");
+          alert("Update Successful.");
+        }).catch(e => {
+          console.log(e);
+        });
+      });
+      _defineProperty(this, "handleDeregistration", e => {
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          Username: username
+        }).then(response => {
+          const data = response.data;
+          console.log(data);
+          window.open("/", "_self");
+        }).catch(e => {
+          console.log("error deregistering user");
+        });
+        this.setState({
+          user: null
+        });
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      });
       this.username = undefined;
       this.password = undefined;
       this.email = undefined;
@@ -46009,6 +46065,35 @@ try {
         console.log(error);
       });
     }
+    removeItem(movie) {
+      const username = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/movies/${movie}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        FavoriteMovies: this.FavoriteMovies
+      }).then(response => {
+        this.setState({
+          FavoriteMovies: response.data.FavoriteMovies
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+      alert("movie successfully removed.");
+    }
+    setUsername(input) {
+      this.username = input;
+    }
+    setPassword(input) {
+      this.password = input;
+    }
+    setEmail(input) {
+      this.email = input;
+    }
+    setBirthday(input) {
+      this.birthday = input;
+    }
     render() {
       const {movies} = this.props;
       const Username = this.state.Username, Email = this.state.Email, Birthday = this.state.Birthday, FavoriteMovies = this.state.FavoriteMovies;
@@ -46029,7 +46114,10 @@ try {
           className: "text-card"
         }, "Email: ", Email), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           className: "text-card"
-        }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, null, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+        }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          className: "button-delete",
+          onClick: () => this.handleDeregistration()
+        }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "edit-profile-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
@@ -46041,7 +46129,8 @@ try {
           type: "text",
           placeholder: "Enter username",
           name: "username",
-          value: this.username
+          value: this.username,
+          onChange: e => this.setUsername(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicPassword"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46050,7 +46139,8 @@ try {
           type: "password",
           placeholder: "Password",
           name: "password",
-          value: this.password
+          value: this.password,
+          onChange: e => this.setPassword(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicEmail"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46059,7 +46149,8 @@ try {
           type: "email",
           placeholder: "Enter email",
           name: "email",
-          value: this.email
+          value: this.email,
+          onChange: e => this.setEmail(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicBirthday"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46068,14 +46159,28 @@ try {
           type: "date",
           placeholder: "Birthday",
           name: "birthday",
-          value: this.birthday
+          value: this.birthday,
+          onChange: e => this.setBirthday(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          className: "button-update"
+          className: "button-update",
+          onClick: () => this.handleUpdate()
         }, "Update"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorite Movies"))))))
+        }, "Favorite Movies"), FavoriteMovies.length === 0 && /*#__PURE__*/_reactDefault.default.createElement("div", null, "No favorites"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, FavoriteMovies.length > 0 && movies.map(movie => {
+          if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement("li", {
+                className: "favorite-items",
+                key: movie._id
+              }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+                className: "button-remove-items",
+                onClick: () => this.removeItem(movie._id)
+              }, "Unfavorite"))
+            );
+          }
+        }))))))))
       );
     }
   }
@@ -46094,6 +46199,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map
