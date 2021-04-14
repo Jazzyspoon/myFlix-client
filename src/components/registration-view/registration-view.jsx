@@ -10,22 +10,32 @@ export function RegisterView(props) {
   const [Password, setPassword] = useState("");
   const [Birthday, setBirthday] = useState("");
 
-  axios
-    .post("https://movieflixappjp.herokuapp.com/users", {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday,
-    })
-    .then((response) => {
-      const data = response.data;
-      console.log(data);
-      window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
-    })
-    .catch((e) => {
-      console.log("error registering the user");
-    });
+  const swapView = (e) => {
+    e.preventDefault();
+    history.push(`/login`);
+    // window.location.pathname = `/login`
+  };
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    // sends request to server for authentication
+    // entire URL is in package.json under 'proxy' to get past CORS
+    axios
+      .post("https://movieflixappjp.herokuapp.com/users", {
+        Username: username,
+        Email: email,
+        Password: password,
+        Birthday: birthday,
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  };
   return (
     <div>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
@@ -86,7 +96,7 @@ export function RegisterView(props) {
           />
         </Form.Group>
 
-        <Button onClick={handleSubmit} variant="primary" type="submit">
+        <Button variant="dark" type="submit" onClick={handleRegister}>
           Submit
         </Button>
       </Form>
@@ -101,5 +111,5 @@ RegisterView.propTypes = {
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.string.isRequired,
   }),
-  onRegister: PropTypes.func.isRequired,
+  onRegister: PropTypes.func,
 };

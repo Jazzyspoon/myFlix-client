@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Image, Card } from "react-bootstrap";
+import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import "./movie-view.scss";
@@ -12,42 +12,36 @@ export class MovieView extends React.Component {
     // if (this.state.initialState === "") return;
     return (
       <Col className="movie-view">
-        <Card style={{ width: "40rem" }}>
-          <Card.Header>
-            <Image src={movie.ImagePath} className="image" fluid />
-          </Card.Header>
+        <Card style={{ width: "40rem" }} className="cardbody">
           <Card.Body>
-            <h1>{movie.Title}</h1>
-            <h5>(Rating: {movie.Imdb})</h5>
-            <h4>"{movie.Description}"</h4>
+            <Image src={movie.ImagePath} className="image" fluid />
+            <Card.Text as="h1">{movie.Title}</Card.Text>
+            <Card.Text as="h5">(Rating: {movie.Imdb})</Card.Text>
+            <Card.Text as="h4">"{movie.Description}"</Card.Text>
 
-            <h5>
+            <Card.Text as="h5">
               Starring:
               {movie.Actors}{" "}
-            </h5>
-
-            <Card.Text>
-              <h5>
-                Director:
-                {movie.Director.Name}{" "}
-                <Link to={`/directors/${movie.Director.Name}`}>
-                  <Button size="sm" variant="dark">
-                    (Bio)
-                  </Button>
-                </Link>{" "}
-              </h5>
             </Card.Text>
 
-            <Card.Text>
-              <h5>
-                Genre:
-                {movie.Genre.Name}{" "}
-                <Link to={`/genres/${movie.Genre.Name}`}>
-                  <Button size="sm" variant="dark">
-                    (What is {movie.Genre.Name}?){" "}
-                  </Button>
-                </Link>
-              </h5>
+            <Card.Text as="h5">
+              Director:
+              {movie.Director.Name}{" "}
+              <Link to={`/directors/${movie.Director.Name}`}>
+                <Button size="sm" variant="dark">
+                  (Bio)
+                </Button>
+              </Link>{" "}
+            </Card.Text>
+
+            <Card.Text as="h5">
+              Genre:
+              {movie.Genre.Name}{" "}
+              <Link to={`/genres/${movie.Genre.Name}`}>
+                <Button size="sm" variant="dark">
+                  (What is {movie.Genre.Name}?){" "}
+                </Button>
+              </Link>
             </Card.Text>
             <Link to={`/users`}>
               <Button variant="success">Add to Favorites</Button>

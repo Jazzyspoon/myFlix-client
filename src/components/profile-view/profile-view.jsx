@@ -2,7 +2,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import React from "react";
 import { Button, Card, CardGroup, Container, Form } from "react-bootstrap";
-import { BrowserRouter as Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./profile-view.scss";
 export class ProfileView extends React.Component {
@@ -15,14 +15,12 @@ export class ProfileView extends React.Component {
     this.birthday = undefined;
 
     this.state = {
-      movies: [],
-      user: null,
-      username: "",
-      password: "",
-      email: "",
-      birthday: "",
-      favoriteMovies: [],
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
       FavoriteMovies: [],
+      validated: null,
     };
   }
 
@@ -35,7 +33,7 @@ export class ProfileView extends React.Component {
     const username = localStorage.getItem("user");
 
     axios
-      .get(`https://myflixdbs-z.herokuapp.com/users/${username}`, {
+      .get(`https://movieflixappjp.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -52,97 +50,6 @@ export class ProfileView extends React.Component {
       });
   }
 
-  handleUpdate = (e) => {
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    axios
-      .put(
-        `https://myflixdbs-z.herokuapp.com/users/${username}`,
-        {
-          Username: this.username,
-          Password: this.password,
-          Email: this.email,
-          Birthday: this.birthday,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        localStorage.setItem("user", data.Username);
-        window.open("/users", "_self");
-        alert("Update Successful.");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  handleDeregistration = (e) => {
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    axios
-      .delete(`https://myflixdbs-z.herokuapp.com/users/${username}`, {
-        headers: { Authorization: `Bearer ${token}` },
-
-        Username: username,
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        window.open("/", "_self");
-      })
-      .catch((e) => {
-        console.log("error deregistering user");
-      });
-
-    this.setState({
-      user: null,
-    });
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-  };
-
-  removeItem(movie) {
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    axios
-      .delete(
-        `https://myflixdbs-z.herokuapp.com/users/${username}/Movies/${movie}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-
-          FavoriteMovies: this.FavoriteMovies,
-        }
-      )
-      .then((response) => {
-        this.setState({
-          FavoriteMovies: response.data.FavoriteMovies,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    alert("movie successfully removed.");
-  }
-
-  setUsername(input) {
-    this.username = input;
-  }
-  setPassword(input) {
-    this.password = input;
-  }
-  setEmail(input) {
-    this.email = input;
-  }
-  setBirthday(input) {
-    this.birthday = input;
-  }
-
   render() {
     const { movies } = this.props;
 
@@ -156,8 +63,8 @@ export class ProfileView extends React.Component {
         <Container className="profile-view-container">
           <CardGroup>
             <Card className="profile-card">
-              <Card.Header as="h5">Profile</Card.Header>
               <Card.Body>
+                <Card.Text as="h1">Profile</Card.Text>
                 <Card.Text className="text-card">
                   Username: {Username}
                 </Card.Text>
@@ -167,16 +74,16 @@ export class ProfileView extends React.Component {
                   Birthday: {Birthday}
                 </Card.Text>
                 <Button
-                  className="button-delete"
-                  onClick={() => this.handleDeregistration()}
+                // className="button-delete"
+                // onClick={() => this.handleDeregistration()}
                 >
                   Delete Account
                 </Button>
               </Card.Body>
             </Card>
             <Card className="edit-profile-card">
-              <Card.Header as="h5">Edit Profile</Card.Header>
               <Card.Body>
+                <Card.Text as="h1">Edit Profile</Card.Text>
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label className="username-label">Username</Form.Label>
                   <Form.Control
@@ -230,34 +137,8 @@ export class ProfileView extends React.Component {
               </Card.Body>
             </Card>
             <Card className="favorites-card">
-              <Card.Header as="h5">Favorite Movies</Card.Header>
               <Card.Body>
-                {FavoriteMovies.length === 0 && <div>No favorites</div>}
-                <div>
-                  <ul>
-                    {FavoriteMovies.length > 0 &&
-                      movies.map((movie) => {
-                        if (
-                          movie._id ===
-                          FavoriteMovies.find(
-                            (favMovie) => favMovie === movie._id
-                          )
-                        ) {
-                          return (
-                            <li className="favorite-items" key={movie._id}>
-                              {movie.Title}
-                              <Button
-                                className="button-remove-items"
-                                onClick={() => this.removeItem(movie._id)}
-                              >
-                                Unfavorite
-                              </Button>
-                            </li>
-                          );
-                        }
-                      })}
-                  </ul>
-                </div>
+                <Card.Text as="h1">Favorite Movies</Card.Text>
               </Card.Body>
             </Card>
           </CardGroup>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card, Row } from "react-bootstrap";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import "./genre-view.scss";
 
 export class GenreView extends React.Component {
@@ -20,17 +20,15 @@ export class GenreView extends React.Component {
         <Row>
           <Col>
             <Card style={{ width: "40rem" }} className="cardbody">
-              <Card.Header>
-                <Image src={genre.Genre.ImagePath} className="image" fluid />
-                <h1>{genre.Genre.Name}</h1>
-              </Card.Header>
               <Card.Body>
+                <Image src={genre.Genre.ImagePath} className="image" fluid />
+                <Card.Text as="h1">{genre.Genre.Name}</Card.Text>
                 <Card.Text>Description: {genre.Genre.Description}</Card.Text>
                 <Card.Text>
                   Examples of {genre.Genre.Name} movies: {genre.Genre.Ex}
                 </Card.Text>
-                <Link to={`/movies/${movie._id}`}>
-                  <Button variant="danger">Back</Button>
+                <Link to="/">
+                  <Button variant="danger"> Back to Movies </Button>
                 </Link>
               </Card.Body>
             </Card>

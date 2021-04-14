@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card } from "react-bootstrap";
-import { BrowserRouter as Link, Router } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import "./director-view.scss";
 
 export class DirectorView extends React.Component {
@@ -17,21 +17,21 @@ export class DirectorView extends React.Component {
     return (
       <div className="movie-view">
         <Col>
-          <Card style={{ width: "30rem" }} className="cardbody">
-            <Card.Header>
+          <Card style={{ width: "40rem" }} className="cardbody">
+            <Card.Body>
               <Image
                 src={director.Director.ImagePath}
                 className="image"
                 fluid
               />
-            </Card.Header>
-            <Card.Body>
-              <h1>{director.Director.Name}</h1> <h2>(Director)</h2>
-              <Card.Text>Bio: {director.Director.Bio}</Card.Text>
-              <Card.Text>Birthyear: {director.Director.Birth}</Card.Text>
-              <Card.Text>Deceased: {director.Director.Death}</Card.Text>
-              <Link to={`/movies/${movie._id}`}>
-                <Button variant="danger">Back</Button>
+              <Card.Text as="h1">{director.Director.Name}</Card.Text>
+              <Card.Text as="h2">(Director)</Card.Text>
+              <Card.Text> {director.Director.Bio}</Card.Text>
+              <Card.Text>Born: {director.Director.Birth}</Card.Text>
+              <Card.Text>Died: {director.Director.Death}</Card.Text>
+
+              <Link to={`/`}>
+                <Button variant="danger">Back to Movies</Button>
               </Link>
             </Card.Body>
           </Card>

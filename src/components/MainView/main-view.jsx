@@ -94,7 +94,7 @@ export class MainView extends React.Component {
                 <Link to="/">
                   <Button variant="link">
                     {" "}
-                    <h5>Home</h5>{" "}
+                    <h5>Movies</h5>{" "}
                   </Button>
                 </Link>
               </Nav.Item>
@@ -106,7 +106,7 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Link to="/">
-                <Button variant="link">
+                <Button variant="link" onClick={() => this.onLogOut()}>
                   <h5>Log Out</h5>
                 </Button>
               </Link>
