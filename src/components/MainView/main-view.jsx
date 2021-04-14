@@ -19,6 +19,7 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
+      movies: [],
       selectedMovie: null,
       user: "",
       register: null,
