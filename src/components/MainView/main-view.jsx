@@ -154,19 +154,18 @@ export class MainView extends React.Component {
           />
           {/* genre view */}
           <Route
-            exact
             path="/genres/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
               return (
                 <GenreView
-                  genre={
-                    movies.find((m) => m.Genre.Name === match.params.name).Genre
-                  }
+                  genre={movies.find((m) => m.Genre.Name === match.params.name)}
+                  movies={movies}
                 />
               );
             }}
           />
+
           {/* director view */}
           <Route
             path="/directors/:name"
@@ -174,10 +173,10 @@ export class MainView extends React.Component {
               if (!movies) return <div className="main-view" />;
               return (
                 <DirectorView
-                  director={
-                    movies.find((m) => m.Director.Name === match.params.name)
-                      .Director
-                  }
+                  director={movies.find(
+                    (m) => m.Director.Name === match.params.name
+                  )}
+                  movies={movies}
                 />
               );
             }}

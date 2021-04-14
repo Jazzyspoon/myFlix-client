@@ -28,7 +28,7 @@ export class DirectorView extends React.Component {
               <Card.Text>Bio: {director.Director.Bio}</Card.Text>
               <Card.Text>Birthdate: {director.Director.Birth}</Card.Text>
               <Card.Text>Deceased: {director.Director.Death}</Card.Text>
-              <Link to={`/movies/${movie._id}`}>
+              <Link to={`/movies/${movies._id}`}>
                 <Button variant="danger">Back</Button>
               </Link>
             </Card.Body>
@@ -46,6 +46,6 @@ DirectorView.propTypes = {
       Birth: PropTypes.string.isRequired,
       Death: PropTypes.string.isRequired,
       ImagePath: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+    }),
+  }),
 };

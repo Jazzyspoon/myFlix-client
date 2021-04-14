@@ -22,14 +22,14 @@ export class GenreView extends React.Component {
         </Col>
         <Card style={{ width: "25rem" }} className="cardbody">
           <Card.Header>
-            <h1>Genre: {genre.Genre.Name}</h1>
+            <h1>{genre.Genre.Name}</h1>
           </Card.Header>
           <Card.Body>
             <Card.Text>Description: {genre.Genre.Description}</Card.Text>
             <Card.Text>
               Examples of {genre.Genre.Name} Movies: {genre.Genre.Ex}
             </Card.Text>
-            <Link to={`/movies/${movie._id}`}>
+            <Link to={`/movies/${movies._id}`}>
               <Button variant="danger">Back</Button>
             </Link>
           </Card.Body>

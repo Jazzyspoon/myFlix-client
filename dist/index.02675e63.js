@@ -26421,7 +26421,6 @@ try {
             movie: movies.find(m => m._id === match.params.movieId)
           })
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-          exact: true,
           path: "/genres/:name",
           render: ({match}) => {
             if (!movies) return (
@@ -26431,7 +26430,8 @@ try {
             );
             return (
               /*#__PURE__*/_reactDefault.default.createElement(_genreViewGenreView.GenreView, {
-                genre: movies.find(m => m.Genre.Name === match.params.name).Genre
+                genre: movies.find(m => m.Genre.Name === match.params.name),
+                movies: movies
               })
             );
           }
@@ -26445,7 +26445,8 @@ try {
             );
             return (
               /*#__PURE__*/_reactDefault.default.createElement(_directorViewDirectorView.DirectorView, {
-                director: movies.find(m => m.Director.Name === match.params.name).Director
+                director: movies.find(m => m.Director.Name === match.params.name),
+                movies: movies
               })
             );
           }
@@ -45851,7 +45852,7 @@ try {
           },
           className: "cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, director.Director.Name, " (Director)")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Bio: ", director.Director.Bio), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Birthdate: ", director.Director.Birth), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Deceased: ", director.Director.Death), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
-          to: `/movies/${movie._id}`
+          to: `/movies/${movies._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
         }, "Back"))))))
@@ -45866,8 +45867,8 @@ try {
         Birth: _propTypesDefault.default.string.isRequired,
         Death: _propTypesDefault.default.string.isRequired,
         ImagePath: _propTypesDefault.default.string.isRequired
-      }).isRequired
-    }).isRequired
+      })
+    })
   };
   helpers.postlude(module);
 } finally {
@@ -45875,7 +45876,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./director-view.scss":"4ddkX","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-router-dom":"1PMSK","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","./director-view.scss":"4ddkX"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45914,8 +45915,8 @@ try {
             width: "25rem"
           },
           className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, "Genre: ", genre.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " Movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
-          to: `/movies/${movie._id}`
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, genre.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " Movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
+          to: `/movies/${movies._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
         }, "Back")))))
