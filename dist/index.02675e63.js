@@ -45930,7 +45930,7 @@ try {
         Description: _propTypesDefault.default.string.isRequired,
         Ex: _propTypesDefault.default.string.isRequired
       }).isRequired
-    }).isRequired
+    })
   };
   helpers.postlude(module);
 } finally {

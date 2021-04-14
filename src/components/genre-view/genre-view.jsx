@@ -46,5 +46,5 @@ GenreView.propTypes = {
       Description: PropTypes.string.isRequired,
       Ex: PropTypes.string.isRequired,
     }).isRequired,
-  }).isRequired,
+  }),
 };
