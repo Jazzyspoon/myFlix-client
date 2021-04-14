@@ -26396,6 +26396,7 @@ try {
           placeholder: "Search",
           className: "mr-sm-1"
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          className: "colorcrew",
           variant: "outline-info"
         }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
@@ -45759,9 +45760,6 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          style: {
-            width: "40rem"
-          },
           className: "cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: movie.ImagePath,

@@ -121,7 +121,7 @@ export class MainView extends React.Component {
                 placeholder="Search"
                 className="mr-sm-1"
               />
-              <Button variant="outline-info">
+              <Button className="colorcrew" variant="outline-info">
                 <h6>Search</h6>
               </Button>
             </Form>

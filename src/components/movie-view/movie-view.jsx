@@ -12,7 +12,7 @@ export class MovieView extends React.Component {
     // if (this.state.initialState === "") return;
     return (
       <Col className="movie-view">
-        <Card style={{ width: "40rem" }} className="cardbody">
+        <Card className="cardbody">
           <Card.Body>
             <Image src={movie.ImagePath} className="image" fluid />
             <Card.Text as="h1">{movie.Title}</Card.Text>
