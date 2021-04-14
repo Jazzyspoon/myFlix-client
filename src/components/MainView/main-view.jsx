@@ -92,7 +92,7 @@ export class MainView extends React.Component {
             <Nav className="mr-auto MFLXsm">
               <Nav.Item>
                 <Link to="/">
-                  <Button variant="link">
+                  <Button variant="link" className="colorcrew">
                     {" "}
                     <h5>Movies</h5>{" "}
                   </Button>
@@ -100,13 +100,17 @@ export class MainView extends React.Component {
               </Nav.Item>
               <Nav.Item>
                 <Link to="/users/:username">
-                  <Button variant="link">
+                  <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>
                 </Link>
               </Nav.Item>
               <Link to="/">
-                <Button variant="link" onClick={() => this.onLogOut()}>
+                <Button
+                  variant="link"
+                  onClick={() => this.onLogOut()}
+                  className="colorcrew"
+                >
                   <h5>Log Out</h5>
                 </Button>
               </Link>

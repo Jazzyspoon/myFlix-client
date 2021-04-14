@@ -109,6 +109,10 @@ h1 {
   color: white;
   border-radius: 4px;
 }
+
+.colorcrew {
+  color: #fff !important;
+}
 * {
   background-color: black;
   color: white;

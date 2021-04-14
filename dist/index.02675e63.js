@@ -26376,16 +26376,19 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "link"
+          variant: "link",
+          className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: "/users/:username"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "link"
+          variant: "link",
+          className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
-          onClick: () => this.onLogOut()
+          onClick: () => this.onLogOut(),
+          className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Log Out")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
           inline: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -46170,7 +46173,7 @@ try {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorites"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
+        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
           if (movie._id === Favoritemovies.find(favMovie => favMovie === movie._id)) {
             return (
               /*#__PURE__*/_reactDefault.default.createElement("li", {

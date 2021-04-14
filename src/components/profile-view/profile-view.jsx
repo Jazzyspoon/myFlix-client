@@ -229,7 +229,7 @@ export class ProfileView extends React.Component {
             </Card>
             <Card className="favorites-card">
               <Card.Body>
-                <Card.Text as="h1">Favorites</Card.Text>
+                <Card.Text as="h1">Favorite Movies</Card.Text>
 
                 <div>
                   <ul>
