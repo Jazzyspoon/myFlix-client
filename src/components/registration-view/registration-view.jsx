@@ -10,14 +10,8 @@ export function RegisterView(props) {
   const [Password, setPassword] = useState("");
   const [Birthday, setBirthday] = useState("");
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(Username, Password, Email, Birthday);
-  //   props.onRegister("test");
-  // };
-
   axios
-    .post("YOUR_API_URL/users", {
+    .post("https://movieflixappjp.herokuapp.com/users", {
       Username: username,
       Password: password,
       Email: email,

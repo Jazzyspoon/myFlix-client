@@ -1,44 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Image, Card } from "react-bootstrap";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Col, Button, Image, Card } from "react-bootstrap";
+import { BrowserRouter as Link, Router } from "react-router-dom";
 import "./genre-view.scss";
 
 export class GenreView extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
+
     this.state = {};
   }
-
-  onbackClick() {
-    window.open("/movies");
-  }
   render() {
-    const { genre, movie: movieData } = this.props;
+    const { movies, genre } = this.props;
+
     if (!genre) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Row className="movie-view">
+      <div className="movie-view">
         <Col>
-          <Image src={movieData.Genre.ImagePath} className="image" fluid />
+          <Image src={genre.Genre.ImagePath} className="image" fluid />
         </Col>
         <Card style={{ width: "25rem" }} className="cardbody">
           <Card.Header>
-            <h1>Genre: {movieData.Genre.Name}</h1>
+            <h1>Genre: {genre.Genre.Name}</h1>
           </Card.Header>
           <Card.Body>
-            <Card.Text>Description: {movieData.Genre.Description}</Card.Text>
+            <Card.Text>Description: {genre.Genre.Description}</Card.Text>
             <Card.Text>
-              Examples of {movieData.Genre.Name} Movies: {movieData.Director.Ex}
+              Examples of {genre.Genre.Name} Movies: {genre.Genre.Ex}
             </Card.Text>
             <Link to={`/movies/${movie._id}`}>
-              <Button onClick={() => this.onbackClick(null)} variant="danger">
-                Back
-              </Button>
+              <Button variant="danger">Back</Button>
             </Link>
           </Card.Body>
         </Card>
-      </Row>
+      </div>
     );
   }
 }
@@ -51,5 +47,4 @@ GenreView.propTypes = {
       Ex: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  onClick: PropTypes.func,
 };

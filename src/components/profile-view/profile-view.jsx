@@ -1,15 +1,10 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import React from "react";
-import {
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Form,
-} from "react-bootstrap/Button";
+import { Button, Card, CardGroup, Container, Form } from "react-bootstrap";
+import { BrowserRouter as Link, Router } from "react-router-dom";
 
-import "./user-view.scss";
+import "./profile-view.scss";
 export class ProfileView extends React.Component {
   constructor(props) {
     super();
@@ -157,7 +152,7 @@ export class ProfileView extends React.Component {
       FavoriteMovies = this.state.FavoriteMovies;
 
     return (
-      <div className="profile-view">
+      <div className="profile-view title-top ">
         <Container className="profile-view-container">
           <CardGroup>
             <Card className="profile-card">

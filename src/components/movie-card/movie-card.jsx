@@ -6,7 +6,7 @@ import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movieData: movie } = this.props;
+    const { movie } = this.props;
 
     return (
       <div className="card-rows">
@@ -28,10 +28,8 @@ export class MovieCard extends React.Component {
 }
 
 MovieCard.propTypes = {
-  movieData: PropTypes.shape({
+  movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
   }).isRequired,
-
-  onClick: PropTypes.func.isRequired,
 };

@@ -1,49 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Button, Image, Card } from "react-bootstrap";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Col, Button, Image, Card } from "react-bootstrap";
+import { BrowserRouter as Link, Router } from "react-router-dom";
 import "./director-view.scss";
 
 export class DirectorView extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
 
     this.state = {};
   }
-
-  onbackClick() {
-    window.open("/movies");
-  }
   render() {
-    const { director, movie: movieData } = this.props;
+    const { director, movies } = this.props;
     if (!director) return null;
 
     return (
-      <Row className="movie-view">
+      <div className="movie-view">
         <Col>
-          <Image src={movieData.Director.Image} className="image" fluid />
+          <Image src={director.Director.ImagePath} className="image" fluid />
         </Col>
-        <Card style={{ width: "25rem" }} className="cardbody">
-          <Card.Header>
-            <h1>{movieData.Director} (Director)</h1>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>Bio: {movieData.Director.Bio}</Card.Text>
-
-            <Card.Text>
-              Director Birthdate: {movieData.Director.Birth}
-            </Card.Text>
-            <Card.Text>
-              Director Birthdate: {movieData.Director.Death}
-            </Card.Text>
-            <Link to={`/movies/${movie._id}`}>
-              <Button onClick={() => this.onbackClick(null)} variant="danger">
-                Back
-              </Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      </Row>
+        <Col>
+          <Card style={{ width: "25rem" }} className="cardbody">
+            <Card.Header>
+              <h1>{director.Director.Name} (Director)</h1>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>Bio: {director.Director.Bio}</Card.Text>
+              <Card.Text>Birthdate: {director.Director.Birth}</Card.Text>
+              <Card.Text>Deceased: {director.Director.Death}</Card.Text>
+              <Link to={`/movies/${movie._id}`}>
+                <Button variant="danger">Back</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
     );
   }
 }
@@ -54,8 +45,7 @@ DirectorView.propTypes = {
       Bio: PropTypes.string.isRequired,
       Birth: PropTypes.string.isRequired,
       Death: PropTypes.string.isRequired,
-      Image: PropTypes.string.isRequired,
+      ImagePath: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  onClick: PropTypes.func,
 };

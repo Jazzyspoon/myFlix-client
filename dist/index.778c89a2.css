@@ -154,6 +154,13 @@ h1 {
 h1 {
   text-decoration: underline;
 }
+.title-top {
+  margin-top: 90px;
+}
+
+.card-header {
+  background-color: black;
+}
 * {
   background-color: black;
   color: white;

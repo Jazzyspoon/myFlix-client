@@ -9,16 +9,8 @@ import { RegisterView } from "../registration-view/registration-view";
 
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
-
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { ProfileView } from "../profile-view/profile-view";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 import "./main-view.scss";
 
@@ -88,11 +80,6 @@ export class MainView extends React.Component {
     if (!user)
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view" />;
-    /* Register */
-    if (!register)
-      return (
-        <RegisterView onRegister={(register) => this.onRegister(register)} />
-      );
 
     return (
       <Router>
@@ -102,14 +89,25 @@ export class MainView extends React.Component {
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
-              <Link style="NavLink" to="/movies">
-                <h6>Home</h6>
-              </Link>
-              <Link to="/profile">
-                <h6>Profile</h6>
-              </Link>
-              <Link to="/">
-                <h6>Log Out</h6>
+              <Nav.Item>
+                <Link to="/">
+                  <Button variant="link">
+                    {" "}
+                    <h5>Home</h5>{" "}
+                  </Button>
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/">
+                  <Button variant="link">
+                    <h5>Profile</h5>
+                  </Button>
+                </Link>
+              </Nav.Item>
+              <Link to="/users/:username">
+                <Button variant="link">
+                  <h5>Log Out</h5>
+                </Button>
               </Link>
             </Nav>
             <Form inline>
@@ -136,7 +134,7 @@ export class MainView extends React.Component {
             }}
           />
           {/* register view */}
-          <Route path="/register" render={() => <RegistrationView />} />
+          <Route path="/register" render={() => <RegisterView />} />
           {/* movie card view */}
           <Route
             exact
@@ -182,6 +180,18 @@ export class MainView extends React.Component {
                   }
                 />
               );
+            }}
+          />
+          <Route
+            exact
+            path="/users/:username"
+            render={({ history }) => {
+              if (!user)
+                return (
+                  <LoginView onLoggedIn={(data) => this.onLoggedIn(data)} />
+                );
+              if (movies.length === 0) return;
+              return <ProfileView history={history} movies={movies} />;
             }}
           />
         </div>
