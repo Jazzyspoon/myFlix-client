@@ -23,6 +23,7 @@ export function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch((e) => {
+        alert("User does not exist, please try again");
         console.log("no such user");
       });
   };

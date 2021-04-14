@@ -28259,6 +28259,7 @@ try {
         const data = response.data;
         props.onLoggedIn(data);
       }).catch(e => {
+        alert("User does not exist, please try again");
         console.log("no such user");
       });
     };
@@ -45715,7 +45716,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "movie-card",
           style: {
-            width: "20rem"
+            width: "18rem"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
           className: "image",
