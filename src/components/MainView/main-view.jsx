@@ -19,9 +19,9 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movies: [],
-
-      user: null,
+      selectedMovie: null,
+      user: "",
+      register: null,
     };
   }
 
@@ -62,18 +62,19 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
   //log out
-  onLoggedOut() {
-    console.log("logged out");
+  onLogOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     this.setState({
       user: null,
     });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    alert("You are now logged out");
+    window.open("/", "_self");
   }
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, selectedMovie, register } = this.state;
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
 
@@ -98,13 +99,13 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/">
+                <Link to="/users/:username">
                   <Button variant="link">
                     <h5>Profile</h5>
                   </Button>
                 </Link>
               </Nav.Item>
-              <Link to="/users/:username">
+              <Link to="/">
                 <Button variant="link">
                   <h5>Log Out</h5>
                 </Button>

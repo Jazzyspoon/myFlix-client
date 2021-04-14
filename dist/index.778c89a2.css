@@ -78,13 +78,12 @@ h6 {
 }
 
 .cardbody {
-  padding: 8px;
+  padding: 2px;
 }
 
 .image {
-  display: flex;
-  width: 100%;
-  padding: 8px;
+  width: auto;
+  padding: 2px;
 }
 
 h1 {
@@ -121,10 +120,10 @@ h1 {
 
 .cardbody {
   padding: 8px;
+  float: center;
 }
 
 .image {
-  display: flex;
   width: 100%;
   padding: 8px;
 }
@@ -143,10 +142,10 @@ h1 {
 
 .cardbody {
   padding: 8px;
+  float: center;
 }
 
 .image {
-  display: flex;
   width: 100%;
   padding: 8px;
 }

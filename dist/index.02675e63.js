@@ -26298,8 +26298,9 @@ try {
       super();
       // Initial state is set to null
       this.state = {
-        movies: [],
-        user: null
+        selectedMovie: null,
+        user: "",
+        register: null
       };
     }
     getMovies(token) {
@@ -26335,17 +26336,18 @@ try {
       this.getMovies(authData.token);
     }
     /*log out*/
-    onLoggedOut() {
-      console.log("logged out");
+    onLogOut() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       this.setState({
         user: null
       });
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      alert("You are now logged out");
+      window.open("/", "_self");
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
-      const {movies, user} = this.state;
+      const {movies, user, selectedMovie, register} = this.state;
       /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
       if (!user) return (
         /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
@@ -26376,11 +26378,11 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Home"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: "/users/:username"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/users/:username"
+          to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Log Out")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
@@ -45759,25 +45761,27 @@ try {
       if (!movie) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+          style: {
+            width: "40rem"
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: movie.ImagePath,
           className: "image",
           fluid: true
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement("h6", null, "(Rating: ", movie.Imdb, ")")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movie.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring: ", movie.Actors), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "(Rating: ", movie.Imdb, ")"), /*#__PURE__*/_reactDefault.default.createElement("h4", null, "\"", movie.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Starring:", movie.Actors, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Director:", movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/directors/${movie.Director.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(Bio)"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "(Bio)")), " ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Genre:", movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/genres/${movie.Genre.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "(What is ", movie.Genre.Name, "?)", " ")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/users`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success"
@@ -45837,22 +45841,22 @@ try {
       this.state = {};
     }
     render() {
-      const {director, movies} = this.props;
+      const {director, movies: movie} = this.props;
       if (!director) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+          style: {
+            width: "30rem"
+          },
+          className: "cardbody"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: director.Director.ImagePath,
           className: "image",
           fluid: true
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          style: {
-            width: "25rem"
-          },
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, director.Director.Name, " (Director)")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Bio: ", director.Director.Bio), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Birthdate: ", director.Director.Birth), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Deceased: ", director.Director.Death), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
-          to: `/movies/${movies._id}`
+        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, director.Director.Name), " ", /*#__PURE__*/_reactDefault.default.createElement("h2", null, "(Director)"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Bio: ", director.Director.Bio), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Birthyear: ", director.Director.Birth), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Deceased: ", director.Director.Death), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
+          to: `/movies/${movie._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
         }, "Back"))))))
@@ -45865,7 +45869,7 @@ try {
         Name: _propTypesDefault.default.string.isRequired,
         Bio: _propTypesDefault.default.string.isRequired,
         Birth: _propTypesDefault.default.string.isRequired,
-        Death: _propTypesDefault.default.string.isRequired,
+        Death: _propTypesDefault.default.string,
         ImagePath: _propTypesDefault.default.string.isRequired
       })
     })
@@ -45900,26 +45904,26 @@ try {
       this.state = {};
     }
     render() {
-      const {movies, genre} = this.props;
+      const {movies: movie, genre} = this.props;
       if (!genre) return null;
       // if (this.state.initialState === "") return;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+          style: {
+            width: "40rem"
+          },
+          className: "cardbody"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
           className: "image",
           fluid: true
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          style: {
-            width: "25rem"
-          },
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Header, null, /*#__PURE__*/_reactDefault.default.createElement("h1", null, genre.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " Movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
-          to: `/movies/${movies._id}`
+        }), /*#__PURE__*/_reactDefault.default.createElement("h1", null, genre.Genre.Name)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
+          to: `/movies/${movie._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
-        }, "Back")))))
+        }, "Back")))))))
       );
     }
   }

@@ -11,36 +11,43 @@ export class MovieView extends React.Component {
     if (!movie) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Row className="movie-view">
-        <Col>
-          <Image src={movie.ImagePath} className="image" fluid />
-        </Col>
-        <Col className="cardbody">
+      <Col className="movie-view">
+        <Card style={{ width: "40rem" }}>
           <Card.Header>
-            <h1>{movie.Title}</h1>
-            <h6>(Rating: {movie.Imdb})</h6>
+            <Image src={movie.ImagePath} className="image" fluid />
           </Card.Header>
           <Card.Body>
+            <h1>{movie.Title}</h1>
+            <h5>(Rating: {movie.Imdb})</h5>
             <h4>"{movie.Description}"</h4>
 
-            <h5>Starring: {movie.Actors}</h5>
+            <h5>
+              Starring:
+              {movie.Actors}{" "}
+            </h5>
 
             <Card.Text>
-              Director: {movie.Director.Name}{" "}
-              <Link to={`/directors/${movie.Director.Name}`}>
-                <Button size="sm" variant="dark">
-                  (Bio)
-                </Button>
-              </Link>
+              <h5>
+                Director:
+                {movie.Director.Name}{" "}
+                <Link to={`/directors/${movie.Director.Name}`}>
+                  <Button size="sm" variant="dark">
+                    (Bio)
+                  </Button>
+                </Link>{" "}
+              </h5>
             </Card.Text>
 
             <Card.Text>
-              Genre: {movie.Genre.Name}{" "}
-              <Link to={`/genres/${movie.Genre.Name}`}>
-                <Button size="sm" variant="dark">
-                  (What is {movie.Genre.Name}?){" "}
-                </Button>
-              </Link>
+              <h5>
+                Genre:
+                {movie.Genre.Name}{" "}
+                <Link to={`/genres/${movie.Genre.Name}`}>
+                  <Button size="sm" variant="dark">
+                    (What is {movie.Genre.Name}?){" "}
+                  </Button>
+                </Link>
+              </h5>
             </Card.Text>
             <Link to={`/users`}>
               <Button variant="success">Add to Favorites</Button>
@@ -52,8 +59,8 @@ export class MovieView extends React.Component {
               </Button>
             </Link>
           </Card.Body>
-        </Col>
-      </Row>
+        </Card>
+      </Col>
     );
   }
 }
