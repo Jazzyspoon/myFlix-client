@@ -2,7 +2,6 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import React from "react";
 import { Button, Card, CardGroup, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import "./profile-view.scss";
 export class ProfileView extends React.Component {
@@ -73,12 +72,7 @@ export class ProfileView extends React.Component {
                 <Card.Text className="text-card">
                   Birthday: {Birthday}
                 </Card.Text>
-                <Button
-                // className="button-delete"
-                // onClick={() => this.handleDeregistration()}
-                >
-                  Delete Account
-                </Button>
+                <Button>Delete Account</Button>
               </Card.Body>
             </Card>
             <Card className="edit-profile-card">
@@ -91,7 +85,6 @@ export class ProfileView extends React.Component {
                     placeholder="Enter username"
                     name="username"
                     value={this.username}
-                    onChange={(e) => this.setUsername(e.target.value)}
                   />
                 </Form.Group>
 
@@ -102,7 +95,6 @@ export class ProfileView extends React.Component {
                     placeholder="Password"
                     name="password"
                     value={this.password}
-                    onChange={(e) => this.setPassword(e.target.value)}
                   />
                 </Form.Group>
 
@@ -113,7 +105,6 @@ export class ProfileView extends React.Component {
                     placeholder="Enter email"
                     name="email"
                     value={this.email}
-                    onChange={(e) => this.setEmail(e.target.value)}
                   />
                 </Form.Group>
 
@@ -124,16 +115,10 @@ export class ProfileView extends React.Component {
                     placeholder="Birthday"
                     name="birthday"
                     value={this.birthday}
-                    onChange={(e) => this.setBirthday(e.target.value)}
                   />
                 </Form.Group>
 
-                <Button
-                  className="button-update"
-                  onClick={() => this.handleUpdate()}
-                >
-                  Update
-                </Button>
+                <Button className="button-update">Update</Button>
               </Card.Body>
             </Card>
             <Card className="favorites-card">

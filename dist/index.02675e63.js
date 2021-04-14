@@ -1056,7 +1056,6 @@ try {
   var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
   var _componentsMainViewMainView = require("./components/MainView/main-view");
   require("./index.scss");
-  require("react-router");
   // Main component (will eventually use all the others)
   class MyFlixApplication extends _reactDefault.default.Component {
     render() {
@@ -1075,7 +1074,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-dom":"2sg1U","./components/MainView/main-view":"NsRrN","./index.scss":"5iJih","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Container":"3Mt3t","react-router":"3v97x"}],"3b2NM":[function(require,module,exports) {
+},{"react":"3b2NM","react-dom":"2sg1U","./components/MainView/main-view":"NsRrN","./index.scss":"5iJih","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Container":"3Mt3t"}],"3b2NM":[function(require,module,exports) {
 "use strict";
 if ("development" === 'production') {
   module.exports = require('./cjs/react.production.min.js');
@@ -45799,9 +45798,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/users`
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success"
         }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
@@ -45985,7 +45982,6 @@ try {
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _reactBootstrap = require("react-bootstrap");
-  require("react-router-dom");
   require("./profile-view.scss");
   class ProfileView extends _reactDefault.default.Component {
     constructor(props) {
@@ -46057,8 +46053,7 @@ try {
           type: "text",
           placeholder: "Enter username",
           name: "username",
-          value: this.username,
-          onChange: e => this.setUsername(e.target.value)
+          value: this.username
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicPassword"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46067,8 +46062,7 @@ try {
           type: "password",
           placeholder: "Password",
           name: "password",
-          value: this.password,
-          onChange: e => this.setPassword(e.target.value)
+          value: this.password
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicEmail"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46077,8 +46071,7 @@ try {
           type: "email",
           placeholder: "Enter email",
           name: "email",
-          value: this.email,
-          onChange: e => this.setEmail(e.target.value)
+          value: this.email
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicBirthday"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
@@ -46087,11 +46080,9 @@ try {
           type: "date",
           placeholder: "Birthday",
           name: "birthday",
-          value: this.birthday,
-          onChange: e => this.setBirthday(e.target.value)
+          value: this.birthday
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          className: "button-update",
-          onClick: () => this.handleUpdate()
+          className: "button-update"
         }, "Update"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -46115,6 +46106,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map

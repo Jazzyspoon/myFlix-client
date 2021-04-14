@@ -43,7 +43,7 @@ export class MovieView extends React.Component {
                 </Button>
               </Link>
             </Card.Text>
-            <Link to={`/users`}>
+            <Link>
               <Button variant="success">Add to Favorites</Button>
             </Link>
             <br></br>
