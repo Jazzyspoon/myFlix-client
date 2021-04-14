@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./registration-view.scss";
 
 export function RegisterView(props) {
-  const [Username, setUsername] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const swapView = (e) => {
     e.preventDefault();
@@ -42,23 +43,7 @@ export function RegisterView(props) {
         <Navbar.Brand href="/">
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
-        <Nav className="mr-auto MFLXsm">
-          <Nav.Link href="/">
-            <h6>Home</h6>
-          </Nav.Link>
-          <Nav.Link href="/movies">
-            <h6>Movies</h6>
-          </Nav.Link>
-          <Nav.Link href="#Featured">
-            <h6>Featured</h6>
-          </Nav.Link>
-        </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">
-            <h6>Search</h6>
-          </Button>
-        </Form>
+        <Nav className="mr-auto MFLXsm"></Nav>
       </Navbar>
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please create an account to continue.</p>
@@ -67,7 +52,7 @@ export function RegisterView(props) {
           Enter Username:
           <Form.Control
             type="text"
-            value={Username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Group>
@@ -75,7 +60,7 @@ export function RegisterView(props) {
           Create Password:
           <Form.Control
             type="password"
-            value={Password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
@@ -83,7 +68,7 @@ export function RegisterView(props) {
           Email:
           <Form.Control
             type="email"
-            value={Email}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
@@ -91,12 +76,12 @@ export function RegisterView(props) {
           Birthdate:
           <Form.Control
             type="birthday"
-            value={Birthday}
+            value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
           />
         </Form.Group>
 
-        <Button variant="dark" type="submit" onClick={handleRegister}>
+        <Button variant="success" type="submit" onClick={handleRegister}>
           Submit
         </Button>
       </Form>
@@ -109,7 +94,7 @@ RegisterView.propTypes = {
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
-    Birthday: PropTypes.string.isRequired,
+    Birthday: PropTypes.string,
   }),
   onRegister: PropTypes.func,
 };

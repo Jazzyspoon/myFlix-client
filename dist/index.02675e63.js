@@ -42478,14 +42478,15 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  require("react-router-dom");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
   function RegisterView(props) {
     _s();
-    const [Username, setUsername] = _react.useState("");
-    const [Email, setEmail] = _react.useState("");
-    const [Password, setPassword] = _react.useState("");
-    const [Birthday, setBirthday] = _react.useState("");
+    const [username, setUsername] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [birthday, setBirthday] = _react.useState("");
     const swapView = e => {
       e.preventDefault();
       history.push(`/login`);
@@ -42519,61 +42520,47 @@ try {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "/"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Home")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "/movies"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#Featured"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Featured"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
-        inline: true
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
-        type: "text",
-        placeholder: "Search",
-        className: "mr-sm-2"
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "outline-info"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      })), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        value: Username,
+        value: username,
         onChange: e => setUsername(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
-        value: Password,
+        value: password,
         onChange: e => setPassword(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
-        value: Email,
+        value: email,
         onChange: e => setEmail(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
       }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "birthday",
-        value: Birthday,
+        value: birthday,
         onChange: e => setBirthday(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "dark",
+        variant: "success",
         type: "submit",
         onClick: handleRegister
       }, "Submit")))
     );
   }
-  _s(RegisterView, "ieyvH64s52hBivEzdYj3LdglvZA=");
+  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
   _c = RegisterView;
   RegisterView.propTypes = {
     register: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string.isRequired,
       Password: _propTypesDefault.default.string.isRequired,
       Email: _propTypesDefault.default.string.isRequired,
-      Birthday: _propTypesDefault.default.string.isRequired
+      Birthday: _propTypesDefault.default.string
     }),
     onRegister: _propTypesDefault.default.func
   };
@@ -42585,62 +42572,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","axios":"7rA65"}],"22HWg":[function() {},{}],"7v6h3":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MovieCard", function () {
-    return MovieCard;
-  });
-  var _react = require("react");
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require("prop-types");
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrap = require("react-bootstrap");
-  var _reactRouterDom = require("react-router-dom");
-  require("./movie-card.scss");
-  class MovieCard extends _reactDefault.default.Component {
-    render() {
-      const {movie} = this.props;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "card-rows"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
-          xl: true
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "movie-card",
-          style: {
-            width: "18rem"
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
-          className: "image",
-          variant: "top",
-          src: movie.ImagePath
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/movies/${movie._id}`
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "danger"
-        }, "View Details"))))))
-      );
-    }
-  }
-  MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
-      Title: _propTypesDefault.default.string.isRequired,
-      ImagePath: _propTypesDefault.default.string.isRequired
-    }).isRequired
-  };
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"43n4t":[function() {},{}],"1PMSK":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","axios":"7rA65","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"1PMSK":[function(require,module,exports) {
 "use strict";
 if ("development" === "production") {
   module.exports = require("./cjs/react-router-dom.min.js");
@@ -45742,7 +45674,62 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"3xBbr":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"7v6h3":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "MovieCard", function () {
+    return MovieCard;
+  });
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require("prop-types");
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrap = require("react-bootstrap");
+  var _reactRouterDom = require("react-router-dom");
+  require("./movie-card.scss");
+  class MovieCard extends _reactDefault.default.Component {
+    render() {
+      const {movie} = this.props;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card-rows"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+          xl: true
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+          className: "movie-card",
+          style: {
+            width: "18rem"
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+          className: "image",
+          variant: "top",
+          src: movie.ImagePath
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/movies/${movie._id}`
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "danger"
+        }, "View Details"))))))
+      );
+    }
+  }
+  MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+      Title: _propTypesDefault.default.string.isRequired,
+      ImagePath: _propTypesDefault.default.string.isRequired
+    }).isRequired
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
