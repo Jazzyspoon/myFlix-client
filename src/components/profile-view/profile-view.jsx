@@ -19,7 +19,7 @@ export class ProfileView extends React.Component {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: [],
+      Favoritemovies: [],
       validated: null,
     };
   }
@@ -42,7 +42,7 @@ export class ProfileView extends React.Component {
           Password: response.data.Password,
           Email: response.data.Email,
           Birthday: response.data.Birthday,
-          FavoriteMovies: response.data.FavoriteMovies,
+          Favoritemovies: response.data.Favoritemovies,
         });
       })
       .catch(function (error) {
@@ -110,22 +110,22 @@ export class ProfileView extends React.Component {
 
     axios
       .delete(
-        `https://movieflixappjp.herokuapp.com/users/${username}/movies/${movie}`,
+        `https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`,
         {
           headers: { Authorization: `Bearer ${token}` },
 
-          FavoriteMovies: this.FavoriteMovies,
+          Favoritemovies: this.Favoritemovies,
         }
       )
       .then((response) => {
         this.setState({
-          FavoriteMovies: response.data.FavoriteMovies,
+          Favoritemovies: response.data.Favoritemovies,
         });
       })
       .catch(function (error) {
         console.log(error);
       });
-    alert("movie successfully removed.");
+    alert("movie removed.");
   }
 
   setUsername(input) {
@@ -147,7 +147,7 @@ export class ProfileView extends React.Component {
     const Username = this.state.Username,
       Email = this.state.Email,
       Birthday = this.state.Birthday,
-      FavoriteMovies = this.state.FavoriteMovies;
+      Favoritemovies = this.state.Favoritemovies;
 
     return (
       <div className="profile-view title-top ">
@@ -229,23 +229,24 @@ export class ProfileView extends React.Component {
             </Card>
             <Card className="favorites-card">
               <Card.Body>
-                <Card.Text as="h1">Favorite Movies</Card.Text>
-                {FavoriteMovies.length === 0 && <div>No favorites</div>}
+                <Card.Text as="h1">Favorites</Card.Text>
+
                 <div>
                   <ul>
-                    {FavoriteMovies.length > 0 &&
+                    {Favoritemovies &&
                       movies.map((movie) => {
                         if (
                           movie._id ===
-                          FavoriteMovies.find(
+                          Favoritemovies.find(
                             (favMovie) => favMovie === movie._id
                           )
                         ) {
                           return (
-                            <li className="favorite-items" key={movie._id}>
+                            <li key={movie._id}>
                               {movie.Title}
                               <Button
-                                className="button-remove-items"
+                                variant="link"
+                                size="sm"
                                 onClick={() => this.removeItem(movie._id)}
                               >
                                 Unfavorite
@@ -271,6 +272,6 @@ ProfileView.propTypes = {
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.date,
-    FavoriteMovies: PropTypes.array,
+    Favoritemovies: PropTypes.array,
   }),
 };

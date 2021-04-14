@@ -45786,7 +45786,9 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/`
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success"
         }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
@@ -46039,7 +46041,7 @@ try {
         Password: null,
         Email: null,
         Birthday: null,
-        FavoriteMovies: [],
+        Favoritemovies: [],
         validated: null
       };
     }
@@ -46059,7 +46061,7 @@ try {
           Password: response.data.Password,
           Email: response.data.Email,
           Birthday: response.data.Birthday,
-          FavoriteMovies: response.data.FavoriteMovies
+          Favoritemovies: response.data.Favoritemovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -46068,19 +46070,19 @@ try {
     removeItem(movie) {
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
-      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/movies/${movie}`, {
+      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
-        FavoriteMovies: this.FavoriteMovies
+        Favoritemovies: this.Favoritemovies
       }).then(response => {
         this.setState({
-          FavoriteMovies: response.data.FavoriteMovies
+          Favoritemovies: response.data.Favoritemovies
         });
       }).catch(function (error) {
         console.log(error);
       });
-      alert("movie successfully removed.");
+      alert("movie removed.");
     }
     setUsername(input) {
       this.username = input;
@@ -46096,7 +46098,7 @@ try {
     }
     render() {
       const {movies} = this.props;
-      const Username = this.state.Username, Email = this.state.Email, Birthday = this.state.Birthday, FavoriteMovies = this.state.FavoriteMovies;
+      const Username = this.state.Username, Email = this.state.Email, Birthday = this.state.Birthday, Favoritemovies = this.state.Favoritemovies;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "profile-view title-top "
@@ -46168,14 +46170,14 @@ try {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorite Movies"), FavoriteMovies.length === 0 && /*#__PURE__*/_reactDefault.default.createElement("div", null, "No favorites"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, FavoriteMovies.length > 0 && movies.map(movie => {
-          if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
+        }, "Favorites"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
+          if (movie._id === Favoritemovies.find(favMovie => favMovie === movie._id)) {
             return (
               /*#__PURE__*/_reactDefault.default.createElement("li", {
-                className: "favorite-items",
                 key: movie._id
               }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-                className: "button-remove-items",
+                variant: "link",
+                size: "sm",
                 onClick: () => this.removeItem(movie._id)
               }, "Unfavorite"))
             );
@@ -46190,7 +46192,7 @@ try {
       Password: _propTypesDefault.default.string.isRequired,
       Email: _propTypesDefault.default.string.isRequired,
       Birthday: _propTypesDefault.default.date,
-      FavoriteMovies: _propTypesDefault.default.array
+      Favoritemovies: _propTypesDefault.default.array
     })
   };
   helpers.postlude(module);
