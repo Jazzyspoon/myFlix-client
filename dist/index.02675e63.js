@@ -46012,7 +46012,7 @@ try {
           console.log(e);
         });
       });
-      _defineProperty(this, "handleDeregistration", e => {
+      _defineProperty(this, "handleUnregister", e => {
         const username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
@@ -46068,7 +46068,8 @@ try {
         console.log(error);
       });
     }
-    removeItem(movie) {
+    removeItem(e, movie) {
+      e.preventDefault();
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
       _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
@@ -46076,14 +46077,12 @@ try {
           Authorization: `Bearer ${token}`
         },
         Favoritemovies: this.Favoritemovies
-      }).then(response => {
-        this.setState({
-          Favoritemovies: response.data.Favoritemovies
-        });
+      }).then(() => {
+        alert("Movie was removed from your Favorites List.");
+        this.componentDidMount();
       }).catch(function (error) {
         console.log(error);
       });
-      alert("movie removed.");
     }
     setUsername(input) {
       this.username = input;
@@ -46119,7 +46118,7 @@ try {
           className: "text-card"
         }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-delete",
-          onClick: () => this.handleDeregistration()
+          onClick: () => this.handleUnregister()
         }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "edit-profile-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -46171,7 +46170,7 @@ try {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
+        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies.length && movies.map(movie => {
           if (movie._id === Favoritemovies.find(favMovie => favMovie === movie._id)) {
             return (
               /*#__PURE__*/_reactDefault.default.createElement("li", {
@@ -46179,8 +46178,8 @@ try {
               }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
                 variant: "link",
                 size: "sm",
-                onClick: () => this.removeItem(movie._id)
-              }, "Unfavorite"))
+                onClick: e => this.removeItem(e, movie._id)
+              }, "Remove"))
             );
           }
         }))))))))
