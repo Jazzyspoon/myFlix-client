@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-
+import { FavButton } from "../fav-button/fav-button";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -10,6 +10,7 @@ export class MovieView extends React.Component {
     const { movie } = this.props;
     if (!movie) return null;
     // if (this.state.initialState === "") return;
+
     return (
       <Col className="movie-view">
         <Card className="cardbody">
@@ -47,11 +48,7 @@ export class MovieView extends React.Component {
               <Button variant="success">Add to Favorites</Button>
             </Link>
             <br></br>
-            <Link to={`/`}>
-              <Button variant="danger" className="favbutton">
-                Back to Movies List
-              </Button>
-            </Link>
+            <FavButton>Add to Favorites</FavButton>
           </Card.Body>
         </Card>
       </Col>

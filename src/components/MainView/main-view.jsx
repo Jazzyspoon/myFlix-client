@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { LoginView } from "../login-view/login-view";
+
 import { RegisterView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
@@ -23,22 +23,6 @@ export class MainView extends React.Component {
       user: "",
       register: null,
     };
-  }
-
-  getMovies(token) {
-    axios
-      .get("https://movieflixappjp.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   componentDidMount() {
@@ -71,6 +55,22 @@ export class MainView extends React.Component {
     alert("You are now logged out");
     window.open("/", "_self");
   }
+
+  getMovies(token) {
+    axios
+      .get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
 
   render() {
@@ -99,7 +99,7 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/users/:username">
+                <Link to="/users/${user}">
                   <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
@@ -10,28 +10,41 @@ export function RegisterView(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-
-  const swapView = (e) => {
-    e.preventDefault();
-    history.push(`/login`);
-    // window.location.pathname = `/login`
-  };
+  const { check } = require("express-validator");
+  // const swapView = (e) => {
+  //   e.preventDefault();
+  //   history.push(`/login`);
+  //   // window.location.pathname = `/login`
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
     // sends request to server for authentication
     // entire URL is in package.json under 'proxy' to get past CORS
     axios
-      .post("https://movieflixappjp.herokuapp.com/users", {
-        Username: username,
-        Email: email,
-        Password: password,
-        Birthday: birthday,
-      })
+      .post(
+        "https://movieflixappjp.herokuapp.com/users",
+        [
+          check("Username", "Username is required").isLength({ min: 5 }),
+          check(
+            "Username",
+            "Username contains non alphanumeric characters - not allowed."
+          ).isAlphanumeric(),
+          check("Password", "Password is required").not().isEmpty(),
+          check("Email", "Email does not appear to be valid").isEmail(),
+        ],
+        {
+          Username: username,
+          Email: email,
+          Password: password,
+          Birthday: birthday,
+        }
+      )
       .then((response) => {
         const data = response.data;
         console.log(data);
-        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+        // alert("You are now registered");
+        window.open("/", "_self");
       })
       .catch((e) => {
         console.log(e.response);
@@ -85,6 +98,12 @@ export function RegisterView(props) {
           Submit
         </Button>
       </Form>
+      <p>Already a member?</p>
+      <Link to="/login">
+        <Button variant="success" type="submit">
+          Log In To Your Account
+        </Button>
+      </Link>
     </div>
   );
 }
