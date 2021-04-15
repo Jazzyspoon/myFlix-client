@@ -80,7 +80,6 @@ export function LoginView(props) {
             Register An Account
           </Button>
         </Link>
-
         <Route path="/register" />
       </Router>
     </div>
