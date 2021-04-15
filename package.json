@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "components": "^0.1.0",
+    "express-validator": "^6.10.0",
     "img": "^3.0.3",
     "prop-types": "^15.7.2",
     "public": "^0.1.5",
