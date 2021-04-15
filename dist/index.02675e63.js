@@ -26283,9 +26283,9 @@ try {
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _reactRouterDom = require("react-router-dom");
+  var _loginViewLoginView = require("../login-view/login-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
   var _movieViewMovieView = require("../movie-view/movie-view");
-  var _loginViewLoginView = require("../login-view/login-view");
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _directorViewDirectorView = require("../director-view/director-view");
   var _genreViewGenreView = require("../genre-view/genre-view");
@@ -26302,20 +26302,6 @@ try {
         user: "",
         register: null
       };
-    }
-    getMovies(token) {
-      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      }).catch(function (error) {
-        console.log(error);
-      });
     }
     componentDidMount() {
       let accessToken = localStorage.getItem("token");
@@ -26344,6 +26330,20 @@ try {
       });
       alert("You are now logged out");
       window.open("/", "_self");
+    }
+    getMovies(token) {
+      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
@@ -26379,7 +26379,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/users/:username"
+          to: "/users/${user}"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -28258,16 +28258,16 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       /*Send a request to the server for authentication*/
-      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", [check("Username", "Username is required").isLength({
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, [check("Username", "Username is required").isLength({
         min: 5
-      }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty(), check("Email", "Email does not appear to be valid").isEmail()], {
+      }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty()], {
         Username: username,
         Password: password
       }).then(response => {
         const data = response.data;
         props.onLoggedIn(data);
       }).catch(e => {
-        alert("User does not exist, please try again");
+        alert("User does not exist, please try again or register an account");
         console.log("no such user");
       });
     };
@@ -28320,7 +28320,7 @@ try {
       Username: _propTypesDefault.default.string.isRequired,
       Password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired
+    onLoggedIn: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
@@ -68670,10 +68670,11 @@ try {
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
     const {check} = require("express-validator");
-    const swapView = e => {
-      e.preventDefault();
-      history.push(`/login`);
-    };
+    // const swapView = (e) => {
+    // e.preventDefault();
+    // history.push(`/login`);
+    // // window.location.pathname = `/login`
+    // };
     const handleRegister = e => {
       e.preventDefault();
       // sends request to server for authentication
@@ -68835,6 +68836,7 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _favButtonFavButton = require("../fav-button/fav-button");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     render() {
@@ -68876,12 +68878,7 @@ try {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success"
-        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/`
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "danger",
-          className: "favbutton"
-        }, "Back to Movies List")))))
+        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_favButtonFavButton.FavButton, null, "Add to Favorites"))))
       );
     }
   }
@@ -68908,7 +68905,75 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","../fav-button/fav-button":"2DEov"}],"4iZ2Z":[function() {},{}],"2DEov":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactBootstrap = require("react-bootstrap");
+  class FavButton extends _reactDefault.default.Component {
+    constructor(props) {
+      super();
+      this.username = undefined;
+      this.password = undefined;
+      this.email = undefined;
+      this.birthday = undefined;
+      this.state = {
+        Username: null,
+        Password: null,
+        Email: null,
+        Birthday: null,
+        Favoritemovies: [],
+        validated: null
+      };
+    }
+    componentDidMount() {
+      const accessToken = localStorage.getItem("token");
+      this.getUser(accessToken);
+    }
+    addItem(e, movie) {
+      e.preventDefault();
+      const username = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        Favoritemovies: this.Favoritemovies
+      }).then(() => {
+        alert("Movie was added to your Favorites");
+        this.componentDidMount();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+    render() {
+      const {Favoritemovies, movies} = this.props;
+      Favoritemovies = this.state.Favoritemovies;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "success",
+          size: "sm",
+          onClick: e => this.addItem(e, movie._id)
+        })
+      );
+    }
+  }
+  exports.default = FavButton;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"axios":"7rA65","react":"3b2NM","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -69058,7 +69123,6 @@ try {
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _reactBootstrap = require("react-bootstrap");
-  require("react-router-dom");
   require("./profile-view.scss");
   function _defineProperty(obj, key, value) {
     if ((key in obj)) {
@@ -69286,6 +69350,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map

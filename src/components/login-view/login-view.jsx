@@ -14,7 +14,7 @@ export function LoginView(props) {
     /* Send a request to the server for authentication */
     axios
       .post(
-        "https://movieflixappjp.herokuapp.com/login",
+        `https://movieflixappjp.herokuapp.com/login`,
         [
           check("Username", "Username is required").isLength({ min: 5 }),
           check(
@@ -22,7 +22,6 @@ export function LoginView(props) {
             "Username contains non alphanumeric characters - not allowed."
           ).isAlphanumeric(),
           check("Password", "Password is required").not().isEmpty(),
-          check("Email", "Email does not appear to be valid").isEmail(),
         ],
         {
           Username: username,
@@ -34,7 +33,7 @@ export function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch((e) => {
-        alert("User does not exist, please try again");
+        alert("User does not exist, please try again or register an account");
         console.log("no such user");
       });
   };
@@ -81,7 +80,7 @@ export function LoginView(props) {
             Register An Account
           </Button>
         </Link>
-        {/* register view */}
+
         <Route path="/register" />
       </Router>
     </div>
@@ -92,5 +91,5 @@ LoginView.propTypes = {
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
   }),
-  onLoggedIn: PropTypes.func.isRequired,
+  onLoggedIn: PropTypes.func,
 };

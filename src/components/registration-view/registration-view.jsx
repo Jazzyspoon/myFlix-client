@@ -11,11 +11,11 @@ export function RegisterView(props) {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
   const { check } = require("express-validator");
-  const swapView = (e) => {
-    e.preventDefault();
-    history.push(`/login`);
-    // window.location.pathname = `/login`
-  };
+  // const swapView = (e) => {
+  //   e.preventDefault();
+  //   history.push(`/login`);
+  //   // window.location.pathname = `/login`
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
