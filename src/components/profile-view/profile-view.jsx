@@ -78,7 +78,7 @@ export class ProfileView extends React.Component {
       });
   };
 
-  handleDeregistration = (e) => {
+  handleUnregister = (e) => {
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -104,7 +104,8 @@ export class ProfileView extends React.Component {
     localStorage.removeItem("token");
   };
 
-  removeItem(movie) {
+  removeItem(e, movie) {
+    e.preventDefault();
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -117,15 +118,13 @@ export class ProfileView extends React.Component {
           Favoritemovies: this.Favoritemovies,
         }
       )
-      .then((response) => {
-        this.setState({
-          Favoritemovies: response.data.Favoritemovies,
-        });
+      .then(() => {
+        alert("Movie was removed from your Favorites List.");
+        this.componentDidMount();
       })
       .catch(function (error) {
         console.log(error);
       });
-    alert("movie removed.");
   }
 
   setUsername(input) {
@@ -166,7 +165,7 @@ export class ProfileView extends React.Component {
                 </Card.Text>
                 <Button
                   className="button-delete"
-                  onClick={() => this.handleDeregistration()}
+                  onClick={() => this.handleUnregister()}
                 >
                   Delete Account
                 </Button>
@@ -233,7 +232,7 @@ export class ProfileView extends React.Component {
 
                 <div>
                   <ul>
-                    {Favoritemovies &&
+                    {Favoritemovies.length &&
                       movies.map((movie) => {
                         if (
                           movie._id ===
@@ -247,9 +246,9 @@ export class ProfileView extends React.Component {
                               <Button
                                 variant="link"
                                 size="sm"
-                                onClick={() => this.removeItem(movie._id)}
+                                onClick={(e) => this.removeItem(e, movie._id)}
                               >
-                                Unfavorite
+                                Remove
                               </Button>
                             </li>
                           );
