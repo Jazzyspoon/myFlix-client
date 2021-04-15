@@ -20,12 +20,12 @@ export class MovieView extends React.Component {
             <Card.Text as="h4">"{movie.Description}"</Card.Text>
 
             <Card.Text as="h5">
-              Starring:
+              Starring:<br></br>
               {movie.Actors}{" "}
             </Card.Text>
 
             <Card.Text as="h5">
-              Director:
+              Director:<br></br>
               {movie.Director.Name}{" "}
               <Link to={`/directors/${movie.Director.Name}`}>
                 <Button size="sm" variant="dark">
@@ -35,7 +35,7 @@ export class MovieView extends React.Component {
             </Card.Text>
 
             <Card.Text as="h5">
-              Genre:
+              Genre:<br></br>
               {movie.Genre.Name}{" "}
               <Link to={`/genres/${movie.Genre.Name}`}>
                 <Button size="sm" variant="dark">
