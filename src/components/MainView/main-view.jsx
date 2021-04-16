@@ -34,6 +34,21 @@ export class MainView extends React.Component {
       this.getMovies(accessToken);
     }
   }
+  getMovies(token) {
+    axios
+      .get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   onLoggedIn(authData) {
     console.log(authData);
@@ -56,21 +71,6 @@ export class MainView extends React.Component {
     window.open("/", "_self");
   }
 
-  getMovies(token) {
-    axios
-      .get("https://movieflixappjp.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
 
   render() {

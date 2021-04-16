@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./login-view.scss";
-
+const { check } = require("express-validator");
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { check } = require("express-validator");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */

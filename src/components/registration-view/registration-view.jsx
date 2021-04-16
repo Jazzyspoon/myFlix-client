@@ -4,13 +4,13 @@ import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
-
+const { check } = require("express-validator");
 export function RegisterView(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-  const { check } = require("express-validator");
+
   const backtoLogin = (e) => {
     e.preventDefault();
     history.push(`/login`);

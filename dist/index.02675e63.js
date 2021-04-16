@@ -26312,6 +26312,20 @@ try {
         this.getMovies(accessToken);
       }
     }
+    getMovies(token) {
+      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
     onLoggedIn(authData) {
       console.log(authData);
       this.setState({
@@ -26330,20 +26344,6 @@ try {
       });
       alert("You are now logged out");
       window.open("/", "_self");
-    }
-    getMovies(token) {
-      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      }).catch(function (error) {
-        console.log(error);
-      });
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
@@ -28250,11 +28250,11 @@ try {
   var _reactRouterDom = require("react-router-dom");
   require("./login-view.scss");
   var _s = $RefreshSig$();
+  const {check} = require("express-validator");
   function LoginView(props) {
     _s();
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
-    const {check} = require("express-validator");
     const handleSubmit = e => {
       e.preventDefault();
       /*Send a request to the server for authentication*/
@@ -68663,13 +68663,13 @@ try {
   var _reactRouterDom = require("react-router-dom");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
+  const {check} = require("express-validator");
   function RegisterView(props) {
     _s();
     const [username, setUsername] = _react.useState("");
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
-    const {check} = require("express-validator");
     const backtoLogin = e => {
       e.preventDefault();
       history.push(`/login`);
