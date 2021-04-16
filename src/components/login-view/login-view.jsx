@@ -39,50 +39,51 @@ export function LoginView(props) {
   };
 
   return (
-    <div>
-      <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-        <Navbar.Brand href="/">
-          <h1 className="MFLX">MovieFlix</h1>
-        </Navbar.Brand>
-        <Nav className="mr-auto MFLXsm"></Nav>
-      </Navbar>
-      <h1 className="title-top">Welcome to MovieFlix!</h1>
-      <p>Please login to continue.</p>
-      <Form>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            value={username}
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
-          />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-          />
-        </Form.Group>
+    <Router>
+      <div>
+        <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+          <Navbar.Brand href="/">
+            <h1 className="MFLX">MovieFlix</h1>
+          </Navbar.Brand>
+          <Nav className="mr-auto MFLXsm"></Nav>
+        </Navbar>
+        <h1 className="title-top">Welcome to MovieFlix!</h1>
+        <p>Please login to continue.</p>
+        <Form>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              value={username}
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="username"
+            />
+          </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              value={password}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Log In
-        </Button>
-      </Form>
-      <br></br>
-      <p>Not a member?</p>
-      <Router>
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Log In
+          </Button>
+        </Form>
+        <br></br>
+        <p>Not a member?</p>
+
         <Link to="/register">
           <Button variant="success" type="submit">
             Register An Account
           </Button>
         </Link>
         <Route path="/register" />
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 LoginView.propTypes = {
