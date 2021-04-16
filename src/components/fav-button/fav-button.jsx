@@ -6,38 +6,27 @@ class FavButton extends React.Component {
   constructor(props) {
     super();
 
-    this.state = {
-      Username: null,
-      Movies: [],
-      Favoritemovies: [],
-      validated: null,
-    };
+    this.state = {};
   }
+  addItem(movie) {
+    let token = localStorage.getItem("token");
+    let url =
+      "https://movieflixappjp.herokuapp.com/users/" +
+      localStorage.getItem("user") +
+      "/movies/" +
+      movie._id;
 
-  componentDidMount() {
-    const accessToken = localStorage.getItem("token");
-    this.getUser(accessToken);
-  }
-  addItem(e, movie) {
-    e.preventDefault();
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+    console.log(token);
 
     axios
-      .post(
-        `https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-
-          Favoritemovies: this.Favoritemovies,
-        }
-      )
-      .then(() => {
-        alert("Movie was added to your Favorites");
-        this.componentDidMount();
+      .post(url, "", {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .catch(function (error) {
-        console.log(error);
+      .then((response) => {
+        console.log(response);
+        // window.open("/", "_self");
+        window.open("/users/" + localStorage.getItem("user"), "_self");
+        alert("Added to favorites!");
       });
   }
 
@@ -49,7 +38,7 @@ class FavButton extends React.Component {
       <Button
         variant="success"
         size="sm"
-        onClick={(e) => this.addItem(e, movie._id)}
+        onClick={(e) => this.addItem(movie)}
       ></Button>
     );
   }

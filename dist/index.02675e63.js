@@ -26332,7 +26332,7 @@ try {
       window.open("/", "_self");
     }
     getMovies(token) {
-      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/movies`, {
+      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -26379,7 +26379,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/users/${user}"
+          to: "/users/${username}"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -26459,7 +26459,7 @@ try {
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
-          path: "/users/:username",
+          path: "/users/:userId",
           render: ({history}) => {
             if (!user) return (
               /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
@@ -28320,7 +28320,7 @@ try {
       Username: _propTypesDefault.default.string.isRequired,
       Password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func
+    onLoggedIn: _propTypesDefault.default.func.isRequired
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
@@ -68670,9 +68670,10 @@ try {
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
     const {check} = require("express-validator");
-    const swapView = e => {
+    const backtoLogin = e => {
       e.preventDefault();
       history.push(`/login`);
+      window.location.pathname = `/login`;
     };
     const handleRegister = e => {
       e.preventDefault();
@@ -68741,7 +68742,7 @@ try {
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit",
-        onClick: swapView
+        onClick: backtoLogin
       }, "Log In To Your Account")))
     );
   }
@@ -68921,31 +68922,21 @@ try {
   class FavButton extends _reactDefault.default.Component {
     constructor(props) {
       super();
-      this.state = {
-        Username: null,
-        Movies: [],
-        Favoritemovies: [],
-        validated: null
-      };
+      this.state = {};
     }
-    componentDidMount() {
-      const accessToken = localStorage.getItem("token");
-      this.getUser(accessToken);
-    }
-    addItem(e, movie) {
-      e.preventDefault();
-      const username = localStorage.getItem("user");
-      const token = localStorage.getItem("token");
-      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
+    addItem(movie) {
+      let token = localStorage.getItem("token");
+      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
+      console.log(token);
+      _axiosDefault.default.post(url, "", {
         headers: {
           Authorization: `Bearer ${token}`
-        },
-        Favoritemovies: this.Favoritemovies
-      }).then(() => {
-        alert("Movie was added to your Favorites");
-        this.componentDidMount();
-      }).catch(function (error) {
-        console.log(error);
+        }
+      }).then(response => {
+        console.log(response);
+        // window.open("/", "_self");
+        window.open("/users/" + localStorage.getItem("user"), "_self");
+        alert("Added to favorites!");
       });
     }
     render() {
@@ -68955,7 +68946,7 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success",
           size: "sm",
-          onClick: e => this.addItem(e, movie._id)
+          onClick: e => this.addItem(movie)
         })
       );
     }

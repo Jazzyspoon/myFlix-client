@@ -58,7 +58,7 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get(`https://movieflixappjp.herokuapp.com/movies`, {
+      .get("https://movieflixappjp.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -99,7 +99,7 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/users/${user}">
+                <Link to="/users/${username}">
                   <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>
@@ -188,7 +188,7 @@ export class MainView extends React.Component {
           />
           <Route
             exact
-            path="/users/:username"
+            path="/users/:userId"
             render={({ history }) => {
               if (!user)
                 return (
