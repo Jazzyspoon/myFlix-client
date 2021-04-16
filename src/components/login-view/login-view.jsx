@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./login-view.scss";
-const { check } = require("express-validator");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +36,6 @@ export function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch((e) => {
-        alert("User does not exist, please try again or register an account");
         console.log("no such user");
       });
   };
@@ -76,12 +78,13 @@ export function LoginView(props) {
         <br></br>
         <p>Not a member?</p>
 
+        <Route path="/register" />
+
         <Link to="/register">
           <Button variant="success" type="submit">
             Register An Account
           </Button>
         </Link>
-        <Route path="/register" />
       </div>
     </Router>
   );

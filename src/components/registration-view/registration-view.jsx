@@ -4,7 +4,9 @@ import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
-const { check } = require("express-validator");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
 export function RegisterView(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
