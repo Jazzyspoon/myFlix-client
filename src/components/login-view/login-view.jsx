@@ -14,7 +14,7 @@ export function LoginView(props) {
     /* Send a request to the server for authentication */
     axios
       .post(
-        `https://movieflixappjp.herokuapp.com/login`,
+        "https://movieflixappjp.herokuapp.com/login",
         [
           check("Username", "Username is required").isLength({ min: 5 }),
           check(

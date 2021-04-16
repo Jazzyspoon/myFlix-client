@@ -26332,7 +26332,7 @@ try {
       window.open("/", "_self");
     }
     getMovies(token) {
-      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
+      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/movies`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -28258,7 +28258,7 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       /*Send a request to the server for authentication*/
-      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, [check("Username", "Username is required").isLength({
+      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", [check("Username", "Username is required").isLength({
         min: 5
       }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty()], {
         Username: username,
@@ -68670,11 +68670,10 @@ try {
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
     const {check} = require("express-validator");
-    // const swapView = (e) => {
-    // e.preventDefault();
-    // history.push(`/login`);
-    // // window.location.pathname = `/login`
-    // };
+    const swapView = e => {
+      e.preventDefault();
+      history.push(`/login`);
+    };
     const handleRegister = e => {
       e.preventDefault();
       // sends request to server for authentication
@@ -68741,7 +68740,8 @@ try {
         to: "/login"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
-        type: "submit"
+        type: "submit",
+        onClick: swapView
       }, "Log In To Your Account")))
     );
   }
@@ -68921,15 +68921,9 @@ try {
   class FavButton extends _reactDefault.default.Component {
     constructor(props) {
       super();
-      this.username = undefined;
-      this.password = undefined;
-      this.email = undefined;
-      this.birthday = undefined;
       this.state = {
         Username: null,
-        Password: null,
-        Email: null,
-        Birthday: null,
+        Movies: [],
         Favoritemovies: [],
         validated: null
       };

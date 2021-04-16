@@ -11,11 +11,11 @@ export function RegisterView(props) {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
   const { check } = require("express-validator");
-  // const swapView = (e) => {
-  //   e.preventDefault();
-  //   history.push(`/login`);
-  //   // window.location.pathname = `/login`
-  // };
+  const swapView = (e) => {
+    e.preventDefault();
+    history.push(`/login`);
+    // window.location.pathname = `/login`
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -100,7 +100,7 @@ export function RegisterView(props) {
       </Form>
       <p>Already a member?</p>
       <Link to="/login">
-        <Button variant="success" type="submit">
+        <Button variant="success" type="submit" onClick={swapView}>
           Log In To Your Account
         </Button>
       </Link>

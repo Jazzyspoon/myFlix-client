@@ -6,16 +6,9 @@ class FavButton extends React.Component {
   constructor(props) {
     super();
 
-    this.username = undefined;
-    this.password = undefined;
-    this.email = undefined;
-    this.birthday = undefined;
-
     this.state = {
       Username: null,
-      Password: null,
-      Email: null,
-      Birthday: null,
+      Movies: [],
       Favoritemovies: [],
       validated: null,
     };
