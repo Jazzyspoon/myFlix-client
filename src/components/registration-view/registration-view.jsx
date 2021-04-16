@@ -4,9 +4,7 @@ import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
+const { check } = require("express-validator");
 export function RegisterView(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -45,7 +43,7 @@ export function RegisterView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
-        // alert("You are now registered");
+        alert("You are now registered");
         window.open("/", "_self");
       })
       .catch((e) => {
