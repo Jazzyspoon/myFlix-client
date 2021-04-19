@@ -45766,12 +45766,12 @@ try {
       if (!movie) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody",
           style: {
-            width: "900px"
+            width: "750px"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
@@ -45815,7 +45815,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
           variant: "danger"
-        }, "Back to Movies")))))))
+        }, "Back to Movies"))))))))
       );
     }
   }
@@ -45869,12 +45869,12 @@ try {
       const {director, movies: movie} = this.props;
       if (!director) return null;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody",
           style: {
-            width: "800px"
+            width: "750px"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
@@ -45894,7 +45894,7 @@ try {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
-        }, "Back to Movies")))))))
+        }, "Back to Movies"))))))))
       );
     }
   }
@@ -45943,12 +45943,12 @@ try {
       if (!genre) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody",
           style: {
-            width: "800px"
+            width: "750px"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
@@ -45966,7 +45966,7 @@ try {
           to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
-        }, " Back to Movies ")))))))
+        }, " Back to Movies "))))))))
       );
     }
   }

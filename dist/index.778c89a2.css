@@ -53,7 +53,7 @@ h6 {
 
 .movie-card {
   padding: 8px;
-  margin-top: 60px;
+  margin-top: 70px;
   text-align: center;
   height: 460px;
 }
@@ -61,7 +61,7 @@ h6 {
 .card-rows {
   display: inline-flex;
   flex-wrap: wrap;
-  margin: 40px;
+  margin: 20px;
   justify-content: center;
 }
 
@@ -75,6 +75,8 @@ h6 {
 
 .movie-view {
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardbody {
@@ -120,6 +122,8 @@ h1 {
 
 .movie-view {
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardbody {
@@ -142,6 +146,8 @@ h1 {
 
 .movie-view {
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardbody {
