@@ -26379,7 +26379,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/users/:username"
+          to: "/users/${Username}"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -28268,6 +28268,7 @@ try {
         props.onLoggedIn(data);
       }).catch(e => {
         console.log("no such user");
+        alert("no such user");
       });
     };
     return (
@@ -68659,7 +68660,7 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  require("react-router-dom");
+  var _reactRouterDom = require("react-router-dom");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
   function RegisterView(props) {
@@ -68668,11 +68669,6 @@ try {
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
-    // const swapView = (e) => {
-    // e.preventDefault();
-    // history.push(`/login`);
-    // // window.location.pathname = `/login`
-    // };
     const handleRegister = e => {
       e.preventDefault();
       // sends request to server for authentication
@@ -68732,7 +68728,12 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")))
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        to: "/login"
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "success",
+        type: "submit"
+      }, "Log in")))
     );
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");

@@ -11,12 +11,6 @@ export function RegisterView(props) {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  // const swapView = (e) => {
-  //   e.preventDefault();
-  //   history.push(`/login`);
-  //   // window.location.pathname = `/login`
-  // };
-
   const handleRegister = (e) => {
     e.preventDefault();
     // sends request to server for authentication
@@ -85,6 +79,13 @@ export function RegisterView(props) {
           Submit
         </Button>
       </Form>
+      <p>Not a member?</p>
+
+      <Link to="/login">
+        <Button variant="success" type="submit">
+          Log in
+        </Button>
+      </Link>
     </div>
   );
 }
