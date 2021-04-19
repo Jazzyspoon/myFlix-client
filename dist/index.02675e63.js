@@ -26347,7 +26347,7 @@ try {
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
-      const {movies, user} = this.state;
+      const {movies, user, selectedMovie, register} = this.state;
       /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
       if (!user) return (
         /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
@@ -26413,7 +26413,6 @@ try {
             }));
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-          exact: true,
           path: "/register",
           render: () => /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, null)
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
