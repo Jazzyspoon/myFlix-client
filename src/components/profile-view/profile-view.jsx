@@ -2,6 +2,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import React from "react";
 import { Button, Card, CardGroup, Container, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import "./profile-view.scss";
 export class ProfileView extends React.Component {
@@ -77,7 +78,7 @@ export class ProfileView extends React.Component {
       });
   };
 
-  handleUnregister = (e) => {
+  handleDeregistration = (e) => {
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -103,8 +104,7 @@ export class ProfileView extends React.Component {
     localStorage.removeItem("token");
   };
 
-  removeItem(e, movie) {
-    e.preventDefault();
+  removeItem(movie) {
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -117,13 +117,15 @@ export class ProfileView extends React.Component {
           Favoritemovies: this.Favoritemovies,
         }
       )
-      .then(() => {
-        alert("Movie was removed from your Favorites List.");
-        this.componentDidMount();
+      .then((response) => {
+        this.setState({
+          Favoritemovies: response.data.Favoritemovies,
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
+    alert("movie removed.");
   }
 
   setUsername(input) {
@@ -164,7 +166,7 @@ export class ProfileView extends React.Component {
                 </Card.Text>
                 <Button
                   className="button-delete"
-                  onClick={() => this.handleUnregister()}
+                  onClick={() => this.handleDeregistration()}
                 >
                   Delete Account
                 </Button>
@@ -231,7 +233,7 @@ export class ProfileView extends React.Component {
 
                 <div>
                   <ul>
-                    {Favoritemovies.length &&
+                    {Favoritemovies &&
                       movies.map((movie) => {
                         if (
                           movie._id ===
@@ -245,9 +247,9 @@ export class ProfileView extends React.Component {
                               <Button
                                 variant="link"
                                 size="sm"
-                                onClick={(e) => this.removeItem(e, movie._id)}
+                                onClick={() => this.removeItem(movie._id)}
                               >
-                                Remove
+                                Unfavorite
                               </Button>
                             </li>
                           );
