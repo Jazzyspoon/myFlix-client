@@ -26283,18 +26283,18 @@ try {
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _reactRouterDom = require("react-router-dom");
-  var _reactBootstrap = require("react-bootstrap");
-  var _loginViewLoginView = require("../login-view/login-view");
-  var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _movieCardMovieCard = require("../movie-card/movie-card");
   var _movieViewMovieView = require("../movie-view/movie-view");
+  var _loginViewLoginView = require("../login-view/login-view");
+  var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _directorViewDirectorView = require("../director-view/director-view");
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _profileViewProfileView = require("../profile-view/profile-view");
+  var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
   class MainView extends _reactDefault.default.Component {
-    constructor(props) {
-      super(props);
+    constructor() {
+      super();
       // Initial state is set to null
       this.state = {
         movies: [],
@@ -26303,7 +26303,20 @@ try {
         register: null
       };
     }
-    /*storage in the browser*/
+    getMovies(token) {
+      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
+        headers: {
+          Authorization: "Bearer ${token}"
+        }
+      }).then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
     componentDidMount() {
       let accessToken = localStorage.getItem("token");
       if (accessToken !== null) {
@@ -26313,7 +26326,6 @@ try {
         this.getMovies(accessToken);
       }
     }
-    /*log in function*/
     onLoggedIn(authData) {
       console.log(authData);
       this.setState({
@@ -26330,23 +26342,10 @@ try {
       this.setState({
         user: null
       });
-      alert("You have logged out");
+      alert("You are now logged out");
       window.open("/", "_self");
     }
-    getMovies(token) {
-      _axiosDefault.default.get("https://movieflixappjp.herokuapp.com/movies", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
+    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
       const {movies, user, selectedMovie, register} = this.state;
       /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
@@ -26380,7 +26379,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/users/${username}`
+          to: "/users/:username"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -26399,7 +26398,7 @@ try {
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "colorcrew",
           variant: "outline-info"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(Switch, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
           path: "/",
           render: () => {
@@ -26414,7 +26413,6 @@ try {
             }));
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-          exact: true,
           path: "/register",
           render: () => /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, null)
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -26461,7 +26459,7 @@ try {
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
-          path: "/users/:userId",
+          path: "/users/:username",
           render: ({history}) => {
             if (!user) return (
               /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
@@ -26476,7 +26474,7 @@ try {
               })
             );
           }
-        }))))
+        })))
       );
     }
   }
@@ -68661,28 +68659,24 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactRouterDom = require("react-router-dom");
+  require("react-router-dom");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
-  const {check} = require("express-validator");
   function RegisterView(props) {
     _s();
     const [username, setUsername] = _react.useState("");
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
-    const backtoLogin = e => {
+    const swapView = e => {
       e.preventDefault();
       history.push(`/login`);
-      window.location.pathname = `/login`;
     };
     const handleRegister = e => {
       e.preventDefault();
       // sends request to server for authentication
       // entire URL is in package.json under 'proxy' to get past CORS
-      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/users", [check("Username", "Username is required").isLength({
-        min: 5
-      }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty(), check("Email", "Email does not appear to be valid").isEmail()], {
+      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/users", {
         Username: username,
         Email: email,
         Password: password,
@@ -68690,7 +68684,6 @@ try {
       }).then(response => {
         const data = response.data;
         console.log(data);
-        alert("You are now registered");
         window.open("/", "_self");
       }).catch(e => {
         console.log(e.response);
@@ -68738,13 +68731,7 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/login"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
-        type: "submit",
-        onClick: backtoLogin
-      }, "Log In To Your Account")))
+      }, "Submit")))
     );
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
@@ -68766,7 +68753,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","axios":"7rA65","react-router-dom":"1PMSK","express-validator":"6gYsS"}],"22HWg":[function() {},{}],"7v6h3":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","axios":"7rA65","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"7v6h3":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -68838,7 +68825,6 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
-  var _favButtonFavButton = require("../fav-button/fav-button");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     render() {
@@ -68862,16 +68848,16 @@ try {
           as: "h4"
         }, "\"", movie.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "Starring:", /*#__PURE__*/_reactDefault.default.createElement("br", null), movie.Actors, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+        }, "Starring:", movie.Actors, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "Director:", /*#__PURE__*/_reactDefault.default.createElement("br", null), movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Director:", movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/directors/${movie.Director.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
         }, "(Bio)")), " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "Genre:", /*#__PURE__*/_reactDefault.default.createElement("br", null), movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Genre:", movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/genres/${movie.Genre.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
@@ -68880,7 +68866,12 @@ try {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "success"
-        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_favButtonFavButton.FavButton, null, "Add to Favorites"))))
+        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/`
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          variant: "danger",
+          className: "favbutton"
+        }, "Back to Movies List")))))
       );
     }
   }
@@ -68907,59 +68898,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","../fav-button/fav-button":"2DEov"}],"4iZ2Z":[function() {},{}],"2DEov":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  var _axios = require("axios");
-  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _react = require("react");
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _reactBootstrap = require("react-bootstrap");
-  class FavButton extends _reactDefault.default.Component {
-    constructor(props) {
-      super();
-      this.state = {};
-    }
-    addItem(movie) {
-      let token = localStorage.getItem("token");
-      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
-      console.log(token);
-      _axiosDefault.default.post(url, "", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
-        console.log(response);
-        // window.open("/", "_self");
-        window.open("/users/" + localStorage.getItem("user"), "_self");
-        alert("Added to favorites!");
-      });
-    }
-    render() {
-      const {Favoritemovies, movies} = this.props;
-      Favoritemovies = this.state.Favoritemovies;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "success",
-          size: "sm",
-          onClick: e => this.addItem(movie)
-        })
-      );
-    }
-  }
-  exports.default = FavButton;
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"axios":"7rA65","react":"3b2NM","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"4iZ2Z":[function() {},{}],"3JwwG":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -69067,7 +69006,7 @@ try {
           fluid: true
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, genre.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of good ", genre.Genre.Name, " movies:", /*#__PURE__*/_reactDefault.default.createElement("br", null), genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, genre.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
@@ -69109,6 +69048,7 @@ try {
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _reactBootstrap = require("react-bootstrap");
+  require("react-router-dom");
   require("./profile-view.scss");
   function _defineProperty(obj, key, value) {
     if ((key in obj)) {
@@ -69147,7 +69087,7 @@ try {
           console.log(e);
         });
       });
-      _defineProperty(this, "handleUnregister", e => {
+      _defineProperty(this, "handleDeregistration", e => {
         const username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
@@ -69203,8 +69143,7 @@ try {
         console.log(error);
       });
     }
-    removeItem(e, movie) {
-      e.preventDefault();
+    removeItem(movie) {
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
       _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
@@ -69212,12 +69151,14 @@ try {
           Authorization: `Bearer ${token}`
         },
         Favoritemovies: this.Favoritemovies
-      }).then(() => {
-        alert("Movie was removed from your Favorites List.");
-        this.componentDidMount();
+      }).then(response => {
+        this.setState({
+          Favoritemovies: response.data.Favoritemovies
+        });
       }).catch(function (error) {
         console.log(error);
       });
+      alert("movie removed.");
     }
     setUsername(input) {
       this.username = input;
@@ -69253,7 +69194,7 @@ try {
           className: "text-card"
         }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-delete",
-          onClick: () => this.handleUnregister()
+          onClick: () => this.handleDeregistration()
         }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "edit-profile-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -69305,7 +69246,7 @@ try {
           className: "favorites-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies.length && movies.map(movie => {
+        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
           if (movie._id === Favoritemovies.find(favMovie => favMovie === movie._id)) {
             return (
               /*#__PURE__*/_reactDefault.default.createElement("li", {
@@ -69313,8 +69254,8 @@ try {
               }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
                 variant: "link",
                 size: "sm",
-                onClick: e => this.removeItem(e, movie._id)
-              }, "Remove"))
+                onClick: () => this.removeItem(movie._id)
+              }, "Unfavorite"))
             );
           }
         }))))))))
@@ -69336,6 +69277,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./profile-view.scss":"3kYjk","react-bootstrap":"4n7hB","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire279c")
 
 //# sourceMappingURL=index.02675e63.js.map
