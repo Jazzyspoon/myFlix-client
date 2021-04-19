@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
+
 import "./login-view.scss";
 
 export function LoginView(props) {
@@ -68,12 +69,6 @@ export function LoginView(props) {
         </Button>
       </Form>
       <br></br>
-
-      <p>Not a member?</p>
-
-      <Button variant="success" type="submit">
-        Register An Account
-      </Button>
     </div>
   );
 }

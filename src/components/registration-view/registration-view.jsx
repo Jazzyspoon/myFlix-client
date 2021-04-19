@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import "./registration-view.scss";
 
 export function RegisterView(props) {
@@ -48,7 +48,6 @@ export function RegisterView(props) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            min="5"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
@@ -57,9 +56,8 @@ export function RegisterView(props) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            min="5"
-            required
-            pattern="[a-zA-Z0-9 ]+"
+            // required
+            // pattern="[a-zA-Z0-9 ]+"
           />
         </Form.Group>
         <Form.Group controlId="formEmail">
@@ -68,10 +66,7 @@ export function RegisterView(props) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            id="email"
-            name="email"
-            required="@"
-            size="30"
+            // name="email"
           />
         </Form.Group>
         <Form.Group controlId="formBirthday">
@@ -87,13 +82,6 @@ export function RegisterView(props) {
           Submit
         </Button>
       </Form>
-      <p>Not a member?</p>
-
-      <Link to="/">
-        <Button variant="success" type="submit">
-          Log in
-        </Button>
-      </Link>
     </div>
   );
 }
