@@ -45716,7 +45716,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "movie-card",
           style: {
-            width: "18rem"
+            width: "16rem"
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
           className: "image",
@@ -45766,15 +45766,24 @@ try {
       if (!movie) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody",
+          style: {
+            width: "900px"
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "row no-gutters"
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-4"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: movie.ImagePath,
           className: "image",
           fluid: true
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+        })), /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-8"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
@@ -45784,14 +45793,14 @@ try {
           as: "h5"
         }, "Starring:", movie.Actors, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "Director:", movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Director:", /*#__PURE__*/_reactDefault.default.createElement("br", null), movie.Director.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/directors/${movie.Director.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
         }, "(Bio)")), " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "Genre:", movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Genre:", /*#__PURE__*/_reactDefault.default.createElement("br", null), movie.Genre.Name, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/genres/${movie.Genre.Name}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
@@ -45799,13 +45808,14 @@ try {
         }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          className: "favbutton",
           variant: "success"
         }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "danger",
-          className: "favbutton"
-        }, "Back to Movies List")))))
+          className: "favbutton",
+          variant: "danger"
+        }, "Back to Movies")))))))
       );
     }
   }
@@ -45861,16 +45871,22 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody",
           style: {
-            width: "40rem"
-          },
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+            width: "800px"
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "row no-gutters"
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-4"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: director.Director.ImagePath,
           className: "image",
           fluid: true
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+        })), /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-8"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, director.Director.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h2"
@@ -45878,7 +45894,7 @@ try {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
-        }, "Back to Movies"))))))
+        }, "Back to Movies")))))))
       );
     }
   }
@@ -45929,16 +45945,22 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody",
           style: {
-            width: "40rem"
-          },
-          className: "cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+            width: "800px"
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "row no-gutters"
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-4"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
           className: "image",
           fluid: true
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+        })), /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "col-md-8"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, genre.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: "/"

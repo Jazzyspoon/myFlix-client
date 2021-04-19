@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card, Row } from "react-bootstrap";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./genre-view.scss";
 
 export class GenreView extends React.Component {
@@ -17,11 +17,13 @@ export class GenreView extends React.Component {
     // if (this.state.initialState === "") return;
     return (
       <div className="movie-view">
-        <Row>
-          <Col>
-            <Card style={{ width: "40rem" }} className="cardbody">
+        <div className="card mb-3 cardbody" style={{ width: "800px" }}>
+          <div className="row no-gutters">
+            <div className="col-md-4">
+              <Image src={genre.Genre.ImagePath} className="image" fluid />
+            </div>
+            <div className="col-md-8">
               <Card.Body>
-                <Image src={genre.Genre.ImagePath} className="image" fluid />
                 <Card.Text as="h1">{genre.Genre.Name}</Card.Text>
                 <Card.Text>Description: {genre.Genre.Description}</Card.Text>
                 <Card.Text>
@@ -31,9 +33,9 @@ export class GenreView extends React.Component {
                   <Button variant="danger"> Back to Movies </Button>
                 </Link>
               </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -11,53 +11,61 @@ export class MovieView extends React.Component {
     if (!movie) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Col className="movie-view">
-        <Card className="cardbody">
-          <Card.Body>
-            <Image src={movie.ImagePath} className="image" fluid />
-            <Card.Text as="h1">{movie.Title}</Card.Text>
-            <Card.Text as="h5">(Rating: {movie.Imdb})</Card.Text>
-            <Card.Text as="h4">"{movie.Description}"</Card.Text>
+      <div className="movie-view">
+        <div className="card mb-3 cardbody" style={{ width: "900px" }}>
+          <div className="row no-gutters">
+            <div className="col-md-4">
+              <Image src={movie.ImagePath} className="image" fluid />
+            </div>
+            <div className="col-md-8">
+              <Card.Body>
+                <Card.Text as="h1">{movie.Title}</Card.Text>
+                <Card.Text as="h5">(Rating: {movie.Imdb})</Card.Text>
+                <Card.Text as="h4">"{movie.Description}"</Card.Text>
+                <Card.Text as="h5">
+                  Starring:
+                  {movie.Actors}{" "}
+                </Card.Text>
 
-            <Card.Text as="h5">
-              Starring:
-              {movie.Actors}{" "}
-            </Card.Text>
+                <Card.Text as="h5">
+                  Director:<br></br>
+                  {movie.Director.Name}{" "}
+                  <Link to={`/directors/${movie.Director.Name}`}>
+                    <Button size="sm" variant="dark">
+                      (Bio)
+                    </Button>
+                  </Link>{" "}
+                </Card.Text>
 
-            <Card.Text as="h5">
-              Director:
-              {movie.Director.Name}{" "}
-              <Link to={`/directors/${movie.Director.Name}`}>
-                <Button size="sm" variant="dark">
-                  (Bio)
-                </Button>
-              </Link>{" "}
-            </Card.Text>
-
-            <Card.Text as="h5">
-              Genre:
-              {movie.Genre.Name}{" "}
-              <Link to={`/genres/${movie.Genre.Name}`}>
-                <Button size="sm" variant="dark">
-                  (What is {movie.Genre.Name}?){" "}
-                </Button>
-              </Link>
-            </Card.Text>
-            <Link to={`/`}>
-              <Button variant="success">Add to Favorites</Button>
-            </Link>
-            <br></br>
-            <Link to={`/`}>
-              <Button variant="danger" className="favbutton">
-                Back to Movies List
-              </Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      </Col>
+                <Card.Text as="h5">
+                  Genre:<br></br>
+                  {movie.Genre.Name}{" "}
+                  <Link to={`/genres/${movie.Genre.Name}`}>
+                    <Button size="sm" variant="dark">
+                      (What is {movie.Genre.Name}?){" "}
+                    </Button>
+                  </Link>
+                </Card.Text>
+                <Link to={`/`}>
+                  <Button className="favbutton" variant="success">
+                    Add to Favorites
+                  </Button>
+                </Link>
+                <br></br>
+                <Link to={`/`}>
+                  <Button className="favbutton" variant="danger">
+                    Back to Movies
+                  </Button>
+                </Link>
+              </Card.Body>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
+
 MovieView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
