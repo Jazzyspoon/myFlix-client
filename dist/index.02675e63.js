@@ -26347,7 +26347,7 @@ try {
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
-      const {movies, user, selectedMovie, register} = this.state;
+      const {movies, user} = this.state;
       /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
       if (!user) return (
         /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
@@ -26413,6 +26413,7 @@ try {
             }));
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          exact: true,
           path: "/register",
           render: () => /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, null)
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -28258,7 +28259,7 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       /*Send a request to the server for authentication*/
-      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", [check("Username", "Username is required").isLength({
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, [check("Username", "Username is required").isLength({
         min: 5
       }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty()], {
         Username: username,
@@ -68668,15 +68669,16 @@ try {
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
-    const swapView = e => {
-      e.preventDefault();
-      history.push(`/login`);
-    };
+    // const swapView = (e) => {
+    // e.preventDefault();
+    // history.push(`/login`);
+    // // window.location.pathname = `/login`
+    // };
     const handleRegister = e => {
       e.preventDefault();
       // sends request to server for authentication
       // entire URL is in package.json under 'proxy' to get past CORS
-      _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/users", {
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
         Username: username,
         Email: email,
         Password: password,

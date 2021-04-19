@@ -11,18 +11,18 @@ export function RegisterView(props) {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  const swapView = (e) => {
-    e.preventDefault();
-    history.push(`/login`);
-    // window.location.pathname = `/login`
-  };
+  // const swapView = (e) => {
+  //   e.preventDefault();
+  //   history.push(`/login`);
+  //   // window.location.pathname = `/login`
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
     // sends request to server for authentication
     // entire URL is in package.json under 'proxy' to get past CORS
     axios
-      .post("https://movieflixappjp.herokuapp.com/users", {
+      .post(`https://movieflixappjp.herokuapp.com/users`, {
         Username: username,
         Email: email,
         Password: password,
