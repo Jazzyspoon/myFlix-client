@@ -21,13 +21,15 @@ export class MovieView extends React.Component {
               <div className="col-md-8">
                 <Card.Body>
                   <Card.Text as="h1">{movie.Title}</Card.Text>
-                  <Card.Text as="h5">(Rating: {movie.Imdb})</Card.Text>
-                  <Card.Text as="h4">"{movie.Description}"</Card.Text>
+                  <Card.Text as="h5">
+                    <Image src={movie.Rating} className="rating" />
+                  </Card.Text>
+                  <Card.Text as="h6">(Imdb score: {movie.Imdb})</Card.Text>
+                  <Card.Text as="h5">"{movie.Description}"</Card.Text>
                   <Card.Text as="h5">
                     Starring:
                     {movie.Actors}{" "}
                   </Card.Text>
-
                   <Card.Text as="h5">
                     Director:<br></br>
                     {movie.Director.Name}{" "}
@@ -37,7 +39,6 @@ export class MovieView extends React.Component {
                       </Button>
                     </Link>{" "}
                   </Card.Text>
-
                   <Card.Text as="h5">
                     Genre:<br></br>
                     {movie.Genre.Name}{" "}
@@ -83,5 +84,6 @@ MovieView.propTypes = {
     }).isRequired,
     Actors: PropTypes.string.isRequired,
     Imdb: PropTypes.string.isRequired,
+    Rating: PropTypes.string.isRequired,
   }).isRequired,
 };

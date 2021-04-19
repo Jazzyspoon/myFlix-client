@@ -95,6 +95,10 @@ h1 {
 .favbutton {
   margin-top: 10px;
 }
+
+.rating {
+  max-height: 24px;
+}
 * {
   background-color: black;
   color: white;

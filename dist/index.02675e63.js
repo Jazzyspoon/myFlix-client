@@ -45787,8 +45787,13 @@ try {
           as: "h1"
         }, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
-        }, "(Rating: ", movie.Imdb, ")"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-          as: "h4"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
+          src: movie.Rating,
+          className: "rating"
+        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+          as: "h6"
+        }, "(Imdb score: ", movie.Imdb, ")"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+          as: "h5"
         }, "\"", movie.Description, "\""), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h5"
         }, "Starring:", movie.Actors, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -45833,7 +45838,8 @@ try {
         Description: _propTypesDefault.default.string.isRequired
       }).isRequired,
       Actors: _propTypesDefault.default.string.isRequired,
-      Imdb: _propTypesDefault.default.string.isRequired
+      Imdb: _propTypesDefault.default.string.isRequired,
+      Rating: _propTypesDefault.default.string.isRequired
     }).isRequired
   };
   helpers.postlude(module);
