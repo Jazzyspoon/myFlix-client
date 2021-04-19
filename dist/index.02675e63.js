@@ -28252,7 +28252,7 @@ try {
   var _reactRouterDom = require("react-router-dom");
   require("./login-view.scss");
   var _s = $RefreshSig$();
-  const {check} = require("express-validator");
+  const {check, validationResult} = require("express-validator");
   function LoginView(props) {
     _s();
     const [username, setUsername] = _react.useState("");
