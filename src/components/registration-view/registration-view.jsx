@@ -48,6 +48,7 @@ export function RegisterView(props) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            min="5"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
@@ -56,6 +57,9 @@ export function RegisterView(props) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            min="5"
+            required
+            pattern="[a-zA-Z0-9 ]+"
           />
         </Form.Group>
         <Form.Group controlId="formEmail">
@@ -64,6 +68,10 @@ export function RegisterView(props) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            id="email"
+            name="email"
+            required="@"
+            size="30"
           />
         </Form.Group>
         <Form.Group controlId="formBirthday">

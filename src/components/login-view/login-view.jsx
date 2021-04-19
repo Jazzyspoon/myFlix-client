@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./login-view.scss";
 
-const { check, validationResult } = require("express-validator");
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -50,6 +48,7 @@ export function LoginView(props) {
             type="text"
             onChange={(e) => setUsername(e.target.value)}
             placeholder="username"
+            pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
@@ -59,6 +58,8 @@ export function LoginView(props) {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
+            min="5"
+            pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
 

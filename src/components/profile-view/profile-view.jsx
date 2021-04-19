@@ -178,6 +178,7 @@ export class ProfileView extends React.Component {
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label className="username-label">Username</Form.Label>
                   <Form.Control
+                    autoComplete="off"
                     type="text"
                     placeholder="Enter username"
                     name="username"
@@ -189,6 +190,7 @@ export class ProfileView extends React.Component {
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label className="password-label">Password</Form.Label>
                   <Form.Control
+                    autoComplete="off"
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -200,6 +202,7 @@ export class ProfileView extends React.Component {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label className="email-label">Email address</Form.Label>
                   <Form.Control
+                    autoComplete="off"
                     type="email"
                     placeholder="Enter email"
                     name="email"
@@ -211,6 +214,7 @@ export class ProfileView extends React.Component {
                 <Form.Group controlId="formBasicBirthday">
                   <Form.Label className="birthday-label">Birthday</Form.Label>
                   <Form.Control
+                    autoComplete="off"
                     type="date"
                     placeholder="Birthday"
                     name="birthday"
