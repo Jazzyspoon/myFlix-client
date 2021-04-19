@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./login-view.scss";
-
+const { check, validationResult } = require("express-validator");
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,16 +13,26 @@ export function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
     axios
-      .post("https://movieflixappjp.herokuapp.com/login", {
-        Username: username,
-        Password: password,
-      })
+      .post(
+        "https://movieflixappjp.herokuapp.com/login",
+        [
+          check("Username", "Username is required").isLength({ min: 5 }),
+          check(
+            "Username",
+            "Username contains non alphanumeric characters - not allowed."
+          ).isAlphanumeric(),
+          check("Password", "Password is required").not().isEmpty(),
+        ],
+        {
+          Username: username,
+          Password: password,
+        }
+      )
       .then((response) => {
         const data = response.data;
         props.onLoggedIn(data);
       })
       .catch((e) => {
-        alert("User does not exist, please try again");
         console.log("no such user");
       });
   };
@@ -62,6 +72,15 @@ export function LoginView(props) {
         </Button>
       </Form>
       <br></br>
+      <Router>
+        <p>Not a member?</p>
+        <Route path="/register" />
+        <Link to="/register">
+          <Button variant="success" type="submit">
+            Register An Account
+          </Button>
+        </Link>
+      </Router>
     </div>
   );
 }
