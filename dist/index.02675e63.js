@@ -26348,12 +26348,6 @@ try {
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
       const {movies, user, selectedMovie, register} = this.state;
-      /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-      if (!user) return (
-        /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
-          onLoggedIn: user => this.onLoggedIn(user)
-        })
-      );
       if (!movies) return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view"
@@ -28247,7 +28241,7 @@ try {
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
-  var _reactRouterDom = require("react-router-dom");
+  require("react-router-dom");
   require("./login-view.scss");
   var _s = $RefreshSig$();
   const {check, validationResult} = require("express-validator");
@@ -28258,9 +28252,7 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       /*Send a request to the server for authentication*/
-      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, [check("Username", "Username is required").isLength({
-        min: 5
-      }), check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(), check("Password", "Password is required").not().isEmpty()], {
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
         Username: username,
         Password: password
       }).then(response => {
@@ -28303,14 +28295,10 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
-        path: "/register"
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/register"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit"
-      }, "Register An Account"))))
+      }, "Register An Account"))
     );
   }
   _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");

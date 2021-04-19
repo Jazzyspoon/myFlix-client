@@ -16,14 +16,7 @@ export function LoginView(props) {
     axios
       .post(
         `https://movieflixappjp.herokuapp.com/login`,
-        [
-          check("Username", "Username is required").isLength({ min: 5 }),
-          check(
-            "Username",
-            "Username contains non alphanumeric characters - not allowed."
-          ).isAlphanumeric(),
-          check("Password", "Password is required").not().isEmpty(),
-        ],
+
         {
           Username: username,
           Password: password,
@@ -74,15 +67,12 @@ export function LoginView(props) {
         </Button>
       </Form>
       <br></br>
-      <Router>
-        <p>Not a member?</p>
-        <Route path="/register" />
-        <Link to="/register">
-          <Button variant="success" type="submit">
-            Register An Account
-          </Button>
-        </Link>
-      </Router>
+
+      <p>Not a member?</p>
+
+      <Button variant="success" type="submit">
+        Register An Account
+      </Button>
     </div>
   );
 }
