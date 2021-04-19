@@ -81,7 +81,7 @@ export function RegisterView(props) {
       </Form>
       <p>Not a member?</p>
 
-      <Link to="/login">
+      <Link to="/">
         <Button variant="success" type="submit">
           Log in
         </Button>

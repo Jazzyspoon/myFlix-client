@@ -99,7 +99,7 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/users/${Username}">
+                <Link to="/users/${username}">
                   <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>

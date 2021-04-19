@@ -26379,7 +26379,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/users/${Username}"
+          to: "/users/${username}"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -68729,7 +68729,7 @@ try {
         type: "submit",
         onClick: handleRegister
       }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/login"
+        to: "/"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit"
