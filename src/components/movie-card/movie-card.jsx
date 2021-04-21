@@ -10,18 +10,16 @@ export class MovieCard extends React.Component {
 
     return (
       <div className="card-rows">
-        <Row xl>
-          <Card className="movie-card" style={{ width: "16rem" }}>
-            <Card.Img className="image" variant="top" src={movie.ImagePath} />
-            <Card.Body>
-              <Card.Title>{movie.Title}</Card.Title>
+        <Card className="movie-card" style={{ width: "16rem" }}>
+          <Card.Img className="image" variant="top" src={movie.ImagePath} />
+          <Card.Body>
+            <Card.Title>{movie.Title}</Card.Title>
 
-              <Link to={`/movies/${movie._id}`}>
-                <Button variant="danger">View Details</Button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </Row>
+            <Link to={`/movies/${movie._id}`}>
+              <Button variant="danger">View Details</Button>
+            </Link>
+          </Card.Body>
+        </Card>
       </div>
     );
   }

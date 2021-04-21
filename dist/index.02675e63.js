@@ -26352,7 +26352,6 @@ try {
       alert("You are now logged out");
       window.open("/", "_self");
     }
-    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     render() {
       let {movies} = this.props;
       let {user} = this.state;
@@ -26395,7 +26394,9 @@ try {
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "colorcrew",
           variant: "outline-info"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+          xl: true
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
           path: "/",
           render: () => {
@@ -26470,7 +26471,7 @@ try {
               })
             );
           }
-        })))
+        }))))
       );
     }
   }
@@ -48288,8 +48289,6 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card-rows"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
-          xl: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "movie-card",
           style: {
@@ -48303,7 +48302,7 @@ try {
           to: `/movies/${movie._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
-        }, "View Details"))))))
+        }, "View Details")))))
       );
     }
   }
