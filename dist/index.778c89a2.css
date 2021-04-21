@@ -155,4 +155,26 @@ h1 {
   background-color: black;
   color: white;
 }
+
+.movie-card {
+  padding: 8px;
+  margin-top: 70px;
+  text-align: center;
+  height: 460px;
+}
+
+.card-rows {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  justify-content: center;
+}
+
+.image {
+  height: 300px;
+}
+* {
+  background-color: black;
+  color: white;
+}
 /*# sourceMappingURL=index.778c89a2.css.map */
