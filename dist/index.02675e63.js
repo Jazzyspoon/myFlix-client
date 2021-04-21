@@ -48152,10 +48152,23 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   require("react-router-dom");
   require("./profile-view.scss");
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
   class ProfileView extends _reactDefault.default.Component {
     constructor(props) {
       super();
-      this.handleUpdate = e => {
+      _defineProperty(this, "handleUpdate", e => {
         const username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${username}`, {
@@ -48175,8 +48188,8 @@ try {
         }).catch(e => {
           console.log(e);
         });
-      };
-      this.handleDeregistration = e => {
+      });
+      _defineProperty(this, "handleDeregistration", e => {
         const username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
@@ -48196,7 +48209,7 @@ try {
         });
         localStorage.removeItem("user");
         localStorage.removeItem("token");
-      };
+      });
       this.username = undefined;
       this.password = undefined;
       this.email = undefined;
