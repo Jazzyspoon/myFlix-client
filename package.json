@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/Jazzyspoon/myFlix-client#readme",
   "dependencies": {
-    "@babel/core": "^7.13.14",
+    "@babel/core": "^7.0.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
