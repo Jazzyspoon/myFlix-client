@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Image, Card, Row } from "react-bootstrap";
+import { Button, Image, Card, Row, Col } from "react-bootstrap";
 import { Link, Router } from "react-router-dom";
 import "./director-view.scss";
 
@@ -15,9 +15,9 @@ export class DirectorView extends React.Component {
     if (!director) return null;
 
     return (
-      <Row>
-        <div className="movie-view">
-          <div className="card mb-3 cardbody" style={{ width: "750px" }}>
+      <Col fluid className="movie-view">
+        <div>
+          <div className="card mb-3 cardbody">
             <div className="row no-gutters">
               <div className="col-md-4">
                 <Image
@@ -42,7 +42,7 @@ export class DirectorView extends React.Component {
             </div>
           </div>
         </div>
-      </Row>
+      </Col>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -6,14 +7,43 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
+  addFavorite(movie) {
+    let token = localStorage.getItem("token");
+    let url =
+      "https://movieflixappjp.herokuapp.com/users/" +
+      localStorage.getItem("user") +
+      "/movies/" +
+      movie._id;
+
+    console.log(token);
+
+    axios
+      .post(url, "", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
+        // window.open("/", "_self");
+        window.open("/users/" + localStorage.getItem("user"), "_self");
+        alert("Added to favorites!");
+      });
+  }
+
   render() {
     const { movie } = this.props;
+
     if (!movie) return null;
-    // if (this.state.initialState === "") return;
+
     return (
-      <Row>
-        <div className="movie-view">
-          <div className="card mb-3 cardbody" style={{ width: "750px" }}>
+      <Col fluid className="movie-view">
+        <div>
+          <div className="card mb-3 cardbody">
             <div className="row no-gutters">
               <div className="col-md-4">
                 <Image src={movie.ImagePath} className="image" fluid />
@@ -48,12 +78,16 @@ export class MovieView extends React.Component {
                       </Button>
                     </Link>
                   </Card.Text>
-                  <Link to={`/`}>
-                    <Button className="favbutton" variant="success">
+                  <div>
+                    <Button
+                      className="favbutton"
+                      variant="success"
+                      onClick={() => this.addFavorite(movie)}
+                    >
                       Add to Favorites
                     </Button>
-                  </Link>
-                  <br></br>
+                  </div>
+
                   <Link to={`/`}>
                     <Button className="favbutton" variant="danger">
                       Back to Movies
@@ -64,7 +98,7 @@ export class MovieView extends React.Component {
             </div>
           </div>
         </div>
-      </Row>
+      </Col>
     );
   }
 }
