@@ -47701,12 +47701,30 @@ try {
   var _reactRouterDom = require("react-router-dom");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
+    constructor() {
+      super();
+      this.state = {};
+    }
+    addFavorite(movie) {
+      let token = localStorage.getItem("token");
+      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
+      console.log(token);
+      axios.post(url, "", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        console.log(response);
+        // window.open("/", "_self");
+        window.open("/users/" + localStorage.getItem("user"), "_self");
+        alert("Added to favorites!");
+      });
+    }
     render() {
       const {movie} = this.props;
       if (!movie) return null;
-      // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody",
@@ -47750,12 +47768,11 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/`
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
-          variant: "success"
-        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          variant: "success",
+          onClick: () => this.addFavorite(movie)
+        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
