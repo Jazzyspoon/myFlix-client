@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import "./login-view.scss";
 
 export function LoginView(props) {
@@ -72,9 +72,11 @@ export function LoginView(props) {
       <div>
         <span>Not a member?</span>
         <br></br>
-        <Button href="/register" variant="success" type="submit">
-          Register An Account
-        </Button>
+        <Link to="/register">
+          <Button variant="success" type="submit">
+            Register An Account
+          </Button>
+        </Link>
       </div>
     </div>
   );
