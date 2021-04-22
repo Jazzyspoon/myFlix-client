@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setMovies } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
-
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";

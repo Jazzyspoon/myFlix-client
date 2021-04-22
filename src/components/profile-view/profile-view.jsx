@@ -150,10 +150,10 @@ export class ProfileView extends React.Component {
       Favoritemovies = this.state.Favoritemovies;
 
     return (
-      <div className="profile-view title-top ">
+      <div className="profile-view title-top regi-view">
         <Container className="profile-view-container">
           <CardGroup>
-            <Card className="profile-card">
+            <Card className="profile-card cardbody">
               <Card.Body>
                 <Card.Text as="h1">Profile</Card.Text>
                 <Card.Text className="text-card">
@@ -166,13 +166,14 @@ export class ProfileView extends React.Component {
                 </Card.Text>
                 <Button
                   className="button-delete"
+                  variant="danger"
                   onClick={() => this.handleDeregistration()}
                 >
                   Delete Account
                 </Button>
               </Card.Body>
             </Card>
-            <Card className="edit-profile-card">
+            <Card className="edit-profile-card cardbody">
               <Card.Body>
                 <Card.Text as="h1">Edit Profile</Card.Text>
                 <Form.Group controlId="formBasicUsername">
@@ -225,13 +226,14 @@ export class ProfileView extends React.Component {
 
                 <Button
                   className="button-update"
+                  variant="success"
                   onClick={() => this.handleUpdate()}
                 >
                   Update
                 </Button>
               </Card.Body>
             </Card>
-            <Card className="favorites-card">
+            <Card className="favorites-card cardbody">
               <Card.Body>
                 <Card.Text as="h1">Favorite Movies</Card.Text>
 
@@ -249,11 +251,13 @@ export class ProfileView extends React.Component {
                             <li key={movie._id}>
                               {movie.Title}
                               <Button
+                                size="sm"
+                                className="favbutt"
                                 variant="link"
                                 size="sm"
                                 onClick={() => this.removeItem(movie._id)}
                               >
-                                Unfavorite
+                                -Unfavorite
                               </Button>
                             </li>
                           );

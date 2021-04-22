@@ -48294,11 +48294,11 @@ try {
       const Username = this.state.Username, Email = this.state.Email, Birthday = this.state.Birthday, Favoritemovies = this.state.Favoritemovies;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "profile-view title-top "
+          className: "profile-view title-top regi-view"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
           className: "profile-view-container"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "profile-card"
+          className: "profile-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Profile"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -48311,9 +48311,10 @@ try {
           className: "text-card"
         }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-delete",
+          variant: "danger",
           onClick: () => this.handleDeregistration()
         }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "edit-profile-card"
+          className: "edit-profile-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Edit Profile"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
@@ -48362,9 +48363,10 @@ try {
           onChange: e => this.setBirthday(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-update",
+          variant: "success",
           onClick: () => this.handleUpdate()
         }, "Update"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "favorites-card"
+          className: "favorites-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
@@ -48373,10 +48375,12 @@ try {
               /*#__PURE__*/_reactDefault.default.createElement("li", {
                 key: movie._id
               }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+                size: "sm",
+                className: "favbutt",
                 variant: "link",
                 size: "sm",
                 onClick: () => this.removeItem(movie._id)
-              }, "Unfavorite"))
+              }, "-Unfavorite"))
             );
           }
         }))))))))
