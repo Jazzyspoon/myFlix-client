@@ -47970,7 +47970,11 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")))
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        href: "/",
+        variant: "primary",
+        type: "submit"
+      }, "Log In")))
     );
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
