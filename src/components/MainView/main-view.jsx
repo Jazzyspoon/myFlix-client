@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setMovies } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
-
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
@@ -143,7 +142,7 @@ export class MainView extends React.Component {
             />
 
             {/* REGISTER VIEW */}
-            <Route path="/register" render={() => <RegisterView />} />
+            <Route exact path="/register" component={RegisterView} />
 
             {/* MOVIE CARD VIEW */}
             {/* <Route

@@ -29714,8 +29714,9 @@ try {
             );
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          exact: true,
           path: "/register",
-          render: () => /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, null)
+          component: _registrationViewRegistrationView.RegisterView
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/movies/:movieId",
           render: ({match}) => /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
@@ -47701,7 +47702,8 @@ try {
       super();
       this.state = {};
     }
-    addFavorite(movie) {
+    /*add to favorites function*/
+    addToFavorites(movie) {
       let token = localStorage.getItem("token");
       let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
       console.log(token);
@@ -47711,8 +47713,6 @@ try {
         }
       }).then(response => {
         console.log(response);
-        // window.open("/", "_self");
-        window.open("/users/" + localStorage.getItem("user"), "_self");
         alert("Added to favorites!");
       });
     }
@@ -47721,7 +47721,6 @@ try {
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          fluid: true,
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"
@@ -47765,7 +47764,7 @@ try {
         }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
           variant: "success",
-          onClick: () => this.addFavorite(movie)
+          onClick: () => this.addToFavorites(movie)
         }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -47924,7 +47923,6 @@ try {
     const [birthday, setBirthday] = _react.useState("");
     const handleRegister = e => {
       e.preventDefault();
-      // sends request to server for authentication
       // entire URL is in package.json under 'proxy' to get past CORS
       _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
         Username: username,
@@ -47964,7 +47962,8 @@ try {
       }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         value: password,
-        onChange: e => setPassword(e.target.value)
+        onChange: e => setPassword(e.target.value),
+        required: true
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -48293,11 +48292,11 @@ try {
       const Username = this.state.Username, Email = this.state.Email, Birthday = this.state.Birthday, Favoritemovies = this.state.Favoritemovies;
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "profile-view title-top "
+          className: "profile-view title-top regi-view"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
           className: "profile-view-container"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "profile-card"
+          className: "profile-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Profile"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -48310,9 +48309,10 @@ try {
           className: "text-card"
         }, "Birthday: ", Birthday), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-delete",
+          variant: "danger",
           onClick: () => this.handleDeregistration()
         }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "edit-profile-card"
+          className: "edit-profile-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Edit Profile"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
@@ -48361,9 +48361,10 @@ try {
           onChange: e => this.setBirthday(e.target.value)
         })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "button-update",
+          variant: "success",
           onClick: () => this.handleUpdate()
         }, "Update"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "favorites-card"
+          className: "favorites-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
@@ -48372,10 +48373,12 @@ try {
               /*#__PURE__*/_reactDefault.default.createElement("li", {
                 key: movie._id
               }, movie.Title, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+                size: "sm",
+                className: "favbutt",
                 variant: "link",
                 size: "sm",
                 onClick: () => this.removeItem(movie._id)
-              }, "Unfavorite"))
+              }, "-Unfavorite"))
             );
           }
         }))))))))
