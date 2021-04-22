@@ -47886,7 +47886,7 @@ try {
       Username: _propTypesDefault.default.string.isRequired,
       Password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired
+    onLoggedIn: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
