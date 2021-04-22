@@ -5,7 +5,7 @@ $color: rgb(255, 255, 255);
   color: $color;
 }
 
-.movie-view {
+.genre-view {
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -16,8 +16,8 @@ $color: rgb(255, 255, 255);
 }
 
 .image {
-  width: 100%;
   padding: 8px;
+  max-width: fit-content;
 }
 
 h1 {
