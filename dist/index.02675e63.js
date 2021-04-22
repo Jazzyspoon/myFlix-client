@@ -29590,18 +29590,19 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactRouterDom = require("react-router-dom");
   var _reactRedux = require("react-redux");
+  var _reactRouterDom = require("react-router-dom");
   var _actionsActions = require("../../actions/actions");
   var _moviesListMoviesList = require("../movies-list/movies-list");
   var _moviesListMoviesListDefault = _parcelHelpers.interopDefault(_moviesListMoviesList);
-  require("../visibility-filter-input/visibility-filter-input");
   var _movieViewMovieView = require("../movie-view/movie-view");
   var _loginViewLoginView = require("../login-view/login-view");
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _directorViewDirectorView = require("../director-view/director-view");
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _profileViewProfileView = require("../profile-view/profile-view");
+  var _visibilityFilterInputVisibilityFilterInput = require("../visibility-filter-input/visibility-filter-input");
+  var _visibilityFilterInputVisibilityFilterInputDefault = _parcelHelpers.interopDefault(_visibilityFilterInputVisibilityFilterInput);
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
   class MainView extends _reactDefault.default.Component {
@@ -29653,7 +29654,7 @@ try {
       window.open("/", "_self");
     }
     render() {
-      let {movies} = this.props;
+      let {movies, visibilityFilter} = this.props;
       let {user} = this.state;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -29687,14 +29688,10 @@ try {
           className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Log Out")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
           inline: true
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.FormControl, {
-          type: "text",
-          placeholder: "Search",
-          className: "mr-sm-1"
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          className: "colorcrew",
-          variant: "outline-info"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h6", null, "Search")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_visibilityFilterInputVisibilityFilterInputDefault.default, {
+          className: "mr-sm-2",
+          visibilityFilter: visibilityFilter
+        }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
           xl: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
@@ -29789,7 +29786,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","../visibility-filter-input/visibility-filter-input":"3SRLP","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","react-bootstrap":"4n7hB","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","react-bootstrap":"4n7hB","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../visibility-filter-input/visibility-filter-input":"3SRLP"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';

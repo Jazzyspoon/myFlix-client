@@ -1,16 +1,18 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setMovies } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
-import { setFilter } from "../visibility-filter-input/visibility-filter-input";
+
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
+//import { ProfileUpdate } from "../profile-update/profile-update";
+import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
 import {
   Navbar,
   Nav,
@@ -77,7 +79,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    let { movies } = this.props;
+    let { movies, visibilityFilter } = this.props;
     let { user } = this.state;
 
     return (
@@ -115,14 +117,10 @@ export class MainView extends React.Component {
               </Link>
             </Nav>
             <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-1"
+              <VisibilityFilterInput
+                className="mr-sm-2"
+                visibilityFilter={visibilityFilter}
               />
-              <Button className="colorcrew" variant="outline-info">
-                <h6>Search</h6>
-              </Button>
             </Form>
           </Navbar>
 
