@@ -13,6 +13,10 @@
 .card-rows {
   margin: 20px;
 }
+
+.image {
+  min-height: 280px;
+}
 * {
   background-color: black;
   color: white;
