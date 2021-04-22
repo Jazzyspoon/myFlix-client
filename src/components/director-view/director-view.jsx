@@ -15,7 +15,7 @@ export class DirectorView extends React.Component {
     if (!director) return null;
 
     return (
-      <Col fluid className="movie-view">
+      <Col className="movie-view">
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">

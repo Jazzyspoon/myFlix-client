@@ -48,6 +48,7 @@ export function RegisterView(props) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
@@ -57,7 +58,7 @@ export function RegisterView(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            // pattern="[a-zA-Z0-9 ]+"
+            pattern="[a-zA-Z0-9 ]+"
           />
         </Form.Group>
         <Form.Group controlId="formEmail">
