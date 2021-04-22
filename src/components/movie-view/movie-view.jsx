@@ -40,9 +40,9 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Col>
-        <div className="movie-view">
-          <div className="card mb-3 cardbody" style={{ width: "750px" }}>
+      <Col fluid className="movie-view">
+        <div>
+          <div className="card mb-3 cardbody">
             <div className="row no-gutters">
               <div className="col-md-4">
                 <Image src={movie.ImagePath} className="image" fluid />

@@ -34597,7 +34597,7 @@ try {
       }, /*#__PURE__*/_reactDefault.default.createElement(_visibilityFilterInputVisibilityFilterInputDefault.default, {
         visibilityFilter: visibilityFilter
       })), filteredMovies.map(m => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
-        md: 3,
+        lg: 3,
         key: m._id
       }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCard.MovieCard, {
         movie: m
@@ -35879,10 +35879,7 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card-rows"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "movie-card",
-          style: {
-            width: "16rem"
-          }
+          className: "movie-card"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
           className: "image",
           variant: "top",
@@ -47724,13 +47721,11 @@ try {
       const {movie} = this.props;
       if (!movie) return null;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+          fluid: true,
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "card mb-3 cardbody",
-          style: {
-            width: "750px"
-          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -48040,13 +48035,11 @@ try {
       const {director, movies: movie} = this.props;
       if (!director) return null;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+          fluid: true,
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "card mb-3 cardbody",
-          style: {
-            width: "750px"
-          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -48114,13 +48107,11 @@ try {
       if (!genre) return null;
       // if (this.state.initialState === "") return;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+          fluid: true,
           className: "movie-view"
-        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "card mb-3 cardbody",
-          style: {
-            width: "750px"
-          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "card mb-3 cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
