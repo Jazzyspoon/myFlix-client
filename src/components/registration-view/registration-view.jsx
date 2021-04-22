@@ -13,7 +13,7 @@ export function RegisterView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // sends request to server for authentication
+
     // entire URL is in package.json under 'proxy' to get past CORS
     axios
       .post(`https://movieflixappjp.herokuapp.com/users`, {
@@ -25,7 +25,7 @@ export function RegisterView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
-        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+        window.open("/", "_self");
       })
       .catch((e) => {
         console.log(e.response);
@@ -56,7 +56,7 @@ export function RegisterView(props) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // required
+            required
             // pattern="[a-zA-Z0-9 ]+"
           />
         </Form.Group>
@@ -66,7 +66,6 @@ export function RegisterView(props) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // name="email"
           />
         </Form.Group>
         <Form.Group controlId="formBirthday">

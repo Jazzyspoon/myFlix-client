@@ -29714,8 +29714,9 @@ try {
             );
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          exact: true,
           path: "/register",
-          render: () => /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegisterView, null)
+          component: _registrationViewRegistrationView.RegisterView
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/movies/:movieId",
           render: ({match}) => /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
@@ -47701,7 +47702,8 @@ try {
       super();
       this.state = {};
     }
-    addFavorite(movie) {
+    /*add to favorites function*/
+    addToFavorites(movie) {
       let token = localStorage.getItem("token");
       let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
       console.log(token);
@@ -47711,7 +47713,6 @@ try {
         }
       }).then(response => {
         console.log(response);
-        // window.open("/", "_self");
         window.open("/users/" + localStorage.getItem("user"), "_self");
         alert("Added to favorites!");
       });
@@ -47765,7 +47766,7 @@ try {
         }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
           variant: "success",
-          onClick: () => this.addFavorite(movie)
+          onClick: () => this.addToFavorites(movie)
         }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -47924,7 +47925,6 @@ try {
     const [birthday, setBirthday] = _react.useState("");
     const handleRegister = e => {
       e.preventDefault();
-      // sends request to server for authentication
       // entire URL is in package.json under 'proxy' to get past CORS
       _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
         Username: username,
@@ -47964,7 +47964,8 @@ try {
       }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         value: password,
-        onChange: e => setPassword(e.target.value)
+        onChange: e => setPassword(e.target.value),
+        required: true
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {

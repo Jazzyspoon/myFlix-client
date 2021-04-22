@@ -143,7 +143,7 @@ export class MainView extends React.Component {
             />
 
             {/* REGISTER VIEW */}
-            <Route path="/register" render={() => <RegisterView />} />
+            <Route exact path="/register" component={RegisterView} />
 
             {/* MOVIE CARD VIEW */}
             {/* <Route

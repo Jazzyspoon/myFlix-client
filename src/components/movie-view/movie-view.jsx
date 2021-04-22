@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { Col, Button, Image, Card, Row } from "react-bootstrap";
+import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -12,15 +11,14 @@ export class MovieView extends React.Component {
 
     this.state = {};
   }
-
-  addFavorite(movie) {
+  //add to favorites function
+  addToFavorites(movie) {
     let token = localStorage.getItem("token");
     let url =
       "https://movieflixappjp.herokuapp.com/users/" +
       localStorage.getItem("user") +
       "/movies/" +
       movie._id;
-
     console.log(token);
 
     axios
@@ -29,7 +27,6 @@ export class MovieView extends React.Component {
       })
       .then((response) => {
         console.log(response);
-        // window.open("/", "_self");
         window.open("/users/" + localStorage.getItem("user"), "_self");
         alert("Added to favorites!");
       });
@@ -82,7 +79,7 @@ export class MovieView extends React.Component {
                     <Button
                       className="favbutton"
                       variant="success"
-                      onClick={() => this.addFavorite(movie)}
+                      onClick={() => this.addToFavorites(movie)}
                     >
                       Add to Favorites
                     </Button>
