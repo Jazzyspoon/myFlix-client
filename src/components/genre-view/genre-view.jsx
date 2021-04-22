@@ -16,7 +16,7 @@ export class GenreView extends React.Component {
     if (!genre) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Col fluid className="movie-view">
+      <Col className="movie-view">
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
@@ -30,7 +30,7 @@ export class GenreView extends React.Component {
                   <Card.Text>
                     Examples of {genre.Genre.Name} movies: {genre.Genre.Ex}
                   </Card.Text>
-                  <Link to="/">
+                  <Link to={`/`}>
                     <Button variant="danger"> Back to Movies </Button>
                   </Link>
                 </Card.Body>

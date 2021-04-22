@@ -48110,7 +48110,6 @@ try {
       // if (this.state.initialState === "") return;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          fluid: true,
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"
@@ -48127,7 +48126,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, genre.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "danger"
         }, " Back to Movies "))))))))
