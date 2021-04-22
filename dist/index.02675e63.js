@@ -47713,7 +47713,6 @@ try {
         }
       }).then(response => {
         console.log(response);
-        window.open("/users/" + localStorage.getItem("user"), "_self");
         alert("Added to favorites!");
       });
     }
@@ -47722,7 +47721,6 @@ try {
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          fluid: true,
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"

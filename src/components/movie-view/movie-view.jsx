@@ -27,7 +27,7 @@ export class MovieView extends React.Component {
       })
       .then((response) => {
         console.log(response);
-        window.open("/users/" + localStorage.getItem("user"), "_self");
+
         alert("Added to favorites!");
       });
   }
@@ -38,7 +38,7 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Col fluid className="movie-view">
+      <Col className="movie-view">
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
