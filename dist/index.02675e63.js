@@ -47861,7 +47861,11 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null))
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        href: "/register",
+        variant: "success",
+        type: "submit"
+      }, "Register An Account")))
     );
   }
   _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
@@ -47966,7 +47970,11 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")))
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        href: "/",
+        variant: "primary",
+        type: "submit"
+      }, "Log In")))
     );
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");

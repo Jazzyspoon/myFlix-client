@@ -82,6 +82,13 @@ export function RegisterView(props) {
           Submit
         </Button>
       </Form>
+      <div>
+        <span>Already a member?</span>
+        <br></br>
+        <Button href="/" variant="primary" type="submit">
+          Log In
+        </Button>
+      </div>
     </div>
   );
 }
