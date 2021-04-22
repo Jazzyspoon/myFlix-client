@@ -16,12 +16,12 @@ export class GenreView extends React.Component {
     if (!genre) return null;
     // if (this.state.initialState === "") return;
     return (
-      <Col className="movie-view">
+      <Col className="genre-view">
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
-              <div className="col-md-4">
-                <Image src={genre.Genre.ImagePath} className="image" fluid />
+              <div className="col-md-3">
+                <Image src={genre.Genre.ImagePath} className="image" />
               </div>
               <div className="col-md-8">
                 <Card.Body>

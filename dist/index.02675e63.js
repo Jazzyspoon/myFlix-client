@@ -48108,17 +48108,16 @@ try {
       // if (this.state.initialState === "") return;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          className: "movie-view"
+          className: "genre-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "col-md-4"
+          className: "col-md-3"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
-          className: "image",
-          fluid: true
+          className: "image"
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "col-md-8"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
