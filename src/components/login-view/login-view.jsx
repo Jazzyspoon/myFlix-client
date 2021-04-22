@@ -69,6 +69,13 @@ export function LoginView(props) {
         </Button>
       </Form>
       <br></br>
+      <div>
+        <span>Not a member?</span>
+        <br></br>
+        <Button href="/register" variant="success" type="submit">
+          Register An Account
+        </Button>
+      </div>
     </div>
   );
 }
