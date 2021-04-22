@@ -35877,7 +35877,7 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card-rows"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
-          className: "movie-card"
+          className: "movie-card d-flex"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
           className: "image",
           variant: "top",
@@ -35885,7 +35885,8 @@ try {
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/movies/${movie._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          variant: "danger"
+          variant: "danger",
+          className: "align-self-end"
         }, "View Details")))))
       );
     }
@@ -47956,14 +47957,16 @@ try {
       }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         value: username,
-        onChange: e => setUsername(e.target.value)
+        onChange: e => setUsername(e.target.value),
+        pattern: "[a-zA-Z0-9]+"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         value: password,
         onChange: e => setPassword(e.target.value),
-        required: true
+        required: true,
+        pattern: "[a-zA-Z0-9 ]+"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -48034,7 +48037,6 @@ try {
       if (!director) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          fluid: true,
           className: "movie-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"

@@ -10,13 +10,15 @@ export class MovieCard extends React.Component {
 
     return (
       <div className="card-rows">
-        <Card className="movie-card">
+        <Card className="movie-card d-flex">
           <Card.Img className="image" variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
 
             <Link to={`/movies/${movie._id}`}>
-              <Button variant="danger">View Details</Button>
+              <Button variant="danger" className="align-self-end">
+                View Details
+              </Button>
             </Link>
           </Card.Body>
         </Card>
