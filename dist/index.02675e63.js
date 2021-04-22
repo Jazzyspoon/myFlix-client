@@ -47692,6 +47692,8 @@ try {
   });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
@@ -47706,7 +47708,7 @@ try {
       let token = localStorage.getItem("token");
       let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
       console.log(token);
-      axios.post(url, "", {
+      _axiosDefault.default.post(url, "", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -47800,7 +47802,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4iZ2Z":[function() {},{}],"6M7fu":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","axios":"7rA65"}],"4iZ2Z":[function() {},{}],"6M7fu":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
