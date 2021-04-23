@@ -34697,7 +34697,7 @@ try {
       /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         onChange: e => props.setFilter(e.target.value),
         value: props.visibilityFilter,
-        placeholder: "filter"
+        placeholder: "search for movie"
       })
     );
   }
