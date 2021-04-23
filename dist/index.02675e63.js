@@ -29335,10 +29335,19 @@ function movies(state = [], action) {
       return state;
   }
 }
+function addfavorite(state = [], action) {
+  switch (action.type) {
+    case _actionsActions.ADD_FAV:
+      return action.value;
+    default:
+      return state;
+  }
+}
 function moviesApp(state = {}, action) {
   return {
     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-    movies: movies(state.movies, action)
+    movies: movies(state.movies, action),
+    addfavorite: addfavorite(state.addfavorite, action)
   };
 }
 exports.default = moviesApp;
@@ -29352,14 +29361,21 @@ _parcelHelpers.export(exports, "SET_MOVIES", function () {
 _parcelHelpers.export(exports, "SET_FILTER", function () {
   return SET_FILTER;
 });
+_parcelHelpers.export(exports, "ADD_FAV", function () {
+  return ADD_FAV;
+});
 _parcelHelpers.export(exports, "setMovies", function () {
   return setMovies;
 });
 _parcelHelpers.export(exports, "setFilter", function () {
   return setFilter;
 });
+_parcelHelpers.export(exports, "addtoFavorites", function () {
+  return addtoFavorites;
+});
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
+const ADD_FAV = "ADD_FAV";
 function setMovies(value) {
   return {
     type: SET_MOVIES,
@@ -29369,6 +29385,12 @@ function setMovies(value) {
 function setFilter(value) {
   return {
     type: SET_FILTER,
+    value
+  };
+}
+function addtoFavorites(value) {
+  return {
+    type: ADD_FAV,
     value
   };
 }
@@ -47692,32 +47714,37 @@ try {
   });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _axios = require("axios");
-  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  require("axios");
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  require("../add-fav/add-fav");
   require("./movie-view.scss");
+  require("../../actions/actions");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
       super();
       this.state = {};
     }
     /*add to favorites function*/
-    addToFavorites(movie) {
-      let token = localStorage.getItem("token");
-      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
-      console.log(token);
-      _axiosDefault.default.post(url, "", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
-        console.log(response);
-        alert("Added to favorites!");
-      });
-    }
+    /*addToFavorites(movie) {*/
+    /*let token = localStorage.getItem("token");*/
+    /*let url =*/
+    /*"https://movieflixappjp.herokuapp.com/users/" +*/
+    /*localStorage.getItem("user") +*/
+    /*"/movies/" +*/
+    /*movie._id;*/
+    /*console.log(token);*/
+    /*axios*/
+    /*.post(url, "", {*/
+    /*headers: { Authorization: `Bearer ${token}` },*/
+    /*})*/
+    /*.then((response) => {*/
+    /*console.log(response);*/
+    /*alert("Added to favorites!");*/
+    /*});*/
+    /*}*/
     render() {
       const {movie} = this.props;
       if (!movie) return null;
@@ -47763,11 +47790,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-          className: "favbutton",
-          variant: "success",
-          onClick: () => this.addToFavorites(movie)
-        }, "Add to Favorites")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
@@ -47800,7 +47823,54 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","axios":"7rA65"}],"4iZ2Z":[function() {},{}],"6M7fu":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","axios":"7rA65","../add-fav/add-fav":"4M0n1","../../actions/actions":"5S6cN"}],"4iZ2Z":[function() {},{}],"4M0n1":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactRedux = require("react-redux");
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _reactBootstrap = require("react-bootstrap");
+  var _actionsActions = require("../../actions/actions");
+  function AddFavoriteMovie(movie) {
+    let token = localStorage.getItem("token");
+    let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
+    console.log(token);
+    _axiosDefault.default.post(url, "", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => {
+      console.log(response);
+      alert("Added to favorites!");
+    });
+  }
+  _c = AddFavoriteMovie;
+  return (
+    /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+      className: "favbutton",
+      variant: "success",
+      onClick: () => undefined.AddFavoriteMovie(movie)
+    }, "Add to Favorites")
+  );
+  exports.default = _reactRedux.connect(null, {
+    addtoFavorites: _actionsActions.addtoFavorites
+  })(AddFavoriteMovie);
+  var _c;
+  $RefreshReg$(_c, "AddFavoriteMovie");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-redux":"7GDa4","axios":"7rA65","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../../actions/actions":"5S6cN","react-bootstrap":"4n7hB"}],"6M7fu":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

@@ -3,33 +3,36 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import AddFavoriteMovie from "../add-fav/add-fav";
 import "./movie-view.scss";
+import { addtoFavorites } from "../../actions/actions";
 
 export class MovieView extends React.Component {
   constructor() {
     super();
     this.state = {};
   }
+
   //add to favorites function
-  addToFavorites(movie) {
-    let token = localStorage.getItem("token");
-    let url =
-      "https://movieflixappjp.herokuapp.com/users/" +
-      localStorage.getItem("user") +
-      "/movies/" +
-      movie._id;
-    console.log(token);
+  // addToFavorites(movie) {
+  //   let token = localStorage.getItem("token");
+  //   let url =
+  //     "https://movieflixappjp.herokuapp.com/users/" +
+  //     localStorage.getItem("user") +
+  //     "/movies/" +
+  //     movie._id;
+  //   console.log(token);
 
-    axios
-      .post(url, "", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        console.log(response);
+  //   axios
+  //     .post(url, "", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
 
-        alert("Added to favorites!");
-      });
-  }
+  //       alert("Added to favorites!");
+  //     });
+  // }
 
   render() {
     const { movie } = this.props;
@@ -74,15 +77,16 @@ export class MovieView extends React.Component {
                       </Button>
                     </Link>
                   </Card.Text>
-                  <div>
-                    <Button
+
+                  {/* How do i call this button in? */}
+                  <div>{/* <AddFavoriteMovie /> */}</div>
+                  {/* <Button
                       className="favbutton"
                       variant="success"
                       onClick={() => this.addToFavorites(movie)}
                     >
                       Add to Favorites
-                    </Button>
-                  </div>
+                    </Button> */}
 
                   <Link to={`/`}>
                     <Button className="favbutton" variant="danger">

@@ -10,7 +10,6 @@ import { RegisterView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
-//import { ProfileUpdate } from "../profile-update/profile-update";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
 import {
   Navbar,
