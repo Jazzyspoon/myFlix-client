@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
 
@@ -11,7 +11,7 @@ export class MovieCard extends React.Component {
     return (
       <div className="card-rows">
         <Card className="movie-card d-flex">
-          <Card.Img className="image" variant="top" src={movie.ImagePath} />
+          <Image className="image" variant="top" src={movie.ImagePath} fluid />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
 

@@ -21,7 +21,7 @@ export class GenreView extends React.Component {
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
               <div className="col-md-3">
-                <Image src={genre.Genre.ImagePath} className="image" />
+                <Image src={genre.Genre.ImagePath} className="image" fluid />
               </div>
               <div className="col-md-8">
                 <Card.Body>
