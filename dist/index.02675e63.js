@@ -35878,10 +35878,11 @@ try {
           className: "card-rows"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "movie-card d-flex"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           className: "image",
           variant: "top",
-          src: movie.ImagePath
+          src: movie.ImagePath,
+          fluid: true
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/movies/${movie._id}`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -47856,19 +47857,16 @@ try {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         value: username,
-        type: "text",
+        type: "email",
         onChange: e => setUsername(e.target.value),
-        placeholder: "username",
-        pattern: "[a-zA-Z0-9]+"
+        placeholder: "username"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         value: password,
         type: "password",
         onChange: e => setPassword(e.target.value),
-        placeholder: "password",
-        min: "5",
-        pattern: "[a-zA-Z0-9]+"
+        placeholder: "password"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
@@ -48119,7 +48117,8 @@ try {
           className: "col-md-3"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
-          className: "image"
+          className: "image",
+          fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "col-md-8"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {

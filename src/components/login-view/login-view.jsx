@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, Form, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./login-view.scss";
 
@@ -46,10 +46,10 @@ export function LoginView(props) {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             value={username}
-            type="text"
+            type="email"
             onChange={(e) => setUsername(e.target.value)}
             placeholder="username"
-            pattern="[a-zA-Z0-9]+"
+            //pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
@@ -59,8 +59,8 @@ export function LoginView(props) {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
-            min="5"
-            pattern="[a-zA-Z0-9]+"
+            //min="5"
+            //pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
 
