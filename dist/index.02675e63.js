@@ -48043,13 +48043,13 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "col-md-4"
+          className: "col-md-5"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: director.Director.ImagePath,
           className: "image",
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "col-md-8"
+          className: "col-md-7"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, director.Director.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -48114,13 +48114,13 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "row no-gutters"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "col-md-3"
+          className: "col-md-5"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
           className: "image",
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "col-md-8"
+          className: "col-md-7"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, genre.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", genre.Genre.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, null, "Examples of ", genre.Genre.Name, " movies: ", genre.Genre.Ex), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {

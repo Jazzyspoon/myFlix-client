@@ -19,14 +19,14 @@ export class DirectorView extends React.Component {
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <Image
                   src={director.Director.ImagePath}
                   className="image"
                   fluid
                 />
               </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <Card.Body>
                   <Card.Text as="h1">{director.Director.Name}</Card.Text>
                   <Card.Text as="h2">(Director)</Card.Text>
