@@ -162,7 +162,7 @@ function RegisterView(props) {
 
           <Form.Control
             type={togglepassword.type}
-            value={password}
+            value={Password}
             placeholder="Password"
             name="password"
             className="form-control-register"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
@@ -12,7 +12,9 @@ const mapStateToProps = (state) => {
   return { user, togglepassword };
 };
 export function LoginView(props) {
-  const { user: username, togglepassword } = props;
+  const { user, togglepassword } = props;
+  const [username] = useState("");
+  const [password] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,17 +30,13 @@ export function LoginView(props) {
       }, 4000);
       return false;
     } else {
-      console.log(username, password);
-
       axios
         .post(
           `https://movieflixappjp.herokuapp.com/login`,
           {},
           {
-            params: {
-              Username: username,
-              Password: password,
-            },
+            Username: username,
+            Password: password,
           }
         )
         .then((response) => {
@@ -166,9 +164,10 @@ export function LoginView(props) {
 }
 
 export default connect(mapStateToProps, { setUser, togglePassword })(LoginView);
+
 LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
+  setUser: PropTypes.func,
   user: PropTypes.shape({
     Username: PropTypes.string,
     Password: PropTypes.string,
@@ -177,5 +176,5 @@ LoginView.propTypes = {
     type: PropTypes.string,
     word: PropTypes.string,
   }),
-  togglePassword: PropTypes.func.isRequired,
+  togglePassword: PropTypes.func,
 };

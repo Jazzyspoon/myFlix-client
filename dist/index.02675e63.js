@@ -47948,7 +47948,9 @@ try {
   };
   function LoginView(props) {
     _s();
-    const {user: username, togglepassword} = props;
+    const {user, togglepassword} = props;
+    const [username] = _react.useState("");
+    const [password] = _react.useState("");
     const handleSubmit = e => {
       e.preventDefault();
       let error = document.querySelector(".error-message");
@@ -47963,12 +47965,9 @@ try {
         }, 4000);
         return false;
       } else {
-        console.log(username, password);
         _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {}, {
-          params: {
-            Username: username,
-            Password: password
-          }
+          Username: username,
+          Password: password
         }).then(response => {
           const data = response.data;
           props.onLoggedIn(data);
@@ -48082,7 +48081,7 @@ try {
       }, "Register An Account"))))
     );
   }
-  _s(LoginView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+  _s(LoginView, "K459sDewLHBGTHY5VxO7kRVq4zo=");
   _c = LoginView;
   exports.default = _reactRedux.connect(mapStateToProps, {
     setUser: _actionsActions.setUser,
@@ -48090,7 +48089,7 @@ try {
   })(LoginView);
   LoginView.propTypes = {
     onLoggedIn: _propTypesDefault.default.func.isRequired,
-    setUser: _propTypesDefault.default.func.isRequired,
+    setUser: _propTypesDefault.default.func,
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string,
       Password: _propTypesDefault.default.string
@@ -48099,7 +48098,7 @@ try {
       type: _propTypesDefault.default.string,
       word: _propTypesDefault.default.string
     }),
-    togglePassword: _propTypesDefault.default.func.isRequired
+    togglePassword: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
@@ -48109,7 +48108,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48278,7 +48277,7 @@ try {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: togglepassword.type,
-        value: password,
+        value: Password,
         placeholder: "Password",
         name: "password",
         className: "form-control-register",
