@@ -29335,11 +29335,6 @@ function movies(state = [], action) {
       return state;
   }
 }
-<<<<<<< Updated upstream
-function addfavorite(state = [], action) {
-  switch (action.type) {
-    case _actionsActions.ADD_FAV:
-=======
 function user(state = {
   Username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
   Password: "",
@@ -29348,20 +29343,11 @@ function user(state = {
 }, action) {
   switch (action.type) {
     case _actionsActions.SET_USERS:
->>>>>>> Stashed changes
       return action.value;
     default:
       return state;
   }
 }
-<<<<<<< Updated upstream
-function moviesApp(state = {}, action) {
-  return {
-    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-    movies: movies(state.movies, action),
-    addfavorite: addfavorite(state.addfavorite, action)
-  };
-=======
 function togglepassword(state = {
   type: "password",
   word: "Show"
@@ -29372,7 +29358,6 @@ function togglepassword(state = {
     default:
       return state;
   }
->>>>>>> Stashed changes
 }
 const moviesApp = _redux.combineReducers({
   visibilityFilter,
@@ -29391,16 +29376,11 @@ _parcelHelpers.export(exports, "SET_MOVIES", function () {
 _parcelHelpers.export(exports, "SET_FILTER", function () {
   return SET_FILTER;
 });
-<<<<<<< Updated upstream
-_parcelHelpers.export(exports, "ADD_FAV", function () {
-  return ADD_FAV;
-=======
 _parcelHelpers.export(exports, "SET_USER", function () {
   return SET_USER;
 });
 _parcelHelpers.export(exports, "TOGGLE_PASSWORD", function () {
   return TOGGLE_PASSWORD;
->>>>>>> Stashed changes
 });
 _parcelHelpers.export(exports, "setMovies", function () {
   return setMovies;
@@ -29408,14 +29388,6 @@ _parcelHelpers.export(exports, "setMovies", function () {
 _parcelHelpers.export(exports, "setFilter", function () {
   return setFilter;
 });
-<<<<<<< Updated upstream
-_parcelHelpers.export(exports, "addtoFavorites", function () {
-  return addtoFavorites;
-});
-const SET_MOVIES = "SET_MOVIES";
-const SET_FILTER = "SET_FILTER";
-const ADD_FAV = "ADD_FAV";
-=======
 _parcelHelpers.export(exports, "setUser", function () {
   return setUser;
 });
@@ -29432,7 +29404,6 @@ const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
 const SET_USER = "SET_USER";
 const TOGGLE_PASSWORD = "TOGGLE_PW";
->>>>>>> Stashed changes
 function setMovies(value) {
   return {
     type: SET_MOVIES,
@@ -29445,11 +29416,6 @@ function setFilter(value) {
     value
   };
 }
-<<<<<<< Updated upstream
-function addtoFavorites(value) {
-  return {
-    type: ADD_FAV,
-=======
 function setUser(value) {
   return {
     type: SET_USERS,
@@ -29471,7 +29437,6 @@ function unregUser(value) {
 function togglePassword(value) {
   return {
     type: TOGGLE_PASSWORD,
->>>>>>> Stashed changes
     value
   };
 }
@@ -47951,7 +47916,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-redux":"7GDa4","axios":"7rA65","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../../actions/actions":"5S6cN","react-bootstrap":"4n7hB"}],"6M7fu":[function(require,module,exports) {
+},{"react":"3b2NM","react-redux":"7GDa4","axios":"7rA65","react-bootstrap":"4n7hB","../../actions/actions":"5S6cN","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"6M7fu":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48147,7 +48112,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
