@@ -29317,7 +29317,7 @@ exports.unstable_batchedUpdates = _reactDom.unstable_batchedUpdates;
 },{"react-dom":"2sg1U"}],"2736c":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
-require("redux");
+var _redux = require("redux");
 var _actionsActions = require("../actions/actions");
 function visibilityFilter(state = "", action) {
   switch (action.type) {
@@ -29335,21 +29335,51 @@ function movies(state = [], action) {
       return state;
   }
 }
+<<<<<<< Updated upstream
 function addfavorite(state = [], action) {
   switch (action.type) {
     case _actionsActions.ADD_FAV:
+=======
+function user(state = {
+  Username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
+  Password: "",
+  Email: "",
+  Birthday: ""
+}, action) {
+  switch (action.type) {
+    case _actionsActions.SET_USERS:
+>>>>>>> Stashed changes
       return action.value;
     default:
       return state;
   }
 }
+<<<<<<< Updated upstream
 function moviesApp(state = {}, action) {
   return {
     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
     movies: movies(state.movies, action),
     addfavorite: addfavorite(state.addfavorite, action)
   };
+=======
+function togglepassword(state = {
+  type: "password",
+  word: "Show"
+}, action) {
+  switch (action.type) {
+    case _actionsActions.TOGGLE_PASSWORD:
+      return action.value;
+    default:
+      return state;
+  }
+>>>>>>> Stashed changes
 }
+const moviesApp = _redux.combineReducers({
+  visibilityFilter,
+  movies,
+  user,
+  togglepassword
+});
 exports.default = moviesApp;
 
 },{"redux":"7panR","../actions/actions":"5S6cN","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5S6cN":[function(require,module,exports) {
@@ -29361,8 +29391,16 @@ _parcelHelpers.export(exports, "SET_MOVIES", function () {
 _parcelHelpers.export(exports, "SET_FILTER", function () {
   return SET_FILTER;
 });
+<<<<<<< Updated upstream
 _parcelHelpers.export(exports, "ADD_FAV", function () {
   return ADD_FAV;
+=======
+_parcelHelpers.export(exports, "SET_USER", function () {
+  return SET_USER;
+});
+_parcelHelpers.export(exports, "TOGGLE_PASSWORD", function () {
+  return TOGGLE_PASSWORD;
+>>>>>>> Stashed changes
 });
 _parcelHelpers.export(exports, "setMovies", function () {
   return setMovies;
@@ -29370,12 +29408,31 @@ _parcelHelpers.export(exports, "setMovies", function () {
 _parcelHelpers.export(exports, "setFilter", function () {
   return setFilter;
 });
+<<<<<<< Updated upstream
 _parcelHelpers.export(exports, "addtoFavorites", function () {
   return addtoFavorites;
 });
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
 const ADD_FAV = "ADD_FAV";
+=======
+_parcelHelpers.export(exports, "setUser", function () {
+  return setUser;
+});
+_parcelHelpers.export(exports, "updateUser", function () {
+  return updateUser;
+});
+_parcelHelpers.export(exports, "unregUser", function () {
+  return unregUser;
+});
+_parcelHelpers.export(exports, "togglePassword", function () {
+  return togglePassword;
+});
+const SET_MOVIES = "SET_MOVIES";
+const SET_FILTER = "SET_FILTER";
+const SET_USER = "SET_USER";
+const TOGGLE_PASSWORD = "TOGGLE_PW";
+>>>>>>> Stashed changes
 function setMovies(value) {
   return {
     type: SET_MOVIES,
@@ -29388,9 +29445,33 @@ function setFilter(value) {
     value
   };
 }
+<<<<<<< Updated upstream
 function addtoFavorites(value) {
   return {
     type: ADD_FAV,
+=======
+function setUser(value) {
+  return {
+    type: SET_USERS,
+    value
+  };
+}
+function updateUser(value) {
+  return {
+    type: UPDATE_USERS,
+    value
+  };
+}
+function unregUser(value) {
+  return {
+    type: UNREG_USERS,
+    value
+  };
+}
+function togglePassword(value) {
+  return {
+    type: TOGGLE_PASSWORD,
+>>>>>>> Stashed changes
     value
   };
 }
@@ -47881,32 +47962,107 @@ try {
   _parcelHelpers.export(exports, "LoginView", function () {
     return LoginView;
   });
-  var _axios = require("axios");
-  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _reactRedux = require("react-redux");
+  var _actionsActions = require("../../actions/actions");
   require("./login-view.scss");
   var _s = $RefreshSig$();
+  const mapStateToProps = state => {
+    const {user, togglepassword} = state;
+    return {
+      user,
+      togglepassword
+    };
+  };
   function LoginView(props) {
     _s();
-    const [username, setUsername] = _react.useState("");
-    const [password, setPassword] = _react.useState("");
+    const {user: username, togglepassword} = props;
     const handleSubmit = e => {
       e.preventDefault();
-      /*Send a request to the server for authentication*/
-      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
-        Username: username,
-        Password: password
-      }).then(response => {
-        const data = response.data;
-        props.onLoggedIn(data);
-      }).catch(e => {
-        console.log("no such user");
-        alert("no such user");
+      let error = document.querySelector(".error-message");
+      if (error) {
+        let container = document.querySelector(".btn-login").parentElement;
+        let note = document.createElement("div");
+        note.classList.add("note-message");
+        note.innerText = `Form error.`;
+        container.appendChild(note);
+        setTimeout(function () {
+          container.removeChild(note);
+        }, 4000);
+        return false;
+      } else {
+        console.log(username, password);
+        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {}, {
+          params: {
+            Username: username,
+            Password: password
+          }
+        }).then(response => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        }).catch(e => {
+          console.error("no such user");
+        });
+        return true;
+      }
+    };
+    _react.useEffect(() => {
+      let usernameInput = document.querySelector("#formUsername");
+      let passwordInput = document.querySelector("#formPassword");
+      function validateUsername() {
+        let value = usernameInput.value;
+        let reg = /\w{5,}/;
+        if (!value) {
+          showErrorMessage(usernameInput, "Username is required.");
+          return false;
+        }
+        if (!reg.test(value)) {
+          showErrorMessage(usernameInput, "Username must contain at least 5 alphanumeric characters.");
+          return false;
+        }
+        showErrorMessage(usernameInput, null);
+        return true;
+      }
+      function validatePassword() {
+        let value = passwordInput.value;
+        if (!value) {
+          showErrorMessage(passwordInput, "Please provide your password.");
+          return false;
+        }
+        showErrorMessage(passwordInput, null);
+        return true;
+      }
+      function showErrorMessage(input, message) {
+        let container = input.parentElement;
+        let error = container.querySelector(".error-message");
+        if (error) {
+          container.removeChild(error);
+        }
+        if (message) {
+          let error = document.createElement("div");
+          error.classList.add("error-message");
+          error.innerText = message;
+          container.appendChild(error);
+        }
+      }
+      usernameInput.oninput = validateUsername;
+      passwordInput.oninput = validatePassword;
+    });
+    const changeState = () => {
+      var oldState = togglepassword.type;
+      var isTextOrHide = oldState === "password";
+      var newState = isTextOrHide ? "text" : "password";
+      var newWord = isTextOrHide ? "Hide" : "Show";
+      props.togglePassword({
+        type: newState,
+        word: newWord
       });
     };
     return (
@@ -47923,21 +48079,36 @@ try {
         className: "mr-auto MFLXsm"
       })), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
-      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+        noValidate: true,
+        onSubmit: handleSubmit
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "text",
+        placeholder: "Username",
+        name: "username",
         value: username,
-        type: "email",
-        onChange: e => setUsername(e.target.value),
-        placeholder: "username"
+        required: true,
+        onChange: e => props.setUser({
+          ...user,
+          Username: e.target.value
+        })
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: togglepassword.type,
         value: password,
-        type: "password",
-        onChange: e => setPassword(e.target.value),
-        placeholder: "password"
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        placeholder: "Password",
+        name: "password",
+        onChange: e => props.setUser({
+          ...user,
+          Password: e.target.value
+        })
+      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "password-trigger",
+        onClick: changeState
+      }, togglepassword.word)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
@@ -47949,14 +48120,24 @@ try {
       }, "Register An Account"))))
     );
   }
-  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+  _s(LoginView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
   _c = LoginView;
+  exports.default = _reactRedux.connect(mapStateToProps, {
+    setUser: _actionsActions.setUser,
+    togglePassword: _actionsActions.togglePassword
+  })(LoginView);
   LoginView.propTypes = {
+    onLoggedIn: _propTypesDefault.default.func.isRequired,
+    setUser: _propTypesDefault.default.func.isRequired,
     user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired
+      Username: _propTypesDefault.default.string,
+      Password: _propTypesDefault.default.string
     }),
-    onLoggedIn: _propTypesDefault.default.func
+    togglepassword: _propTypesDefault.default.shape({
+      type: _propTypesDefault.default.string,
+      word: _propTypesDefault.default.string
+    }),
+    togglePassword: _propTypesDefault.default.func.isRequired
   };
   var _c;
   $RefreshReg$(_c, "LoginView");
@@ -47966,7 +48147,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47974,9 +48155,6 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "RegisterView", function () {
-    return RegisterView;
-  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
@@ -47984,28 +48162,128 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _reactRedux = require("react-redux");
+  require("react-router-dom");
+  var _actionsActions = require("../../actions/actions");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
+  const mapStateToProps = state => {
+    const {user, togglepassword} = state;
+    return {
+      user,
+      togglepassword
+    };
+  };
   function RegisterView(props) {
     _s();
-    const [username, setUsername] = _react.useState("");
-    const [email, setEmail] = _react.useState("");
-    const [password, setPassword] = _react.useState("");
-    const [birthday, setBirthday] = _react.useState("");
+    const {user: username, togglepassword} = props;
     const handleRegister = e => {
       e.preventDefault();
-      // entire URL is in package.json under 'proxy' to get past CORS
-      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
-        Username: username,
-        Email: email,
-        Password: password,
-        Birthday: birthday
-      }).then(response => {
-        const data = response.data;
-        console.log(data);
-        window.open("/", "_self");
-      }).catch(e => {
-        console.log(e.response);
+      let error = document.querySelector(".error-message");
+      if (error) {
+        let container = document.querySelector(".btn-register").parentElement;
+        let note = document.createElement("div");
+        note.classList.add("note-message");
+        note.innerText = `Registration not possible due to input errors. `;
+        container.appendChild(note);
+        setTimeout(function () {
+          container.removeChild(note);
+        }, 4000);
+        return false;
+      } else {
+        // entire URL is in package.json under 'proxy' to get past CORS
+        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
+          Username: username,
+          Email: email,
+          Password: password,
+          Birthday: birthday
+        }).then(response => {
+          const data = response.data;
+          console.log(data);
+          window.open("/", "_self");
+        }).catch(e => {
+          console.log(e.response);
+        });
+        return true;
+      }
+    };
+    useEffect(() => {
+      let usernameInput = document.querySelector("#formUsername");
+      let passwordInput = document.querySelector("#formPassword");
+      let emailInput = document.querySelector("#formEmail");
+      let birthdayInput = document.querySelector("#formBirthday");
+      function validateUsername() {
+        let value = usernameInput.value;
+        let reg = /\w{5,}/;
+        if (!value) {
+          showErrorMessage(usernameInput, "Username is required.");
+          return false;
+        }
+        if (!reg.test(value)) {
+          showErrorMessage(usernameInput, "Username must contain at least 5 alphanumeric characters.");
+          return false;
+        }
+        showErrorMessage(usernameInput, null);
+        return true;
+      }
+      function validatePassword() {
+        let value = passwordInput.value;
+        if (!value) {
+          showErrorMessage(passwordInput, "Please provide your password.");
+          return false;
+        }
+        showErrorMessage(passwordInput, null);
+        return true;
+      }
+      function validateEmail() {
+        let value = emailInput.value;
+        let reg = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!value) {
+          showErrorMessage(emailInput, "Email is required.");
+          return false;
+        }
+        if (!reg.test(value)) {
+          showErrorMessage(emailInput, "Invalid mail pattern.");
+          return false;
+        }
+        showErrorMessage(emailInput, null);
+        return true;
+      }
+      function validateBirthday() {
+        let value = birthdayInput.value;
+        if (!value instanceof Date) {
+          showErrorMessage(birthdayInput, "Please enter a valid date.");
+          return false;
+        }
+        showErrorMessage(birthdayInput, null);
+        return true;
+      }
+      function showErrorMessage(input, message) {
+        let container = input.parentElement;
+        let error = container.querySelector(".error-message");
+        if (error) {
+          container.removeChild(error);
+        }
+        if (message) {
+          let error = document.createElement("div");
+          error.classList.add("error-message");
+          error.innerText = message;
+          container.appendChild(error);
+        }
+      }
+      usernameInput.oninput = validateUsername;
+      passwordInput.oninput = validatePassword;
+      emailInput.oninput = validateEmail;
+      birthdayInput.onchange = validateBirthday;
+    });
+    const changeState = () => {
+      var oldState = togglepassword.type;
+      var isTextOrHide = oldState === "password";
+      var newState = isTextOrHide ? "text" : "password";
+      var newWord = isTextOrHide ? "Hide" : "Show";
+      props.togglePassword({
+        type: newState,
+        word: newWord
       });
     };
     return (
@@ -48022,33 +48300,60 @@ try {
         className: "mr-auto MFLXsm"
       })), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
-      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+        noValidate: true,
+        onSubmit: handleRegister
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
+        placeholder: "Username",
+        name: "username",
+        className: "form-control-register",
         value: username,
-        onChange: e => setUsername(e.target.value),
-        pattern: "[a-zA-Z0-9]+"
+        onChange: e => props.setUser({
+          ...user,
+          Username: e.target.value
+        })
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: "password",
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: togglepassword.type,
         value: password,
-        onChange: e => setPassword(e.target.value),
-        required: true,
-        pattern: "[a-zA-Z0-9 ]+"
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        placeholder: "Password",
+        name: "password",
+        className: "form-control-register",
+        onChange: e => props.setUser({
+          ...user,
+          Password: e.target.value
+        })
+      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "password-trigger",
+        onClick: changeState
+      }, _actionsActions.togglePassword.word)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
-      }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Email*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         value: email,
-        onChange: e => setEmail(e.target.value)
+        placeholder: "Email",
+        name: "email",
+        className: "form-control-register",
+        onChange: e => props.setUser({
+          ...user,
+          Email: e.target.value
+        })
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
-      }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: "birthday",
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "date",
         value: birthday,
-        onChange: e => setBirthday(e.target.value)
+        placeholder: "Birthday",
+        name: "birthday",
+        className: "form-control-register",
+        onChange: e => props.setUser({
+          ...user,
+          Birthday: e.target.value
+        })
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit",
@@ -48060,16 +48365,25 @@ try {
       }, "Log In")))
     );
   }
-  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
+  _s(RegisterView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
   _c = RegisterView;
+  exports.default = _reactRedux.connect(mapStateToProps, {
+    setUser: _actionsActions.setUser,
+    togglePassword: _actionsActions.togglePassword
+  })(RegisterView);
   RegisterView.propTypes = {
-    register: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired,
-      Email: _propTypesDefault.default.string.isRequired,
-      Birthday: _propTypesDefault.default.string
+    setUser: _propTypesDefault.default.func.isRequired,
+    user: _propTypesDefault.default.shape({
+      Username: _propTypesDefault.default.string,
+      Password: _propTypesDefault.default.string,
+      Email: _propTypesDefault.default.string,
+      Birthday: _propTypesDefault.default.Date
     }),
-    onRegister: _propTypesDefault.default.func
+    togglepassword: _propTypesDefault.default.shape({
+      type: _propTypesDefault.default.string,
+      word: _propTypesDefault.default.string
+    }),
+    togglePassword: _propTypesDefault.default.func.isRequired
   };
   var _c;
   $RefreshReg$(_c, "RegisterView");
@@ -48079,7 +48393,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-redux":"7GDa4","react-router-dom":"1PMSK","../../actions/actions":"5S6cN"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
