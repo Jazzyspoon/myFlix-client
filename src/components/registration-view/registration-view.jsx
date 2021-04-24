@@ -142,7 +142,7 @@ function RegisterView(props) {
 
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please create an account to continue.</p>
-      <Form noValidate onSubmit={handleRegister}>
+      <Form>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
 

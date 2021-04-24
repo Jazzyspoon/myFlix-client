@@ -117,7 +117,7 @@ export function LoginView(props) {
 
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please login to continue.</p>
-      <Form noValidate onSubmit={handleSubmit}>
+      <Form>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
