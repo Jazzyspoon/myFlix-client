@@ -48089,7 +48089,7 @@ try {
   })(LoginView);
   LoginView.propTypes = {
     onLoggedIn: _propTypesDefault.default.func.isRequired,
-    setUser: _propTypesDefault.default.func,
+    setUser: _propTypesDefault.default.func.isRequired,
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string,
       Password: _propTypesDefault.default.string

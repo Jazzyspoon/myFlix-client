@@ -167,7 +167,7 @@ export default connect(mapStateToProps, { setUser, togglePassword })(LoginView);
 
 LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired,
-  setUser: PropTypes.func,
+  setUser: PropTypes.func.isRequired,
   user: PropTypes.shape({
     Username: PropTypes.string,
     Password: PropTypes.string,
