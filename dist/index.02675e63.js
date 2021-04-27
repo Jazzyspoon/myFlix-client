@@ -47893,7 +47893,7 @@ try {
         }, 4000);
         return false;
       } else {
-        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
+        _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", {
           Username: username,
           Password: password
         }).then(response => {
@@ -47935,8 +47935,6 @@ try {
         placeholder: "Password",
         name: "password",
         onChange: e => setPassword(e.target.value)
-      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-        className: "password-trigger"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",

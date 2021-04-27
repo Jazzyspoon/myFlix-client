@@ -11,15 +11,7 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import ProfileView from "../profile-view/profile-view";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { Navbar, Nav, Form, Button, Col, Row } from "react-bootstrap";
 
 import "./main-view.scss";
 

@@ -25,7 +25,7 @@ function LoginView(props) {
       return false;
     } else {
       axios
-        .post(`https://movieflixappjp.herokuapp.com/login`, {
+        .post("https://movieflixappjp.herokuapp.com/login", {
           Username: username,
           Password: password,
         })
@@ -74,9 +74,6 @@ function LoginView(props) {
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span className="password-trigger">
-            {/* {togglepassword.word} */}
-          </span>
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Log In
