@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
@@ -8,40 +8,44 @@ import { setUser } from "../../actions/actions";
 import "./login-view.scss";
 
 function LoginView(props) {
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // let error = document.querySelector("error-message");
-    // if (error) {
-    // let container = document.querySelector(".btn-login").parentElement;
-    // let note = document.createElement("div");
-    // note.classList.add("note-message");
-    // note.innerText = `Form error.`;
-    // container.appendChild(note);
-    // setTimeout(function () {
-    //   container.removeChild(note);
-    // }, 4000);
-    // return false;
-    // } else
-    {
-      axios
-        .post(`https://movieflixappjp.herokuapp.com/login`, {
-          Username: username,
-          Password: password,
-        })
-        .then((response) => {
-          const data = response.data;
-          props.setUser(data);
-        })
-        .catch((e) => {
-          console.log(e);
-          console.error("no such user");
-        });
-      return true;
-    }
+    axios
+      .post(`https://movieflixappjp.herokuapp.com/login`, {
+        Username: username,
+        Password: password,
+      })
+      .then((response) => {
+        const data = response.data;
+        props.setUser(data);
+      })
+      .catch((e) => {
+        console.log(e);
+        console.error("no such user");
+      });
   };
+
+  useEffect(() => {
+    if (password === "" || password.length >= 6) {
+      setPasswordError("");
+    } else if (password.length < 6) {
+      setPasswordError("Password must be longer than 5 characters");
+    }
+  }, [password]);
+
+  useEffect(() => {
+    if (username === "" || username.length >= 6) {
+      setUsernameError("");
+    } else if (username.length < 6) {
+      setUsernameError("Username must be longer than 5 characters");
+    }
+  }, [username]);
 
   return (
     <div>
@@ -58,6 +62,7 @@ function LoginView(props) {
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
+            maxLength="10"
             type="text"
             placeholder="Username"
             name="username"
@@ -65,20 +70,26 @@ function LoginView(props) {
             required
             onChange={(e) => setUsername(e.target.value)}
           />
+          <p className="form-error">{usernameError}</p>
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
 
           <Form.Control
-            // type={togglepassword.type}
+            type={isPasswordVisible ? "text" : "password"}
+            maxLength="10"
             value={password}
             placeholder="Password"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span className="password-trigger">
-            {/* {togglepassword.word} */}
+          <span
+            className="password-trigger"
+            onClick={() => setPasswordVisible(!isPasswordVisible)}
+          >
+            {isPasswordVisible ? "Hide" : "Show"}
           </span>
+          <p className="form-error">{passwordError}</p>
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Log In

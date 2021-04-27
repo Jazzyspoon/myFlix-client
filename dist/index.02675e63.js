@@ -29811,9 +29811,7 @@ try {
           path: `/users/:username`,
           render: ({history}) => {
             if (!user) return (
-              /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
-                onLoggedIn: data => this.onLoggedIn(data)
-              })
+              /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, null)
             );
             if (movies.length === 0) return;
             return (
@@ -47878,36 +47876,38 @@ try {
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
+    const [usernameError, setUsernameError] = _react.useState("");
+    const [passwordError, setPasswordError] = _react.useState("");
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
+    const [isPasswordVisible, setPasswordVisible] = _react.useState(false);
     const handleSubmit = e => {
       e.preventDefault();
-      // let error = document.querySelector("error-message");
-      // if (error) {
-      // let container = document.querySelector(".btn-login").parentElement;
-      // let note = document.createElement("div");
-      // note.classList.add("note-message");
-      // note.innerText = `Form error.`;
-      // container.appendChild(note);
-      // setTimeout(function () {
-      // container.removeChild(note);
-      // }, 4000);
-      // return false;
-      // } else
-      {
-        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
-          Username: username,
-          Password: password
-        }).then(response => {
-          const data = response.data;
-          props.setUser(data);
-        }).catch(e => {
-          console.log(e);
-          console.error("no such user");
-        });
-        return true;
-      }
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
+        Username: username,
+        Password: password
+      }).then(response => {
+        const data = response.data;
+        props.setUser(data);
+      }).catch(e => {
+        console.log(e);
+        console.error("no such user");
+      });
     };
+    _react.useEffect(() => {
+      if (password === "" || password.length >= 6) {
+        setPasswordError("");
+      } else if (password.length < 6) {
+        setPasswordError("Password must be longer than 5 characters");
+      }
+    }, [password]);
+    _react.useEffect(() => {
+      if (username === "" || username.length >= 6) {
+        setUsernameError("");
+      } else if (username.length < 6) {
+        setUsernameError("Username must be longer than 5 characters");
+      }
+    }, [username]);
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
         expand: "sm",
@@ -47925,23 +47925,30 @@ try {
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        maxLength: "10",
         type: "text",
         placeholder: "Username",
         name: "username",
         value: username,
         required: true,
         onChange: e => setUsername(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, usernameError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        // type={togglepassword.type}
+        type: isPasswordVisible ? "text" : "password",
+        maxLength: "10",
         value: password,
         placeholder: "Password",
         name: "password",
         onChange: e => setPassword(e.target.value)
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-        className: "password-trigger"
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        className: "password-trigger",
+        onClick: () => setPasswordVisible(!isPasswordVisible)
+      }, isPasswordVisible ? "Hide" : "Show"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
@@ -47953,7 +47960,7 @@ try {
       }, "Register An Account"))))
     );
   }
-  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+  _s(LoginView, "se2pudMuSq1JBcZNiEsd2Co5v3k=");
   _c = LoginView;
   exports.default = _reactRedux.connect(null, {
     setUser: _actionsActions.setUser

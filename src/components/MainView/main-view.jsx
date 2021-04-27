@@ -189,10 +189,7 @@ export class MainView extends React.Component {
               exact
               path={`/users/:username`}
               render={({ history }) => {
-                if (!user)
-                  return (
-                    <LoginView onLoggedIn={(data) => this.onLoggedIn(data)} />
-                  );
+                if (!user) return <LoginView />;
                 if (movies.length === 0) return;
                 return <ProfileView history={history} movies={movies} />;
               }}
