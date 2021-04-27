@@ -29697,10 +29697,6 @@ try {
         console.log(error);
       });
     }
-    /*onLoggedIn(authData) {*/
-    /*this.props.setUser(authData)*/
-    /*this.getMovies(authData.token);*/
-    /*}*/
     /*log out*/
     onLogOut() {
       this.props.setUser("");
@@ -29718,14 +29714,12 @@ try {
           bg: "black",
           variant: "dark",
           fixed: "top"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-          href: "/"
-        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -29752,9 +29746,7 @@ try {
           path: "/",
           render: () => {
             if (!user) return (
-              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
-                onLoggedIn: user => this.onLoggedIn(user)
-              }))
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, null))
             );
             if (movies.length === 0) return (
               /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -47773,7 +47765,7 @@ try {
       });
     }
     render() {
-      const {movie, user} = this.props;
+      const {movie} = this.props;
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {

@@ -54,10 +54,6 @@ export class MainView extends React.Component {
       });
   }
 
-  // onLoggedIn(authData) {
-  //   this.props.setUser(authData)
-  //   this.getMovies(authData.token);
-  // }
   //log out
   onLogOut() {
     this.props.setUser("");
@@ -74,12 +70,12 @@ export class MainView extends React.Component {
         <div className="main-view ">
           {console.log(this.props)}
           <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-            <Navbar.Brand href="/">
+            <Navbar.Brand>
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
               <Nav.Item>
-                <Link to="/">
+                <Link to={`/`}>
                   <Button variant="link" className="colorcrew">
                     {" "}
                     <h5>Movies</h5>{" "}
@@ -122,7 +118,7 @@ export class MainView extends React.Component {
                 if (!user)
                   return (
                     <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                      <LoginView />
                     </Col>
                   );
                 if (movies.length === 0) return <div className="main-view" />;
