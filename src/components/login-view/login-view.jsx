@@ -4,27 +4,26 @@ import PropTypes from "prop-types";
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUser, togglePassword } from "../../actions/actions";
+import { setUser } from "../../actions/actions";
 import "./login-view.scss";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { togglepassword } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let error = document.querySelector(".error-message");
     if (error) {
-      // let container = document.querySelector(".btn-login").parentElement;
-      // let note = document.createElement("div");
-      // note.classList.add("note-message");
-      // note.innerText = `Form error.`;
-      // container.appendChild(note);
-      // setTimeout(function () {
-      //   container.removeChild(note);
-      // }, 4000);
-      // return false;
+      let container = document.querySelector(".btn-login").parentElement;
+      let note = document.createElement("div");
+      note.classList.add("note-message");
+      note.innerText = `Form error.`;
+      container.appendChild(note);
+      setTimeout(function () {
+        container.removeChild(note);
+      }, 4000);
+      return false;
     } else {
       axios
         .post(`https://movieflixappjp.herokuapp.com/login`, {
@@ -70,7 +69,7 @@ function LoginView(props) {
           <Form.Label>Password:</Form.Label>
 
           <Form.Control
-            type={togglepassword}
+            // type={togglepassword.type}
             value={password}
             placeholder="Password"
             name="password"
@@ -85,7 +84,7 @@ function LoginView(props) {
       <div>
         <span>Not a member?</span>
         <br></br>
-        <Link to="/register">
+        <Link to={`/register`}>
           <Button variant="success" type="submit">
             Register An Account
           </Button>
@@ -95,7 +94,7 @@ function LoginView(props) {
   );
 }
 
-export default connect(null, { setUser, togglePassword })(LoginView);
+export default connect(null, { setUser })(LoginView);
 
 LoginView.propTypes = {
   setUser: PropTypes.func.isRequired,

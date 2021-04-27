@@ -1,13 +1,11 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import React from "react";
-import { connect } from "react-redux";
 import { Button, Card, CardGroup, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { setUser } from "../../actions/actions";
 
 import "./profile-view.scss";
-class ProfileView extends React.Component {
+export class ProfileView extends React.Component {
   constructor(props) {
     super();
 
@@ -27,15 +25,15 @@ class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    const { token } = this.props.user;
-    this.getUser(token);
+    const accessToken = localStorage.getItem("token");
+    this.getUser(accessToken);
   }
 
   getUser(token) {
-    const { Username } = this.props.user.user;
+    const username = localStorage.getItem("user");
 
     axios
-      .get(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
+      .get(`https://movieflixappjp.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -53,12 +51,12 @@ class ProfileView extends React.Component {
   }
 
   handleUpdate = (e) => {
-    const { token } = this.props.user;
-    const { Username } = this.props.user.user;
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
       .put(
-        `https://movieflixappjp.herokuapp.com/users/${Username}`,
+        `https://movieflixappjp.herokuapp.com/users/${username}`,
         {
           Username: this.username,
           Password: this.password,
@@ -81,14 +79,14 @@ class ProfileView extends React.Component {
   };
 
   handleDeregistration = (e) => {
-    const { token } = this.props.user;
-    const { Username } = this.props.user.user;
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
-      .delete(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
+      .delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
 
-        username: Username,
+        Username: username,
       })
       .then((response) => {
         const data = response.data;
@@ -98,15 +96,21 @@ class ProfileView extends React.Component {
       .catch((e) => {
         console.log("error deregistering user");
       });
+
+    this.setState({
+      user: null,
+    });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   removeItem(movie) {
-    const { token } = this.props.user;
-    const { Username } = this.props.user.user;
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
       .delete(
-        `https://movieflixappjp.herokuapp.com/users/${Username}/Favoritemovies/${movie}`,
+        `https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`,
         {
           headers: { Authorization: `Bearer ${token}` },
 
@@ -269,13 +273,6 @@ class ProfileView extends React.Component {
     );
   }
 }
-
-let mapStateToProps = (state) => {
-  console.log(state);
-  return { user: state.user };
-};
-
-export default connect(mapStateToProps, { setUser })(ProfileView);
 
 ProfileView.propTypes = {
   user: PropTypes.shape({

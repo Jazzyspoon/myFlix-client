@@ -24,9 +24,9 @@ export class MainView extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     const accessToken = this.props.user.token;
-    if (accessToken) {
+    if (prevProps.user !== this.props.user && accessToken) {
       this.getMovies(accessToken);
     }
   }
@@ -46,10 +46,10 @@ export class MainView extends React.Component {
       });
   }
 
-  onLoggedIn(authData) {
-    this.props.setUser(authData);
-    this.getMovies(authData.token);
-  }
+  // onLoggedIn(authData) {
+  //   this.props.setUser(authData);
+  //   this.getMovies(authData.token);
+  // }
   //log out
   onLogOut() {
     this.props.setUser("");
@@ -59,18 +59,19 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, visibilityFilter } = this.props;
-    const { user } = this.props.user;
+    const { user, Username } = this.props.user;
 
     return (
       <Router>
         <div className="main-view ">
+          {console.log(this.props)}
           <Navbar expand="sm" bg="black" variant="dark" fixed="top">
             <Navbar.Brand href="/">
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
               <Nav.Item>
-                <Link to="/">
+                <Link to={`/`}>
                   <Button variant="link" className="colorcrew">
                     {" "}
                     <h5>Movies</h5>{" "}
@@ -78,14 +79,14 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to={user && `/users/${user.Username}`}>
+                <Link to={`/users/${Username}`}>
                   {" "}
                   <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>
                 </Link>
               </Nav.Item>
-              <Link to="/">
+              <Link to={`/`}>
                 <Button
                   variant="link"
                   onClick={() => this.onLogOut()}

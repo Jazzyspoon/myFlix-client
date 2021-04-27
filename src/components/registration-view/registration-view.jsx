@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import { setUser, togglePassword } from "../../actions/actions";
 import { connect } from "react-redux";
 import "./registration-view.scss";
@@ -86,11 +86,9 @@ function RegisterView(props) {
       <div>
         <span>Already a member?</span>
         <br></br>
-        <Link to="/">
-          <Button variant="primary" type="submit">
-            Log In
-          </Button>
-        </Link>
+        <Button href="/" variant="primary" type="submit">
+          Log In
+        </Button>
       </div>
     </div>
   );

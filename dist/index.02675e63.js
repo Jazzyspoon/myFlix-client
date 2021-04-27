@@ -29678,9 +29678,9 @@ try {
         user: null
       };
     }
-    componentDidMount() {
+    componentDidUpdate(prevProps) {
       const accessToken = this.props.user.token;
-      if (accessToken) {
+      if (prevProps.user !== this.props.user && accessToken) {
         this.getMovies(accessToken);
       }
     }
@@ -29697,10 +29697,10 @@ try {
         console.log(error);
       });
     }
-    onLoggedIn(authData) {
-      this.props.setUser(authData);
-      this.getMovies(authData.token);
-    }
+    /*onLoggedIn(authData) {*/
+    /*this.props.setUser(authData);*/
+    /*this.getMovies(authData.token);*/
+    /*}*/
     /*log out*/
     onLogOut() {
       this.props.setUser("");
@@ -29709,11 +29709,11 @@ try {
     }
     render() {
       const {movies, visibilityFilter} = this.props;
-      const {user} = this.props.user;
+      const {user, Username} = this.props.user;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view "
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        }, console.log(this.props), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           expand: "sm",
           bg: "black",
           variant: "dark",
@@ -29725,17 +29725,17 @@ try {
         }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: user && `/users/${user.Username}`
+          to: `/users/${Username}`
         }, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           onClick: () => this.onLogOut(),
@@ -47880,11 +47880,20 @@ try {
     _s();
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
-    const {togglepassword} = props;
     const handleSubmit = e => {
       e.preventDefault();
       let error = document.querySelector(".error-message");
-      if (error) {} else {
+      if (error) {
+        let container = document.querySelector(".btn-login").parentElement;
+        let note = document.createElement("div");
+        note.classList.add("note-message");
+        note.innerText = `Form error.`;
+        container.appendChild(note);
+        setTimeout(function () {
+          container.removeChild(note);
+        }, 4000);
+        return false;
+      } else {
         _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
           Username: username,
           Password: password
@@ -47922,7 +47931,7 @@ try {
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: togglepassword,
+        // type={togglepassword.type}
         value: password,
         placeholder: "Password",
         name: "password",
@@ -47932,7 +47941,7 @@ try {
         type: "submit",
         onClick: handleSubmit
       }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/register"
+        to: `/register`
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit"
@@ -47942,8 +47951,7 @@ try {
   _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
   _c = LoginView;
   exports.default = _reactRedux.connect(null, {
-    setUser: _actionsActions.setUser,
-    togglePassword: _actionsActions.togglePassword
+    setUser: _actionsActions.setUser
   })(LoginView);
   LoginView.propTypes = {
     setUser: _propTypesDefault.default.func.isRequired,
@@ -47980,7 +47988,6 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactRouterDom = require("react-router-dom");
   var _actionsActions = require("../../actions/actions");
   var _reactRedux = require("react-redux");
   require("./registration-view.scss");
@@ -48051,12 +48058,11 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        href: "/",
         variant: "primary",
         type: "submit"
-      }, "Log In"))))
+      }, "Log In")))
     );
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
@@ -48087,7 +48093,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48233,16 +48239,17 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "ProfileView", function () {
+    return ProfileView;
+  });
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _reactRedux = require("react-redux");
   var _reactBootstrap = require("react-bootstrap");
   require("react-router-dom");
-  var _actionsActions = require("../../actions/actions");
   require("./profile-view.scss");
   function _defineProperty(obj, key, value) {
     if ((key in obj)) {
@@ -48261,9 +48268,9 @@ try {
     constructor(props) {
       super();
       _defineProperty(this, "handleUpdate", e => {
-        const {token} = this.props.user;
-        const {Username} = this.props.user.user;
-        _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${username}`, {
           Username: this.username,
           Password: this.password,
           Email: this.email,
@@ -48282,13 +48289,13 @@ try {
         });
       });
       _defineProperty(this, "handleDeregistration", e => {
-        const {token} = this.props.user;
-        const {Username} = this.props.user.user;
-        _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
-          username: Username
+          Username: username
         }).then(response => {
           const data = response.data;
           console.log(data);
@@ -48296,6 +48303,11 @@ try {
         }).catch(e => {
           console.log("error deregistering user");
         });
+        this.setState({
+          user: null
+        });
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
       });
       this.username = undefined;
       this.password = undefined;
@@ -48311,12 +48323,12 @@ try {
       };
     }
     componentDidMount() {
-      const {token} = this.props.user;
-      this.getUser(token);
+      const accessToken = localStorage.getItem("token");
+      this.getUser(accessToken);
     }
     getUser(token) {
-      const {Username} = this.props.user.user;
-      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
+      const username = localStorage.getItem("user");
+      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/users/${username}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -48333,9 +48345,9 @@ try {
       });
     }
     removeItem(movie) {
-      const {token} = this.props.user;
-      const {Username} = this.props.user.user;
-      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${Username}/Favoritemovies/${movie}`, {
+      const username = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -48459,15 +48471,6 @@ try {
       );
     }
   }
-  let mapStateToProps = state => {
-    console.log(state);
-    return {
-      user: state.user
-    };
-  };
-  exports.default = _reactRedux.connect(mapStateToProps, {
-    setUser: _actionsActions.setUser
-  })(ProfileView);
   ProfileView.propTypes = {
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string.isRequired,
@@ -48483,7 +48486,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"3vUkb":[function(require,module,exports) {
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"3vUkb":[function(require,module,exports) {
 'use strict';
 
 var compose = require('redux').compose;
