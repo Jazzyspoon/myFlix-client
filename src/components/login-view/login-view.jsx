@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./login-view.scss";
 
 function LoginView(props) {
-  const { user, togglepassword } = props;
+  const { user } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -100,7 +100,7 @@ export default LoginView;
 
 LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
+
   user: PropTypes.shape({
     Username: PropTypes.string,
     Password: PropTypes.string,

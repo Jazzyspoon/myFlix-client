@@ -3,17 +3,14 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import AddFavoriteMovie from "../add-fav/add-fav";
 import "./movie-view.scss";
-import { addtoFavorites } from "../../actions/actions";
 
 export class MovieView extends React.Component {
   constructor() {
     super();
     this.state = {};
   }
-
-  // add to favorites function
+  //add to favorites function
   addToFavorites(movie) {
     let token = localStorage.getItem("token");
     let url =
@@ -77,16 +74,15 @@ export class MovieView extends React.Component {
                       </Button>
                     </Link>
                   </Card.Text>
-
-                  {/* How do i call this button in? */}
-
-                  <Button
-                    className="favbutton"
-                    variant="success"
-                    onClick={() => this.addToFavorites(movie)}
-                  >
-                    Add to Favorites
-                  </Button>
+                  <div>
+                    <Button
+                      className="favbutton"
+                      variant="success"
+                      onClick={() => this.addToFavorites(movie)}
+                    >
+                      Add to Favorites
+                    </Button>
+                  </div>
 
                   <Link to={`/`}>
                     <Button className="favbutton" variant="danger">

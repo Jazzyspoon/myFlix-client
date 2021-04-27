@@ -102,7 +102,7 @@ class ProfileView extends React.Component {
 
   removeItem(movie) {
     const { token } = this.props.user;
-    const { Username } = this.props.user.user;
+    const { Username } = this.props.user.Username;
 
     axios
       .delete(
