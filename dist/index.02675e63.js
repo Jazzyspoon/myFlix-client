@@ -47876,7 +47876,7 @@ try {
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
-    const {user} = props;
+    const {user, togglepassword} = props;
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const handleSubmit = e => {
@@ -47930,7 +47930,7 @@ try {
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        // type={togglepassword.type}
+        type: togglepassword,
         value: password,
         placeholder: "Password",
         name: "password",
@@ -47997,6 +47997,7 @@ try {
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
+    const {togglepassword} = props;
     const handleRegister = e => {
       e.preventDefault();
       // entire URL is in package.json under 'proxy' to get past CORS
@@ -48035,7 +48036,7 @@ try {
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: "password",
+        type: togglepassword,
         value: password,
         onChange: e => setPassword(e.target.value),
         required: true,
@@ -48073,7 +48074,12 @@ try {
       Email: _propTypesDefault.default.string.isRequired,
       Birthday: _propTypesDefault.default.string
     }),
-    onRegister: _propTypesDefault.default.func
+    onRegister: _propTypesDefault.default.func,
+    togglepassword: _propTypesDefault.default.shape({
+      type: _propTypesDefault.default.string,
+      word: _propTypesDefault.default.string
+    }),
+    togglePassword: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "RegisterView");

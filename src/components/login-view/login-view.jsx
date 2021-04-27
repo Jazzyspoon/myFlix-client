@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./login-view.scss";
 
 function LoginView(props) {
-  const { user } = props;
+  const { user, togglepassword } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -68,7 +68,7 @@ function LoginView(props) {
           <Form.Label>Password:</Form.Label>
 
           <Form.Control
-            // type={togglepassword.type}
+            type={togglepassword}
             value={password}
             placeholder="Password"
             name="password"

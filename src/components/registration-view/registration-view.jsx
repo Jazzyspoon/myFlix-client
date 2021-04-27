@@ -10,7 +10,7 @@ export function RegisterView(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-
+  const { togglepassword } = props;
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -54,7 +54,7 @@ export function RegisterView(props) {
         <Form.Group controlId="formPassword">
           Create Password:
           <Form.Control
-            type="password"
+            type={togglepassword}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -103,4 +103,9 @@ RegisterView.propTypes = {
     Birthday: PropTypes.string,
   }),
   onRegister: PropTypes.func,
+  togglepassword: PropTypes.shape({
+    type: PropTypes.string,
+    word: PropTypes.string,
+  }),
+  togglePassword: PropTypes.func,
 };
