@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { setUser, togglePassword } from "../../actions/actions";
+import { connect } from "react-redux";
 import "./registration-view.scss";
-
-export function RegisterView(props) {
+function RegisterView(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-  const { togglepassword } = props;
+  const { user, togglepassword } = props;
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -94,6 +95,8 @@ export function RegisterView(props) {
     </div>
   );
 }
+
+export default connect(null, { setUser, togglePassword })(RegisterView);
 
 RegisterView.propTypes = {
   register: PropTypes.shape({

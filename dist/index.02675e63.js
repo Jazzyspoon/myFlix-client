@@ -47872,33 +47872,25 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _reactRedux = require("react-redux");
+  var _actionsActions = require("../../actions/actions");
   require("./login-view.scss");
   var _s = $RefreshSig$();
   function LoginView(props) {
     _s();
-    const {user, togglepassword} = props;
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
+    const {togglepassword} = props;
     const handleSubmit = e => {
       e.preventDefault();
       let error = document.querySelector(".error-message");
-      if (error) {
-        let container = document.querySelector(".btn-login").parentElement;
-        let note = document.createElement("div");
-        note.classList.add("note-message");
-        note.innerText = `Form error.`;
-        container.appendChild(note);
-        setTimeout(function () {
-          container.removeChild(note);
-        }, 4000);
-        return false;
-      } else {
-        _axiosDefault.default.post("https://movieflixappjp.herokuapp.com/login", {
+      if (error) {} else {
+        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
           Username: username,
           Password: password
         }).then(response => {
           const data = response.data;
-          props.onLoggedIn(data);
+          props.setUser(data);
         }).catch(e => {
           console.log(e);
           console.error("no such user");
@@ -47949,9 +47941,12 @@ try {
   }
   _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
   _c = LoginView;
-  exports.default = LoginView;
+  exports.default = _reactRedux.connect(null, {
+    setUser: _actionsActions.setUser,
+    togglePassword: _actionsActions.togglePassword
+  })(LoginView);
   LoginView.propTypes = {
-    onLoggedIn: _propTypesDefault.default.func.isRequired,
+    setUser: _propTypesDefault.default.func.isRequired,
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string,
       Password: _propTypesDefault.default.string
@@ -47970,7 +47965,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47978,9 +47973,6 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "RegisterView", function () {
-    return RegisterView;
-  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
@@ -47989,6 +47981,8 @@ try {
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _reactRouterDom = require("react-router-dom");
+  var _actionsActions = require("../../actions/actions");
+  var _reactRedux = require("react-redux");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
   function RegisterView(props) {
@@ -47997,7 +47991,7 @@ try {
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [birthday, setBirthday] = _react.useState("");
-    const {togglepassword} = props;
+    const {user, togglepassword} = props;
     const handleRegister = e => {
       e.preventDefault();
       // entire URL is in package.json under 'proxy' to get past CORS
@@ -48067,6 +48061,10 @@ try {
   }
   _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
   _c = RegisterView;
+  exports.default = _reactRedux.connect(null, {
+    setUser: _actionsActions.setUser,
+    togglePassword: _actionsActions.togglePassword
+  })(RegisterView);
   RegisterView.propTypes = {
     register: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string.isRequired,
@@ -48089,7 +48087,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

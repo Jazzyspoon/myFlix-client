@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setUser, togglePassword } from "../../actions/actions";
 import "./login-view.scss";
 
 function LoginView(props) {
-  const { user, togglepassword } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { togglepassword } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let error = document.querySelector(".error-message");
     if (error) {
-      let container = document.querySelector(".btn-login").parentElement;
-      let note = document.createElement("div");
-      note.classList.add("note-message");
-      note.innerText = `Form error.`;
-      container.appendChild(note);
-      setTimeout(function () {
-        container.removeChild(note);
-      }, 4000);
-      return false;
+      // let container = document.querySelector(".btn-login").parentElement;
+      // let note = document.createElement("div");
+      // note.classList.add("note-message");
+      // note.innerText = `Form error.`;
+      // container.appendChild(note);
+      // setTimeout(function () {
+      //   container.removeChild(note);
+      // }, 4000);
+      // return false;
     } else {
       axios
-        .post("https://movieflixappjp.herokuapp.com/login", {
+        .post(`https://movieflixappjp.herokuapp.com/login`, {
           Username: username,
           Password: password,
         })
         .then((response) => {
           const data = response.data;
-          props.onLoggedIn(data);
+          props.setUser(data);
         })
         .catch((e) => {
           console.log(e);
@@ -93,11 +95,10 @@ function LoginView(props) {
   );
 }
 
-export default LoginView;
+export default connect(null, { setUser, togglePassword })(LoginView);
 
 LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
-
+  setUser: PropTypes.func.isRequired,
   user: PropTypes.shape({
     Username: PropTypes.string,
     Password: PropTypes.string,
