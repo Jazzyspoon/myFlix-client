@@ -32,7 +32,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie } = this.props;
+    const { movie, user } = this.props;
 
     if (!movie) return null;
 

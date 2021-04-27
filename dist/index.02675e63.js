@@ -47775,7 +47775,7 @@ try {
       });
     }
     render() {
-      const {movie} = this.props;
+      const {movie, user} = this.props;
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
@@ -47912,9 +47912,7 @@ try {
         bg: "black",
         variant: "dark",
         fixed: "top"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "/"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
@@ -48023,9 +48021,7 @@ try {
         bg: "black",
         variant: "dark",
         fixed: "top"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "/"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
@@ -48290,7 +48286,7 @@ try {
           headers: {
             Authorization: `Bearer ${token}`
           },
-          Username: Username
+          username: Username
         }).then(response => {
           const data = response.data;
           console.log(data);
@@ -48336,7 +48332,7 @@ try {
     }
     removeItem(movie) {
       const {token} = this.props.user;
-      const {Username} = this.props.user.Username;
+      const {Username} = this.props.user.user;
       _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${Username}/Favoritemovies/${movie}`, {
         headers: {
           Authorization: `Bearer ${token}`

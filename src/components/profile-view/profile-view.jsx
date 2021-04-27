@@ -88,7 +88,7 @@ class ProfileView extends React.Component {
       .delete(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
 
-        Username: Username,
+        username: Username,
       })
       .then((response) => {
         const data = response.data;
@@ -102,7 +102,7 @@ class ProfileView extends React.Component {
 
   removeItem(movie) {
     const { token } = this.props.user;
-    const { Username } = this.props.user.Username;
+    const { Username } = this.props.user.user;
 
     axios
       .delete(

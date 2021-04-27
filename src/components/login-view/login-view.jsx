@@ -44,7 +44,7 @@ function LoginView(props) {
   return (
     <div>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm"></Nav>
