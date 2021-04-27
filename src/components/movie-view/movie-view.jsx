@@ -13,26 +13,26 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
-  //add to favorites function
-  // addToFavorites(movie) {
-  //   let token = localStorage.getItem("token");
-  //   let url =
-  //     "https://movieflixappjp.herokuapp.com/users/" +
-  //     localStorage.getItem("user") +
-  //     "/movies/" +
-  //     movie._id;
-  //   console.log(token);
+  // add to favorites function
+  addToFavorites(movie) {
+    let token = localStorage.getItem("token");
+    let url =
+      "https://movieflixappjp.herokuapp.com/users/" +
+      localStorage.getItem("user") +
+      "/movies/" +
+      movie._id;
+    console.log(token);
 
-  //   axios
-  //     .post(url, "", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
+    axios
+      .post(url, "", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
 
-  //       alert("Added to favorites!");
-  //     });
-  // }
+        alert("Added to favorites!");
+      });
+  }
 
   render() {
     const { movie } = this.props;
@@ -79,14 +79,14 @@ export class MovieView extends React.Component {
                   </Card.Text>
 
                   {/* How do i call this button in? */}
-                  <div>{/* <AddFavoriteMovie /> */}</div>
-                  {/* <Button
-                      className="favbutton"
-                      variant="success"
-                      onClick={() => this.addToFavorites(movie)}
-                    >
-                      Add to Favorites
-                    </Button> */}
+
+                  <Button
+                    className="favbutton"
+                    variant="success"
+                    onClick={() => this.addToFavorites(movie)}
+                  >
+                    Add to Favorites
+                  </Button>
 
                   <Link to={`/`}>
                     <Button className="favbutton" variant="danger">

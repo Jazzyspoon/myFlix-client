@@ -29335,14 +29335,9 @@ function movies(state = [], action) {
       return state;
   }
 }
-function user(state = {
-  Username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
-  Password: "",
-  Email: "",
-  Birthday: ""
-}, action) {
+function user(state = "", action) {
   switch (action.type) {
-    case _actionsActions.SET_USERS:
+    case _actionsActions.SET_USER:
       return action.value;
     default:
       return state;
@@ -29418,7 +29413,7 @@ function setFilter(value) {
 }
 function setUser(value) {
   return {
-    type: SET_USERS,
+    type: SET_USER,
     value
   };
 }
@@ -29665,10 +29660,12 @@ try {
   var _moviesListMoviesListDefault = _parcelHelpers.interopDefault(_moviesListMoviesList);
   var _movieViewMovieView = require("../movie-view/movie-view");
   var _loginViewLoginView = require("../login-view/login-view");
+  var _loginViewLoginViewDefault = _parcelHelpers.interopDefault(_loginViewLoginView);
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
   var _directorViewDirectorView = require("../director-view/director-view");
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _profileViewProfileView = require("../profile-view/profile-view");
+  var _profileViewProfileViewDefault = _parcelHelpers.interopDefault(_profileViewProfileView);
   var _visibilityFilterInputVisibilityFilterInput = require("../visibility-filter-input/visibility-filter-input");
   var _visibilityFilterInputVisibilityFilterInputDefault = _parcelHelpers.interopDefault(_visibilityFilterInputVisibilityFilterInput);
   var _reactBootstrap = require("react-bootstrap");
@@ -29682,11 +29679,8 @@ try {
       };
     }
     componentDidMount() {
-      let accessToken = localStorage.getItem("token");
-      if (accessToken !== null) {
-        this.setState({
-          user: localStorage.getItem("user")
-        });
+      const accessToken = this.props.user.token;
+      if (accessToken) {
         this.getMovies(accessToken);
       }
     }
@@ -29696,6 +29690,7 @@ try {
           Authorization: `Bearer ${token}`
         }
       }).then(response => {
+        console.log(response);
         // Assign the result to the state
         this.props.setMovies(response.data);
       }).catch(function (error) {
@@ -29703,27 +29698,18 @@ try {
       });
     }
     onLoggedIn(authData) {
-      console.log(authData);
-      this.setState({
-        user: authData.user.Username
-      });
-      localStorage.setItem("token", authData.token);
-      localStorage.setItem("user", authData.user.Username);
+      this.props.setUser(authData);
       this.getMovies(authData.token);
     }
     /*log out*/
     onLogOut() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      this.setState({
-        user: null
-      });
+      this.props.setUser("");
       alert("You are now logged out");
       window.open("/", "_self");
     }
     render() {
-      let {movies, visibilityFilter} = this.props;
-      let {user} = this.state;
+      const {movies, visibilityFilter} = this.props;
+      const {user} = this.props.user;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view "
@@ -29744,7 +29730,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/users/${user}`
+          to: user && `/users/${user.Username}`
         }, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
@@ -29766,7 +29752,7 @@ try {
           path: "/",
           render: () => {
             if (!user) return (
-              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
                 onLoggedIn: user => this.onLoggedIn(user)
               }))
             );
@@ -29825,13 +29811,13 @@ try {
           path: `/users/:username`,
           render: ({history}) => {
             if (!user) return (
-              /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+              /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
                 onLoggedIn: data => this.onLoggedIn(data)
               })
             );
             if (movies.length === 0) return;
             return (
-              /*#__PURE__*/_reactDefault.default.createElement(_profileViewProfileView.ProfileView, {
+              /*#__PURE__*/_reactDefault.default.createElement(_profileViewProfileViewDefault.default, {
                 history: history,
                 movies: movies
               })
@@ -29843,11 +29829,13 @@ try {
   }
   let mapStateToProps = state => {
     return {
-      movies: state.movies
+      movies: state.movies,
+      user: state.user
     };
   };
   exports.default = _reactRedux.connect(mapStateToProps, {
-    setMovies: _actionsActions.setMovies
+    setMovies: _actionsActions.setMovies,
+    setUser: _actionsActions.setUser
   })(MainView);
   helpers.postlude(module);
 } finally {
@@ -47760,7 +47748,8 @@ try {
   });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  require("axios");
+  var _axios = require("axios");
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
@@ -47774,23 +47763,19 @@ try {
       this.state = {};
     }
     /*add to favorites function*/
-    /*addToFavorites(movie) {*/
-    /*let token = localStorage.getItem("token");*/
-    /*let url =*/
-    /*"https://movieflixappjp.herokuapp.com/users/" +*/
-    /*localStorage.getItem("user") +*/
-    /*"/movies/" +*/
-    /*movie._id;*/
-    /*console.log(token);*/
-    /*axios*/
-    /*.post(url, "", {*/
-    /*headers: { Authorization: `Bearer ${token}` },*/
-    /*})*/
-    /*.then((response) => {*/
-    /*console.log(response);*/
-    /*alert("Added to favorites!");*/
-    /*});*/
-    /*}*/
+    addToFavorites(movie) {
+      let token = localStorage.getItem("token");
+      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
+      console.log(token);
+      _axiosDefault.default.post(url, "", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        console.log(response);
+        alert("Added to favorites!");
+      });
+    }
     render() {
       const {movie} = this.props;
       if (!movie) return null;
@@ -47836,7 +47821,11 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           size: "sm",
           variant: "dark"
-        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement("div", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "(What is ", movie.Genre.Name, "?)", " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          className: "favbutton",
+          variant: "success",
+          onClick: () => this.addToFavorites(movie)
+        }, "Add to Favorites"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
           to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           className: "favbutton",
@@ -47924,9 +47913,6 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "LoginView", function () {
-    return LoginView;
-  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
@@ -47935,22 +47921,13 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
-  var _reactRedux = require("react-redux");
-  var _actionsActions = require("../../actions/actions");
   require("./login-view.scss");
   var _s = $RefreshSig$();
-  const mapStateToProps = state => {
-    const {user, togglepassword} = state;
-    return {
-      user,
-      togglepassword
-    };
-  };
   function LoginView(props) {
     _s();
     const {user, togglepassword} = props;
-    const [username] = _react.useState("");
-    const [password] = _react.useState("");
+    const [username, setUsername] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
     const handleSubmit = e => {
       e.preventDefault();
       let error = document.querySelector(".error-message");
@@ -47965,69 +47942,18 @@ try {
         }, 4000);
         return false;
       } else {
-        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {}, {
+        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/login`, {
           Username: username,
           Password: password
         }).then(response => {
           const data = response.data;
           props.onLoggedIn(data);
         }).catch(e => {
+          console.log(e);
           console.error("no such user");
         });
         return true;
       }
-    };
-    _react.useEffect(() => {
-      let usernameInput = document.querySelector("#formUsername");
-      let passwordInput = document.querySelector("#formPassword");
-      function validateUsername() {
-        let value = usernameInput.value;
-        let reg = /\w{5,}/;
-        if (!value) {
-          showErrorMessage(usernameInput, "Username is required.");
-          return false;
-        }
-        if (!reg.test(value)) {
-          showErrorMessage(usernameInput, "Username must contain at least 5 alphanumeric characters.");
-          return false;
-        }
-        showErrorMessage(usernameInput, null);
-        return true;
-      }
-      function validatePassword() {
-        let value = passwordInput.value;
-        if (!value) {
-          showErrorMessage(passwordInput, "Please provide your password.");
-          return false;
-        }
-        showErrorMessage(passwordInput, null);
-        return true;
-      }
-      function showErrorMessage(input, message) {
-        let container = input.parentElement;
-        let error = container.querySelector(".error-message");
-        if (error) {
-          container.removeChild(error);
-        }
-        if (message) {
-          let error = document.createElement("div");
-          error.classList.add("error-message");
-          error.innerText = message;
-          container.appendChild(error);
-        }
-      }
-      usernameInput.oninput = validateUsername;
-      passwordInput.oninput = validatePassword;
-    });
-    const changeState = () => {
-      var oldState = togglepassword.type;
-      var isTextOrHide = oldState === "password";
-      var newState = isTextOrHide ? "text" : "password";
-      var newWord = isTextOrHide ? "Hide" : "Show";
-      props.togglePassword({
-        type: newState,
-        word: newWord
-      });
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
@@ -48051,25 +47977,18 @@ try {
         name: "username",
         value: username,
         required: true,
-        onChange: e => props.setUser({
-          ...user,
-          Username: e.target.value
-        })
+        onChange: e => setUsername(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: togglepassword.type,
+        // type={togglepassword.type}
         value: password,
         placeholder: "Password",
         name: "password",
-        onChange: e => props.setUser({
-          ...user,
-          Password: e.target.value
-        })
+        onChange: e => setPassword(e.target.value)
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-        className: "password-trigger",
-        onClick: changeState
-      }, togglepassword.word)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        className: "password-trigger"
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
@@ -48081,12 +48000,9 @@ try {
       }, "Register An Account"))))
     );
   }
-  _s(LoginView, "K459sDewLHBGTHY5VxO7kRVq4zo=");
+  _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
   _c = LoginView;
-  exports.default = _reactRedux.connect(mapStateToProps, {
-    setUser: _actionsActions.setUser,
-    togglePassword: _actionsActions.togglePassword
-  })(LoginView);
+  exports.default = LoginView;
   LoginView.propTypes = {
     onLoggedIn: _propTypesDefault.default.func.isRequired,
     setUser: _propTypesDefault.default.func.isRequired,
@@ -48108,7 +48024,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-redux":"7GDa4"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48497,17 +48413,16 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "ProfileView", function () {
-    return ProfileView;
-  });
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactRedux = require("react-redux");
   var _reactBootstrap = require("react-bootstrap");
   require("react-router-dom");
+  var _actionsActions = require("../../actions/actions");
   require("./profile-view.scss");
   function _defineProperty(obj, key, value) {
     if ((key in obj)) {
@@ -48526,9 +48441,9 @@ try {
     constructor(props) {
       super();
       _defineProperty(this, "handleUpdate", e => {
-        const username = localStorage.getItem("user");
-        const token = localStorage.getItem("token");
-        _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${username}`, {
+        const {token} = this.props.user;
+        const {Username} = this.props.user.user;
+        _axiosDefault.default.put(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
           Username: this.username,
           Password: this.password,
           Email: this.email,
@@ -48547,13 +48462,13 @@ try {
         });
       });
       _defineProperty(this, "handleDeregistration", e => {
-        const username = localStorage.getItem("user");
-        const token = localStorage.getItem("token");
-        _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}`, {
+        const {token} = this.props.user;
+        const {Username} = this.props.user.user;
+        _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
-          Username: username
+          Username: Username
         }).then(response => {
           const data = response.data;
           console.log(data);
@@ -48561,11 +48476,6 @@ try {
         }).catch(e => {
           console.log("error deregistering user");
         });
-        this.setState({
-          user: null
-        });
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
       });
       this.username = undefined;
       this.password = undefined;
@@ -48581,12 +48491,12 @@ try {
       };
     }
     componentDidMount() {
-      const accessToken = localStorage.getItem("token");
-      this.getUser(accessToken);
+      const {token} = this.props.user;
+      this.getUser(token);
     }
     getUser(token) {
-      const username = localStorage.getItem("user");
-      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/users/${username}`, {
+      const {Username} = this.props.user.user;
+      _axiosDefault.default.get(`https://movieflixappjp.herokuapp.com/users/${Username}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -48603,9 +48513,9 @@ try {
       });
     }
     removeItem(movie) {
-      const username = localStorage.getItem("user");
-      const token = localStorage.getItem("token");
-      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${username}/Favoritemovies/${movie}`, {
+      const {token} = this.props.user;
+      const {Username} = this.props.user.user;
+      _axiosDefault.default.delete(`https://movieflixappjp.herokuapp.com/users/${Username}/Favoritemovies/${movie}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -48729,6 +48639,15 @@ try {
       );
     }
   }
+  let mapStateToProps = state => {
+    console.log(state);
+    return {
+      user: state.user
+    };
+  };
+  exports.default = _reactRedux.connect(mapStateToProps, {
+    setUser: _actionsActions.setUser
+  })(ProfileView);
   ProfileView.propTypes = {
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string.isRequired,
@@ -48744,7 +48663,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"3vUkb":[function(require,module,exports) {
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"3vUkb":[function(require,module,exports) {
 'use strict';
 
 var compose = require('redux').compose;

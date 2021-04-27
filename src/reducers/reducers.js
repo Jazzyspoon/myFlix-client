@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import {
   SET_FILTER,
   SET_MOVIES,
-  SET_USERS,
+  SET_USER,
   TOGGLE_PASSWORD,
 } from "../actions/actions";
 
@@ -25,19 +25,9 @@ function movies(state = [], action) {
   }
 }
 
-function user(
-  state = {
-    Username: localStorage.getItem("username")
-      ? localStorage.getItem("username")
-      : "",
-    Password: "",
-    Email: "",
-    Birthday: "",
-  },
-  action
-) {
+function user(state = "", action) {
   switch (action.type) {
-    case SET_USERS:
+    case SET_USER:
       return action.value;
     default:
       return state;
