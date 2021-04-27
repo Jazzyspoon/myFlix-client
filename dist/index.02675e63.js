@@ -29709,7 +29709,7 @@ try {
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view "
-        }, console.log(this.props), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           expand: "sm",
           bg: "black",
           variant: "dark",
@@ -29729,7 +29729,7 @@ try {
           variant: "link",
           className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: "/"
+          to: `/`
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           onClick: () => this.onLogOut(),
@@ -47998,29 +47998,23 @@ try {
   require("./registration-view.scss");
   var _s = $RefreshSig$();
   const mapStateToProps = state => {
-    const {user, togglepassword} = state;
+    const {user} = state;
     return {
-      user,
-      togglepassword
+      user
     };
   };
   function RegisterView(props) {
     _s();
-    const {user: username, togglepassword} = props;
+    const {user} = props;
+    // const [username, setUsername] = useState("");
+    // const [password, setPassword] = useState("");
+    const [usernameError, setUsernameError] = _react.useState("");
+    const [passwordError, setPasswordError] = _react.useState("");
+    const [isPasswordVisible, setPasswordVisible] = _react.useState(false);
     const handleRegister = e => {
       e.preventDefault();
       let error = document.querySelector(".error-message");
-      if (error) {
-        let container = document.querySelector(".btn-register").parentElement;
-        let note = document.createElement("div");
-        note.classList.add("note-message");
-        note.innerText = `Registration not possible due to input errors. `;
-        container.appendChild(note);
-        setTimeout(function () {
-          container.removeChild(note);
-        }, 4000);
-        return false;
-      } else {
+      if (error) {} else {
         // entire URL is in package.json under 'proxy' to get past CORS
         _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
           Username: username,
@@ -48037,94 +48031,27 @@ try {
         return true;
       }
     };
-    useEffect(() => {
-      let usernameInput = document.querySelector("#formUsername");
-      let passwordInput = document.querySelector("#formPassword");
-      let emailInput = document.querySelector("#formEmail");
-      let birthdayInput = document.querySelector("#formBirthday");
-      function validateUsername() {
-        let value = usernameInput.value;
-        let reg = /\w{5,}/;
-        if (!value) {
-          showErrorMessage(usernameInput, "Username is required.");
-          return false;
-        }
-        if (!reg.test(value)) {
-          showErrorMessage(usernameInput, "Username must contain at least 5 alphanumeric characters.");
-          return false;
-        }
-        showErrorMessage(usernameInput, null);
-        return true;
+    _react.useEffect(() => {
+      if (password === "" || password.length >= 6) {
+        setPasswordError("");
+      } else if (password.length < 6) {
+        setPasswordError("Password must be longer than 5 characters");
       }
-      function validatePassword() {
-        let value = passwordInput.value;
-        if (!value) {
-          showErrorMessage(passwordInput, "Please provide your password.");
-          return false;
-        }
-        showErrorMessage(passwordInput, null);
-        return true;
+    }, [password]);
+    _react.useEffect(() => {
+      if (username === "" || username.length >= 6) {
+        setUsernameError("");
+      } else if (username.length < 6) {
+        setUsernameError("Username must be longer than 5 characters");
       }
-      function validateEmail() {
-        let value = emailInput.value;
-        let reg = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-        if (!value) {
-          showErrorMessage(emailInput, "Email is required.");
-          return false;
-        }
-        if (!reg.test(value)) {
-          showErrorMessage(emailInput, "Invalid mail pattern.");
-          return false;
-        }
-        showErrorMessage(emailInput, null);
-        return true;
-      }
-      function validateBirthday() {
-        let value = birthdayInput.value;
-        if (!value instanceof Date) {
-          showErrorMessage(birthdayInput, "Please enter a valid date.");
-          return false;
-        }
-        showErrorMessage(birthdayInput, null);
-        return true;
-      }
-      function showErrorMessage(input, message) {
-        let container = input.parentElement;
-        let error = container.querySelector(".error-message");
-        if (error) {
-          container.removeChild(error);
-        }
-        if (message) {
-          let error = document.createElement("div");
-          error.classList.add("error-message");
-          error.innerText = message;
-          container.appendChild(error);
-        }
-      }
-      usernameInput.oninput = validateUsername;
-      passwordInput.oninput = validatePassword;
-      emailInput.oninput = validateEmail;
-      birthdayInput.onchange = validateBirthday;
-    });
-    const changeState = () => {
-      var oldState = togglepassword.type;
-      var isTextOrHide = oldState === "password";
-      var newState = isTextOrHide ? "text" : "password";
-      var newWord = isTextOrHide ? "Hide" : "Show";
-      props.togglePassword({
-        type: newState,
-        word: newWord
-      });
-    };
+    }, [username]);
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
         expand: "sm",
         bg: "black",
         variant: "dark",
         fixed: "top"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "/"
-      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
@@ -48133,20 +48060,25 @@ try {
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        maxLength: "10",
         type: "text",
         placeholder: "Username",
         name: "username",
-        className: "form-control-register",
         value: username,
+        className: "form-control-register",
+        required: true,
         onChange: e => props.setUser({
           ...user,
           Username: e.target.value
         })
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, usernameError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: togglepassword.type,
-        value: Password,
+        type: isPasswordVisible ? "text" : "password",
+        maxLength: "10",
+        value: password,
         placeholder: "Password",
         name: "password",
         className: "form-control-register",
@@ -48156,8 +48088,10 @@ try {
         })
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
         className: "password-trigger",
-        onClick: changeState
-      }, _actionsActions.togglePassword.word)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        onClick: () => setPasswordVisible(!isPasswordVisible)
+      }, isPasswordVisible ? "Hide" : "Show"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Email*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
@@ -48192,25 +48126,19 @@ try {
       }, "Log In")))
     );
   }
-  _s(RegisterView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+  _s(RegisterView, "CeiQ/Fkb9XZKPW7i80zfmFmKMek=");
   _c = RegisterView;
   exports.default = _reactRedux.connect(mapStateToProps, {
-    setUser: _actionsActions.setUser,
-    togglePassword: _actionsActions.togglePassword
+    setUser: _actionsActions.setUser
   })(RegisterView);
   RegisterView.propTypes = {
-    setUser: _propTypesDefault.default.func.isRequired,
+    setUser: _propTypesDefault.default.func,
     user: _propTypesDefault.default.shape({
       Username: _propTypesDefault.default.string,
       Password: _propTypesDefault.default.string,
       Email: _propTypesDefault.default.string,
       Birthday: _propTypesDefault.default.Date
-    }),
-    togglepassword: _propTypesDefault.default.shape({
-      type: _propTypesDefault.default.string,
-      word: _propTypesDefault.default.string
-    }),
-    togglePassword: _propTypesDefault.default.func.isRequired
+    })
   };
   var _c;
   $RefreshReg$(_c, "RegisterView");

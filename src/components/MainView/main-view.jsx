@@ -68,7 +68,6 @@ export class MainView extends React.Component {
     return (
       <Router>
         <div className="main-view ">
-          {console.log(this.props)}
           <Navbar expand="sm" bg="black" variant="dark" fixed="top">
             <Navbar.Brand>
               <h1 className="MFLX">MovieFlix</h1>
@@ -90,7 +89,7 @@ export class MainView extends React.Component {
                   </Button>
                 </Link>
               </Nav.Item>
-              <Link to="/">
+              <Link to={`/`}>
                 <Button
                   variant="link"
                   onClick={() => this.onLogOut()}
