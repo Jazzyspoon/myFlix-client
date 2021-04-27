@@ -13,18 +13,19 @@ function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let error = document.querySelector(".error-message");
-    if (error) {
-      let container = document.querySelector(".btn-login").parentElement;
-      let note = document.createElement("div");
-      note.classList.add("note-message");
-      note.innerText = `Form error.`;
-      container.appendChild(note);
-      setTimeout(function () {
-        container.removeChild(note);
-      }, 4000);
-      return false;
-    } else {
+    // let error = document.querySelector("error-message");
+    // if (error) {
+    // let container = document.querySelector(".btn-login").parentElement;
+    // let note = document.createElement("div");
+    // note.classList.add("note-message");
+    // note.innerText = `Form error.`;
+    // container.appendChild(note);
+    // setTimeout(function () {
+    //   container.removeChild(note);
+    // }, 4000);
+    // return false;
+    // } else
+    {
       axios
         .post(`https://movieflixappjp.herokuapp.com/login`, {
           Username: username,
@@ -45,7 +46,7 @@ function LoginView(props) {
   return (
     <div>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-        <Navbar.Brand>
+        <Navbar.Brand href="/">
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm"></Nav>
@@ -75,6 +76,9 @@ function LoginView(props) {
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <span className="password-trigger">
+            {/* {togglepassword.word} */}
+          </span>
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Log In
@@ -84,7 +88,7 @@ function LoginView(props) {
       <div>
         <span>Not a member?</span>
         <br></br>
-        <Link to={`/register`}>
+        <Link to="/register">
           <Button variant="success" type="submit">
             Register An Account
           </Button>

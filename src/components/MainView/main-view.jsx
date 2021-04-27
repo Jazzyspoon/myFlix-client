@@ -11,7 +11,15 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import ProfileView from "../profile-view/profile-view";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
-import { Navbar, Nav, Form, Button, Col, Row } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Col,
+  Row,
+} from "react-bootstrap";
 
 import "./main-view.scss";
 
@@ -47,7 +55,7 @@ export class MainView extends React.Component {
   }
 
   // onLoggedIn(authData) {
-  //   this.props.setUser(authData);
+  //   this.props.setUser(authData)
   //   this.getMovies(authData.token);
   // }
   //log out
@@ -59,7 +67,7 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, visibilityFilter } = this.props;
-    const { user, Username } = this.props.user;
+    const { user } = this.props.user;
 
     return (
       <Router>
@@ -71,7 +79,7 @@ export class MainView extends React.Component {
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
               <Nav.Item>
-                <Link to={`/`}>
+                <Link to="/">
                   <Button variant="link" className="colorcrew">
                     {" "}
                     <h5>Movies</h5>{" "}
@@ -79,14 +87,14 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to={`/users/${Username}`}>
+                <Link to={user && `/users/${user.Username}`}>
                   {" "}
                   <Button variant="link" className="colorcrew">
                     <h5>Profile</h5>
                   </Button>
                 </Link>
               </Nav.Item>
-              <Link to={`/`}>
+              <Link to="/">
                 <Button
                   variant="link"
                   onClick={() => this.onLogOut()}
