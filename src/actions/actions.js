@@ -1,8 +1,6 @@
 export const SET_MOVIES = "SET_MOVIES";
 export const SET_FILTER = "SET_FILTER";
-
 export const SET_USER = "SET_USER";
-export const TOGGLE_PASSWORD = "TOGGLE_PW";
 
 export function setMovies(value) {
   return {
@@ -25,21 +23,3 @@ export function setUser(value) {
   };
 }
 
-export function updateUser(value) {
-  return {
-    type: UPDATE_USERS,
-    value,
-  };
-}
-export function unregUser(value) {
-  return {
-    type: UNREG_USERS,
-    value,
-  };
-}
-export function togglePassword(value) {
-  return {
-    type: TOGGLE_PASSWORD,
-    value,
-  };
-}

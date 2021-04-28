@@ -230,7 +230,7 @@ class ProfileView extends React.Component {
             </Card>
             <Card className="favorites-card cardbody">
               <Card.Body>
-                <Card.Text as="h1">Favorite Movies</Card.Text>
+                <Card.Text as="h1">Favorites</Card.Text>
 
                 <div>
                   <ul>
@@ -278,9 +278,9 @@ export default connect(mapStateToProps)(ProfileView);
 
 ProfileView.propTypes = {
   user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
+    Username: PropTypes.string,
+    Password: PropTypes.string,
+    Email: PropTypes.string,
     Birthday: PropTypes.date,
     Favoritemovies: PropTypes.array,
   }),
