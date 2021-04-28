@@ -6,7 +6,7 @@ import { setMovies, setUser } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
 import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
-import { RegisterView } from "../registration-view/registration-view";
+import RegisterView from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import ProfileView from "../profile-view/profile-view";
@@ -127,15 +127,6 @@ class MainView extends React.Component {
 
             {/* REGISTER VIEW */}
             <Route exact path="/register" component={RegisterView} />
-
-            {/* MOVIE CARD VIEW */}
-            {/* <Route
-            exact
-            path="/"
-            render={() =>
-              movies.map((m) => <MovieCard key={m._id} movie={m} />)
-            }
-          /> */}
 
             {/* MOVIE VIEW */}
             <Route

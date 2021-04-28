@@ -53820,11 +53820,15 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RegisterView = RegisterView;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reactRedux = require("react-redux");
+
+var _actions = require("../../actions/actions");
 
 var _reactBootstrap = require("react-bootstrap");
 
@@ -53888,7 +53892,7 @@ function RegisterView(props) {
     });
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
+  return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
     expand: "sm",
     bg: "black",
     variant: "dark",
@@ -53947,6 +53951,11 @@ function RegisterView(props) {
   }, "Log In")));
 }
 
+var _default = (0, _reactRedux.connect)(null, {
+  setUser: _actions.setUser
+})(RegisterView);
+
+exports.default = _default;
 RegisterView.propTypes = {
   register: _propTypes.default.shape({
     Username: _propTypes.default.string.isRequired,
@@ -53956,7 +53965,7 @@ RegisterView.propTypes = {
   }),
   onRegister: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54536,7 +54545,7 @@ var _movieView = _interopRequireDefault(require("../movie-view/movie-view"));
 
 var _loginView = _interopRequireDefault(require("../login-view/login-view"));
 
-var _registrationView = require("../registration-view/registration-view");
+var _registrationView = _interopRequireDefault(require("../registration-view/registration-view"));
 
 var _directorView = require("../director-view/director-view");
 
@@ -54686,7 +54695,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/register",
-        component: _registrationView.RegisterView
+        component: _registrationView.default
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
         render: function render(_ref) {
@@ -54889,7 +54898,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61939" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50341" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
