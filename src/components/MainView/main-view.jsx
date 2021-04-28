@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setMovies, setUser } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
-import { MovieView } from "../movie-view/movie-view";
+import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
 import { RegisterView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
@@ -23,13 +23,11 @@ import {
 
 import "./main-view.scss";
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     // Initial state is set to null
-    this.state = {
-      user: null,
-    };
+    this.state = {};
   }
 
   componentDidUpdate(prevProps) {
@@ -69,12 +67,12 @@ export class MainView extends React.Component {
       <Router>
         <div className="main-view ">
           <Navbar expand="sm" bg="black" variant="dark" fixed="top">
-            <Navbar.Brand>
+            <Navbar.Brand href="/">
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
             <Nav className="mr-auto MFLXsm">
               <Nav.Item>
-                <Link to={`/`}>
+                <Link to="/">
                   <Button variant="link" className="colorcrew">
                     {" "}
                     <h5>Movies</h5>{" "}
@@ -82,14 +80,16 @@ export class MainView extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to={user && `/users/${user.Username}`}>
-                  {" "}
-                  <Button variant="link" className="colorcrew">
-                    <h5>Profile</h5>
-                  </Button>
-                </Link>
+                {user && (
+                  <Link to={`/users/${user.Username}`}>
+                    {" "}
+                    <Button variant="link" className="colorcrew">
+                      <h5>Profile</h5>
+                    </Button>
+                  </Link>
+                )}
               </Nav.Item>
-              <Link to={`/`}>
+              <Link to="/">
                 <Button
                   variant="link"
                   onClick={() => this.onLogOut()}

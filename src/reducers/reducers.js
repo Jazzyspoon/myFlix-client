@@ -1,11 +1,6 @@
 import { combineReducers } from "redux";
 
-import {
-  SET_FILTER,
-  SET_MOVIES,
-  SET_USER,
-  TOGGLE_PASSWORD,
-} from "../actions/actions";
+import { SET_FILTER, SET_MOVIES, SET_USER } from "../actions/actions";
 
 function visibilityFilter(state = "", action) {
   switch (action.type) {
@@ -34,25 +29,10 @@ function user(state = "", action) {
   }
 }
 
-function togglepassword(
-  state = {
-    type: "password",
-    word: "Show",
-  },
-  action
-) {
-  switch (action.type) {
-    case TOGGLE_PASSWORD:
-      return action.value;
-    default:
-      return state;
-  }
-}
 const moviesApp = combineReducers({
   visibilityFilter,
   movies,
   user,
-  togglepassword,
 });
 
 export default moviesApp;
