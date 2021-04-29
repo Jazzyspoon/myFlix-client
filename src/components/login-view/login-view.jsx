@@ -27,7 +27,7 @@ function LoginView(props) {
       })
       .catch((e) => {
         console.log(e);
-        console.error("no such user");
+        alert("no such user.  Please try again or register an account");
       });
   };
 
@@ -98,7 +98,7 @@ function LoginView(props) {
       <br></br>
       <div>
         <br></br>
-        <span>Not a member?</span>
+        <span>Not a member? Sign up for free!</span>
         <br></br>
 
         <Link to="/register">

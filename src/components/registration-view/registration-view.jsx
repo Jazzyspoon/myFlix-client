@@ -29,12 +29,13 @@ function RegisterView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
+        alert("Registration successful.  Please log in to continue.");
         window.open("/", "_self");
       })
       .catch((e) => {
         console.log(e.response);
         alert(
-          "The information entered does not meet minimum requirements.  Please re-enter your information and resubmit"
+          "The information entered does not meet minimum requirements.  Please resubmit"
         );
       });
   };
@@ -77,6 +78,7 @@ function RegisterView(props) {
             maxLength="25"
             pattern="[a-zA-Z0-9]+"
           />
+          <p className="form-error">{usernameError}</p>
         </Form.Group>
         <Form.Group controlId="formPassword">
           Create Password: 5-25 characters/A-z, 0-9 only
@@ -89,6 +91,7 @@ function RegisterView(props) {
             maxLength="25"
             pattern="[a-zA-Z0-9 ]+"
           />
+          <p className="form-error">{passwordError}</p>
         </Form.Group>
         <Form.Group controlId="formEmail">
           Email:

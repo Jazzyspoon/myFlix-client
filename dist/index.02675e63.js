@@ -48054,7 +48054,7 @@ try {
         props.setUser(data);
       }).catch(e => {
         console.log(e);
-        console.error("no such user");
+        alert("no such user.  Please try again or register an account");
       });
     };
     _react.useEffect(() => {
@@ -48115,7 +48115,7 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member? Sign up for free!"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
         to: "/register"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -48186,10 +48186,11 @@ try {
       }).then(response => {
         const data = response.data;
         console.log(data);
+        alert("Registration successful.  Please log in to continue.");
         window.open("/", "_self");
       }).catch(e => {
         console.log(e.response);
-        alert("The information entered does not meet minimum requirements.  Please re-enter your information and resubmit");
+        alert("The information entered does not meet minimum requirements.  Please resubmit");
       });
     };
     _react.useEffect(() => {
@@ -48229,7 +48230,9 @@ try {
         onChange: e => setUsername(e.target.value),
         maxLength: "25",
         pattern: "[a-zA-Z0-9]+"
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, usernameError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, "Create Password: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         placeholder: "Password: ",
@@ -48239,7 +48242,9 @@ try {
         required: true,
         maxLength: "25",
         pattern: "[a-zA-Z0-9 ]+"
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "form-error"
+      }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         placeholder: "Email",
