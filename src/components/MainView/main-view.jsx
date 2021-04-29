@@ -11,17 +11,10 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import ProfileView from "../profile-view/profile-view";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { Navbar, Nav, Form, Button, Col, Row } from "react-bootstrap";
 
 import "./main-view.scss";
+import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 
 class MainView extends React.Component {
   constructor() {
@@ -66,45 +59,54 @@ class MainView extends React.Component {
     return (
       <Router>
         <div className="main-view ">
-          <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+          <Navbar
+            collapseOnSelect
+            expand="sm"
+            bg="black"
+            variant="dark"
+            fixed="top"
+          >
             <Navbar.Brand href="/">
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
-            <Nav className="mr-auto MFLXsm">
-              <Nav.Item>
-                <Link to="/">
-                  <Button variant="link" className="colorcrew">
-                    {" "}
-                    <h5>Movies</h5>{" "}
-                  </Button>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                {user && (
-                  <Link to={`/users/${user.Username}`}>
-                    {" "}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto MFLXsm">
+                <Nav.Item>
+                  <Link to="/">
                     <Button variant="link" className="colorcrew">
-                      <h5>Profile</h5>
+                      {" "}
+                      <h5>Movies</h5>{" "}
                     </Button>
                   </Link>
-                )}
-              </Nav.Item>
-              <Link to="/">
-                <Button
-                  variant="link"
-                  onClick={() => this.onLogOut()}
-                  className="colorcrew"
-                >
-                  <h5>Log Out</h5>
-                </Button>
-              </Link>
-            </Nav>
-            <Form inline>
-              <VisibilityFilterInput
-                className="mr-sm-2"
-                visibilityFilter={visibilityFilter}
-              />
-            </Form>
+                </Nav.Item>
+                <Nav.Item>
+                  {user && (
+                    <Link to={`/users/${user.Username}`}>
+                      {" "}
+                      <Button variant="link" className="colorcrew">
+                        <h5>Profile</h5>
+                      </Button>
+                    </Link>
+                  )}
+                </Nav.Item>
+                <Link to="/">
+                  <Button
+                    variant="link"
+                    onClick={() => this.onLogOut()}
+                    className="colorcrew"
+                  >
+                    <h5>Log Out</h5>
+                  </Button>
+                </Link>
+              </Nav>
+              <Form inline>
+                <VisibilityFilterInput
+                  className="mr-sm-2"
+                  visibilityFilter={visibilityFilter}
+                />
+              </Form>
+            </Navbar.Collapse>
           </Navbar>
 
           {/* ----------------------------VIEWS---------------------- */}

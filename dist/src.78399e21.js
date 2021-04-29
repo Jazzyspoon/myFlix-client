@@ -54559,6 +54559,8 @@ var _reactBootstrap = require("react-bootstrap");
 
 require("./main-view.scss");
 
+var _NavbarToggle = _interopRequireDefault(require("react-bootstrap/esm/NavbarToggle"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -54645,6 +54647,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view "
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
+        collapseOnSelect: true,
         expand: "sm",
         bg: "black",
         variant: "dark",
@@ -54653,7 +54656,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         href: "/"
       }, /*#__PURE__*/_react.default.createElement("h1", {
         className: "MFLX"
-      }, "MovieFlix")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav, {
+      }, "MovieFlix")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+      }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "basic-navbar-nav"
+      }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -54678,7 +54685,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_visibilityFilterInput.default, {
         className: "mr-sm-2",
         visibilityFilter: visibilityFilter
-      }))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+      })))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
         xl: true
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
@@ -54767,7 +54774,7 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, {
 })(MainView);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/MainView/main-view.scss"}],"../node_modules/redux-devtools-extension/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/MainView/main-view.scss","react-bootstrap/esm/NavbarToggle":"../node_modules/react-bootstrap/esm/NavbarToggle.js"}],"../node_modules/redux-devtools-extension/index.js":[function(require,module,exports) {
 'use strict';
 
 var compose = require('redux').compose;
