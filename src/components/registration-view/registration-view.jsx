@@ -31,6 +31,9 @@ function RegisterView(props) {
       })
       .catch((e) => {
         console.log(e.response);
+        alert(
+          "The information entered does not meet minimum requirements.  Please re-enter your information and resubmit"
+        );
       });
   };
   return (
@@ -46,27 +49,32 @@ function RegisterView(props) {
       <p>Please create an account to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">
-          Enter Username:
+          Enter Username: 25 characters max/A-z, 0-9 only
           <Form.Control
+            placeholder="Username:"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            maxLength="25"
             pattern="[a-zA-Z0-9]+"
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
-          Create Password:
+          Create Password: 25 characters maxi/A-z, 0-9 only
           <Form.Control
+            placeholder="Password: "
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            maxLength="25"
             pattern="[a-zA-Z0-9 ]+"
           />
         </Form.Group>
         <Form.Group controlId="formEmail">
           Email:
           <Form.Control
+            placeholder="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +83,7 @@ function RegisterView(props) {
         <Form.Group controlId="formBirthday">
           Birthdate:
           <Form.Control
+            placeholder="Birthday: MM/DD/YYYY"
             type="birthday"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
@@ -87,6 +96,7 @@ function RegisterView(props) {
       </Form>
 
       <div>
+        <br></br>
         <span>Already a member?</span>
         <br></br>
         <Button href="/" variant="primary" type="submit">
