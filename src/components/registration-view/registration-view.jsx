@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { setUser } from "../../actions/actions";
+import { Navbar, Nav, Form, Button, Col } from "react-bootstrap";
 import axios from "axios";
 
 import "./registration-view.scss";
 
-export function RegisterView(props) {
+function RegisterView(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,13 +34,14 @@ export function RegisterView(props) {
       });
   };
   return (
-    <div>
+    <Col>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">
         <Navbar.Brand href="/">
           <h1 className="MFLX">MovieFlix</h1>
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm"></Nav>
       </Navbar>
+
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please create an account to continue.</p>
       <Form>
@@ -82,6 +85,7 @@ export function RegisterView(props) {
           Submit
         </Button>
       </Form>
+
       <div>
         <span>Already a member?</span>
         <br></br>
@@ -89,10 +93,11 @@ export function RegisterView(props) {
           Log In
         </Button>
       </div>
-    </div>
+    </Col>
   );
 }
 
+export default connect(null, { setUser })(RegisterView);
 RegisterView.propTypes = {
   register: PropTypes.shape({
     Username: PropTypes.string.isRequired,

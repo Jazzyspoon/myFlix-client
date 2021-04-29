@@ -3,39 +3,35 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Col, Button, Image, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./movie-view.scss";
-
-export class MovieView extends React.Component {
+class MovieView extends React.Component {
   constructor() {
     super();
     this.state = {};
   }
   //add to favorites function
   addToFavorites(movie) {
-    let token = localStorage.getItem("token");
-    let url =
-      "https://movieflixappjp.herokuapp.com/users/" +
-      localStorage.getItem("user") +
-      "/movies/" +
-      movie._id;
-    console.log(token);
-
+    console.log(movie._id);
+    const { token } = this.props.user;
+    const { Username } = this.props.user.user;
+    let url = `https://movieflixappjp.herokuapp.com/users/${Username}/movies/${movie._id}`;
     axios
       .post(url, "", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log(response);
-
         alert("Added to favorites!");
+      })
+      .catch((e) => {
+        console.log(e);
       });
   }
-
   render() {
     const { movie } = this.props;
-
+    console.log(movie);
     if (!movie) return null;
-
     return (
       <Col className="movie-view">
         <div>
@@ -83,7 +79,6 @@ export class MovieView extends React.Component {
                       Add to Favorites
                     </Button>
                   </div>
-
                   <Link to={`/`}>
                     <Button className="favbutton" variant="danger">
                       Back to Movies
@@ -98,7 +93,11 @@ export class MovieView extends React.Component {
     );
   }
 }
-
+let mapStateToProps = (state) => {
+  console.log(state);
+  return { user: state.user };
+};
+export default connect(mapStateToProps)(MovieView);
 MovieView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,

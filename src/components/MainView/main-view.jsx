@@ -2,52 +2,41 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { setMovies } from "../../actions/actions";
+import { setMovies, setUser } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
-import { MovieView } from "../movie-view/movie-view";
-import { LoginView } from "../login-view/login-view";
-import { RegisterView } from "../registration-view/registration-view";
+import MovieView from "../movie-view/movie-view";
+import LoginView from "../login-view/login-view";
+import RegisterView from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
-import { ProfileView } from "../profile-view/profile-view";
-//import { ProfileUpdate } from "../profile-update/profile-update";
+import ProfileView from "../profile-view/profile-view";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { Navbar, Nav, Form, Button, Col, Row } from "react-bootstrap";
 
 import "./main-view.scss";
+import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     // Initial state is set to null
-    this.state = {
-      user: null,
-    };
+    this.state = {};
   }
 
-  componentDidMount() {
-    let accessToken = localStorage.getItem("token");
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+  componentDidUpdate(prevProps) {
+    const accessToken = this.props.user.token;
+    if (prevProps.user !== this.props.user && accessToken) {
       this.getMovies(accessToken);
     }
   }
+
   getMovies(token) {
     axios
       .get("https://movieflixappjp.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        console.log(response);
         // Assign the result to the state
         this.props.setMovies(response.data);
       })
@@ -56,71 +45,68 @@ export class MainView extends React.Component {
       });
   }
 
-  onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
-    localStorage.setItem("token", authData.token);
-    localStorage.setItem("user", authData.user.Username);
-    this.getMovies(authData.token);
-  }
   //log out
   onLogOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    this.setState({
-      user: null,
-    });
+    this.props.setUser("");
     alert("You are now logged out");
     window.open("/", "_self");
   }
 
   render() {
-    let { movies, visibilityFilter } = this.props;
-    let { user } = this.state;
+    const { movies, visibilityFilter } = this.props;
+    const { user } = this.props.user;
 
     return (
       <Router>
         <div className="main-view ">
-          <Navbar expand="sm" bg="black" variant="dark" fixed="top">
+          <Navbar
+            collapseOnSelect
+            expand="sm"
+            bg="black"
+            variant="dark"
+            fixed="top"
+          >
             <Navbar.Brand href="/">
               <h1 className="MFLX">MovieFlix</h1>
             </Navbar.Brand>
-            <Nav className="mr-auto MFLXsm">
-              <Nav.Item>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto MFLXsm">
+                <Nav.Item>
+                  <Link to="/">
+                    <Button variant="link" className="colorcrew">
+                      {" "}
+                      <h5>Movies</h5>{" "}
+                    </Button>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  {user && (
+                    <Link to={`/users/${user.Username}`}>
+                      {" "}
+                      <Button variant="link" className="colorcrew">
+                        <h5>Profile</h5>
+                      </Button>
+                    </Link>
+                  )}
+                </Nav.Item>
                 <Link to="/">
-                  <Button variant="link" className="colorcrew">
-                    {" "}
-                    <h5>Movies</h5>{" "}
+                  <Button
+                    variant="link"
+                    onClick={() => this.onLogOut()}
+                    className="colorcrew"
+                  >
+                    <h5>Log Out</h5>
                   </Button>
                 </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link to={`/users/${user}`}>
-                  {" "}
-                  <Button variant="link" className="colorcrew">
-                    <h5>Profile</h5>
-                  </Button>
-                </Link>
-              </Nav.Item>
-              <Link to="/">
-                <Button
-                  variant="link"
-                  onClick={() => this.onLogOut()}
-                  className="colorcrew"
-                >
-                  <h5>Log Out</h5>
-                </Button>
-              </Link>
-            </Nav>
-            <Form inline>
-              <VisibilityFilterInput
-                className="mr-sm-2"
-                visibilityFilter={visibilityFilter}
-              />
-            </Form>
+              </Nav>
+              <Form inline>
+                <VisibilityFilterInput
+                  className="mr-sm-2"
+                  visibilityFilter={visibilityFilter}
+                />
+              </Form>
+            </Navbar.Collapse>
           </Navbar>
 
           {/* ----------------------------VIEWS---------------------- */}
@@ -133,7 +119,7 @@ export class MainView extends React.Component {
                 if (!user)
                   return (
                     <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                      <LoginView />
                     </Col>
                   );
                 if (movies.length === 0) return <div className="main-view" />;
@@ -143,15 +129,6 @@ export class MainView extends React.Component {
 
             {/* REGISTER VIEW */}
             <Route exact path="/register" component={RegisterView} />
-
-            {/* MOVIE CARD VIEW */}
-            {/* <Route
-            exact
-            path="/"
-            render={() =>
-              movies.map((m) => <MovieCard key={m._id} movie={m} />)
-            }
-          /> */}
 
             {/* MOVIE VIEW */}
             <Route
@@ -200,10 +177,7 @@ export class MainView extends React.Component {
               exact
               path={`/users/:username`}
               render={({ history }) => {
-                if (!user)
-                  return (
-                    <LoginView onLoggedIn={(data) => this.onLoggedIn(data)} />
-                  );
+                if (!user) return <LoginView />;
                 if (movies.length === 0) return;
                 return <ProfileView history={history} movies={movies} />;
               }}
@@ -216,8 +190,8 @@ export class MainView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  return { movies: state.movies };
+  return { movies: state.movies, user: state.user };
 };
 
 // #8
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
