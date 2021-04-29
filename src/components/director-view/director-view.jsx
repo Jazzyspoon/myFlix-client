@@ -15,14 +15,14 @@ export class DirectorView extends React.Component {
     if (!director) return null;
 
     return (
-      <Col className="movie-view">
+      <Col className="dir-view">
         <div>
           <div className="card mb-3 cardbody">
             <div className="row no-gutters">
               <div className="col-md-5">
                 <Image
                   src={director.Director.ImagePath}
-                  className="image"
+                  className="dirimage"
                   fluid
                 />
               </div>
