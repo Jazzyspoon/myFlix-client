@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setUser } from "../../actions/actions";
@@ -8,6 +8,8 @@ import axios from "axios";
 import "./registration-view.scss";
 
 function RegisterView(props) {
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +38,23 @@ function RegisterView(props) {
         );
       });
   };
+
+  useEffect(() => {
+    if (password === "" || password.length >= 5) {
+      setPasswordError("");
+    } else if (password.length < 5) {
+      setPasswordError("Password must be longer than 4 characters");
+    }
+  }, [password]);
+
+  useEffect(() => {
+    if (username === "" || username.length >= 5) {
+      setUsernameError("");
+    } else if (username.length < 5) {
+      setUsernameError("Username must be longer than 4 characters");
+    }
+  }, [username]);
+
   return (
     <Col>
       <Navbar expand="sm" bg="black" variant="dark" fixed="top">

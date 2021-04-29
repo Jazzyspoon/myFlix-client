@@ -48169,6 +48169,8 @@ try {
   var _s = $RefreshSig$();
   function RegisterView(props) {
     _s();
+    const [usernameError, setUsernameError] = _react.useState("");
+    const [passwordError, setPasswordError] = _react.useState("");
     const [username, setUsername] = _react.useState("");
     const [email, setEmail] = _react.useState("");
     const [password, setPassword] = _react.useState("");
@@ -48190,6 +48192,20 @@ try {
         alert("The information entered does not meet minimum requirements.  Please re-enter your information and resubmit");
       });
     };
+    _react.useEffect(() => {
+      if (password === "" || password.length >= 5) {
+        setPasswordError("");
+      } else if (password.length < 5) {
+        setPasswordError("Password must be longer than 4 characters");
+      }
+    }, [password]);
+    _react.useEffect(() => {
+      if (username === "" || username.length >= 5) {
+        setUsernameError("");
+      } else if (username.length < 5) {
+        setUsernameError("Username must be longer than 4 characters");
+      }
+    }, [username]);
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
         expand: "sm",
@@ -48248,7 +48264,7 @@ try {
       }, "Log In")))
     );
   }
-  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
+  _s(RegisterView, "7NqmVI2excPKb0VjQH2A92AnV6g=");
   _c = RegisterView;
   exports.default = _reactRedux.connect(null, {
     setUser: _actionsActions.setUser
@@ -48298,7 +48314,7 @@ try {
       if (!director) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-          className: "movie-view"
+          className: "dir-view"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "card mb-3 cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -48307,7 +48323,7 @@ try {
           className: "col-md-5"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: director.Director.ImagePath,
-          className: "image",
+          className: "dirimage",
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "col-md-7"
@@ -48378,7 +48394,7 @@ try {
           className: "col-md-5"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Image, {
           src: genre.Genre.ImagePath,
-          className: "image",
+          className: "genimage",
           fluid: true
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "col-md-7"
