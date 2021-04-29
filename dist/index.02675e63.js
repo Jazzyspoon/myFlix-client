@@ -26281,10 +26281,27 @@ if ("development" !== "production") {
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-function _interopDefault(ex) {
-  return ex && typeof ex === 'object' && ('default' in ex) ? ex['default'] : ex;
+var _objectSpread = require('@babel/runtime/helpers/objectSpread2');
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && ('default' in e) ? e : {
+    'default': e
+  };
 }
-var $$observable = _interopDefault(require('symbol-observable'));
+var _objectSpread__default = /*#__PURE__*/_interopDefaultLegacy(_objectSpread);
+/**
+* Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
+*
+* Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
+* during build.
+* @param {number} code
+*/
+function formatProdErrorMessage(code) {
+  return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
+}
+// Inlined version of the `symbol-observable` polyfill
+var $$observable = (function () {
+  return typeof Symbol === 'function' && Symbol.observable || '@@observable';
+})();
 /**
 * These are private action types reserved by Redux.
 * For any unknown actions, you must return the current state.
@@ -26312,6 +26329,54 @@ function isPlainObject(obj) {
     proto = Object.getPrototypeOf(proto);
   }
   return Object.getPrototypeOf(obj) === proto;
+}
+function kindOf(val) {
+  var typeOfVal = typeof val;
+  if ("development" !== 'production') {
+    // Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+    function miniKindOf(val) {
+      if (val === void 0) return 'undefined';
+      if (val === null) return 'null';
+      var type = typeof val;
+      switch (type) {
+        case 'boolean':
+        case 'string':
+        case 'number':
+        case 'symbol':
+        case 'function':
+          {
+            return type;
+          }
+      }
+      if (Array.isArray(val)) return 'array';
+      if (isDate(val)) return 'date';
+      if (isError(val)) return 'error';
+      var constructorName = ctorName(val);
+      switch (constructorName) {
+        case 'Symbol':
+        case 'Promise':
+        case 'WeakMap':
+        case 'WeakSet':
+        case 'Map':
+        case 'Set':
+          return constructorName;
+      }
+      // other
+      return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+    }
+    function ctorName(val) {
+      return typeof val.constructor === 'function' ? val.constructor.name : null;
+    }
+    function isError(val) {
+      return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
+    }
+    function isDate(val) {
+      if (val instanceof Date) return true;
+      return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
+    }
+    typeOfVal = miniKindOf(val);
+  }
+  return typeOfVal;
 }
 /**
 * Creates a Redux store that holds the state tree.
@@ -26341,7 +26406,7 @@ function isPlainObject(obj) {
 function createStore(reducer, preloadedState, enhancer) {
   var _ref2;
   if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
-    throw new Error('It looks like you are passing several store enhancers to ' + 'createStore(). This is not supported. Instead, compose them ' + 'together to a single function.');
+    throw new Error("development" === "production" ? formatProdErrorMessage(0) : 'It looks like you are passing several store enhancers to ' + 'createStore(). This is not supported. Instead, compose them ' + 'together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.');
   }
   if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
     enhancer = preloadedState;
@@ -26349,12 +26414,12 @@ function createStore(reducer, preloadedState, enhancer) {
   }
   if (typeof enhancer !== 'undefined') {
     if (typeof enhancer !== 'function') {
-      throw new Error('Expected the enhancer to be a function.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(1) : "Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
     }
     return enhancer(createStore)(reducer, preloadedState);
   }
   if (typeof reducer !== 'function') {
-    throw new Error('Expected the reducer to be a function.');
+    throw new Error("development" === "production" ? formatProdErrorMessage(2) : "Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
   }
   var currentReducer = reducer;
   var currentState = preloadedState;
@@ -26380,7 +26445,7 @@ function createStore(reducer, preloadedState, enhancer) {
   */
   function getState() {
     if (isDispatching) {
-      throw new Error('You may not call store.getState() while the reducer is executing. ' + 'The reducer has already received the state as an argument. ' + 'Pass it down from the top reducer instead of reading it from the store.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(3) : 'You may not call store.getState() while the reducer is executing. ' + 'The reducer has already received the state as an argument. ' + 'Pass it down from the top reducer instead of reading it from the store.');
     }
     return currentState;
   }
@@ -26409,10 +26474,10 @@ function createStore(reducer, preloadedState, enhancer) {
   */
   function subscribe(listener) {
     if (typeof listener !== 'function') {
-      throw new Error('Expected the listener to be a function.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(4) : "Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
     }
     if (isDispatching) {
-      throw new Error('You may not call store.subscribe() while the reducer is executing. ' + 'If you would like to be notified after the store has been updated, subscribe from a ' + 'component and invoke store.getState() in the callback to access the latest state. ' + 'See https://redux.js.org/api-reference/store#subscribelistener for more details.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(5) : 'You may not call store.subscribe() while the reducer is executing. ' + 'If you would like to be notified after the store has been updated, subscribe from a ' + 'component and invoke store.getState() in the callback to access the latest state. ' + 'See https://redux.js.org/api/store#subscribelistener for more details.');
     }
     var isSubscribed = true;
     ensureCanMutateNextListeners();
@@ -26422,7 +26487,7 @@ function createStore(reducer, preloadedState, enhancer) {
         return;
       }
       if (isDispatching) {
-        throw new Error('You may not unsubscribe from a store listener while the reducer is executing. ' + 'See https://redux.js.org/api-reference/store#subscribelistener for more details.');
+        throw new Error("development" === "production" ? formatProdErrorMessage(6) : 'You may not unsubscribe from a store listener while the reducer is executing. ' + 'See https://redux.js.org/api/store#subscribelistener for more details.');
       }
       isSubscribed = false;
       ensureCanMutateNextListeners();
@@ -26458,13 +26523,13 @@ function createStore(reducer, preloadedState, enhancer) {
   */
   function dispatch(action) {
     if (!isPlainObject(action)) {
-      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(7) : "Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
     }
     if (typeof action.type === 'undefined') {
-      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+      throw new Error("development" === "production" ? formatProdErrorMessage(8) : 'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
     }
     if (isDispatching) {
-      throw new Error('Reducers may not dispatch actions.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(9) : 'Reducers may not dispatch actions.');
     }
     try {
       isDispatching = true;
@@ -26491,7 +26556,7 @@ function createStore(reducer, preloadedState, enhancer) {
   */
   function replaceReducer(nextReducer) {
     if (typeof nextReducer !== 'function') {
-      throw new Error('Expected the nextReducer to be a function.');
+      throw new Error("development" === "production" ? formatProdErrorMessage(10) : "Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
     }
     currentReducer = nextReducer;
     // This action has a similiar effect to ActionTypes.INIT.
@@ -26522,7 +26587,7 @@ function createStore(reducer, preloadedState, enhancer) {
       */
       subscribe: function subscribe(observer) {
         if (typeof observer !== 'object' || observer === null) {
-          throw new TypeError('Expected the observer to be an object.');
+          throw new Error("development" === "production" ? formatProdErrorMessage(11) : "Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
         }
         function observeState() {
           if (observer.next) {
@@ -26571,11 +26636,6 @@ function warning(message) {
     throw new Error(message);
   } catch (e) {}
 }
-function getUndefinedStateErrorMessage(key, action) {
-  var actionType = action && action.type;
-  var actionDescription = actionType && "action \"" + String(actionType) + "\"" || 'an action';
-  return "Given " + actionDescription + ", reducer \"" + key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.";
-}
 function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
   var reducerKeys = Object.keys(reducers);
   var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
@@ -26583,7 +26643,7 @@ function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, une
     return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
   }
   if (!isPlainObject(inputState)) {
-    return "The " + argumentName + " has unexpected type of \"" + ({}).toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+    return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
   }
   var unexpectedKeys = Object.keys(inputState).filter(function (key) {
     return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
@@ -26603,12 +26663,12 @@ function assertReducerShape(reducers) {
       type: ActionTypes.INIT
     });
     if (typeof initialState === 'undefined') {
-      throw new Error("Reducer \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+      throw new Error("development" === "production" ? formatProdErrorMessage(12) : "The slice reducer for key \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
     }
     if (typeof reducer(undefined, {
       type: ActionTypes.PROBE_UNKNOWN_ACTION()
     }) === 'undefined') {
-      throw new Error("Reducer \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle " + ActionTypes.INIT + " or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+      throw new Error("development" === "production" ? formatProdErrorMessage(13) : "The slice reducer for key \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle '" + ActionTypes.INIT + "' or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
     }
   });
 }
@@ -26676,8 +26736,8 @@ function combineReducers(reducers) {
       var previousStateForKey = state[_key];
       var nextStateForKey = reducer(previousStateForKey, action);
       if (typeof nextStateForKey === 'undefined') {
-        var errorMessage = getUndefinedStateErrorMessage(_key, action);
-        throw new Error(errorMessage);
+        var actionType = action && action.type;
+        throw new Error("development" === "production" ? formatProdErrorMessage(14) : "When called with an action of type " + (actionType ? "\"" + String(actionType) + "\"" : '(unknown type)') + ", the slice reducer for key \"" + _key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.");
       }
       nextState[_key] = nextStateForKey;
       hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
@@ -26717,7 +26777,7 @@ function bindActionCreators(actionCreators, dispatch) {
     return bindActionCreator(actionCreators, dispatch);
   }
   if (typeof actionCreators !== 'object' || actionCreators === null) {
-    throw new Error("bindActionCreators expected an object or a function, instead received " + (actionCreators === null ? 'null' : typeof actionCreators) + ". " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+    throw new Error("development" === "production" ? formatProdErrorMessage(16) : "bindActionCreators expected an object or a function, but instead received: '" + kindOf(actionCreators) + "'. " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
   }
   var boundActionCreators = {};
   for (var key in actionCreators) {
@@ -26727,46 +26787,6 @@ function bindActionCreators(actionCreators, dispatch) {
     }
   }
   return boundActionCreators;
-}
-function _defineProperty(obj, key, value) {
-  if ((key in obj)) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
-}
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-  if (Object.getOwnPropertySymbols) {
-    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
-  }
-  if (enumerableOnly) keys = keys.filter(function (sym) {
-    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-  });
-  return keys;
-}
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    if (i % 2) {
-      ownKeys(source, true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(source).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-  return target;
 }
 /**
 * Composes single-argument functions from right to left. The rightmost
@@ -26820,7 +26840,7 @@ function applyMiddleware() {
     return function () {
       var store = createStore.apply(void 0, arguments);
       var _dispatch = function dispatch() {
-        throw new Error('Dispatching while constructing your middleware is not allowed. ' + 'Other middleware would not be applied to this dispatch.');
+        throw new Error("development" === "production" ? formatProdErrorMessage(15) : 'Dispatching while constructing your middleware is not allowed. ' + 'Other middleware would not be applied to this dispatch.');
       };
       var middlewareAPI = {
         getState: store.getState,
@@ -26832,7 +26852,7 @@ function applyMiddleware() {
         return middleware(middlewareAPI);
       });
       _dispatch = compose.apply(void 0, chain)(store.dispatch);
-      return _objectSpread2({}, store, {
+      return _objectSpread__default['default'](_objectSpread__default['default']({}, store), {}, {
         dispatch: _dispatch
       });
     };
@@ -26853,59 +26873,63 @@ exports.combineReducers = combineReducers;
 exports.compose = compose;
 exports.createStore = createStore;
 
-},{"symbol-observable":"FI5JF"}],"FI5JF":[function(require,module,exports) {
-"use strict";
-var global = arguments[3];
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _ponyfill = require('./ponyfill.js');
-var _ponyfill2 = _interopRequireDefault(_ponyfill);
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    'default': obj
-  };
+},{"@babel/runtime/helpers/objectSpread2":"3FdZf"}],"3FdZf":[function(require,module,exports) {
+var defineProperty = require("./defineProperty.js");
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
 }
-var root;
-/*global window*/
-if (typeof self !== 'undefined') {
-  root = self;
-} else if (typeof window !== 'undefined') {
-  root = window;
-} else if (typeof global !== 'undefined') {
-  root = global;
-} else if (typeof module !== 'undefined') {
-  root = module;
-} else {
-  root = Function('return this')();
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
 }
-var result = (0, _ponyfill2['default'])(root);
-exports['default'] = result;
 
-},{"./ponyfill.js":"1iuml"}],"1iuml":[function(require,module,exports) {
-'use strict';
+module.exports = _objectSpread2;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+},{"./defineProperty.js":"5PI63"}],"5PI63":[function(require,module,exports) {
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports['default'] = symbolObservablePonyfill;
-function symbolObservablePonyfill(root) {
-	var result;
-	var _Symbol = root.Symbol;
+  return obj;
+}
 
-	if (typeof _Symbol === 'function') {
-		if (_Symbol.observable) {
-			result = _Symbol.observable;
-		} else {
-			result = _Symbol('observable');
-			_Symbol.observable = result;
-		}
-	} else {
-		result = '@@observable';
-	}
-
-	return result;
-};
+module.exports = _defineProperty;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
 },{}],"7GDa4":[function(require,module,exports) {
 "use strict";
 
@@ -28392,7 +28416,7 @@ _ref) {
     // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
     var Connect = pure ? _react["default"].memo(ConnectFunction) : ConnectFunction;
     Connect.WrappedComponent = WrappedComponent;
-    Connect.displayName = displayName;
+    Connect.displayName = ConnectFunction.displayName = displayName;
     if (forwardRef) {
       var forwarded = _react["default"].forwardRef(function forwardConnectRef(props, ref) {
         return (
@@ -28706,13 +28730,15 @@ function shallowEqual(objA, objB) {
 },{}],"aHbco":[function(require,module,exports) {
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 exports.__esModule = true;
 exports.whenMapDispatchToPropsIsFunction = whenMapDispatchToPropsIsFunction;
 exports.whenMapDispatchToPropsIsMissing = whenMapDispatchToPropsIsMissing;
 exports.whenMapDispatchToPropsIsObject = whenMapDispatchToPropsIsObject;
 exports["default"] = void 0;
 
-var _redux = require("redux");
+var _bindActionCreators = _interopRequireDefault(require("../utils/bindActionCreators"));
 
 var _wrapMapToProps = require("./wrapMapToProps");
 
@@ -28730,13 +28756,38 @@ function whenMapDispatchToPropsIsMissing(mapDispatchToProps) {
 
 function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
   return mapDispatchToProps && typeof mapDispatchToProps === 'object' ? (0, _wrapMapToProps.wrapMapToPropsConstant)(function (dispatch) {
-    return (0, _redux.bindActionCreators)(mapDispatchToProps, dispatch);
+    return (0, _bindActionCreators["default"])(mapDispatchToProps, dispatch);
   }) : undefined;
 }
 
 var _default = [whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject];
 exports["default"] = _default;
-},{"redux":"7panR","./wrapMapToProps":"7rpe9"}],"7rpe9":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","../utils/bindActionCreators":"21ucm","./wrapMapToProps":"7rpe9"}],"21ucm":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports["default"] = bindActionCreators;
+
+function bindActionCreators(actionCreators, dispatch) {
+  var boundActionCreators = {};
+
+  var _loop = function _loop(key) {
+    var actionCreator = actionCreators[key];
+
+    if (typeof actionCreator === 'function') {
+      boundActionCreators[key] = function () {
+        return dispatch(actionCreator.apply(void 0, arguments));
+      };
+    }
+  };
+
+  for (var key in actionCreators) {
+    _loop(key);
+  }
+
+  return boundActionCreators;
+}
+},{}],"7rpe9":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -29230,11 +29281,13 @@ function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contex
   (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(function () {
     function checkForUpdates() {
       try {
-        var _newSelectedState = latestSelector.current(store.getState());
+        var newStoreState = store.getState();
+        var _newSelectedState = latestSelector.current(newStoreState);
         if (equalityFn(_newSelectedState, latestSelectedState.current)) {
           return;
         }
         latestSelectedState.current = _newSelectedState;
+        latestStoreState.current = newStoreState;
       } catch (err) {
         // we ignore all errors here, since when the component
         // is re-rendered, the selectors are called again, and
@@ -29270,8 +29323,16 @@ function createSelectorHook(context) {
     if (equalityFn === void 0) {
       equalityFn = refEquality;
     }
-    if ("development" !== 'production' && !selector) {
-      throw new Error("You must pass a selector to useSelector");
+    if ("development" !== 'production') {
+      if (!selector) {
+        throw new Error("You must pass a selector to useSelector");
+      }
+      if (typeof selector !== 'function') {
+        throw new Error("You must pass a function as a selector to useSelector");
+      }
+      if (typeof equalityFn !== 'function') {
+        throw new Error("You must pass a function as an equality function to useSelector");
+      }
     }
     var _useReduxContext = useReduxContext(), store = _useReduxContext.store, contextSub = _useReduxContext.subscription;
     var selectedState = useSelectorWithStoreAndSubscription(selector, equalityFn, store, contextSub);
@@ -29343,22 +29404,10 @@ function user(state = "", action) {
       return state;
   }
 }
-function togglepassword(state = {
-  type: "password",
-  word: "Show"
-}, action) {
-  switch (action.type) {
-    case _actionsActions.TOGGLE_PASSWORD:
-      return action.value;
-    default:
-      return state;
-  }
-}
 const moviesApp = _redux.combineReducers({
   visibilityFilter,
   movies,
-  user,
-  togglepassword
+  user
 });
 exports.default = moviesApp;
 
@@ -29374,9 +29423,6 @@ _parcelHelpers.export(exports, "SET_FILTER", function () {
 _parcelHelpers.export(exports, "SET_USER", function () {
   return SET_USER;
 });
-_parcelHelpers.export(exports, "TOGGLE_PASSWORD", function () {
-  return TOGGLE_PASSWORD;
-});
 _parcelHelpers.export(exports, "setMovies", function () {
   return setMovies;
 });
@@ -29386,19 +29432,9 @@ _parcelHelpers.export(exports, "setFilter", function () {
 _parcelHelpers.export(exports, "setUser", function () {
   return setUser;
 });
-_parcelHelpers.export(exports, "updateUser", function () {
-  return updateUser;
-});
-_parcelHelpers.export(exports, "unregUser", function () {
-  return unregUser;
-});
-_parcelHelpers.export(exports, "togglePassword", function () {
-  return togglePassword;
-});
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
 const SET_USER = "SET_USER";
-const TOGGLE_PASSWORD = "TOGGLE_PW";
 function setMovies(value) {
   return {
     type: SET_MOVIES,
@@ -29414,24 +29450,6 @@ function setFilter(value) {
 function setUser(value) {
   return {
     type: SET_USER,
-    value
-  };
-}
-function updateUser(value) {
-  return {
-    type: UPDATE_USERS,
-    value
-  };
-}
-function unregUser(value) {
-  return {
-    type: UNREG_USERS,
-    value
-  };
-}
-function togglePassword(value) {
-  return {
-    type: TOGGLE_PASSWORD,
     value
   };
 }
@@ -29646,9 +29664,6 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MainView", function () {
-    return MainView;
-  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
@@ -29659,9 +29674,11 @@ try {
   var _moviesListMoviesList = require("../movies-list/movies-list");
   var _moviesListMoviesListDefault = _parcelHelpers.interopDefault(_moviesListMoviesList);
   var _movieViewMovieView = require("../movie-view/movie-view");
+  var _movieViewMovieViewDefault = _parcelHelpers.interopDefault(_movieViewMovieView);
   var _loginViewLoginView = require("../login-view/login-view");
   var _loginViewLoginViewDefault = _parcelHelpers.interopDefault(_loginViewLoginView);
   var _registrationViewRegistrationView = require("../registration-view/registration-view");
+  var _registrationViewRegistrationViewDefault = _parcelHelpers.interopDefault(_registrationViewRegistrationView);
   var _directorViewDirectorView = require("../director-view/director-view");
   var _genreViewGenreView = require("../genre-view/genre-view");
   var _profileViewProfileView = require("../profile-view/profile-view");
@@ -29670,13 +29687,12 @@ try {
   var _visibilityFilterInputVisibilityFilterInputDefault = _parcelHelpers.interopDefault(_visibilityFilterInputVisibilityFilterInput);
   var _reactBootstrap = require("react-bootstrap");
   require("./main-view.scss");
+  require("react-bootstrap/esm/NavbarToggle");
   class MainView extends _reactDefault.default.Component {
     constructor() {
       super();
       // Initial state is set to null
-      this.state = {
-        user: null
-      };
+      this.state = {};
     }
     componentDidUpdate(prevProps) {
       const accessToken = this.props.user.token;
@@ -29710,26 +29726,33 @@ try {
         /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view "
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+          collapseOnSelect: true,
           expand: "sm",
           bg: "black",
           variant: "dark",
           fixed: "top"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+          href: "/"
+        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           className: "MFLX"
-        }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
+        }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+          "aria-controls": "basic-navbar-nav"
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+          id: "basic-navbar-nav"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto MFLXsm"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/`
+          to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
-        }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: user && `/users/${user.Username}`
+        }, " ", /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Movies"), " "))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, null, user && /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/users/${user.Username}`
         }, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           className: "colorcrew"
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", null, "Profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/`
+          to: "/"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
           variant: "link",
           onClick: () => this.onLogOut(),
@@ -29739,7 +29762,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_visibilityFilterInputVisibilityFilterInputDefault.default, {
           className: "mr-sm-2",
           visibilityFilter: visibilityFilter
-        }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        })))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
           xl: true
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
@@ -29762,10 +29785,10 @@ try {
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           exact: true,
           path: "/register",
-          component: _registrationViewRegistrationView.RegisterView
+          component: _registrationViewRegistrationViewDefault.default
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/movies/:movieId",
-          render: ({match}) => /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
+          render: ({match}) => /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieViewDefault.default, {
             movie: movies.find(m => m._id === match.params.movieId)
           })
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -29833,7 +29856,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","react-bootstrap":"4n7hB","./main-view.scss":"3JwwG","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../visibility-filter-input/visibility-filter-input":"3SRLP"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-redux":"7GDa4","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","../registration-view/registration-view":"7gvH2","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","../visibility-filter-input/visibility-filter-input":"3SRLP","react-bootstrap":"4n7hB","./main-view.scss":"3JwwG","react-bootstrap/esm/NavbarToggle":"5P4Kg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -37134,6 +37157,12 @@ exports.default = getComputedStyle;
 
 var _ownerWindow = _interopRequireDefault(require("./ownerWindow"));
 
+/**
+ * Returns one or all computed style properties of an element.
+ * 
+ * @param node the element
+ * @param psuedoElement the style property
+ */
 function getComputedStyle(node, psuedoElement) {
   return (0, _ownerWindow.default)(node).getComputedStyle(node, psuedoElement);
 }
@@ -37149,6 +37178,11 @@ exports.default = ownerWindow;
 
 var _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
 
+/**
+ * Returns the owner window of a given element.
+ * 
+ * @param node the element
+ */
 function ownerWindow(node) {
   var doc = (0, _ownerDocument.default)(node);
   return doc && doc.defaultView || window;
@@ -37161,6 +37195,11 @@ module.exports = exports["default"];
 exports.__esModule = true;
 exports.default = ownerDocument;
 
+/**
+ * Returns the owner document of a given element.
+ * 
+ * @param node the element
+ */
 function ownerDocument(node) {
   return node && node.ownerDocument || document;
 }
@@ -37848,16 +37887,12 @@ var _css = _interopRequireDefault(require("./css"));
 
 var _listen = _interopRequireDefault(require("./listen"));
 
+var _triggerEvent = _interopRequireDefault(require("./triggerEvent"));
+
 function parseDuration(node) {
   var str = (0, _css.default)(node, 'transitionDuration') || '';
   var mult = str.indexOf('ms') === -1 ? 1000 : 1;
   return parseFloat(str) * mult;
-}
-
-function triggerTransitionEnd(element) {
-  var evt = document.createEvent('HTMLEvents');
-  evt.initEvent('transitionend', true, true);
-  element.dispatchEvent(evt);
 }
 
 function emulateTransitionEnd(element, duration, padding) {
@@ -37867,7 +37902,7 @@ function emulateTransitionEnd(element, duration, padding) {
 
   var called = false;
   var handle = setTimeout(function () {
-    if (!called) triggerTransitionEnd(element);
+    if (!called) (0, _triggerEvent.default)(element, 'transitionend', true);
   }, duration + padding);
   var remove = (0, _listen.default)(element, 'transitionend', function () {
     called = true;
@@ -37891,7 +37926,7 @@ function transitionEnd(element, handler, duration, padding) {
 }
 
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./css":"2pCMM","./listen":"2RWZU"}],"2RWZU":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./css":"2pCMM","./listen":"2RWZU","./triggerEvent":"01ESa"}],"2RWZU":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -37952,6 +37987,11 @@ try {
 
 /**
  * An `addEventListener` ponyfill, supports the `once` option
+ * 
+ * @param node the element
+ * @param eventName the event name
+ * @param handle the handler
+ * @param options event options
  */
 function addEventListener(node, eventName, handler, options) {
   if (options && typeof options !== 'boolean' && !onceSupported) {
@@ -37992,6 +38032,14 @@ module.exports = exports["default"];
 exports.__esModule = true;
 exports.default = void 0;
 
+/**
+ * A `removeEventListener` ponyfill
+ * 
+ * @param node the element
+ * @param eventName the event name
+ * @param handle the handler
+ * @param options event options
+ */
 function removeEventListener(node, eventName, handler, options) {
   var capture = options && typeof options !== 'boolean' ? options.capture : options;
   node.removeEventListener(eventName, handler, capture);
@@ -38003,6 +38051,37 @@ function removeEventListener(node, eventName, handler, options) {
 
 var _default = removeEventListener;
 exports.default = _default;
+module.exports = exports["default"];
+},{}],"01ESa":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.default = triggerEvent;
+
+/**
+ * Triggers an event on a given element.
+ * 
+ * @param node the element
+ * @param eventName the event name to trigger
+ * @param bubbles whether the event should bubble up
+ * @param cancelable whether the event should be cancelable
+ */
+function triggerEvent(node, eventName, bubbles, cancelable) {
+  if (bubbles === void 0) {
+    bubbles = false;
+  }
+
+  if (cancelable === void 0) {
+    cancelable = true;
+  }
+
+  if (node) {
+    var event = document.createEvent('HTMLEvents');
+    event.initEvent(eventName, bubbles, cancelable);
+    node.dispatchEvent(event);
+  }
+}
+
 module.exports = exports["default"];
 },{}],"4RHiz":[function(require,module,exports) {
 "use strict";
@@ -39873,6 +39952,8 @@ var _matches = _interopRequireDefault(require("dom-helpers/matches"));
 
 var _querySelectorAll = _interopRequireDefault(require("dom-helpers/querySelectorAll"));
 
+var _addEventListener = _interopRequireDefault(require("dom-helpers/addEventListener"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
@@ -39974,6 +40055,7 @@ function useRefWithUpdate() {
 }
 /**
  * @displayName Dropdown
+ * @public
  */
 
 
@@ -40110,13 +40192,23 @@ function Dropdown(_ref) {
 
         return;
 
-      case 'Escape':
       case 'Tab':
-        if (key === 'Escape') {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+        // on keydown the target is the element being tabbed FROM, we need that
+        // to know if this event is relevant to this dropdown (e.g. in this menu).
+        // On `keyup` the target is the element being tagged TO which we use to check
+        // if focus has left the menu
+        (0, _addEventListener["default"])(document, 'keyup', function (e) {
+          if (e.key === 'Tab' && !e.target || !menuRef.current.contains(e.target)) {
+            onToggle(false, event);
+          }
+        }, {
+          once: true
+        });
+        break;
 
+      case 'Escape':
+        event.preventDefault();
+        event.stopPropagation();
         onToggle(false, event);
         break;
 
@@ -40135,12 +40227,18 @@ Dropdown.Toggle = _DropdownToggle["default"];
 var _default = Dropdown;
 exports["default"] = _default;
 module.exports = exports.default;
-},{"@babel/runtime/helpers/interopRequireWildcard":"28En5","@babel/runtime/helpers/interopRequireDefault":"4ttVj","dom-helpers/matches":"7byLp","dom-helpers/querySelectorAll":"54Bk2","react":"3b2NM","prop-types":"4dfy5","uncontrollable":"4P7FS","@restart/hooks/usePrevious":"7bQ4k","@restart/hooks/useForceUpdate":"5xiXI","@restart/hooks/useGlobalListener":"3rCqe","@restart/hooks/useEventCallback":"3v8B9","./DropdownContext":"7eTi6","./DropdownMenu":"6bE0I","./DropdownToggle":"6rvPr"}],"7byLp":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireWildcard":"28En5","@babel/runtime/helpers/interopRequireDefault":"4ttVj","dom-helpers/matches":"7byLp","dom-helpers/querySelectorAll":"54Bk2","dom-helpers/addEventListener":"7zk2U","react":"3b2NM","prop-types":"4dfy5","uncontrollable":"4P7FS","@restart/hooks/usePrevious":"7bQ4k","@restart/hooks/useForceUpdate":"5xiXI","@restart/hooks/useGlobalListener":"3rCqe","@restart/hooks/useEventCallback":"3v8B9","./DropdownContext":"7eTi6","./DropdownMenu":"6bE0I","./DropdownToggle":"6rvPr"}],"7byLp":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
 exports.default = matches;
 var matchesImpl;
+/**
+ * Checks if a given element matches a selector.
+ * 
+ * @param node the element
+ * @param selector the selector
+ */
 
 function matches(node, selector) {
   if (!matchesImpl) {
@@ -40162,6 +40260,12 @@ module.exports = exports["default"];
 exports.__esModule = true;
 exports.default = qsa;
 var toArray = Function.prototype.bind.call(Function.prototype.call, [].slice);
+/**
+ * Runs `querySelectorAll` on a given element.
+ * 
+ * @param element the element
+ * @param selector the selector
+ */
 
 function qsa(element, selector) {
   return toArray(element.querySelectorAll(selector));
@@ -40812,19 +40916,45 @@ var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, 
 function getBasePlacement(placement) {
   return placement.split('-')[0];
 }
-// Returns the layout rect of an element relative to its offsetParent. Layout
+function getBoundingClientRect(element) {
+  var rect = element.getBoundingClientRect();
+  return {
+    width: rect.width,
+    height: rect.height,
+    top: rect.top,
+    right: rect.right,
+    bottom: rect.bottom,
+    left: rect.left,
+    x: rect.left,
+    y: rect.top
+  };
+}
 // means it doesn't take into account transforms.
 function getLayoutRect(element) {
+  var clientRect = getBoundingClientRect(element);
+  // Use the clientRect sizes if it's not been transformed.
+  // Fixes https://github.com/popperjs/popper-core/issues/1223
+  var width = element.offsetWidth;
+  var height = element.offsetHeight;
+  if (Math.abs(clientRect.width - width) <= 0.5) {
+    width = clientRect.width;
+  }
+  if (Math.abs(clientRect.height - height) <= 0.5) {
+    height = clientRect.height;
+  }
   return {
     x: element.offsetLeft,
     y: element.offsetTop,
-    width: element.offsetWidth,
-    height: element.offsetHeight
+    width: width,
+    height: height
   };
 }
 /*:: import type { Window } from '../types';*/
 /*:: declare function getWindow(node: Node | Window): Window;*/
 function getWindow(node) {
+  if (node == null) {
+    return window;
+  }
   if (node.toString() !== '[object Window]') {
     var ownerDocument = node.ownerDocument;
     return ownerDocument ? ownerDocument.defaultView || window : window;
@@ -40846,6 +40976,10 @@ function isHTMLElement(node) {
 /*:: declare function isShadowRoot(node: mixed): boolean %checks(node instanceof
 ShadowRoot);*/
 function isShadowRoot(node) {
+  // IE 11 has no ShadowRoot
+  if (typeof ShadowRoot === 'undefined') {
+    return false;
+  }
   var OwnElement = getWindow(node).ShadowRoot;
   return node instanceof OwnElement || node instanceof ShadowRoot;
 }
@@ -40856,13 +40990,13 @@ function contains(parent, child) {
     return true;
       // then fallback to custom implementation with Shadow DOM support
 } else // then fallback to custom implementation with Shadow DOM support
-  if (isShadowRoot(rootNode)) {
+  if (rootNode && isShadowRoot(rootNode)) {
     var next = child;
     do {
       if (next && parent.isSameNode(next)) {
         return true;
       }
-      // $FlowFixMe: need a better way to handle this...
+      // $FlowFixMe[prop-missing]: need a better way to handle this...
       next = next.parentNode || next.host;
     } while (next);
   }
@@ -40879,20 +41013,22 @@ function isTableElement(element) {
   return ['table', 'td', 'th'].indexOf(getNodeName(element)) >= 0;
 }
 function getDocumentElement(element) {
-  // $FlowFixMe: assume body is always available
-  return ((isElement(element) ? element.ownerDocument : element.document) || window.document).documentElement;
+  // $FlowFixMe[incompatible-return]: assume body is always available
+  return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
+  element.document) || window.document).documentElement;
 }
 function getParentNode(element) {
   if (getNodeName(element) === 'html') {
     return element;
   }
   return (
-    // $FlowFixMe: this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    // this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    // $FlowFixMe[incompatible-return]
+    // $FlowFixMe[prop-missing]
     element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
-    element.parentNode || // DOM Element detected
-    // $FlowFixMe: need a better way to handle this...
-    element.host || // ShadowRoot detected
-    // $FlowFixMe: HTMLElement is a Node
+    element.parentNode || (// DOM Element detected
+    isShadowRoot(element) ? element.host : null) || // ShadowRoot detected
+    // $FlowFixMe[incompatible-call]: HTMLElement is a Node
     getDocumentElement(element)
   );
 }
@@ -40901,24 +41037,19 @@ function getTrueOffsetParent(element) {
   getComputedStyle(element).position === 'fixed') {
     return null;
   }
-  var offsetParent = element.offsetParent;
-  if (offsetParent) {
-    var html = getDocumentElement(offsetParent);
-    if (getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static' && getComputedStyle(html).position !== 'static') {
-      return html;
-    }
-  }
-  return offsetParent;
+  return element.offsetParent;
 }
 // `.offsetParent` reports `null` for fixed elements, while absolute elements
 // return the containing block
 function getContainingBlock(element) {
+  var isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
   var currentNode = getParentNode(element);
   while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
     var css = getComputedStyle(currentNode);
     // This is non-exhaustive but covers the most common CSS properties that
     // create a containing block.
-    if (css.transform !== 'none' || css.perspective !== 'none' || css.willChange && css.willChange !== 'auto') {
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+    if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].includes(css.willChange) || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
       return currentNode;
     } else {
       currentNode = currentNode.parentNode;
@@ -40934,7 +41065,7 @@ function getOffsetParent(element) {
   while (offsetParent && isTableElement(offsetParent) && getComputedStyle(offsetParent).position === 'static') {
     offsetParent = getTrueOffsetParent(offsetParent);
   }
-  if (offsetParent && getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static') {
+  if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static')) {
     return window;
   }
   return offsetParent || getContainingBlock(element) || window;
@@ -40942,8 +41073,11 @@ function getOffsetParent(element) {
 function getMainAxisFromPlacement(placement) {
   return ['top', 'bottom'].indexOf(placement) >= 0 ? 'x' : 'y';
 }
-function within(min, value, max) {
-  return Math.max(min, Math.min(value, max));
+var max = Math.max;
+var min = Math.min;
+var round = Math.round;
+function within(min$1, value, max$1) {
+  return max(min$1, min(value, max$1));
 }
 function getFreshSideObject() {
   return {
@@ -40954,7 +41088,7 @@ function getFreshSideObject() {
   };
 }
 function mergePaddingObject(paddingObject) {
-  return Object.assign(Object.assign({}, getFreshSideObject()), paddingObject);
+  return Object.assign({}, getFreshSideObject(), paddingObject);
 }
 function expandToHashMap(value, keys) {
   return keys.reduce(function (hashMap, key) {
@@ -40962,9 +41096,15 @@ function expandToHashMap(value, keys) {
     return hashMap;
   }, {});
 }
+var toPaddingObject = function toPaddingObject(padding, state) {
+  padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
+    placement: state.placement
+  })) : padding;
+  return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+};
 function arrow(_ref) {
   var _state$modifiersData$;
-  var state = _ref.state, name = _ref.name;
+  var state = _ref.state, name = _ref.name, options = _ref.options;
   var arrowElement = state.elements.arrow;
   var popperOffsets = state.modifiersData.popperOffsets;
   var basePlacement = getBasePlacement(state.placement);
@@ -40974,7 +41114,7 @@ function arrow(_ref) {
   if (!arrowElement || !popperOffsets) {
     return;
   }
-  var paddingObject = state.modifiersData[name + "#persistent"].padding;
+  var paddingObject = toPaddingObject(options.padding, state);
   var arrowRect = getLayoutRect(arrowElement);
   var minProp = axis === 'y' ? top : left;
   var maxProp = axis === 'y' ? bottom : right;
@@ -40993,9 +41133,9 @@ function arrow(_ref) {
   var axisProp = axis;
   state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
 }
-function effect(_ref2) {
-  var state = _ref2.state, options = _ref2.options, name = _ref2.name;
-  var _options$element = options.element, arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element, _options$padding = options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
+function effect$1(_ref2) {
+  var state = _ref2.state, options = _ref2.options;
+  var _options$element = options.element, arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
   if (arrowElement == null) {
     return;
   }
@@ -41018,9 +41158,6 @@ function effect(_ref2) {
     return;
   }
   state.elements.arrow = arrowElement;
-  state.modifiersData[name + "#persistent"] = {
-    padding: mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements))
-  };
 }
 // eslint-disable-next-line import/no-unused-modules
 var arrow$1 = {
@@ -41028,7 +41165,7 @@ var arrow$1 = {
   enabled: true,
   phase: 'main',
   fn: arrow,
-  effect: effect,
+  effect: effect$1,
   requires: ['popperOffsets'],
   requiresIfExists: ['preventOverflow']
 };
@@ -41041,19 +41178,19 @@ var unsetSides = {
 // Round the offsets to the nearest suitable subpixel based on the DPR.
 // Zooming can change the DPR, but it seems to report a value that will
 // cleanly divide the values into the appropriate subpixels.
-function roundOffsets(_ref) {
+function roundOffsetsByDPR(_ref) {
   var x = _ref.x, y = _ref.y;
   var win = window;
   var dpr = win.devicePixelRatio || 1;
   return {
-    x: Math.round(x * dpr) / dpr || 0,
-    y: Math.round(y * dpr) / dpr || 0
+    x: round(round(x * dpr) / dpr) || 0,
+    y: round(round(y * dpr) / dpr) || 0
   };
 }
 function mapToStyles(_ref2) {
   var _Object$assign2;
-  var popper = _ref2.popper, popperRect = _ref2.popperRect, placement = _ref2.placement, offsets = _ref2.offsets, position = _ref2.position, gpuAcceleration = _ref2.gpuAcceleration, adaptive = _ref2.adaptive;
-  var _roundOffsets = roundOffsets(offsets), x = _roundOffsets.x, y = _roundOffsets.y;
+  var popper = _ref2.popper, popperRect = _ref2.popperRect, placement = _ref2.placement, offsets = _ref2.offsets, position = _ref2.position, gpuAcceleration = _ref2.gpuAcceleration, adaptive = _ref2.adaptive, roundOffsets = _ref2.roundOffsets;
+  var _ref3 = roundOffsets === true ? roundOffsetsByDPR(offsets) : typeof roundOffsets === 'function' ? roundOffsets(offsets) : offsets, _ref3$x = _ref3.x, x = _ref3$x === void 0 ? 0 : _ref3$x, _ref3$y = _ref3.y, y = _ref3$y === void 0 ? 0 : _ref3$y;
   var hasX = offsets.hasOwnProperty('x');
   var hasY = offsets.hasOwnProperty('y');
   var sideX = left;
@@ -41061,19 +41198,27 @@ function mapToStyles(_ref2) {
   var win = window;
   if (adaptive) {
     var offsetParent = getOffsetParent(popper);
+    var heightProp = 'clientHeight';
+    var widthProp = 'clientWidth';
     if (offsetParent === getWindow(popper)) {
       offsetParent = getDocumentElement(popper);
+      if (getComputedStyle(offsetParent).position !== 'static') {
+        heightProp = 'scrollHeight';
+        widthProp = 'scrollWidth';
+      }
     }
-    // $FlowFixMe: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
+    // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
     /*:: offsetParent = (offsetParent: Element);*/
     if (placement === top) {
       sideY = bottom;
-      y -= offsetParent.clientHeight - popperRect.height;
+      // $FlowFixMe[prop-missing]
+      y -= offsetParent[heightProp] - popperRect.height;
       y *= gpuAcceleration ? 1 : -1;
     }
     if (placement === left) {
       sideX = right;
-      x -= offsetParent.clientWidth - popperRect.width;
+      // $FlowFixMe[prop-missing]
+      x -= offsetParent[widthProp] - popperRect.width;
       x *= gpuAcceleration ? 1 : -1;
     }
   }
@@ -41082,13 +41227,13 @@ function mapToStyles(_ref2) {
   }, adaptive && unsetSides);
   if (gpuAcceleration) {
     var _Object$assign;
-    return Object.assign(Object.assign({}, commonStyles), {}, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) < 2 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
+    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) < 2 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
   }
-  return Object.assign(Object.assign({}, commonStyles), {}, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
+  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
 }
-function computeStyles(_ref3) {
-  var state = _ref3.state, options = _ref3.options;
-  var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive;
+function computeStyles(_ref4) {
+  var state = _ref4.state, options = _ref4.options;
+  var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
   if ("development" !== "production") {
     var transitionProperty = getComputedStyle(state.elements.popper).transitionProperty || '';
     if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
@@ -41104,20 +41249,22 @@ function computeStyles(_ref3) {
     gpuAcceleration: gpuAcceleration
   };
   if (state.modifiersData.popperOffsets != null) {
-    state.styles.popper = Object.assign(Object.assign({}, state.styles.popper), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
+    state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
       offsets: state.modifiersData.popperOffsets,
       position: state.options.strategy,
-      adaptive: adaptive
+      adaptive: adaptive,
+      roundOffsets: roundOffsets
     })));
   }
   if (state.modifiersData.arrow != null) {
-    state.styles.arrow = Object.assign(Object.assign({}, state.styles.arrow), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
+    state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
       offsets: state.modifiersData.arrow,
       position: 'absolute',
-      adaptive: false
+      adaptive: false,
+      roundOffsets: roundOffsets
     })));
   }
-  state.attributes.popper = Object.assign(Object.assign({}, state.attributes.popper), {}, {
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
     'data-popper-placement': state.placement
   });
 }
@@ -41132,7 +41279,7 @@ var computeStyles$1 = {
 var passive = {
   passive: true
 };
-function effect$1(_ref) {
+function effect(_ref) {
   var state = _ref.state, instance = _ref.instance, options = _ref.options;
   var _options$scroll = options.scroll, scroll = _options$scroll === void 0 ? true : _options$scroll, _options$resize = options.resize, resize = _options$resize === void 0 ? true : _options$resize;
   var window = getWindow(state.elements.popper);
@@ -41162,10 +41309,10 @@ var eventListeners = {
   enabled: true,
   phase: 'write',
   fn: function fn() {},
-  effect: effect$1,
+  effect: effect,
   data: {}
 };
-var hash = {
+var hash$1 = {
   left: 'right',
   right: 'left',
   bottom: 'top',
@@ -41173,30 +41320,17 @@ var hash = {
 };
 function getOppositePlacement(placement) {
   return placement.replace(/left|right|bottom|top/g, function (matched) {
-    return hash[matched];
+    return hash$1[matched];
   });
 }
-var hash$1 = {
+var hash = {
   start: 'end',
   end: 'start'
 };
 function getOppositeVariationPlacement(placement) {
   return placement.replace(/start|end/g, function (matched) {
-    return hash$1[matched];
+    return hash[matched];
   });
-}
-function getBoundingClientRect(element) {
-  var rect = element.getBoundingClientRect();
-  return {
-    width: rect.width,
-    height: rect.height,
-    top: rect.top,
-    right: rect.right,
-    bottom: rect.bottom,
-    left: rect.left,
-    x: rect.left,
-    y: rect.top
-  };
 }
 function getWindowScroll(node) {
   var win = getWindow(node);
@@ -41255,15 +41389,16 @@ function getViewportRect(element) {
 }
 // of the `<html>` and `<body>` rect bounds if horizontally scrollable
 function getDocumentRect(element) {
+  var _element$ownerDocumen;
   var html = getDocumentElement(element);
   var winScroll = getWindowScroll(element);
-  var body = element.ownerDocument.body;
-  var width = Math.max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
-  var height = Math.max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+  var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
+  var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
   var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
   var y = -winScroll.scrollTop;
   if (getComputedStyle(body || html).direction === 'rtl') {
-    x += Math.max(html.clientWidth, body ? body.clientWidth : 0) - width;
+    x += max(html.clientWidth, body ? body.clientWidth : 0) - width;
   }
   return {
     width: width,
@@ -41279,7 +41414,7 @@ function isScrollParent(element) {
 }
 function getScrollParent(node) {
   if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
-    // $FlowFixMe: assume body is always available
+    // $FlowFixMe[incompatible-return]: assume body is always available
     return node.ownerDocument.body;
   }
   if (isHTMLElement(node) && isScrollParent(node)) {
@@ -41294,19 +41429,20 @@ to, because if any of these parent elements scroll, we'll need to re-calculate t
 reference element's position.
 */
 function listScrollParents(element, list) {
+  var _element$ownerDocumen;
   if (list === void 0) {
     list = [];
   }
   var scrollParent = getScrollParent(element);
-  var isBody = getNodeName(scrollParent) === 'body';
+  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
   var win = getWindow(scrollParent);
   var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
   var updatedList = list.concat(target);
-  return isBody ? updatedList : // $FlowFixMe: isBody tells us target will be an HTMLElement here
+  return isBody ? updatedList : // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
   updatedList.concat(listScrollParents(getParentNode(target)));
 }
 function rectToClientRect(rect) {
-  return Object.assign(Object.assign({}, rect), {}, {
+  return Object.assign({}, rect, {
     left: rect.x,
     top: rect.y,
     right: rect.x + rect.width,
@@ -41338,7 +41474,7 @@ function getClippingParents(element) {
   if (!isElement(clipperElement)) {
     return [];
   }
-  // $FlowFixMe: https://github.com/facebook/flow/issues/1414
+  // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
   return clippingParents.filter(function (clippingParent) {
     return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
   });
@@ -41351,10 +41487,10 @@ function getClippingRect(element, boundary, rootBoundary) {
   var firstClippingParent = clippingParents[0];
   var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
     var rect = getClientRectFromMixedType(element, clippingParent);
-    accRect.top = Math.max(rect.top, accRect.top);
-    accRect.right = Math.min(rect.right, accRect.right);
-    accRect.bottom = Math.min(rect.bottom, accRect.bottom);
-    accRect.left = Math.max(rect.left, accRect.left);
+    accRect.top = max(rect.top, accRect.top);
+    accRect.right = min(rect.right, accRect.right);
+    accRect.bottom = min(rect.bottom, accRect.bottom);
+    accRect.left = max(rect.left, accRect.left);
     return accRect;
   }, getClientRectFromMixedType(element, firstClippingParent));
   clippingRect.width = clippingRect.right - clippingRect.left;
@@ -41409,10 +41545,10 @@ function computeOffsets(_ref) {
     var len = mainAxis === 'y' ? 'height' : 'width';
     switch (variation) {
       case start:
-        offsets[mainAxis] = Math.floor(offsets[mainAxis]) - Math.floor(reference[len] / 2 - element[len] / 2);
+        offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
         break;
       case end:
-        offsets[mainAxis] = Math.floor(offsets[mainAxis]) + Math.ceil(reference[len] / 2 - element[len] / 2);
+        offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
         break;
     }
   }
@@ -41436,7 +41572,7 @@ function detectOverflow(state, options) {
     strategy: 'absolute',
     placement: placement
   });
-  var popperClientRect = rectToClientRect(Object.assign(Object.assign({}, popperRect), popperOffsets));
+  var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
   var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect;
   // positive = overflowing the clipping rect
   // 0 or negative = within the clipping rect
@@ -41469,7 +41605,6 @@ function computeAutoPlacement(state, options) {
   var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
     return getVariation(placement) === variation;
   }) : basePlacements;
-  // $FlowFixMe
   var allowedPlacements = placements$1.filter(function (placement) {
     return allowedAutoPlacements.indexOf(placement) >= 0;
   });
@@ -41479,7 +41614,7 @@ function computeAutoPlacement(state, options) {
       console.error(['Popper: The `allowedAutoPlacements` option did not allow any', 'placements. Ensure the `placement` option matches the variation', 'of the allowed placements.', 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(' '));
     }
   }
-  // $FlowFixMe: Flow seems to have problems with two array unions...
+  // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
   var overflows = allowedPlacements.reduce(function (acc, placement) {
     acc[placement] = detectOverflow(state, {
       placement: placement,
@@ -41638,7 +41773,7 @@ function hide(_ref) {
     isReferenceHidden: isReferenceHidden,
     hasPopperEscaped: hasPopperEscaped
   };
-  state.attributes.popper = Object.assign(Object.assign({}, state.attributes.popper), {}, {
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
     'data-popper-reference-hidden': isReferenceHidden,
     'data-popper-escaped': hasPopperEscaped
   });
@@ -41654,7 +41789,7 @@ var hide$1 = {
 function distanceAndSkiddingToXY(placement, rects, offset) {
   var basePlacement = getBasePlacement(placement);
   var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
-  var _ref = typeof offset === 'function' ? offset(Object.assign(Object.assign({}, rects), {}, {
+  var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
     placement: placement
   })) : offset, skidding = _ref[0], distance = _ref[1];
   skidding = skidding || 0;
@@ -41730,7 +41865,7 @@ function preventOverflow(_ref) {
   var popperOffsets = state.modifiersData.popperOffsets;
   var referenceRect = state.rects.reference;
   var popperRect = state.rects.popper;
-  var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign(Object.assign({}, state.rects), {}, {
+  var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
     placement: state.placement
   })) : tetherOffset;
   var data = {
@@ -41740,13 +41875,13 @@ function preventOverflow(_ref) {
   if (!popperOffsets) {
     return;
   }
-  if (checkMainAxis) {
+  if (checkMainAxis || checkAltAxis) {
     var mainSide = mainAxis === 'y' ? top : left;
     var altSide = mainAxis === 'y' ? bottom : right;
     var len = mainAxis === 'y' ? 'height' : 'width';
     var offset = popperOffsets[mainAxis];
-    var min = popperOffsets[mainAxis] + overflow[mainSide];
-    var max = popperOffsets[mainAxis] - overflow[altSide];
+    var min$1 = popperOffsets[mainAxis] + overflow[mainSide];
+    var max$1 = popperOffsets[mainAxis] - overflow[altSide];
     var additive = tether ? -popperRect[len] / 2 : 0;
     var minLen = variation === start ? referenceRect[len] : popperRect[len];
     var maxLen = variation === start ? -popperRect[len] : -referenceRect[len];
@@ -41773,19 +41908,21 @@ function preventOverflow(_ref) {
     var offsetModifierValue = state.modifiersData.offset ? state.modifiersData.offset[state.placement][mainAxis] : 0;
     var tetherMin = popperOffsets[mainAxis] + minOffset - offsetModifierValue - clientOffset;
     var tetherMax = popperOffsets[mainAxis] + maxOffset - offsetModifierValue;
-    var preventedOffset = within(tether ? Math.min(min, tetherMin) : min, offset, tether ? Math.max(max, tetherMax) : max);
-    popperOffsets[mainAxis] = preventedOffset;
-    data[mainAxis] = preventedOffset - offset;
-  }
-  if (checkAltAxis) {
-    var _mainSide = mainAxis === 'x' ? top : left;
-    var _altSide = mainAxis === 'x' ? bottom : right;
-    var _offset = popperOffsets[altAxis];
-    var _min = _offset + overflow[_mainSide];
-    var _max = _offset - overflow[_altSide];
-    var _preventedOffset = within(_min, _offset, _max);
-    popperOffsets[altAxis] = _preventedOffset;
-    data[altAxis] = _preventedOffset - _offset;
+    if (checkMainAxis) {
+      var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
+      popperOffsets[mainAxis] = preventedOffset;
+      data[mainAxis] = preventedOffset - offset;
+    }
+    if (checkAltAxis) {
+      var _mainSide = mainAxis === 'x' ? top : left;
+      var _altSide = mainAxis === 'x' ? bottom : right;
+      var _offset = popperOffsets[altAxis];
+      var _min = _offset + overflow[_mainSide];
+      var _max = _offset - overflow[_altSide];
+      var _preventedOffset = within(tether ? min(_min, tetherMin) : _min, _offset, tether ? max(_max, tetherMax) : _max);
+      popperOffsets[altAxis] = _preventedOffset;
+      data[altAxis] = _preventedOffset - _offset;
+    }
   }
   state.modifiersData[name] = data;
 }
@@ -41979,9 +42116,9 @@ function uniqueBy(arr, fn) {
 function mergeByName(modifiers) {
   var merged = modifiers.reduce(function (merged, current) {
     var existing = merged[current.name];
-    merged[current.name] = existing ? Object.assign(Object.assign(Object.assign({}, existing), current), {}, {
-      options: Object.assign(Object.assign({}, existing.options), current.options),
-      data: Object.assign(Object.assign({}, existing.data), current.data)
+    merged[current.name] = existing ? Object.assign({}, existing, current, {
+      options: Object.assign({}, existing.options, current.options),
+      data: Object.assign({}, existing.data, current.data)
     }) : current;
     return merged;
   }, {});
@@ -42017,7 +42154,7 @@ function popperGenerator(generatorOptions) {
     var state = {
       placement: 'bottom',
       orderedModifiers: [],
-      options: Object.assign(Object.assign({}, DEFAULT_OPTIONS), defaultOptions),
+      options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
       modifiersData: {},
       elements: {
         reference: reference,
@@ -42032,7 +42169,7 @@ function popperGenerator(generatorOptions) {
       state: state,
       setOptions: function setOptions(options) {
         cleanupModifierEffects();
-        state.options = Object.assign(Object.assign(Object.assign({}, defaultOptions), state.options), options);
+        state.options = Object.assign({}, defaultOptions, state.options, options);
         state.scrollParents = {
           reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
           popper: listScrollParents(popper)
@@ -42324,9 +42461,16 @@ exports.__esModule = true;
 exports.default = contains;
 
 /* eslint-disable no-bitwise, no-cond-assign */
-// HTML DOM and SVG DOM may have different support levels,
-// so we need to check on context instead of a document root element.
+
+/**
+ * Checks if an element contains another given element.
+ * 
+ * @param context the context element
+ * @param node the element to check
+ */
 function contains(context, node) {
+  // HTML DOM and SVG DOM may have different support levels,
+  // so we need to check on context instead of a document root element.
   if (context.contains) return context.contains(node);
   if (context.compareDocumentPosition) return context === node || !!(context.compareDocumentPosition(node) & 16);
 }
@@ -42933,6 +43077,12 @@ module.exports = exports["default"];
 exports.__esModule = true;
 exports.default = hasClass;
 
+/**
+ * Checks if a given element has a CSS class.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */
 function hasClass(element, className) {
   if (element.classList) return !!className && element.classList.contains(className);
   return (" " + (element.className.baseVal || element.className) + " ").indexOf(" " + className + " ") !== -1;
@@ -44537,9 +44687,9 @@ exports.default = activeElement;
 var _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
 
 /**
- * Return the actively focused element safely.
+ * Returns the actively focused element safely.
  *
- * @param doc the document to checl
+ * @param doc the document to check
  */
 function activeElement(doc) {
   if (doc === void 0) {
@@ -44752,6 +44902,12 @@ exports.default = addClass;
 
 var _hasClass = _interopRequireDefault(require("./hasClass"));
 
+/**
+ * Adds a CSS class to a given element.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */
 function addClass(element, className) {
   if (element.classList) element.classList.add(className);else if (!(0, _hasClass.default)(element, className)) if (typeof element.className === 'string') element.className = element.className + " " + className;else element.setAttribute('class', (element.className && element.className.baseVal || '') + " " + className);
 }
@@ -44766,12 +44922,18 @@ exports.default = removeClass;
 function replaceClassName(origClass, classToRemove) {
   return origClass.replace(new RegExp("(^|\\s)" + classToRemove + "(?:\\s|$)", 'g'), '$1').replace(/\s+/g, ' ').replace(/^\s*|\s*$/g, '');
 }
+/**
+ * Removes a CSS class from a given element.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */
+
 
 function removeClass(element, className) {
   if (element.classList) {
     element.classList.remove(className);
   } else if (typeof element.className === 'string') {
-    ;
     element.className = replaceClassName(element.className, className);
   } else {
     element.setAttribute('class', replaceClassName(element.className && element.className.baseVal || '', className));
@@ -47733,9 +47895,6 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MovieView", function () {
-    return MovieView;
-  });
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _axios = require("axios");
@@ -47744,6 +47903,7 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _reactRedux = require("react-redux");
   require("./movie-view.scss");
   class MovieView extends _reactDefault.default.Component {
     constructor() {
@@ -47752,9 +47912,10 @@ try {
     }
     /*add to favorites function*/
     addToFavorites(movie) {
-      let token = localStorage.getItem("token");
-      let url = "https://movieflixappjp.herokuapp.com/users/" + localStorage.getItem("user") + "/movies/" + movie._id;
-      console.log(token);
+      console.log(movie._id);
+      const {token} = this.props.user;
+      const {Username} = this.props.user.user;
+      let url = `https://movieflixappjp.herokuapp.com/users/${Username}/movies/${movie._id}`;
       _axiosDefault.default.post(url, "", {
         headers: {
           Authorization: `Bearer ${token}`
@@ -47762,10 +47923,13 @@ try {
       }).then(response => {
         console.log(response);
         alert("Added to favorites!");
+      }).catch(e => {
+        console.log(e);
       });
     }
     render() {
       const {movie} = this.props;
+      console.log(movie);
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
@@ -47822,6 +47986,13 @@ try {
       );
     }
   }
+  let mapStateToProps = state => {
+    console.log(state);
+    return {
+      user: state.user
+    };
+  };
+  exports.default = _reactRedux.connect(mapStateToProps)(MovieView);
   MovieView.propTypes = {
     movie: _propTypesDefault.default.shape({
       Title: _propTypesDefault.default.string.isRequired,
@@ -47846,7 +48017,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","axios":"7rA65"}],"4iZ2Z":[function() {},{}],"6M7fu":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-redux":"7GDa4","./movie-view.scss":"4iZ2Z","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4iZ2Z":[function() {},{}],"6M7fu":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47977,7 +48148,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-redux":"7GDa4","../../actions/actions":"5S6cN","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3ueKO":[function() {},{}],"7gvH2":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47989,69 +48160,44 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactRedux = require("react-redux");
+  var _actionsActions = require("../../actions/actions");
   var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactRedux = require("react-redux");
-  require("react-router-dom");
-  var _actionsActions = require("../../actions/actions");
   require("./registration-view.scss");
   var _s = $RefreshSig$();
-  const mapStateToProps = state => {
-    const {user} = state;
-    return {
-      user
-    };
-  };
   function RegisterView(props) {
     _s();
-    const {user} = props;
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    const [usernameError, setUsernameError] = _react.useState("");
-    const [passwordError, setPasswordError] = _react.useState("");
-    const [isPasswordVisible, setPasswordVisible] = _react.useState(false);
+    const [username, setUsername] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [birthday, setBirthday] = _react.useState("");
     const handleRegister = e => {
       e.preventDefault();
-      let error = document.querySelector(".error-message");
-      if (error) {} else {
-        // entire URL is in package.json under 'proxy' to get past CORS
-        _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
-          Username: username,
-          Email: email,
-          Password: password,
-          Birthday: birthday
-        }).then(response => {
-          const data = response.data;
-          console.log(data);
-          window.open("/", "_self");
-        }).catch(e => {
-          console.log(e.response);
-        });
-        return true;
-      }
+      // entire URL is in package.json under 'proxy' to get past CORS
+      _axiosDefault.default.post(`https://movieflixappjp.herokuapp.com/users`, {
+        Username: username,
+        Email: email,
+        Password: password,
+        Birthday: birthday
+      }).then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self");
+      }).catch(e => {
+        console.log(e.response);
+      });
     };
-    _react.useEffect(() => {
-      if (password === "" || password.length >= 6) {
-        setPasswordError("");
-      } else if (password.length < 6) {
-        setPasswordError("Password must be longer than 5 characters");
-      }
-    }, [password]);
-    _react.useEffect(() => {
-      if (username === "" || username.length >= 6) {
-        setUsernameError("");
-      } else if (username.length < 6) {
-        setUsernameError("Username must be longer than 5 characters");
-      }
-    }, [username]);
     return (
-      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
         expand: "sm",
         bg: "black",
         variant: "dark",
         fixed: "top"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, null, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+        href: "/"
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "MFLX"
       }, "MovieFlix")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto MFLXsm"
@@ -48059,62 +48205,31 @@ try {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        maxLength: "10",
+      }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        placeholder: "Username",
-        name: "username",
         value: username,
-        className: "form-control-register",
-        required: true,
-        onChange: e => props.setUser({
-          ...user,
-          Username: e.target.value
-        })
-      }), /*#__PURE__*/_reactDefault.default.createElement("p", {
-        className: "form-error"
-      }, usernameError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        onChange: e => setUsername(e.target.value),
+        pattern: "[a-zA-Z0-9]+"
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: isPasswordVisible ? "text" : "password",
-        maxLength: "10",
+      }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "password",
         value: password,
-        placeholder: "Password",
-        name: "password",
-        className: "form-control-register",
-        onChange: e => props.setUser({
-          ...user,
-          Password: e.target.value
-        })
-      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-        className: "password-trigger",
-        onClick: () => setPasswordVisible(!isPasswordVisible)
-      }, isPasswordVisible ? "Hide" : "Show"), /*#__PURE__*/_reactDefault.default.createElement("p", {
-        className: "form-error"
-      }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        onChange: e => setPassword(e.target.value),
+        required: true,
+        pattern: "[a-zA-Z0-9 ]+"
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Email*"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         value: email,
-        placeholder: "Email",
-        name: "email",
-        className: "form-control-register",
-        onChange: e => props.setUser({
-          ...user,
-          Email: e.target.value
-        })
+        onChange: e => setEmail(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        type: "date",
+      }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "birthday",
         value: birthday,
-        placeholder: "Birthday",
-        name: "birthday",
-        className: "form-control-register",
-        onChange: e => props.setUser({
-          ...user,
-          Birthday: e.target.value
-        })
+        onChange: e => setBirthday(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit",
@@ -48126,19 +48241,19 @@ try {
       }, "Log In")))
     );
   }
-  _s(RegisterView, "CeiQ/Fkb9XZKPW7i80zfmFmKMek=");
+  _s(RegisterView, "o3/uEdRrJZTQxA8AbZjW/lTW47I=");
   _c = RegisterView;
-  exports.default = _reactRedux.connect(mapStateToProps, {
+  exports.default = _reactRedux.connect(null, {
     setUser: _actionsActions.setUser
   })(RegisterView);
   RegisterView.propTypes = {
-    setUser: _propTypesDefault.default.func,
-    user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string,
-      Password: _propTypesDefault.default.string,
-      Email: _propTypesDefault.default.string,
-      Birthday: _propTypesDefault.default.Date
-    })
+    register: _propTypesDefault.default.shape({
+      Username: _propTypesDefault.default.string.isRequired,
+      Password: _propTypesDefault.default.string.isRequired,
+      Email: _propTypesDefault.default.string.isRequired,
+      Birthday: _propTypesDefault.default.string
+    }),
+    onRegister: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "RegisterView");
@@ -48148,7 +48263,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../../actions/actions":"5S6cN","react-redux":"7GDa4","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-redux":"7GDa4","../../actions/actions":"5S6cN","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"22HWg":[function() {},{}],"7HF27":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48501,7 +48616,7 @@ try {
           className: "favorites-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
-        }, "Favorite Movies"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
+        }, "Favorites"), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("ul", null, Favoritemovies && movies.map(movie => {
           if (movie._id === Favoritemovies.find(favMovie => favMovie === movie._id)) {
             return (
               /*#__PURE__*/_reactDefault.default.createElement("li", {
@@ -48528,9 +48643,9 @@ try {
   exports.default = _reactRedux.connect(mapStateToProps)(ProfileView);
   ProfileView.propTypes = {
     user: _propTypesDefault.default.shape({
-      Username: _propTypesDefault.default.string.isRequired,
-      Password: _propTypesDefault.default.string.isRequired,
-      Email: _propTypesDefault.default.string.isRequired,
+      Username: _propTypesDefault.default.string,
+      Password: _propTypesDefault.default.string,
+      Email: _propTypesDefault.default.string,
       Birthday: _propTypesDefault.default.date,
       Favoritemovies: _propTypesDefault.default.array
     })
@@ -48541,7 +48656,153 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-redux":"7GDa4"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"3vUkb":[function(require,module,exports) {
+},{"axios":"7rA65","prop-types":"4dfy5","react":"3b2NM","react-redux":"7GDa4","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./profile-view.scss":"3kYjk","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3kYjk":[function() {},{}],"3JwwG":[function() {},{}],"5P4Kg":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
+var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
+var _babelRuntimeHelpersEsmObjectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmObjectWithoutPropertiesLoose);
+var _classnames = require('classnames');
+var _classnamesDefault = _parcelHelpers.interopDefault(_classnames);
+var _react = require('react');
+var _reactDefault = _parcelHelpers.interopDefault(_react);
+var _restartHooksUseEventCallback = require('@restart/hooks/useEventCallback');
+var _restartHooksUseEventCallbackDefault = _parcelHelpers.interopDefault(_restartHooksUseEventCallback);
+var _ThemeProvider = require('./ThemeProvider');
+var _NavbarContext = require('./NavbarContext');
+var _NavbarContextDefault = _parcelHelpers.interopDefault(_NavbarContext);
+var defaultProps = {
+  label: 'Toggle navigation'
+};
+var NavbarToggle = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix, className = _ref.className, children = _ref.children, label = _ref.label, _ref$as = _ref.as, Component = _ref$as === void 0 ? 'button' : _ref$as, onClick = _ref.onClick, props = _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault.default(_ref, ["bsPrefix", "className", "children", "label", "as", "onClick"]);
+  bsPrefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'navbar-toggler');
+  var _ref2 = _react.useContext(_NavbarContextDefault.default) || ({}), onToggle = _ref2.onToggle, expanded = _ref2.expanded;
+  var handleClick = _restartHooksUseEventCallbackDefault.default(function (e) {
+    if (onClick) onClick(e);
+    if (onToggle) onToggle();
+  });
+  if (Component === 'button') {
+    props.type = 'button';
+  }
+  return (
+    /*#__PURE__*/_reactDefault.default.createElement(Component, _babelRuntimeHelpersEsmExtendsDefault.default({}, props, {
+      ref: ref,
+      onClick: handleClick,
+      "aria-label": label,
+      className: _classnamesDefault.default(className, bsPrefix, !expanded && 'collapsed')
+    }), children || /*#__PURE__*/_reactDefault.default.createElement("span", {
+      className: bsPrefix + "-icon"
+    }))
+  );
+});
+NavbarToggle.displayName = 'NavbarToggle';
+NavbarToggle.defaultProps = defaultProps;
+exports.default = NavbarToggle;
+
+},{"@babel/runtime/helpers/esm/extends":"5qnVv","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"6rNIl","classnames":"5aJRc","react":"3b2NM","@restart/hooks/useEventCallback":"3v8B9","./ThemeProvider":"6Pzum","./NavbarContext":"2WF0J","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5qnVv":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function _extends() {
+  _extends = Object.assign || (function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  });
+  return _extends.apply(this, arguments);
+}
+exports.default = _extends;
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6rNIl":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+exports.default = _objectWithoutPropertiesLoose;
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Pzum":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "useBootstrapPrefix", function () {
+  return useBootstrapPrefix;
+});
+_parcelHelpers.export(exports, "createBootstrapComponent", function () {
+  return createBootstrapComponent;
+});
+_parcelHelpers.export(exports, "ThemeConsumer", function () {
+  return Consumer;
+});
+var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
+var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
+var _react = require('react');
+var _reactDefault = _parcelHelpers.interopDefault(_react);
+var ThemeContext = /*#__PURE__*/_reactDefault.default.createContext({});
+var Consumer = ThemeContext.Consumer, Provider = ThemeContext.Provider;
+function ThemeProvider(_ref) {
+  var prefixes = _ref.prefixes, children = _ref.children;
+  var copiedPrefixes = _react.useMemo(function () {
+    return _babelRuntimeHelpersEsmExtendsDefault.default({}, prefixes);
+  }, [prefixes]);
+  return (
+    /*#__PURE__*/_reactDefault.default.createElement(Provider, {
+      value: copiedPrefixes
+    }, children)
+  );
+}
+function useBootstrapPrefix(prefix, defaultPrefix) {
+  var prefixes = _react.useContext(ThemeContext);
+  return prefix || prefixes[defaultPrefix] || defaultPrefix;
+}
+function createBootstrapComponent(Component, opts) {
+  if (typeof opts === 'string') opts = {
+    prefix: opts
+  };
+  var isClassy = Component.prototype && Component.prototype.isReactComponent;
+  // If it's a functional component make sure we don't break it with a ref
+  var _opts = opts, prefix = _opts.prefix, _opts$forwardRefAs = _opts.forwardRefAs, forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
+  var Wrapped = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref2, ref) {
+    var props = _babelRuntimeHelpersEsmExtendsDefault.default({}, _ref2);
+    props[forwardRefAs] = ref;
+    var bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(Component, _babelRuntimeHelpersEsmExtendsDefault.default({}, props, {
+        bsPrefix: bsPrefix
+      }))
+    );
+  });
+  Wrapped.displayName = "Bootstrap(" + (Component.displayName || Component.name) + ")";
+  return Wrapped;
+}
+exports.default = ThemeProvider;
+
+},{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2WF0J":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _react = require('react');
+var _reactDefault = _parcelHelpers.interopDefault(_react);
+// TODO: check
+var context = /*#__PURE__*/_reactDefault.default.createContext(null);
+context.displayName = 'NavbarContext';
+exports.default = context;
+
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3vUkb":[function(require,module,exports) {
 'use strict';
 
 var compose = require('redux').compose;
