@@ -87,7 +87,7 @@ function LoginView(props) {
             className="password-trigger"
             onClick={() => setPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? "Hide" : "Show"}
+            {isPasswordVisible ? "Hide Password" : "Show Password"}
           </span>
           <p className="form-error">{passwordError}</p>
         </Form.Group>

@@ -170,62 +170,72 @@ class ProfileView extends React.Component {
             </Card>
             <Card className="edit-profile-card cardbody">
               <Card.Body>
-                <Card.Text as="h1">Edit Profile</Card.Text>
-                <Form.Group controlId="formBasicUsername">
-                  <Form.Label className="username-label">Username</Form.Label>
-                  <Form.Control
-                    autoComplete="off"
-                    type="text"
-                    placeholder="Enter username"
-                    name="username"
-                    value={this.username}
-                    onChange={(e) => this.setUsername(e.target.value)}
-                  />
-                </Form.Group>
+                <Form>
+                  <Card.Text as="h1">Edit Profile</Card.Text>
+                  <Form.Group controlId="formBasicUsername">
+                    <Form.Label className="username-label">
+                      Username: 5-25 characters/A-z, 0-9 only
+                    </Form.Label>
+                    <Form.Control
+                      autoComplete="off"
+                      type="text"
+                      placeholder="Enter username"
+                      name="username"
+                      value={this.username}
+                      onChange={(e) => this.setUsername(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label className="password-label">Password</Form.Label>
-                  <Form.Control
-                    autoComplete="off"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={this.password}
-                    onChange={(e) => this.setPassword(e.target.value)}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="password-label">
+                      Password: 5-25 characters/A-z, 0-9 only
+                    </Form.Label>
+                    <Form.Control
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={this.password}
+                      onChange={(e) => this.setPassword(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label className="email-label">Email address</Form.Label>
-                  <Form.Control
-                    autoComplete="off"
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                    value={this.email}
-                    onChange={(e) => this.setEmail(e.target.value)}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label className="email-label">
+                      Email address
+                    </Form.Label>
+                    <Form.Control
+                      autoComplete="off"
+                      type="email"
+                      placeholder="Enter email"
+                      name="email"
+                      value={this.email}
+                      onChange={(e) => this.setEmail(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formBasicBirthday">
-                  <Form.Label className="birthday-label">Birthday</Form.Label>
-                  <Form.Control
-                    autoComplete="off"
-                    type="date"
-                    placeholder="Birthday"
-                    name="birthday"
-                    value={this.birthday}
-                    onChange={(e) => this.setBirthday(e.target.value)}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formBasicBirthday">
+                    <Form.Label className="birthday-label">
+                      Birthday:
+                    </Form.Label>
+                    <Form.Control
+                      autoComplete="off"
+                      type="date"
+                      placeholder="Birthday"
+                      name="birthday"
+                      value={this.birthday}
+                      onChange={(e) => this.setBirthday(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Button
-                  className="button-update"
-                  variant="success"
-                  onClick={() => this.handleUpdate()}
-                >
-                  Update
-                </Button>
+                  <Button
+                    className="button-update"
+                    variant="success"
+                    onClick={() => this.handleUpdate()}
+                  >
+                    Update
+                  </Button>
+                </Form>
               </Card.Body>
             </Card>
             <Card className="favorites-card cardbody">

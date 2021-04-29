@@ -72,6 +72,11 @@ h1 {
 h6 {
   color: white;
 }
+
+.password-trigger {
+  color: aqua;
+  text-decoration: underline;
+}
 * {
   background-color: black;
   color: white;
@@ -105,6 +110,10 @@ h6 {
 
 .cardbody {
   padding: 1px;
+}
+
+.memberhighlight {
+  color: aqua;
 }
 * {
   background-color: black;

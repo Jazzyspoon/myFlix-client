@@ -48109,7 +48109,7 @@ try {
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
         className: "password-trigger",
         onClick: () => setPasswordVisible(!isPasswordVisible)
-      }, isPasswordVisible ? "Hide" : "Show"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, isPasswordVisible ? "Hide Password" : "Show Password"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         className: "form-error"
       }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
@@ -48223,8 +48223,10 @@ try {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue. You will be redirected to the log in page once successfully registered."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, "Enter Username: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        placeholder: "Username:",
+      }, "Enter Username:", " ", /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "memberhighlight"
+      }, "5-25 characters/A-z, 0-9 only"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Username",
         type: "text",
         value: username,
         onChange: e => setUsername(e.target.value),
@@ -48234,14 +48236,15 @@ try {
         className: "form-error"
       }, usernameError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, "Create Password: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        placeholder: "Password: ",
+      }, "Create Password:", " ", /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "memberhighlight"
+      }, "5-25 characters/A-z, 0-9 only"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Password ",
         type: "password",
         value: password,
         onChange: e => setPassword(e.target.value),
         required: true,
-        maxLength: "25",
-        pattern: "[a-zA-Z0-9 ]+"
+        maxLength: "25"
       }), /*#__PURE__*/_reactDefault.default.createElement("p", {
         className: "form-error"
       }, passwordError)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
@@ -48251,18 +48254,20 @@ try {
         type: "email",
         value: email,
         onChange: e => setEmail(e.target.value)
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBirthday"
-      }, "Birthdate: MM/DD/YYYY", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        placeholder: "Birthday: ",
-        type: "birthday",
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, null, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        autoComplete: "off",
+        type: "date",
+        placeholder: "Birthday",
+        name: "birthday",
         value: birthday,
         onChange: e => setBirthday(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "memberhighlight"
+      }, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         href: "/",
         variant: "primary",
         type: "submit"
@@ -48590,13 +48595,13 @@ try {
           onClick: () => this.handleDeregistration()
         }, "Delete Account"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "edit-profile-card cardbody"
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
         }, "Edit Profile"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
           controlId: "formBasicUsername"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
           className: "username-label"
-        }, "Username"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        }, "Username: 5-25 characters/A-z, 0-9 only"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
           autoComplete: "off",
           type: "text",
           placeholder: "Enter username",
@@ -48607,7 +48612,7 @@ try {
           controlId: "formBasicPassword"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
           className: "password-label"
-        }, "Password"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        }, "Password: 5-25 characters/A-z, 0-9 only"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
           autoComplete: "off",
           type: "password",
           placeholder: "Password",
@@ -48629,7 +48634,7 @@ try {
           controlId: "formBasicBirthday"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
           className: "birthday-label"
-        }, "Birthday"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        }, "Birthday:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
           autoComplete: "off",
           type: "date",
           placeholder: "Birthday",
@@ -48640,7 +48645,7 @@ try {
           className: "button-update",
           variant: "success",
           onClick: () => this.handleUpdate()
-        }, "Update"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+        }, "Update")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
           className: "favorites-card cardbody"
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
           as: "h1"
