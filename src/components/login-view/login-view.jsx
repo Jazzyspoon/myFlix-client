@@ -1,35 +1,51 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setUser } from "../../actions/actions";
 import "./login-view.scss";
 
-export function LoginView(props) {
+function LoginView(props) {
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Send a request to the server for authentication */
     axios
-      .post(
-        `https://movieflixappjp.herokuapp.com/login`,
-
-        {
-          Username: username,
-          Password: password,
-        }
-      )
+      .post(`https://movieflixappjp.herokuapp.com/login`, {
+        Username: username,
+        Password: password,
+      })
       .then((response) => {
         const data = response.data;
-        props.onLoggedIn(data);
+        props.setUser(data);
       })
       .catch((e) => {
-        console.log("no such user");
-        alert("no such user");
+        console.log(e);
+        console.error("no such user");
       });
   };
+
+  useEffect(() => {
+    if (password === "" || password.length >= 6) {
+      setPasswordError("");
+    } else if (password.length < 6) {
+      setPasswordError("Password must be longer than 5 characters");
+    }
+  }, [password]);
+
+  useEffect(() => {
+    if (username === "" || username.length >= 6) {
+      setUsernameError("");
+    } else if (username.length < 6) {
+      setUsernameError("Username must be longer than 5 characters");
+    }
+  }, [username]);
 
   return (
     <div>
@@ -39,31 +55,42 @@ export function LoginView(props) {
         </Navbar.Brand>
         <Nav className="mr-auto MFLXsm"></Nav>
       </Navbar>
+
       <h1 className="title-top">Welcome to MovieFlix!</h1>
       <p>Please login to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
+            maxLength="10"
+            type="text"
+            placeholder="Username"
+            name="username"
             value={username}
-            type="email"
+            required
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
-            //pattern="[a-zA-Z0-9]+"
           />
+          <p className="form-error">{usernameError}</p>
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
-          <Form.Control
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-            //min="5"
-            //pattern="[a-zA-Z0-9]+"
-          />
-        </Form.Group>
 
+          <Form.Control
+            type={isPasswordVisible ? "text" : "password"}
+            maxLength="10"
+            value={password}
+            placeholder="Password"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span
+            className="password-trigger"
+            onClick={() => setPasswordVisible(!isPasswordVisible)}
+          >
+            {isPasswordVisible ? "Hide" : "Show"}
+          </span>
+          <p className="form-error">{passwordError}</p>
+        </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Log In
         </Button>
@@ -81,10 +108,18 @@ export function LoginView(props) {
     </div>
   );
 }
+
+export default connect(null, { setUser })(LoginView);
+
 LoginView.propTypes = {
+  setUser: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
+    Username: PropTypes.string,
+    Password: PropTypes.string,
   }),
-  onLoggedIn: PropTypes.func,
+  togglepassword: PropTypes.shape({
+    type: PropTypes.string,
+    word: PropTypes.string,
+  }),
+  togglePassword: PropTypes.func,
 };
