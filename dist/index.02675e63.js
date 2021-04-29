@@ -48058,17 +48058,17 @@ try {
       });
     };
     _react.useEffect(() => {
-      if (password === "" || password.length >= 6) {
+      if (password === "" || password.length >= 5) {
         setPasswordError("");
-      } else if (password.length < 6) {
-        setPasswordError("Password must be longer than 5 characters");
+      } else if (password.length < 5) {
+        setPasswordError("Password must be longer than 4 characters");
       }
     }, [password]);
     _react.useEffect(() => {
-      if (username === "" || username.length >= 6) {
+      if (username === "" || username.length >= 5) {
         setUsernameError("");
-      } else if (username.length < 6) {
-        setUsernameError("Username must be longer than 5 characters");
+      } else if (username.length < 5) {
+        setUsernameError("Username must be longer than 4 characters");
       }
     }, [username]);
     return (
@@ -48088,7 +48088,7 @@ try {
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please login to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        maxLength: "10",
+        maxLength: "25",
         type: "text",
         placeholder: "Username",
         name: "username",
@@ -48101,7 +48101,7 @@ try {
         controlId: "formPassword"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: isPasswordVisible ? "text" : "password",
-        maxLength: "10",
+        maxLength: "25",
         value: password,
         placeholder: "Password",
         name: "password",
@@ -48115,7 +48115,7 @@ try {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+      }, "Log In")), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", null, "Not a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
         to: "/register"
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -48187,6 +48187,7 @@ try {
         window.open("/", "_self");
       }).catch(e => {
         console.log(e.response);
+        alert("The information entered does not meet minimum requirements.  Please re-enter your information and resubmit");
       });
     };
     return (
@@ -48205,28 +48206,34 @@ try {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, "Enter Username:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, "Enter Username: 25 characters max/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Username:",
         type: "text",
         value: username,
         onChange: e => setUsername(e.target.value),
+        maxLength: "25",
         pattern: "[a-zA-Z0-9]+"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, "Create Password:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, "Create Password: 25 characters maxi/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Password: ",
         type: "password",
         value: password,
         onChange: e => setPassword(e.target.value),
         required: true,
+        maxLength: "25",
         pattern: "[a-zA-Z0-9 ]+"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, "Email:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Email",
         type: "email",
         value: email,
         onChange: e => setEmail(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
       }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Birthday: MM/DD/YYYY",
         type: "birthday",
         value: birthday,
         onChange: e => setBirthday(e.target.value)
@@ -48234,7 +48241,7 @@ try {
         variant: "success",
         type: "submit",
         onClick: handleRegister
-      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+      }, "Submit")), /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("span", null, "Already a member?"), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
         href: "/",
         variant: "primary",
         type: "submit"

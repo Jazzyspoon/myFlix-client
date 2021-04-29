@@ -32,18 +32,18 @@ function LoginView(props) {
   };
 
   useEffect(() => {
-    if (password === "" || password.length >= 6) {
+    if (password === "" || password.length >= 5) {
       setPasswordError("");
-    } else if (password.length < 6) {
-      setPasswordError("Password must be longer than 5 characters");
+    } else if (password.length < 5) {
+      setPasswordError("Password must be longer than 4 characters");
     }
   }, [password]);
 
   useEffect(() => {
-    if (username === "" || username.length >= 6) {
+    if (username === "" || username.length >= 5) {
       setUsernameError("");
-    } else if (username.length < 6) {
-      setUsernameError("Username must be longer than 5 characters");
+    } else if (username.length < 5) {
+      setUsernameError("Username must be longer than 4 characters");
     }
   }, [username]);
 
@@ -62,7 +62,7 @@ function LoginView(props) {
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
-            maxLength="10"
+            maxLength="25"
             type="text"
             placeholder="Username"
             name="username"
@@ -77,7 +77,7 @@ function LoginView(props) {
 
           <Form.Control
             type={isPasswordVisible ? "text" : "password"}
-            maxLength="10"
+            maxLength="25"
             value={password}
             placeholder="Password"
             name="password"
@@ -97,8 +97,10 @@ function LoginView(props) {
       </Form>
       <br></br>
       <div>
+        <br></br>
         <span>Not a member?</span>
         <br></br>
+
         <Link to="/register">
           <Button variant="success" type="submit">
             Register An Account
