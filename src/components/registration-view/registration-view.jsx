@@ -29,12 +29,14 @@ function RegisterView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
+
+        alert("Registration successful.  Please log in to continue.");
         window.open("/", "_self");
       })
       .catch((e) => {
         console.log(e.response);
         alert(
-          "The information entered does not meet minimum requirements.  Please re-enter your information and resubmit"
+          "The information entered does not meet minimum requirements.  Please resubmit"
         );
       });
   };
@@ -65,30 +67,36 @@ function RegisterView(props) {
       </Navbar>
 
       <h1 className="title-top">Welcome to MovieFlix!</h1>
-      <p>Please create an account to continue.</p>
+      <p>
+        Please create an account to continue. You will be redirected to the log
+        in page once successfully registered.
+      </p>
       <Form>
         <Form.Group controlId="formUsername">
-          Enter Username: 5-25 characters/A-z, 0-9 only
+          Enter Username:{" "}
+          <p className="memberhighlight">5-25 characters/A-z, 0-9 only</p>
           <Form.Control
-            placeholder="Username:"
+            placeholder="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             maxLength="25"
             pattern="[a-zA-Z0-9]+"
           />
+          <p className="form-error">{usernameError}</p>
         </Form.Group>
         <Form.Group controlId="formPassword">
-          Create Password: 5-25 characters/A-z, 0-9 only
+          Create Password:{" "}
+          <p className="memberhighlight">5-25 characters/A-z, 0-9 only</p>
           <Form.Control
-            placeholder="Password: "
+            placeholder="Password "
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             maxLength="25"
-            pattern="[a-zA-Z0-9 ]+"
           />
+          <p className="form-error">{passwordError}</p>
         </Form.Group>
         <Form.Group controlId="formEmail">
           Email:
@@ -99,11 +107,13 @@ function RegisterView(props) {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formBirthday">
-          Birthdate: MM/DD/YYYY
+        <Form.Group>
+          Birthdate:
           <Form.Control
-            placeholder="Birthday: "
-            type="birthday"
+            autoComplete="off"
+            type="date"
+            placeholder="Birthday"
+            name="birthday"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
           />
@@ -116,7 +126,7 @@ function RegisterView(props) {
 
       <div>
         <br></br>
-        <span>Already a member?</span>
+        <span className="memberhighlight">Already a member?</span>
         <br></br>
         <Button href="/" variant="primary" type="submit">
           Log In
