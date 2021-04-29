@@ -66,7 +66,10 @@ function RegisterView(props) {
       </Navbar>
 
       <h1 className="title-top">Welcome to MovieFlix!</h1>
-      <p>Please create an account to continue.</p>
+      <p>
+        Please create an account to continue. You will be redirected to the log
+        in page once successfully registered.
+      </p>
       <Form>
         <Form.Group controlId="formUsername">
           Enter Username: 5-25 characters/A-z, 0-9 only

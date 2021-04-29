@@ -48221,7 +48221,7 @@ try {
         className: "mr-auto MFLXsm"
       })), /*#__PURE__*/_reactDefault.default.createElement("h1", {
         className: "title-top"
-      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+      }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue. You will be redirected to the log in page once successfully registered."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, "Enter Username: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         placeholder: "Username:",
