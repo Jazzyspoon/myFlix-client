@@ -68,7 +68,7 @@ function RegisterView(props) {
       <p>Please create an account to continue.</p>
       <Form>
         <Form.Group controlId="formUsername">
-          Enter Username: 25 characters max/A-z, 0-9 only
+          Enter Username: 5-25 characters/A-z, 0-9 only
           <Form.Control
             placeholder="Username:"
             type="text"
@@ -79,7 +79,7 @@ function RegisterView(props) {
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
-          Create Password: 25 characters maxi/A-z, 0-9 only
+          Create Password: 5-25 characters/A-z, 0-9 only
           <Form.Control
             placeholder="Password: "
             type="password"
@@ -100,9 +100,9 @@ function RegisterView(props) {
           />
         </Form.Group>
         <Form.Group controlId="formBirthday">
-          Birthdate:
+          Birthdate: MM/DD/YYYY
           <Form.Control
-            placeholder="Birthday: MM/DD/YYYY"
+            placeholder="Birthday: "
             type="birthday"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}

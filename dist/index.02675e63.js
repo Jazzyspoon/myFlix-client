@@ -48222,7 +48222,7 @@ try {
         className: "title-top"
       }, "Welcome to MovieFlix!"), /*#__PURE__*/_reactDefault.default.createElement("p", null, "Please create an account to continue."), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
-      }, "Enter Username: 25 characters max/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, "Enter Username: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         placeholder: "Username:",
         type: "text",
         value: username,
@@ -48231,7 +48231,7 @@ try {
         pattern: "[a-zA-Z0-9]+"
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
-      }, "Create Password: 25 characters maxi/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+      }, "Create Password: 5-25 characters/A-z, 0-9 only", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         placeholder: "Password: ",
         type: "password",
         value: password,
@@ -48248,8 +48248,8 @@ try {
         onChange: e => setEmail(e.target.value)
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBirthday"
-      }, "Birthdate:", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        placeholder: "Birthday: MM/DD/YYYY",
+      }, "Birthdate: MM/DD/YYYY", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        placeholder: "Birthday: ",
         type: "birthday",
         value: birthday,
         onChange: e => setBirthday(e.target.value)
