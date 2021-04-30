@@ -28,13 +28,11 @@ function RegisterView(props) {
       })
       .then((response) => {
         const data = response.data;
-        console.log(data);
 
         alert("Registration successful.  Please log in to continue.");
         window.open("/", "_self");
       })
       .catch((e) => {
-        console.log(e.response);
         alert(
           "The information entered does not meet minimum requirements.  Please resubmit"
         );

@@ -26,7 +26,6 @@ function LoginView(props) {
         props.setUser(data);
       })
       .catch((e) => {
-        console.log(e);
         alert("no such user.  Please try again or register an account");
       });
   };
