@@ -18,8 +18,6 @@ function AddFavoriteMovie(movie) {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      console.log(response);
-
       alert("Added to favorites!");
     });
 }

@@ -29706,7 +29706,6 @@ try {
           Authorization: `Bearer ${token}`
         }
       }).then(response => {
-        console.log(response);
         // Assign the result to the state
         this.props.setMovies(response.data);
       }).catch(function (error) {
@@ -47912,7 +47911,6 @@ try {
     }
     /*add to favorites function*/
     addToFavorites(movie) {
-      console.log(movie._id);
       const {token} = this.props.user;
       const {Username} = this.props.user.user;
       let url = `https://movieflixappjp.herokuapp.com/users/${Username}/movies/${movie._id}`;
@@ -47921,7 +47919,6 @@ try {
           Authorization: `Bearer ${token}`
         }
       }).then(response => {
-        console.log(response);
         alert("Added to favorites!");
       }).catch(e => {
         console.log(e);
@@ -47929,7 +47926,6 @@ try {
     }
     render() {
       const {movie} = this.props;
-      console.log(movie);
       if (!movie) return null;
       return (
         /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
@@ -47987,7 +47983,6 @@ try {
     }
   }
   let mapStateToProps = state => {
-    console.log(state);
     return {
       user: state.user
     };
@@ -48053,7 +48048,6 @@ try {
         const data = response.data;
         props.setUser(data);
       }).catch(e => {
-        console.log(e);
         alert("no such user.  Please try again or register an account");
       });
     };
@@ -48185,11 +48179,9 @@ try {
         Birthday: birthday
       }).then(response => {
         const data = response.data;
-        console.log(data);
         alert("Registration successful.  Please log in to continue.");
         window.open("/", "_self");
       }).catch(e => {
-        console.log(e.response);
         alert("The information entered does not meet minimum requirements.  Please resubmit");
       });
     };
@@ -48499,10 +48491,9 @@ try {
           Username: Username
         }).then(response => {
           const data = response.data;
-          console.log(data);
           window.open("/", "_self");
         }).catch(e => {
-          console.log("error deregistering user");
+          alert("error deregistering user");
         });
       });
       this.username = undefined;
@@ -48668,7 +48659,6 @@ try {
     }
   }
   let mapStateToProps = state => {
-    console.log(state);
     return {
       user: state.user
     };

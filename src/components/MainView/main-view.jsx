@@ -36,7 +36,6 @@ class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response);
         // Assign the result to the state
         this.props.setMovies(response.data);
       })

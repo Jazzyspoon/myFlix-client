@@ -91,11 +91,11 @@ class ProfileView extends React.Component {
       })
       .then((response) => {
         const data = response.data;
-        console.log(data);
+
         window.open("/", "_self");
       })
       .catch((e) => {
-        console.log("error deregistering user");
+        alert("error deregistering user");
       });
   };
 
@@ -280,7 +280,6 @@ class ProfileView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  console.log(state);
   return { user: state.user };
 };
 

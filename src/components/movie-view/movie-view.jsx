@@ -12,7 +12,6 @@ class MovieView extends React.Component {
   }
   //add to favorites function
   addToFavorites(movie) {
-    console.log(movie._id);
     const { token } = this.props.user;
     const { Username } = this.props.user.user;
     let url = `https://movieflixappjp.herokuapp.com/users/${Username}/movies/${movie._id}`;
@@ -21,7 +20,6 @@ class MovieView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response);
         alert("Added to favorites!");
       })
       .catch((e) => {
@@ -30,7 +28,7 @@ class MovieView extends React.Component {
   }
   render() {
     const { movie } = this.props;
-    console.log(movie);
+
     if (!movie) return null;
     return (
       <Col className="movie-view">
@@ -94,7 +92,6 @@ class MovieView extends React.Component {
   }
 }
 let mapStateToProps = (state) => {
-  console.log(state);
   return { user: state.user };
 };
 export default connect(mapStateToProps)(MovieView);
